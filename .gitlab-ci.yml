@@ -11,7 +11,7 @@ variables:
   CHART_VERSION: &ref 8.0.6
   CHART_VALUES: k8s/values.yaml
   DOCKER_CONTAINER_REGISTRY: gcr.io/ronas-it-development/${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}
-  APP_NAME: "Psi Customer Portal Backend"
+  APP_NAME: "Psi Customer Portal"
   FILESYSTEM_DRIVER: local
   GOOGLE_CLOUD_STORAGE_BUCKET: ronasit-development
   GOOGLE_CLOUD_PROJECT_ID: ronas-it-development
@@ -53,12 +53,12 @@ tests:
     REDIS_HOST: "redis"
     MAIL_DRIVER: log
     FILESYSTEM_DRIVER: testing
-    APP_NAME: "Psi Customer Portal Backend"
+    APP_NAME: "Psi Customer Portal"
     APP_ENV: testing
     APP_DEBUG: "true"
     APP_LOG_LEVEL: debug
     APP_URL: http://localhost
-    DATA_COLLECTOR_KEY: "Psi Customer Portal Backend"
+    DATA_COLLECTOR_KEY: "Psi Customer Portal"
   image: ronasit/php-nginx:7.4
   services:
     - name: ronasit/postgres:11.1
