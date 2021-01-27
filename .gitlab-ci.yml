@@ -1,0 +1,107 @@
+stages:
+  - prepare
+  - tests
+  - deploy
+
+variables:
+  CI_PROJECT_NAME: psi-customer-portal-backend
+  DOMAIN: api.psi-customer-portal.ronasit.com
+  DOCKERFILE: ./Dockerfile
+  CHART_REPO: ronasit/laravel
+  CHART_VERSION: &ref 8.0.6
+  CHART_VALUES: k8s/values.yaml
+  DOCKER_CONTAINER_REGISTRY: gcr.io/ronas-it-development/${CI_PROJECT_NAME}-${CI_ENVIRONMENT_SLUG}
+  APP_NAME: "Psi Customer Portal Backend"
+  FILESYSTEM_DRIVER: local
+  GOOGLE_CLOUD_STORAGE_BUCKET: ronasit-development
+  GOOGLE_CLOUD_PROJECT_ID: ronas-it-development
+
+include:
+  - project: 'k8s-tools/charts/laravel'
+    ref: *ref
+    file: '/helpers/.gitlab-ci-template.yml'
+  - project: "ansible/laravel"
+    ref: ubuntu-20
+    file: "/helpers/.gitlab-ci-template.yml"
+
+
+cache: &global_cache
+  paths:
+    - ./vendor
+  policy: pull
+
+php_dependencies:
+  stage: prepare
+  image: ronasit/php-nginx:7.4
+  cache:
+    <<: *global_cache
+    policy: pull-push
+  script:
+    - composer install
+  tags:
+    - docker
+    - linux
+
+tests:
+  stage: tests
+  variables:
+    DB_CONNECTION: pgsql
+    DB_HOST: pgsql_test
+    POSTGRES_USER: forge
+    POSTGRES_DB: forge
+    POSTGRES_PASSWORD: ""
+    REDIS_HOST: "redis"
+    MAIL_DRIVER: log
+    FILESYSTEM_DRIVER: testing
+    APP_NAME: "Psi Customer Portal Backend"
+    APP_ENV: testing
+    APP_DEBUG: "true"
+    APP_LOG_LEVEL: debug
+    APP_URL: http://localhost
+    DATA_COLLECTOR_KEY: "Psi Customer Portal Backend"
+  image: ronasit/php-nginx:7.4
+  services:
+    - name: ronasit/postgres:11.1
+      alias: pgsql_test
+  script:
+    - composer install
+    - php artisan jwt:secret --env=testing
+    - php artisan key:generate --env=testing
+    - php vendor/bin/phpunit --stop-on-failure ./tests/
+  after_script:
+    - cat storage/logs/*.log || true
+  tags:
+    - docker
+    - linux
+
+deploy:
+  extends: .deploy
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://${CI_ENVIRONMENT_SLUG}.${DOMAIN}
+    on_stop: stop
+  when: manual
+  except:
+    - development
+    - master
+    - production
+    - tags
+
+stop:
+  extends: .stop
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    action: stop
+  except:
+    - development
+    - master
+    - production
+    - tags
+        
+deploy_development:
+  extends: .deploy_ansible
+  environment:
+    name: "development"
+    url: https://dev.${DOMAIN}
+  only:
+    - development
