@@ -6,7 +6,6 @@ use App\Http\Requests\Auth\CheckRestoreTokenRequest;
 use App\Http\Requests\Auth\ForgotPasswordRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RefreshTokenRequest;
-use App\Http\Requests\Auth\RegisterUserRequest;
 use App\Http\Requests\Auth\RestorePasswordRequest;
 use App\Services\UserService;
 use Illuminate\Http\Response;
@@ -31,19 +30,6 @@ class AuthController extends Controller
             'token' => $token,
             'ttl' => config('jwt.ttl'),
             'refresh_ttl' => config('jwt.refresh_ttl'),
-            'user' => $user
-        ]);
-    }
-
-    public function register(RegisterUserRequest $request, UserService $service, JWTAuth $auth)
-    {
-        $user = $service->create($request->onlyValidated());
-
-        $credentials = $request->only('email', 'password');
-        $token = $auth->attempt($credentials);
-
-        return response()->json([
-            'token' => $token,
             'user' => $user
         ]);
     }

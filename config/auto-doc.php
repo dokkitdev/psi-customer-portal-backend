@@ -11,7 +11,7 @@ return [
     'info' => [
         'description' => 'swagger-description',
         'version' => '0.0.0',
-        'title' => 'Name of Your Application',
+        'title' => 'Psi Customer Portal',
         'termsOfService' => '',
         'contact' => [
             'email' => 'your@email.com'

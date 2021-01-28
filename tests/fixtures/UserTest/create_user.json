@@ -1,6 +1,4 @@
 {
     "name": "Another User",
-    "email": "createuser@example.com",
-    "role_id": 2,
-    "password": "123123"
+    "email": "createuser@example.com"
 }

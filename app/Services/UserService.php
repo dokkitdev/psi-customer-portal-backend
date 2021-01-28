@@ -4,9 +4,9 @@ namespace App\Services;
 
 use App\Jobs\SendMailJob;
 use App\Mails\ForgotPasswordMail;
+use App\Mails\InvitationMail;
 use App\Models\Role;
 use Carbon\Carbon;
-use Illuminate\Support\Arr;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use RonasIT\Support\Services\EntityService;
@@ -33,10 +33,19 @@ class UserService extends EntityService
 
     public function create($data)
     {
-        $data['role_id'] = Arr::get($data, 'role_id', Role::USER);
-        $data['password'] = Hash::make($data['password']);
+        $data['role_id'] = Role::USER;
+        $data['password'] = Hash::make($this->generateHash());
+        $data['set_password_hash'] = $this->generateHash();;
+        $data['set_password_hash_created_at'] = Carbon::now();
 
-        return $this->repository->create($data);
+        $user = $this->repository
+            ->force()
+            ->create($data);
+
+        $mail = new InvitationMail($data['email'], ['hash' => $data['set_password_hash']]);
+        dispatch(new SendMailJob($mail));
+
+        return $user;
     }
 
     public function update($where, $data)

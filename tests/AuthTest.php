@@ -4,7 +4,6 @@ namespace App\Tests;
 
 use App\Mails\ForgotPasswordMail;
 use App\Tests\Support\AuthTestTrait;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\User;
@@ -27,8 +26,8 @@ class AuthTest extends TestCase
     public function testLogin()
     {
         $response = $this->json('post', '/login', [
-            'email' => $this->users[1]['email'],
-            'password' => $this->users[1]['password']
+            'email' => $this->users[0]['email'],
+            'password' => $this->users[0]['password']
         ]);
 
         $response->assertStatus(Response::HTTP_OK);
@@ -44,30 +43,6 @@ class AuthTest extends TestCase
         ]);
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
-    }
-
-    public function testLoginAsRegisteredUser()
-    {
-        $response = $this->json('post', '/login', [
-            'email' => $this->users[0]['email'],
-            'password' => $this->users[0]['password']
-        ]);
-
-        $response->assertStatus(Response::HTTP_OK);
-
-        $this->assertArrayHasKey('token', $response->json());
-    }
-
-    public function testRegisterFromGuestUser()
-    {
-        $data = $this->getJsonFixture('new_user.json');
-
-        $response = $this->json('post', '/register', $data);
-
-        $response->assertStatus(Response::HTTP_OK);
-
-        $this->assertDatabaseHas('users', $response->json('user'));
-        $this->assertDatabaseHas('users', Arr::only($data, ['email', 'name']));
     }
 
     public function testRefreshToken()
@@ -138,7 +113,7 @@ class AuthTest extends TestCase
     public function testRestorePassword()
     {
         $response = $this->json('post', '/auth/restore-password', [
-            'password' => 'new_password',
+            'password' => 'pa$$word1',
             'token' => 'restore_token',
         ]);
 
@@ -153,6 +128,16 @@ class AuthTest extends TestCase
             'email' => 'fidel.kutch@example.com',
             'set_password_hash' => 'restore_token'
         ]);
+    }
+
+    public function testRestorePasswordInvalidPassword()
+    {
+        $response = $this->json('post', '/auth/restore-password', [
+            'password' => 'new_password',
+            'token' => 'restore_token',
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     public function testRestorePasswordWrongToken()
