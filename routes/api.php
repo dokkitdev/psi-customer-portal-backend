@@ -39,7 +39,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/login', ['uses' => AuthController::class . '@login']);
     Route::get('/auth/refresh', ['uses' => AuthController::class . '@refreshToken'])
         ->middleware(['jwt.refresh']);
-    Route::post('/register', ['uses' => AuthController::class . '@register']);
     Route::post('/auth/forgot-password', ['uses' => AuthController::class . '@forgotPassword']);
     Route::post('/auth/restore-password', ['uses' => AuthController::class . '@restorePassword']);
     Route::post('/auth/token/check', ['uses' => AuthController::class . '@checkRestoreToken']);

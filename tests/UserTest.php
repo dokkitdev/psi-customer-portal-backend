@@ -2,12 +2,16 @@
 
 namespace App\Tests;
 
+use App\Mails\InvitationMail;
 use App\Models\User;
+use App\Tests\Support\AuthTestTrait;
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserTest extends TestCase
 {
+    use AuthTestTrait;
+
     protected $admin;
     protected $user;
 
@@ -21,6 +25,8 @@ class UserTest extends TestCase
 
     public function testCreate()
     {
+        $this->mockUniqueTokenGeneration('some_token');
+
         $data = $this->getJsonFixture('create_user.json');
 
         $response = $this->actingAs($this->admin)->json('post', '/users', $data);
@@ -30,6 +36,13 @@ class UserTest extends TestCase
         $this->assertEqualsFixture('user_created.json', $response->json());
 
         $this->assertDatabaseHas('users', $this->getJsonFixture('user_created_database.json'));
+
+        $this->assertMailEquals(InvitationMail::class, [
+            [
+                'emails' => $data['email'],
+                'fixture' => 'invitation_email.html'
+            ]
+        ]);
     }
 
     public function testCreateNoAuth()
@@ -139,6 +152,15 @@ class UserTest extends TestCase
         $response = $this->actingAs($this->user)->json('put', '/profile', $data);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
+    }
+
+    public function testUpdateProfileWithPasswordInvalidPassword()
+    {
+        $data = $this->getJsonFixture('update_profile_with_password_invalid_password.json');
+
+        $response = $this->actingAs($this->user)->json('put', '/profile', $data);
+
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     public function testUpdateProfileWithPasswordEmptyOldPassword()

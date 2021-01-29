@@ -40,4 +40,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'simpro' => [
+        'token' => env('SIMPRO_TOKEN'),
+        'api_url' => env('SIMPRO_API_URL', 'https://pfs.simprosuite.com/'),
+        'webhook_secret' => env('SIMPRO_WEBHOOK_SECRET'),
+    ]
+
 ];

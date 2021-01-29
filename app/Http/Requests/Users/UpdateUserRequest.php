@@ -6,7 +6,6 @@ use App\Http\Requests\Request;
 use App\Models\Role;
 use App\Services\UserService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class UpdateUserRequest extends Request
 {
@@ -31,10 +30,6 @@ class UpdateUserRequest extends Request
 
         if (!$service->exists($this->route('id'))) {
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'User']));
-        }
-
-        if ($this->has('role_id') && $this->user()->role_id !== Role::ADMIN) {
-            throw new AccessDeniedHttpException(__('validation.exceptions.not_found', ['entity' => 'User']));
         }
     }
 }
