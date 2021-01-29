@@ -42,8 +42,9 @@ return [
 
     'simpro' => [
         'token' => env('SIMPRO_TOKEN'),
-        'api_url' => env('SIMPRO_API_URL', 'https://pfs.simprosuite.com/'),
+        'api_url' => env('SIMPRO_API_URL', 'https://pfsgroup.simprosuite.com/'),
         'webhook_secret' => env('SIMPRO_WEBHOOK_SECRET'),
+        'company_id' => env('SIMPRO_COMPANY_ID', 0)
     ]
 
 ];

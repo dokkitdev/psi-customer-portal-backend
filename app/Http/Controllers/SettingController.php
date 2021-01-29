@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Setting\GetProjectCustomFieldsRequest;
+use App\Http\Requests\Setting\GetProjectTagsRequest;
 use App\Services\SettingService;
+use App\Services\SimproService;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Setting\GetSettingRequest;
 use App\Http\Requests\Setting\SearchSettingRequest;
@@ -30,6 +33,20 @@ class SettingController extends Controller
     public function search(SearchSettingRequest $request, SettingService $service)
     {
         $result = $service->search($request->onlyValidated());
+
+        return response()->json($result);
+    }
+
+    public function getProjectTags(GetProjectTagsRequest $request, SimproService $service)
+    {
+        $result = $service->getProjectTags();
+
+        return response()->json($result);
+    }
+
+    public function getProjectCustomFields(GetProjectCustomFieldsRequest $request, SimproService $service)
+    {
+        $result = $service->getProjectCustomFields();
 
         return response()->json($result);
     }

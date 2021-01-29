@@ -87,6 +87,8 @@ return [
     'unique'               => 'The :attribute has already been taken.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
+    'password'             => 'The :attribute is wrong.',
+    'new_password'         => 'The :attribute must be at least eight characters and one number.',
 
     /*
     |--------------------------------------------------------------------------

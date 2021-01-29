@@ -3,10 +3,13 @@
 namespace App\Tests;
 
 use App\Models\User;
+use App\Tests\Support\SimproTestTrait;
 use Symfony\Component\HttpFoundation\Response;
 
 class SettingTest extends TestCase
 {
+    use SimproTestTrait;
+
     protected $admin;
     protected $user;
 
@@ -16,6 +19,42 @@ class SettingTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+    }
+
+    public function testGetProjectTags()
+    {
+        $this->mockGetProjectTags();
+
+        $response = $this->actingAs($this->admin)->json('get', '/settings/project-tags');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('project_tags_fixture.json', $response->json());
+    }
+
+    public function testGetProjectTagsNoPermission()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/settings/project-tags');
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testGetProjectCustomFields()
+    {
+        $this->mockGetProjectCustomFields();
+
+        $response = $this->actingAs($this->admin)->json('get', '/settings/project-custom-fields');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('project_custom_fields_fixture.json', $response->json());
+    }
+
+    public function testGetProjectCustomFieldsNoPermission()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/settings/project-custom-fields');
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testUpdate()
