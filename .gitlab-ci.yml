@@ -4,8 +4,8 @@ stages:
   - deploy
 
 variables:
-  CI_PROJECT_NAME: psi-customer-portal-backend
-  DOMAIN: api.psi-customer-portal.ronasit.com
+  CI_PROJECT_NAME: pfs-customer-portal-backend
+  DOMAIN: api.pfs-customer-portal.ronasit.com
   DOCKERFILE: ./Dockerfile
   CHART_REPO: ronasit/laravel
   CHART_VERSION: &ref 8.0.6
@@ -58,7 +58,7 @@ tests:
     APP_DEBUG: "true"
     APP_LOG_LEVEL: debug
     APP_URL: http://localhost
-    DATA_COLLECTOR_KEY: "Psi Customer Portal"
+    DATA_COLLECTOR_KEY: "Pfs Customer Portal"
   image: ronasit/php-nginx:7.4
   services:
     - name: ronasit/postgres:11.1
