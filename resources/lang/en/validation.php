@@ -131,6 +131,7 @@ return [
 
     'exceptions' => [
         'not_found' => ':Entity does not exist',
+        'not_unique' => ':Entity already exists.'
     ]
 
 ];

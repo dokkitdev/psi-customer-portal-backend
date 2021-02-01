@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
 use App\Http\Controllers\StatusController;
@@ -45,6 +46,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/quote-rerequest-reasons', ['uses' => QuoteRerequestReasonController::class . '@create']);
     Route::delete('/quote-rerequest-reasons/{id}', ['uses' => QuoteRerequestReasonController::class . '@delete']);
     Route::get('/quote-rerequest-reasons', ['uses' => QuoteRerequestReasonController::class . '@search']);
+
+    Route::post('/groups', ['uses' => GroupController::class . '@create']);
+    Route::put('/groups/{id}', ['uses' => GroupController::class . '@update']);
+    Route::delete('/groups/{id}', ['uses' => GroupController::class . '@delete']);
+    Route::get('/groups/{id}', ['uses' => GroupController::class . '@get']);
+    Route::get('/groups', ['uses' => GroupController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
