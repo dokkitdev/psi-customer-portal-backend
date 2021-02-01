@@ -10,7 +10,7 @@ class UpdateProfileRequest extends Request
     {
         return [
             'old_password' => 'required_with:password|string|password',
-            'password' => 'min:8|regex:/\d+/|regex:/\D+/|confirmed',
+            'password' => 'new_password|confirmed',
             'password_confirmation' => 'string',
             'email' => 'string|email|unique_except_of_authorized_user',
             'name' => 'string',

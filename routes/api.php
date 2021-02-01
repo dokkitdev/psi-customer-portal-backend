@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\QuoteDeclineReasonController;
+use App\Http\Controllers\QuoteRerequestReasonController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -30,9 +32,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/media/{id}', ['uses' => MediaController::class . '@delete']);
     Route::get('/media', ['uses' => MediaController::class . '@search']);
 
+    Route::get('/settings/project-tags', ['uses' => SettingController::class . '@getProjectTags']);
+    Route::get('/settings/project-custom-fields', ['uses' => SettingController::class . '@getProjectCustomFields']);
     Route::put('/settings/{name}', ['uses' => SettingController::class . '@update']);
     Route::get('/settings/{name}', ['uses' => SettingController::class . '@get']);
     Route::get('/settings', ['uses' => SettingController::class . '@search']);
+
+    Route::post('/quote-decline-reasons', ['uses' => QuoteDeclineReasonController::class . '@create']);
+    Route::delete('/quote-decline-reasons/{id}', ['uses' => QuoteDeclineReasonController::class . '@delete']);
+    Route::get('/quote-decline-reasons', ['uses' => QuoteDeclineReasonController::class . '@search']);
+
+    Route::post('/quote-rerequest-reasons', ['uses' => QuoteRerequestReasonController::class . '@create']);
+    Route::delete('/quote-rerequest-reasons/{id}', ['uses' => QuoteRerequestReasonController::class . '@delete']);
+    Route::get('/quote-rerequest-reasons', ['uses' => QuoteRerequestReasonController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

@@ -1,0 +1,122 @@
+[
+    {
+        "ID": 1,
+        "Name": "Reason for Quote",
+        "Type": "Text",
+        "Order": 0,
+        "ShowFor": {
+            "Leads": true,
+            "Quotes": true,
+            "Jobs": true,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 7,
+        "Name": "Quote Grading",
+        "Type": "List",
+        "Order": 1,
+        "ShowFor": {
+            "Leads": true,
+            "Quotes": true,
+            "Jobs": true,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 11,
+        "Name": "Quote Type",
+        "Type": "List",
+        "Order": 2,
+        "ShowFor": {
+            "Leads": false,
+            "Quotes": true,
+            "Jobs": false,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 12,
+        "Name": "Quote Added",
+        "Type": "Date",
+        "Order": 3,
+        "ShowFor": {
+            "Leads": false,
+            "Quotes": true,
+            "Jobs": false,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 4,
+        "Name": "Job Number the Quote was Generated From",
+        "Type": "Text",
+        "Order": 4,
+        "ShowFor": {
+            "Leads": true,
+            "Quotes": true,
+            "Jobs": true,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 2,
+        "Name": "System Category Type",
+        "Type": "List",
+        "Order": 5,
+        "ShowFor": {
+            "Leads": true,
+            "Quotes": true,
+            "Jobs": true,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 3,
+        "Name": "System Category ",
+        "Type": "List",
+        "Order": 6,
+        "ShowFor": {
+            "Leads": true,
+            "Quotes": true,
+            "Jobs": true,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 8,
+        "Name": "Custom Quote Exclusion Text 1",
+        "Type": "Text",
+        "Order": 10,
+        "ShowFor": {
+            "Leads": false,
+            "Quotes": true,
+            "Jobs": false,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 9,
+        "Name": "Custom Quote Exclusion Text 2",
+        "Type": "Text",
+        "Order": 11,
+        "ShowFor": {
+            "Leads": false,
+            "Quotes": true,
+            "Jobs": false,
+            "Recurring": false
+        }
+    },
+    {
+        "ID": 10,
+        "Name": "Custom Quote Exclusion Text 3",
+        "Type": "Text",
+        "Order": 12,
+        "ShowFor": {
+            "Leads": false,
+            "Quotes": true,
+            "Jobs": false,
+            "Recurring": false
+        }
+    }
+]
