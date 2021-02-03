@@ -105,3 +105,14 @@ deploy_development:
     url: https://dev.${DOMAIN}
   only:
     - development
+
+deploy_staging:
+  extends: .deploy_ansible
+  variables:
+    PLAYBOOK: stg.yml
+    HOSTS_FILE: hosts.stg
+  environment:
+    name: "staging"
+    url:  https://stg.${DOMAIN}
+  only:
+    - master
