@@ -13,6 +13,13 @@ class SimproApiClient
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
+    public function getCustomers($companyId, $type, $data = [])
+    {
+        $url = $this->getUrl("companies/{$companyId}/customers/{$type}/");
+
+        return $this->makeRequest('get', $url, $data);
+    }
+
     public function getProjectCustomFields($companyId)
     {
         $url = $this->getUrl("companies/{$companyId}/setup/customFields/projects/");
@@ -27,6 +34,22 @@ class SimproApiClient
         $url = $this->getUrl("companies/{$companyId}/setup/tags/projects/");
 
         return $this->makeRequest('get', $url);
+    }
+
+    public function getAll($pageSize, $collback)
+    {
+        $allResults = [];
+        $page = 1;
+
+        do {
+            $result = $collback($pageSize, $page);
+
+            $allResults = array_merge($allResults, $result);
+
+            $page++;
+        } while (count($result) === $pageSize);
+
+        return $allResults;
     }
 
     protected function makeRequest($method, $url, $data = null, $headers = null)
