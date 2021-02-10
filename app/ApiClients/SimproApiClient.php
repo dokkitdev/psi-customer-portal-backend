@@ -13,11 +13,22 @@ class SimproApiClient
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
-    public function getCustomers($companyId, $type, $data = [])
+    public function getCustomersAsGenerator($companyId, $type)
     {
+        $page = 1;
+        $pageSize = 250;
         $url = $this->getUrl("companies/{$companyId}/customers/{$type}/");
 
-        return $this->makeRequest('get', $url, $data);
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
     }
 
     public function getProjectCustomFields($companyId)
@@ -34,22 +45,6 @@ class SimproApiClient
         $url = $this->getUrl("companies/{$companyId}/setup/tags/projects/");
 
         return $this->makeRequest('get', $url);
-    }
-
-    public function getAll($pageSize, $collback)
-    {
-        $allResults = [];
-        $page = 1;
-
-        do {
-            $result = $collback($pageSize, $page);
-
-            $allResults = array_merge($allResults, $result);
-
-            $page++;
-        } while (count($result) === $pageSize);
-
-        return $allResults;
     }
 
     protected function makeRequest($method, $url, $data = null, $headers = null)

@@ -35,39 +35,36 @@ class SimproCustomerService extends EntityService
 
     public function matchCustomers()
     {
-        $pageSize = 250;
+        $companiesPages = $this->simproClient->getCustomersAsGenerator($this->companyId, SimproCustomer::TYPE_COMPANIES);
+        $individualPages = $this->simproClient->getCustomersAsGenerator($this->companyId, SimproCustomer:: TYPE_INDIVIDUALS);
 
-        $companies = $this->simproClient->getAll($pageSize, function ($pageSize, $page) {
-            return $this->simproClient->getCustomers($this->companyId, SimproCustomer::TYPE_COMPANIES, [
-                'pageSize' => $pageSize,
-                'page' => $page
-            ]);
-        });
+        $companiesMapped = [];
+        foreach ($companiesPages as $companyPage) {
+            $companies = array_map(function ($company) {
+                return [
+                    'customer_id' => $company['ID'],
+                    'name' => $company['CompanyName'],
+                    'type' => SimproCustomer::TYPE_COMPANIES
+                ];
+            }, $companyPage);
 
-        $individuals = $this->simproClient->getAll($pageSize, function ($pageSize, $page) {
-            return $this->simproClient->getCustomers($this->companyId, SimproCustomer::TYPE_INDIVIDUALS, [
-                'pageSize' => $pageSize,
-                'page' => $page
-            ]);
-        });
+            $companiesMapped = array_merge($companiesMapped, $companies);
+        }
 
-        $companiesMapped = collect($companies)->map(function ($company) {
-            return [
-                'customer_id' => $company['ID'],
-                'name' => $company['CompanyName'],
-                'type' => SimproCustomer::TYPE_COMPANIES
-            ];
-        });
+        $individualsMapped = [];
+        foreach ($individualPages as $individualPage) {
+            $individuals = array_map(function ($individual) {
+                return [
+                    'customer_id' => $individual['ID'],
+                    'name' => "{$individual['GivenName']} {$individual['FamilyName']}",
+                    'type' => SimproCustomer::TYPE_INDIVIDUALS
+                ];
+            }, $individualPage);
 
-        $individualsMapped = collect($individuals)->map(function ($individual) {
-            return [
-                'customer_id' => $individual['ID'],
-                'name' => "{$individual['GivenName']} {$individual['FamilyName']}",
-                'type' => SimproCustomer::TYPE_INDIVIDUALS
-            ];
-        });
+            $individualsMapped = array_merge($individualsMapped, $individuals);
+        }
 
-        $customersFromSimpro = $companiesMapped->merge($individualsMapped);
+        $customersFromSimpro = array_merge($companiesMapped, $individualsMapped);
 
         $simproCustomers = $this->repository->get();
 
