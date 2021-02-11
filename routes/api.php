@@ -3,6 +3,7 @@
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
+use App\Http\Controllers\SimproCustomerController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -52,6 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/groups/{id}', ['uses' => GroupController::class . '@delete']);
     Route::get('/groups/{id}', ['uses' => GroupController::class . '@get']);
     Route::get('/groups', ['uses' => GroupController::class . '@search']);
+
+    Route::get('/simpro-customers', ['uses' => SimproCustomerController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

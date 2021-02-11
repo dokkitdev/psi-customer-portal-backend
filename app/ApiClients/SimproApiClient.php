@@ -13,6 +13,24 @@ class SimproApiClient
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
+    public function getCustomersAsGenerator($companyId, $type)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/customers/{$type}/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
     public function getProjectCustomFields($companyId)
     {
         $url = $this->getUrl("companies/{$companyId}/setup/customFields/projects/");
