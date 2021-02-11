@@ -19,4 +19,9 @@ class SimproCustomer extends Model
     ];
 
     protected $hidden = ['pivot'];
+
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
 }

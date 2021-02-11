@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\GroupSimproSiteController;
 use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
 use App\Http\Controllers\SimproCustomerController;
+use App\Http\Controllers\SimproSiteController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -55,6 +57,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/groups', ['uses' => GroupController::class . '@search']);
 
     Route::get('/simpro-customers', ['uses' => SimproCustomerController::class . '@search']);
+
+    Route::get('/simpro-sites', ['uses' => SimproSiteController::class . '@search']);
+
+    Route::put('/group-simpro-sites/{id}', ['uses' => GroupSimproSiteController::class . '@update']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

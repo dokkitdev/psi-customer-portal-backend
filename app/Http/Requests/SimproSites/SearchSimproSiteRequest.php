@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\SimproCustomers;
+namespace App\Http\Requests\SimproSites;
 
 use App\Http\Requests\Request;
 use App\Models\Role;
 
-class SearchSimproCustomerRequest extends Request
+class SearchSimproSiteRequest extends Request
 {
     public function authorize()
     {
@@ -15,7 +15,7 @@ class SearchSimproCustomerRequest extends Request
     public function rules()
     {
         return [
-            'has_groups' => 'boolean',
+            'group_id' => 'integer',
             'page' => 'integer',
             'per_page' => 'integer',
             'all' => 'integer',
@@ -23,7 +23,7 @@ class SearchSimproCustomerRequest extends Request
             'order_by' => 'string',
             'desc' => 'boolean',
             'with' => 'array',
-            'with.*' => 'string|in:groups'
+            'with.*' => 'string|in:group_simpro_sites'
         ];
     }
 }

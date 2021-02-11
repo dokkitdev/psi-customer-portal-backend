@@ -18,10 +18,13 @@ INSERT INTO groups(id, simpro_customer_id, title, created_at, updated_at) VALUES
 
 INSERT INTO simpro_sites(id, site_id, name) VALUES
   (1, 1, 'Name 1'),
-  (2, 2, 'Name 2');
+  (2, 2, 'Name 2'),
+  (3, 3, 'Name 3'),
+  (4, 4, 'Name 4');
 
 INSERT INTO group_simpro_site(id, group_id, simpro_site_id) VALUES
   (1, 1, 1),
-  (2, 1, 2),
-  (3, 2, 1),
-  (4, 3, 1);
+  (2, 2, 2),
+  (3, 3, 3),
+  (4, 4, 4),
+  (5, 4, 1);

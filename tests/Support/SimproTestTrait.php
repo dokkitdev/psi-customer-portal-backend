@@ -10,6 +10,27 @@ trait SimproTestTrait
 {
     use MockClassTrait;
 
+    protected function mockGetSites()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_sites_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
     protected function mockGetCustomersCommand()
     {
         $this->mockHttpRequestService([
