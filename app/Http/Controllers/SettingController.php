@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Setting\GetProjectCustomFieldsRequest;
 use App\Http\Requests\Setting\GetProjectTagsRequest;
+use App\Http\Requests\Setting\UpdateDefaultsSettingRequest;
 use App\Services\SettingService;
 use App\Services\SimproService;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,6 +27,13 @@ class SettingController extends Controller
             ['name' => $key],
             ['value' => $request->all()]
         );
+
+        return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function updateDefaults(UpdateDefaultsSettingRequest $request, SettingService $service)
+    {
+        $service->updateDefaults($request->onlyValidated(null, []));
 
         return response('', Response::HTTP_NO_CONTENT);
     }
