@@ -1,0 +1,29 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "site_id": 1,
+            "name": "Name 1",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 2,
+            "site_id": 2,
+            "name": "Name 2",
+            "created_at": null,
+            "updated_at": null
+        }
+    ],
+    "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",
+    "from": 1,
+    "last_page": 2,
+    "last_page_url": "http:\/\/localhost\/simpro-sites?page=2",
+    "next_page_url": "http:\/\/localhost\/simpro-sites?page=2",
+    "path": "http:\/\/localhost\/simpro-sites",
+    "per_page": 2,
+    "prev_page_url": null,
+    "to": 2,
+    "total": 4
+}

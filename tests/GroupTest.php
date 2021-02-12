@@ -2,11 +2,15 @@
 
 namespace App\Tests;
 
+use App\Models\Group;
 use App\Models\User;
+use App\Tests\Support\SimproTestTrait;
 use Symfony\Component\HttpFoundation\Response;
 
 class GroupTest extends TestCase
 {
+    use SimproTestTrait;
+
     protected $admin;
     protected $user;
     protected $data = ['title' => 'Group 5', 'simpro_customer_id' => 1];
@@ -21,17 +25,17 @@ class GroupTest extends TestCase
 
     public function testCreate()
     {
+        $this->mockGetSites();
+
         $response = $this->actingAs($this->admin)->json('post', '/groups', $this->data);
 
         $response->assertStatus(Response::HTTP_CREATED);
 
         $responseData = $response->json();
 
-        $this->assertDatabaseHas('groups', [
-            'id' => $responseData['id'],
-            'title' => $this->data['title'],
-            'simpro_customer_id' => $this->data['simpro_customer_id'],
-        ]);
+        $group = Group::with(['group_simpro_sites.simpro_site'])->find($responseData['id'])->toArray();
+
+        $this->assertEqualsFixture('create_group_fixture.json', $group);
     }
 
     public function testCreateAlreadyExists()
@@ -64,14 +68,28 @@ class GroupTest extends TestCase
 
     public function testUpdate()
     {
+        $this->mockGetSites();
+
+        $this->data['simpro_customer_id'] = 2;
+
         $response = $this->actingAs($this->admin)->json('put', '/groups/1', $this->data);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseHas('groups', [
-            'id' => 1,
-            'title' => $this->data['title']
-        ]);
+        $group = Group::with(['group_simpro_sites.simpro_site'])->find(1)->toArray();
+
+        $this->assertEqualsFixture('update_group_fixture.json', $group);
+    }
+
+    public function testUpdateSameCustomer()
+    {
+        $response = $this->actingAs($this->admin)->json('put', '/groups/1', $this->data);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $group = Group::with(['group_simpro_sites.simpro_site'])->find(1)->toArray();
+
+        $this->assertEqualsFixture('update_group_same_customer_fixture.json', $group);
     }
 
     public function testUpdateAlreadyExists()

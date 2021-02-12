@@ -30,6 +30,8 @@ class SimproCustomerService extends EntityService
         return $this->repository
             ->searchQuery($filters)
             ->filterByQuery(['name'])
+            ->hasGroup()
+            ->with()
             ->getSearchResults();
     }
 
