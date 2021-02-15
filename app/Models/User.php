@@ -16,7 +16,11 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'password',
         'role_id',
-        'set_password_hash_created_at'
+        'set_password_hash_created_at',
+        'invoices',
+        'quotes',
+        'is_quote_requests',
+        'is_job_requests'
     ];
 
     protected $guarded = [
@@ -46,5 +50,10 @@ class User extends Authenticatable implements JWTSubject
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
     }
 }

@@ -1,4 +1,10 @@
 {
     "name": "Another User",
-    "email": "createuser@example.com"
+    "email": "createuser@example.com",
+    "invoices": "View",
+    "quotes": "View",
+    "is_quote_requests": true,
+    "is_job_requests": true,
+    "is_send_email": true,
+    "group_ids": [1, 2]
 }

@@ -5,5 +5,9 @@
   "role_id": 2,
   "set_password_hash_created_at": "2018-11-11T11:11:11.000000Z",
   "created_at": "2018-11-11T11:11:11.000000Z",
-  "updated_at": "2018-11-11T11:11:11.000000Z"
+  "updated_at": "2018-11-11T11:11:11.000000Z",
+  "invoices": "View",
+  "quotes": "View",
+  "is_quote_requests": true,
+  "is_job_requests": true
 }

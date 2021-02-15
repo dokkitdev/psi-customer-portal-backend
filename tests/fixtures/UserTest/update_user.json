@@ -1,4 +1,9 @@
 {
     "name": "Update User",
-    "email": "updateuser@example.com"
+    "email": "updateuser@example.com",
+    "invoices": "View",
+    "quotes": "View",
+    "is_quote_requests": true,
+    "is_job_requests": true,
+    "group_ids": [2, 3]
 }
