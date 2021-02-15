@@ -8,6 +8,9 @@ class GetUserProfileRequest extends Request
 {
     public function rules()
     {
-        return [];
+        return [
+            'with' => 'array',
+            'with.*' => 'string|in:groups,groups.simpro_customer'
+        ];
     }
 }

@@ -37,6 +37,9 @@ class UserTest extends TestCase
 
         $this->assertDatabaseHas('users', $this->getJsonFixture('user_created_database.json'));
 
+        $this->assertDatabaseHas('group_user', ['user_id' => 3, 'group_id' => 1]);
+        $this->assertDatabaseHas('group_user', ['user_id' => 3, 'group_id' => 2]);
+
         $this->assertMailEquals(InvitationMail::class, [
             [
                 'emails' => $data['email'],
@@ -53,7 +56,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 
-        $this->assertDatabaseMissing('users', Arr::except($data, ['password']));
+        $this->assertDatabaseMissing('users', Arr::except($data, ['password', 'is_send_email', 'group_ids']));
     }
 
     public function testCreateNoPermission()
@@ -64,7 +67,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_FORBIDDEN);
 
-        $this->assertDatabaseMissing('users', Arr::except($data, ['password']));
+        $this->assertDatabaseMissing('users', Arr::except($data, ['password', 'is_send_email', 'group_ids']));
     }
 
     public function testCreateUserExists()
@@ -82,7 +85,27 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseHas('users', $data);
+        $this->assertDatabaseHas('users', Arr::except($data, 'group_ids'));
+
+        $this->assertDatabaseMissing('group_user', ['user_id' => 2, 'group_id' => 1]);
+        $this->assertDatabaseHas('group_user', ['user_id' => 2, 'group_id' => 2]);
+        $this->assertDatabaseHas('group_user', ['user_id' => 2, 'group_id' => 3]);
+    }
+
+    public function testUpdateByUser()
+    {
+        $data = $this->getJsonFixture('update_user.json');
+
+        $response = $this->actingAs($this->user)->json('put', '/users/2', $data);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseMissing('users', Arr::except($data, 'group_ids'));
+
+        $this->assertDatabaseHas('users', Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']));
+
+        $this->assertDatabaseHas('group_user', ['user_id' => 2, 'group_id' => 1]);
+        $this->assertDatabaseHas('group_user', ['user_id' => 2, 'group_id' => 2]);
     }
 
     public function testUpdateNoPermission()
@@ -131,7 +154,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 
-        $this->assertDatabaseMissing('users', $data);
+        $this->assertDatabaseMissing('users', Arr::except($data, 'group_ids'));
     }
 
     public function testUpdateProfile()
@@ -142,7 +165,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseHas('users', $data);
+        $this->assertDatabaseHas('users', Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']));
     }
 
     public function testUpdateProfileWithPassword()
@@ -189,7 +212,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 
-        $this->assertDatabaseMissing('users', $data);
+        $this->assertDatabaseMissing('users', Arr::except($data, 'group_ids'));
     }
 
     public function testDelete()
