@@ -38,6 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/settings/project-tags', ['uses' => SettingController::class . '@getProjectTags']);
     Route::get('/settings/project-custom-fields', ['uses' => SettingController::class . '@getProjectCustomFields']);
+    Route::put('/settings/defaults', ['uses' => SettingController::class . '@updateDefaults']);
     Route::put('/settings/{name}', ['uses' => SettingController::class . '@update']);
     Route::get('/settings/{name}', ['uses' => SettingController::class . '@get']);
     Route::get('/settings', ['uses' => SettingController::class . '@search']);

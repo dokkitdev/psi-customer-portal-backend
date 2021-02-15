@@ -35,7 +35,7 @@ class UserService extends EntityService
     {
         $data['role_id'] = Role::USER;
         $data['password'] = Hash::make($this->generateHash());
-        $data['set_password_hash'] = $this->generateHash();;
+        $data['set_password_hash'] = $this->generateHash();
         $data['set_password_hash_created_at'] = Carbon::now();
 
         $user = $this->repository

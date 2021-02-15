@@ -18,11 +18,25 @@ class SimproService
 
     public function getProjectTags()
     {
-        return $this->simproClient->getProjectTags($this->companyId);
+        $projectTagPages = $this->simproClient->getProjectTagsAsGenerator($this->companyId);
+
+        $projectTags = [];
+        foreach ($projectTagPages as $projectTagPage) {
+            $projectTags = array_merge($projectTags, $projectTagPage);
+        }
+
+        return $projectTags;
     }
 
     public function getProjectCustomFields()
     {
-        return $this->simproClient->getProjectCustomFields($this->companyId);
+        $projectCustomFieldPages = $this->simproClient->getProjectCustomFieldsAsGenerator($this->companyId);
+
+        $projectCustomFields = [];
+        foreach ($projectCustomFieldPages as $projectCustomFieldPage) {
+            $projectCustomFields = array_merge($projectCustomFields, $projectCustomFieldPage);
+        }
+
+        return $projectCustomFields;
     }
 }
