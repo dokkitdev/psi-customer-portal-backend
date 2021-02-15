@@ -72,4 +72,11 @@ class SettingService extends EntityService
             'value' => $setting['value']
         ]);
     }
+
+    public function updateDefaults($data)
+    {
+        foreach ($data as $key => $value) {
+            $this->set($key, $value);
+        }
+    }
 }

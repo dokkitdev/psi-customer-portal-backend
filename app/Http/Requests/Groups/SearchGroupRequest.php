@@ -3,9 +3,15 @@
 namespace App\Http\Requests\Groups;
 
 use App\Http\Requests\Request;
+use App\Models\Role;
 
 class SearchGroupRequest extends Request
 {
+    public function authorize()
+    {
+        return $this->user()->role_id == Role::ADMIN;
+    }
+
     public function rules()
     {
         return [

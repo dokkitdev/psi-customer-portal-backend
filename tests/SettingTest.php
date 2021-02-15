@@ -108,6 +108,54 @@ class SettingTest extends TestCase
         ]);
     }
 
+    public function testUpdateDefaults()
+    {
+        $setting = $this->getJsonFixture('update_defaults_setting.json');
+
+        $response = $this->actingAs($this->admin)->json('put', '/settings/defaults', $setting);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        foreach ($setting as $key => $value) {
+            $this->assertDatabaseHas('settings', [
+                'name' => $key,
+                'value' => json_encode($value)
+            ]);
+        }
+    }
+
+    public function testUpdateDefaultsNoAuth()
+    {
+        $setting = $this->getJsonFixture('update_defaults_setting.json');
+
+        $response = $this->json('put', '/settings/defaults', $setting);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+
+        foreach ($setting as $key => $value) {
+            $this->assertDatabaseMissing('settings', [
+                'name' => $key,
+                'value' => json_encode($value)
+            ]);
+        }
+    }
+
+    public function testUpdateDefaultsNoPermission()
+    {
+        $setting = $this->getJsonFixture('update_defaults_setting.json');
+
+        $response = $this->actingAs($this->user)->json('put', '/settings/defaults', $setting);
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+
+        foreach ($setting as $key => $value) {
+            $this->assertDatabaseMissing('settings', [
+                'name' => $key,
+                'value' => json_encode($value)
+            ]);
+        }
+    }
+
     public function testGetAsAdmin()
     {
         $response = $this->actingAs($this->admin)->json('get', '/settings/states');

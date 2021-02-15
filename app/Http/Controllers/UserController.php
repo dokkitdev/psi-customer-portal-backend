@@ -25,7 +25,9 @@ class UserController extends Controller
 
     public function get(GetUserRequest $request, UserService $service, $id)
     {
-        $result = $service->find($id);
+        $result = $service
+            ->withRelations($request->onlyValidated('with', []))
+            ->find($id);
 
         return response()->json($result);
     }
@@ -39,7 +41,9 @@ class UserController extends Controller
 
     public function profile(GetUserProfileRequest $request, UserService $service)
     {
-        $result = $service->find($request->user()->id);
+        $result = $service
+            ->withRelations($request->onlyValidated('with', []))
+            ->find($request->user()->id);
 
         return response()->json($result);
     }

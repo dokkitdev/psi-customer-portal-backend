@@ -16,7 +16,10 @@ class GetUserRequest extends Request
 
     public function rules()
     {
-        return [];
+        return [
+            'with' => 'array',
+            'with.*' => 'string|in:groups,groups.simpro_customer'
+        ];
     }
 
     public function validateResolved()

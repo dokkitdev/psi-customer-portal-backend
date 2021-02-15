@@ -20,4 +20,9 @@ class Group extends Model
     {
         return $this->belongsTo(SimproCustomer::class);
     }
+
+    public function group_simpro_sites()
+    {
+        return $this->hasMany(GroupSimproSite::class);
+    }
 }
