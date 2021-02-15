@@ -17,8 +17,8 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'role_id',
         'set_password_hash_created_at',
-        'invoices',
-        'quotes',
+        'invoice_permission_level',
+        'quote_permission_level',
         'is_quote_requests',
         'is_job_requests'
     ];

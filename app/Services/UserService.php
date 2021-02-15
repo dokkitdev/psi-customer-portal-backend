@@ -67,7 +67,7 @@ class UserService extends BaseService
         $authUser = $this->getAuthUser();
 
         if ($authUser['role_id'] !== Role::ADMIN) {
-            $data = Arr::except($data, ['invoices', 'quotes', 'is_quote_requests', 'is_job_requests', 'group_ids']);
+            $data = Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']);
         }
 
         if (!empty($data['password'])) {

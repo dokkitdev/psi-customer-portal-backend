@@ -22,8 +22,8 @@ class CreateUserRequest extends Request
             'email' => 'required|email|unique:users,email',
             'group_ids' => 'array',
             'group_ids.*' => 'integer|exists:groups,id',
-            'invoices' => "in:$invoices",
-            'quotes' => "in:$quotes",
+            'invoice_permission_level' => "in:{$invoices}",
+            'quote_permission_level' => "in:{$quotes}",
             'is_quote_requests' => 'boolean',
             'is_job_requests' => 'boolean',
             'is_send_email' => 'boolean'

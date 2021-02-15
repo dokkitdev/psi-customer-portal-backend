@@ -9,8 +9,8 @@ class AddAccessFieldsToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('invoices', ['View', 'No Access'])->default('No Access');
-            $table->enum('quotes', ['View', 'Edit', 'No Access'])->default('No Access');
+            $table->enum('invoice_permission_level', ['View', 'No Access'])->default('No Access');
+            $table->enum('quote_permission_level', ['View', 'Edit', 'No Access'])->default('No Access');
             $table->boolean('is_quote_requests')->default(false);
             $table->boolean('is_job_requests')->default(false);
         });
@@ -20,8 +20,8 @@ class AddAccessFieldsToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn([
-                'invoices',
-                'quotes',
+                'invoice_permission_level',
+                'quote_permission_level',
                 'is_quote_requests',
                 'is_job_requests'
             ]);

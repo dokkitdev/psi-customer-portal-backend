@@ -102,7 +102,7 @@ class UserTest extends TestCase
 
         $this->assertDatabaseMissing('users', Arr::except($data, 'group_ids'));
 
-        $this->assertDatabaseHas('users', Arr::except($data, ['invoices', 'quotes', 'is_quote_requests', 'is_job_requests', 'group_ids']));
+        $this->assertDatabaseHas('users', Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']));
 
         $this->assertDatabaseHas('group_user', ['user_id' => 2, 'group_id' => 1]);
         $this->assertDatabaseHas('group_user', ['user_id' => 2, 'group_id' => 2]);
@@ -165,7 +165,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseHas('users', Arr::except($data, ['invoices', 'quotes', 'is_quote_requests', 'is_job_requests', 'group_ids']));
+        $this->assertDatabaseHas('users', Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']));
     }
 
     public function testUpdateProfileWithPassword()
