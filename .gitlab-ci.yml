@@ -58,7 +58,7 @@ tests:
     APP_DEBUG: "true"
     APP_LOG_LEVEL: debug
     APP_URL: http://localhost
-    DATA_COLLECTOR_KEY: "Pfs Customer Portal"
+    DATA_COLLECTOR_KEY: PfsCustomerPortal
   image: ronasit/php-nginx:7.4
   services:
     - name: ronasit/postgres:11.1
