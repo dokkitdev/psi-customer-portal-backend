@@ -128,7 +128,7 @@ class SettingTest extends TestCase
     {
         $setting = $this->getJsonFixture('update_defaults_setting.json');
 
-        $response = $this->json('put', "/settings/defaults", $setting);
+        $response = $this->json('put', '/settings/defaults', $setting);
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 
