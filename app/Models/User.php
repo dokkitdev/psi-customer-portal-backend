@@ -11,6 +11,13 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable, ModelTrait;
 
+    const INVOICE_PERMISSION_LEVEL_VIEW = 'View';
+    const INVOICE_PERMISSION_LEVEL_NO_ACCESS = 'No Access';
+
+    const QUOTE_PERMISSION_LEVEL_VIEW = 'View';
+    const QUOTE_PERMISSION_LEVEL_EDIT = 'Edit';
+    const QUOTE_PERMISSION_LEVEL_NO_ACCESS = 'No Access';
+
     protected $fillable = [
         'name',
         'email',

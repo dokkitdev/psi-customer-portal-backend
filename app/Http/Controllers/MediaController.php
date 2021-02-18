@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Media\DownloadMediaRequest;
+use App\Http\Requests\Media\ViewMediaRequest;
 use App\Services\MediaService;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Media\CreateMediaRequest;
 use App\Http\Requests\Media\DeleteMediaRequest;
@@ -34,5 +37,19 @@ class MediaController extends Controller
         $result = $service->search($request->onlyValidated());
 
         return response()->json($result);
+    }
+
+    public function download(DownloadMediaRequest $request, MediaService $service, $id)
+    {
+        $media = $service->find($id);
+
+        return response()->download(Storage::path($service->getFilePathFromUrl($media['link'])), $media['name']);
+    }
+
+    public function view(ViewMediaRequest $request, MediaService $service, $id)
+    {
+        $media = $service->find($id);
+
+        return response()->file(Storage::path($service->getFilePathFromUrl($media['link'])));
     }
 }
