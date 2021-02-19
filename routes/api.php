@@ -7,6 +7,7 @@ use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
 use App\Http\Controllers\SimproCustomerController;
 use App\Http\Controllers\SimproSiteController;
+use App\Http\Controllers\SimproWebhookController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -82,4 +83,6 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('/auth/token/check', ['uses' => AuthController::class . '@checkRestoreToken']);
 
     Route::get('/status', ['uses' => StatusController::class . '@status']);
+
+    Route::post('/simpro-webhook', ['uses' => SimproWebhookController::class . '@process']);
 });

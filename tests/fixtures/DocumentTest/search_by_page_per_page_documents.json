@@ -6,16 +6,16 @@
             "media_id": 1,
             "title": "Docname 1",
             "description": "Product main photo",
-            "created_at": "2016-10-20T11:05:00.000000Z",
-            "updated_at": "2016-10-20T11:05:00.000000Z"
+            "created_at": "2016-10-20T10:05:00.000000Z",
+            "updated_at": "2016-10-20T10:05:00.000000Z"
         },
         {
             "id": 2,
             "media_id": 2,
             "title": "Docname 2",
             "description": "Category Photo photo",
-            "created_at": "2016-10-20T11:05:00.000000Z",
-            "updated_at": "2016-10-20T11:05:00.000000Z"
+            "created_at": "2016-10-20T10:05:00.000000Z",
+            "updated_at": "2016-10-20T10:05:00.000000Z"
         }
     ],
     "first_page_url": "http:\/\/localhost\/documents?page=1",
