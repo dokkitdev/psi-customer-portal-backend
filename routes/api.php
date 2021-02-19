@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupSimproSiteController;
 use App\Http\Controllers\QuoteDeclineReasonController;
@@ -34,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/media', ['uses' => MediaController::class . '@create']);
     Route::delete('/media/{id}', ['uses' => MediaController::class . '@delete']);
+    Route::get('/media/{id}/download', ['uses' => MediaController::class . '@download']);
+    Route::get('/media/{id}/view', ['uses' => MediaController::class . '@view']);
     Route::get('/media', ['uses' => MediaController::class . '@search']);
 
     Route::get('/settings/project-tags', ['uses' => SettingController::class . '@getProjectTags']);
@@ -62,6 +65,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/simpro-sites', ['uses' => SimproSiteController::class . '@search']);
 
     Route::put('/group-simpro-sites/{id}', ['uses' => GroupSimproSiteController::class . '@update']);
+
+    Route::post('/documents', ['uses' => DocumentController::class . '@create']);
+    Route::put('/documents/{id}', ['uses' => DocumentController::class . '@update']);
+    Route::delete('/documents/{id}', ['uses' => DocumentController::class . '@delete']);
+    Route::get('/documents/{id}', ['uses' => DocumentController::class . '@get']);
+    Route::get('/documents', ['uses' => DocumentController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
