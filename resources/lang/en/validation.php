@@ -131,7 +131,8 @@ return [
 
     'exceptions' => [
         'not_found' => ':Entity does not exist',
-        'not_unique' => ':Entity already exists.'
+        'not_unique' => ':Entity already exists.',
+        'mismatched_hashes' => 'Hashes do not match',
     ]
 
 ];
