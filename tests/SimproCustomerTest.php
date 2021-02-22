@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\Models\SimproCustomer;
+use App\Models\SimproJob;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,35 @@ class SimproCustomerTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+    }
+
+    public function testCreateOrUpdateCustomerEvent()
+    {
+        $this->mockGetCustomer();
+
+        $this->createSimproJob('simpro_webhook_company_customer_created_fixture.json');
+
+        $this->artisan('simpro:handle-jobs')->assertExitCode(0);
+
+        $simproJobs = SimproJob::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);
+
+        $simproCustomers = SimproCustomer::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_customers_create_or_update_event_fixture.json', $simproCustomers);
+    }
+
+    public function testDeleteCustomerEvent()
+    {
+        $this->createSimproJob('simpro_webhook_company_customer_deleted_fixture.json');
+
+        $this->artisan('simpro:handle-jobs')->assertExitCode(0);
+
+        $simproJobs = SimproJob::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);
+
+        $this->assertDatabaseMissing('simpro_customers', ['id' => 3]);
+        $this->assertDatabaseMissing('groups', ['id' => 4]);
+        $this->assertDatabaseMissing('group_simpro_site', ['id' => 1]);
     }
 
     public function testGetCustomersCommand()

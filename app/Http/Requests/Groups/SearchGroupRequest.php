@@ -15,6 +15,7 @@ class SearchGroupRequest extends Request
     public function rules()
     {
         return [
+            'simpro_customer_id' => 'integer',
             'page' => 'integer',
             'per_page' => 'integer',
             'all' => 'integer',

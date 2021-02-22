@@ -28,6 +28,7 @@ class GroupService extends EntityService
     {
         return $this->repository
             ->searchQuery($filters)
+            ->filterBy('simpro_customer_id')
             ->filterByQuery(['title'])
             ->with()
             ->getSearchResults();

@@ -27,6 +27,6 @@ class CreateGroupSiteTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('group_site');
+        Schema::dropIfExists('group_simpro_site');
     }
 }

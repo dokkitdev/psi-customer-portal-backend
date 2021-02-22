@@ -35,7 +35,7 @@ class SimproCustomerService extends EntityService
             ->getSearchResults();
     }
 
-    public function matchCustomers()
+    public function syncCustomers()
     {
         $companiesPages = $this->simproClient->getCustomersAsGenerator($this->companyId, SimproCustomer::TYPE_COMPANIES);
         $individualPages = $this->simproClient->getCustomersAsGenerator($this->companyId, SimproCustomer:: TYPE_INDIVIDUALS);
@@ -45,7 +45,7 @@ class SimproCustomerService extends EntityService
             $companies = array_map(function ($company) {
                 return [
                     'customer_id' => $company['ID'],
-                    'name' => $company['CompanyName'],
+                    'name' => $this->getName($company, SimproCustomer::TYPE_COMPANIES),
                     'type' => SimproCustomer::TYPE_COMPANIES
                 ];
             }, $companyPage);
@@ -58,7 +58,7 @@ class SimproCustomerService extends EntityService
             $individuals = array_map(function ($individual) {
                 return [
                     'customer_id' => $individual['ID'],
-                    'name' => "{$individual['GivenName']} {$individual['FamilyName']}",
+                    'name' => $this->getName($individual, SimproCustomer::TYPE_INDIVIDUALS),
                     'type' => SimproCustomer::TYPE_INDIVIDUALS
                 ];
             }, $individualPage);
@@ -92,5 +92,39 @@ class SimproCustomerService extends EntityService
             $ids = $simproCustomers->pluck('id')->toArray();
             $this->repository->deleteByList($ids);
         }
+    }
+
+    public function createOrUpdateBySimpro($webhook, $type)
+    {
+        $companyId = $webhook['data']['reference']['companyID'];
+        $customerId = $webhook['data']['reference']['customerID'];
+
+        $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
+
+        $this->repository->updateOrCreate([
+            'customer_id' => $customerId,
+            'type' => $type
+        ], [
+            'name' => $this->getName($customer, $type)
+        ]);
+    }
+
+    public function deleteBySimpro($webhook, $type)
+    {
+        $customerId = $webhook['data']['reference']['customerID'];
+
+        $this->repository->delete([
+            'customer_id' => $customerId,
+            'type' => $type
+        ]);
+    }
+
+    protected function getName($customer, $type)
+    {
+        if ($type === SimproCustomer::TYPE_INDIVIDUALS) {
+            return "{$customer['GivenName']} {$customer['FamilyName']}";
+        }
+
+        return $customer['CompanyName'];
     }
 }
