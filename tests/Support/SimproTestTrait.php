@@ -2,6 +2,7 @@
 
 namespace App\Tests\Support;
 
+use App\Models\SimproJob;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use Illuminate\Support\Arr;
 use RonasIT\Support\Services\HttpRequestService;
@@ -9,6 +10,34 @@ use RonasIT\Support\Services\HttpRequestService;
 trait SimproTestTrait
 {
     use MockClassTrait;
+
+    protected function createSimproJob($fixture)
+    {
+        $webhookData = $this->getJsonFixture($fixture);
+        $webhookData['data'] = json_decode($webhookData['data'], true);
+        SimproJob::create($webhookData);
+    }
+
+    protected function mockGetCustomer()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customers/companies/6'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_customer_response_success.json'
+                ]
+            ]
+        ]);
+    }
 
     protected function mockGetSites()
     {

@@ -13,7 +13,7 @@ class GetSimproCustomers extends Command
 
     public function handle()
     {
-        app(SimproCustomerService::class)->matchCustomers();
+        app(SimproCustomerService::class)->syncCustomers();
 
         $this->line('Simpro Customers saved');
     }

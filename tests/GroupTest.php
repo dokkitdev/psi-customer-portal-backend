@@ -13,7 +13,7 @@ class GroupTest extends TestCase
 
     protected $admin;
     protected $user;
-    protected $data = ['title' => 'Group 5', 'simpro_customer_id' => 1];
+    protected $data = ['title' => 'Group 6', 'simpro_customer_id' => 1];
 
     public function setUp(): void
     {
@@ -232,6 +232,10 @@ class GroupTest extends TestCase
             [
                 'filter' => ['query' => 'Group 4'],
                 'result' => 'search_groups_by_query.json'
+            ],
+            [
+                'filter' => ['simpro_customer_id' => 1],
+                'result' => 'search_groups_by_simpro_customer.json'
             ],
         ];
     }

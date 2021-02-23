@@ -11,8 +11,17 @@ INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at
   (2, 6, 'Old name', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (3, 100, 'For delete', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
+INSERT INTO simpro_sites(id, site_id, name, created_at, updated_at) VALUES
+  (1, 1, 'Sitename', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+
 INSERT INTO groups(id, simpro_customer_id, title, created_at, updated_at) VALUES
   (1, 1, 'Group 1', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 1, 'Group 2', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (3, 1, 'Group 3', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (4, 3, 'Group 4', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+
+INSERT INTO group_simpro_site(id, group_id, simpro_site_id, created_at, updated_at) VALUES
+  (1, 4, 1, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+
+INSERT INTO simpro_jobs(id, data, handle_status, handle_result) VALUES
+  (1, '{"ID": "job.created", "build": "pfsgroup.simprosuite.com", "description": "Job #test has been crashed.", "name": "Job", "action": "created", "reference": {"companyID": 0, "jobID": 2406}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}');

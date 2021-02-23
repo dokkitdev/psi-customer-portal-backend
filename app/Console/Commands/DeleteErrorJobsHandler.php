@@ -15,5 +15,7 @@ class DeleteErrorJobsHandler extends Command
     {
         $date = now()->subMonths(1);
         app(SimproJobService::class)->deleteErrorJobs($date);
+
+        $this->line('Error Simpro Jobs deleted');
     }
 }
