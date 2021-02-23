@@ -12,12 +12,14 @@ use RonasIT\Support\Services\EntityService;
  */
 class SimproJobService extends EntityService
 {
+    protected JobService $jobService;
     protected SimproCustomerService $simproCustomerService;
 
     public function __construct()
     {
         $this->setRepository(SimproJobRepository::class);
 
+        $this->jobService = app(JobService::class);
         $this->simproCustomerService = app(SimproCustomerService::class);
     }
 
@@ -26,6 +28,13 @@ class SimproJobService extends EntityService
         $event = $webhook['data']['ID'];
 
         switch ($event) {
+            case 'job.created':
+            case 'job.updated':
+                $this->jobService->createOrUpdateBySimpro($webhook);
+                break;
+            case 'job.deleted':
+                $this->jobService->deleteBySimpro($webhook);
+                break;
             case "company.customer.created":
             case "company.customer.updated":
                 $this->simproCustomerService->createOrUpdateBySimpro($webhook, SimproCustomer::TYPE_COMPANIES);

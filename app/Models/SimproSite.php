@@ -12,6 +12,8 @@ class SimproSite extends Model
     protected $fillable = [
         'site_id',
         'name',
+        'address',
+        'postal_code'
     ];
 
     protected $hidden = ['pivot'];

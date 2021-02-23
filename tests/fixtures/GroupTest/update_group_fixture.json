@@ -17,7 +17,9 @@
                 "site_id": 3659,
                 "name": "181 Fulham Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
-                "updated_at": "2018-11-11T11:11:11.000000Z"
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "address": null,
+                "postal_code": null
             }
         },
         {
@@ -32,7 +34,9 @@
                 "site_id": 3725,
                 "name": "22 Devonshire Square",
                 "created_at": "2018-11-11T11:11:11.000000Z",
-                "updated_at": "2018-11-11T11:11:11.000000Z"
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "address": null,
+                "postal_code": null
             }
         },
         {
@@ -47,7 +51,9 @@
                 "site_id": 3324,
                 "name": "32 Dover Street",
                 "created_at": "2018-11-11T11:11:11.000000Z",
-                "updated_at": "2018-11-11T11:11:11.000000Z"
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "address": null,
+                "postal_code": null
             }
         },
         {
@@ -62,7 +68,9 @@
                 "site_id": 3450,
                 "name": "44 Harrington Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
-                "updated_at": "2018-11-11T11:11:11.000000Z"
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "address": null,
+                "postal_code": null
             }
         },
         {
@@ -77,7 +85,9 @@
                 "site_id": 3529,
                 "name": "600 King's Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
-                "updated_at": "2018-11-11T11:11:11.000000Z"
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "address": null,
+                "postal_code": null
             }
         },
         {
@@ -92,7 +102,9 @@
                 "site_id": 3530,
                 "name": "606 King's Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
-                "updated_at": "2018-11-11T11:11:11.000000Z"
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "address": null,
+                "postal_code": null
             }
         }
     ]
