@@ -3,6 +3,7 @@
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupSimproSiteController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
 use App\Http\Controllers\SimproCustomerController;
@@ -61,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/groups/{id}', ['uses' => GroupController::class . '@get']);
     Route::get('/groups', ['uses' => GroupController::class . '@search']);
 
+    Route::get('/simpro-customers/{id}', ['uses' => SimproCustomerController::class . '@get']);
     Route::get('/simpro-customers', ['uses' => SimproCustomerController::class . '@search']);
 
     Route::get('/simpro-sites', ['uses' => SimproSiteController::class . '@search']);
@@ -72,6 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/documents/{id}', ['uses' => DocumentController::class . '@delete']);
     Route::get('/documents/{id}', ['uses' => DocumentController::class . '@get']);
     Route::get('/documents', ['uses' => DocumentController::class . '@search']);
+
+    Route::get('/jobs/{id}', ['uses' => JobController::class . '@get']);
+    Route::get('/jobs', ['uses' => JobController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

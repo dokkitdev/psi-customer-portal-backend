@@ -64,7 +64,8 @@ class SimproApiClient
             $result = $this->makeRequest('get', $url, [
                 'page' => $page,
                 'pageSize' => $pageSize,
-                'Customers.ID' => $customerId
+                'Customers.ID' => $customerId,
+                'columns' => 'ID,Name,Address'
             ]);
 
             $page++;

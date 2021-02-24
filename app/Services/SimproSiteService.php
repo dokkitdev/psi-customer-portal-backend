@@ -45,7 +45,7 @@ class SimproSiteService extends EntityService
 
         foreach ($sitePages as $sitePage) {
             foreach ($sitePage as $site) {
-                $simproSite = $this->repository->updateOrCreate(['site_id' => $site['ID']], ['name' => $site['Name']]);
+                $simproSite = $this->createOrUpdateBySimpro($site);
 
                 $this->groupSimproSiteService->create([
                     'group_id' => $groupId,
@@ -57,42 +57,42 @@ class SimproSiteService extends EntityService
 
     public function getOrCreateBySimpro($companyId, $siteId)
     {
-        $site = $this->repository->findBy('site_id', $siteId);
+        $simproSite = $this->repository->findBy('site_id', $siteId);
 
-        if (!$site) {
-            $simproSite = $this->simproClient->getSite($companyId, $siteId);
+        if (!$simproSite) {
+            $site = $this->simproClient->getSite($companyId, $siteId);
 
-            $site = $this->createOrUpdateBySimpro($simproSite);
+            $simproSite = $this->createOrUpdateBySimpro($site);
         }
 
-        return $site;
+        return $simproSite;
     }
 
-    protected function createOrUpdateBySimpro($simproSite)
+    protected function createOrUpdateBySimpro($site)
     {
         return $this->repository->updateOrCreate([
-            'site_id' => $simproSite['ID']
+            'site_id' => $site['ID']
         ], [
-            'name' => $simproSite['Name'],
-            'address' => $this->prepareAddress($simproSite),
-            'postal_code' => $simproSite['Address']['PostalCode'],
+            'name' => $site['Name'],
+            'address' => $this->prepareAddress($site),
+            'postal_code' => $site['Address']['PostalCode'],
         ]);
     }
 
-    protected function prepareAddress($simproSite)
+    protected function prepareAddress($site)
     {
         $address = [];
 
-        if (!empty($simproSite['Address']['Address'])) {
-            $address[] = str_replace(["\r\n", "\n", "\r"], ' ', $simproSite['Address']['Address']);
+        if (!empty($site['Address']['Address'])) {
+            $address[] = str_replace(["\r\n", "\n", "\r"], ' ', $site['Address']['Address']);
         }
 
-        if (!empty($simproSite['Address']['City'])) {
-            $address[] = $simproSite['Address']['City'];
+        if (!empty($site['Address']['City'])) {
+            $address[] = $site['Address']['City'];
         }
 
-        if (!empty($simproSite['Address']['State'])) {
-            $address[] = $simproSite['Address']['State'];
+        if (!empty($site['Address']['State'])) {
+            $address[] = $site['Address']['State'];
         }
 
         $address = trim(implode(', ', $address));

@@ -18,8 +18,8 @@
                 "name": "181 Fulham Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": null,
-                "postal_code": null
+                "address": "181 Fulham Road, Chelsea, London",
+                "postal_code": "SW3 6JN"
             }
         },
         {
@@ -35,8 +35,8 @@
                 "name": "22 Devonshire Square",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": null,
-                "postal_code": null
+                "address": "22 Devonshire Place Westminster, Marylebone, London",
+                "postal_code": "W1G 6JA"
             }
         },
         {
@@ -52,8 +52,8 @@
                 "name": "32 Dover Street",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": null,
-                "postal_code": null
+                "address": "Dover Street, London",
+                "postal_code": "W1S 4NE"
             }
         },
         {
@@ -69,8 +69,8 @@
                 "name": "44 Harrington Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": null,
-                "postal_code": null
+                "address": "Harrington Road, Kensington, London",
+                "postal_code": "SW7 3ND "
             }
         },
         {
@@ -86,8 +86,8 @@
                 "name": "600 King's Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": null,
-                "postal_code": null
+                "address": "600 King's Rd , Fulham, London",
+                "postal_code": "SW6 2YW"
             }
         },
         {
@@ -103,8 +103,8 @@
                 "name": "606 King's Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": null,
-                "postal_code": null
+                "address": "606 King's Rd, Fulham, London",
+                "postal_code": "SW6 2DX"
             }
         }
     ]

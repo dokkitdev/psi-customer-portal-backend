@@ -94,6 +94,31 @@ class SimproCustomerService extends EntityService
         }
     }
 
+    public function getOrCreateBySimpro($companyId, $customer)
+    {
+        $customerId = $customer['ID'];
+
+        if (!empty($customer['CompanyName'])) {
+            $type = SimproCustomer::TYPE_COMPANIES;
+        } else {
+            $type = SimproCustomer::TYPE_INDIVIDUALS;
+        }
+
+        $simproCustomer = $this->repository->first(['customer_id' => $customerId, 'type' => $type]);
+
+        if (!$simproCustomer) {
+            $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
+
+            $simproCustomer = $this->repository->create([
+                'customer_id' => $customerId,
+                'type' => $type,
+                'name' => $this->getName($customer, $type)
+            ]);
+        }
+
+        return $simproCustomer;
+    }
+
     public function createOrUpdateBySimpro($webhook, $type)
     {
         $companyId = $webhook['data']['reference']['companyID'];

@@ -63,6 +63,36 @@ class SimproCustomerTest extends TestCase
         $this->assertEqualsFixture('simpro_customers_fixture.json', $simproCustomers);
     }
 
+    public function testGet()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/simpro-customers/1');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_simpro_customer_fixture.json', $response->json());
+    }
+
+    public function testGetNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/simpro-customers/0');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testGetNoPermission()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/simpro-customers/1');
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testGetNoAuth()
+    {
+        $response = $this->json('get', '/simpro-customers/1');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
     public function getSearchFilters()
     {
         return [
