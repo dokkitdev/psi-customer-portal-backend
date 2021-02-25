@@ -98,11 +98,7 @@ class SimproCustomerService extends EntityService
     {
         $customerId = $customer['ID'];
 
-        if (!empty($customer['CompanyName'])) {
-            $type = SimproCustomer::TYPE_COMPANIES;
-        } else {
-            $type = SimproCustomer::TYPE_INDIVIDUALS;
-        }
+        $type = (empty($customer['CompanyName'])) ? SimproCustomer::TYPE_INDIVIDUALS : SimproCustomer::TYPE_COMPANIES;
 
         $simproCustomer = $this->repository->first(['customer_id' => $customerId, 'type' => $type]);
 

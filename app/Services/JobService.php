@@ -49,9 +49,9 @@ class JobService extends EntityService
 
         $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, $jobFromSimpro['Customer']);
 
-        $customField = $this->findCustomFieldById(Arr::get($jobFromSimpro, 'CustomFields'));
+        $customField = $this->findCustomFieldById(Arr::get($jobFromSimpro, 'CustomFields', []));
 
-        return $this->repository->updateOrCreate(['job_id' => Arr::get($jobFromSimpro, 'ID')], [
+        return $this->repository->updateOrCreate(['job_id' => $jobFromSimpro['ID']], [
             'simpro_customer_id' => $simproCustomer['id'],
             'simpro_site_id' => $simproSite['id'],
             'description' => Arr::get($jobFromSimpro, 'Description'),
@@ -77,7 +77,7 @@ class JobService extends EntityService
         $defaultTagId = Arr::get($this->settingService->get('default_tag'), 'ID');
 
         return collect($customFields)->first(function ($value) use ($defaultTagId) {
-            return $value['CustomField']['ID'] === $defaultTagId;
-        });
+            return Arr::get($value, 'CustomField.ID') === $defaultTagId;
+        }, []);
     }
 }
