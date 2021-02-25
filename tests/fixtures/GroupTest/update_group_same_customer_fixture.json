@@ -17,7 +17,9 @@
                 "site_id": 1,
                 "name": "Name 1",
                 "created_at": null,
-                "updated_at": null
+                "updated_at": null,
+                "address": null,
+                "postal_code": null
             }
         },
         {
@@ -32,7 +34,9 @@
                 "site_id": 2,
                 "name": "Name 2",
                 "created_at": null,
-                "updated_at": null
+                "updated_at": null,
+                "address": null,
+                "postal_code": null
             }
         }
     ]

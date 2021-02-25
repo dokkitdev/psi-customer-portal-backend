@@ -6,7 +6,9 @@
             "site_id": 1,
             "name": "Name 1",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "address": null,
+            "postal_code": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",

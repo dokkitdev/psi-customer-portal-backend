@@ -6,28 +6,36 @@
             "site_id": 1,
             "name": "Name 1",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "address": null,
+            "postal_code": null
         },
         {
             "id": 2,
             "site_id": 2,
             "name": "Name 2",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "address": null,
+            "postal_code": null
         },
         {
             "id": 3,
             "site_id": 3,
             "name": "Name 3",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "address": null,
+            "postal_code": null
         },
         {
             "id": 4,
             "site_id": 4,
             "name": "Name 4",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "address": null,
+            "postal_code": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",
