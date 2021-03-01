@@ -2,7 +2,7 @@
 
 return [
     'items_per_page' => 10,
-    'permitted_media_types' => ['jpg', 'jpeg', 'bmp', 'png'],
+    'permitted_media_types' => ['jpg', 'jpeg', 'bmp', 'png', 'pdf'],
     'invoice_permissions' => ['View', 'No Access'],
     'quote_permissions' => ['View', 'Edit', 'No Access'],
 
