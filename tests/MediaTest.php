@@ -240,7 +240,7 @@ class MediaTest extends TestCase
 
         $response->assertJson([
             'errors' => [
-                'file' => ['The file must be a file of type: jpg, jpeg, bmp, png.']
+                'file' => ['The file must be a file of type: jpg, jpeg, bmp, png, pdf.']
             ]
         ]);
     }
