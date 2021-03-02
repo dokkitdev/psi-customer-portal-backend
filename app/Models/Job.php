@@ -20,7 +20,8 @@ class Job extends Model
         'date_created',
         'stage',
         'job_status',
-        'requested'
+        'requested',
+        'recent_schedule_id',
     ];
 
     protected $hidden = ['pivot'];
@@ -33,5 +34,15 @@ class Job extends Model
     public function simpro_site()
     {
         return $this->belongsTo(SimproSite::class);
+    }
+
+    public function recent_schedule()
+    {
+        return $this->belongsTo(Schedule::class, 'recent_schedule_id', 'id');
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
     }
 }

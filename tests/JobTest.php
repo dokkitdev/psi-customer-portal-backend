@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\Models\Job;
+use App\Models\Schedule;
 use App\Models\SimproCustomer;
 use App\Models\SimproJob;
 use App\Models\SimproSite;
@@ -44,6 +45,9 @@ class JobTest extends TestCase
 
         $simproSite = SimproSite::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
+
+        $schedules = Schedule::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('schedules_create_or_update_event_fixture.json', $schedules);
     }
 
     public function testDeleteJobEvent()
@@ -56,6 +60,8 @@ class JobTest extends TestCase
         $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);
 
         $this->assertDatabaseMissing('jobs', ['id' => 1]);
+
+        $this->assertDatabaseMissing('schedules', ['job_id' => 1]);
     }
 
     public function testGet()

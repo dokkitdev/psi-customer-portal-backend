@@ -12,5 +12,6 @@
     "job_status": null,
     "requested": null,
     "created_at": null,
-    "updated_at": null
+    "updated_at": null,
+    "recent_schedule_id": null
 }

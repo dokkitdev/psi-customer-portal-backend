@@ -51,7 +51,7 @@ class JobService extends EntityService
 
         $customField = $this->findCustomFieldById(Arr::get($jobFromSimpro, 'CustomFields', []));
 
-        return $this->repository->updateOrCreate(['job_id' => $jobFromSimpro['ID']], [
+        $job = $this->repository->updateOrCreate(['job_id' => $jobFromSimpro['ID']], [
             'simpro_customer_id' => $simproCustomer['id'],
             'simpro_site_id' => $simproSite['id'],
             'description' => Arr::get($jobFromSimpro, 'Description'),
@@ -63,6 +63,10 @@ class JobService extends EntityService
             'job_status' => Arr::get($jobFromSimpro, 'Status.Name'),
             'requested' => Arr::get($customField, 'Value')
         ]);
+
+        app(ScheduleService::class)->createOrUpdateManyBySimpro($companyId, $jobIdFromSimpro, $job['id']);
+
+        return $job;
     }
 
     public function deleteBySimpro($webhook)
