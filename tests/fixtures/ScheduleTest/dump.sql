@@ -30,7 +30,7 @@ INSERT INTO simpro_jobs(id, data, handle_status, handle_result) VALUES
   (1, '{"ID": "job.created", "build": "pfsgroup.simprosuite.com", "description": "Job #test has been crashed.", "name": "Job", "action": "created", "reference": {"companyID": 0, "jobID": 2406}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}');
 
 INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id) VALUES
-  (1, 100, 1, 3),
+  (1, 209000, 1, 3),
   (2, 101, 1, 3),
   (3, 102, 1, 3),
   (4, 103, 1, 3),

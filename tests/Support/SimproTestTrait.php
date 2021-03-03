@@ -18,12 +18,20 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockCreateOrUpdateSchedule()
+    {
+        $this->mockHttpRequestService([
+            $this->getSchedule()
+        ]);
+    }
+
     protected function mockCreateOrUpdateJob()
     {
         $this->mockHttpRequestService([
             $this->getJob(),
             $this->getSite(),
-            $this->getCustomer()
+            $this->getCustomer(),
+            $this->getSchedules()
         ]);
     }
 
@@ -32,6 +40,44 @@ trait SimproTestTrait
         $this->mockHttpRequestService([
             $this->getCustomer()
         ]);
+    }
+
+    protected function getSchedules()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/schedules/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_schedules_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getSchedule()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/schedules/18734'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_schedule_response_success.json'
+            ]
+        ];
     }
 
     protected function getJob()
