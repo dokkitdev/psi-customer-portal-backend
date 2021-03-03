@@ -2,6 +2,7 @@
 
 namespace App\ApiClients;
 
+use Illuminate\Support\Facades\Storage;
 use RonasIT\Support\Services\HttpRequestService;
 
 class SimproApiClient
@@ -11,6 +12,43 @@ class SimproApiClient
     public function __construct()
     {
         $this->httpRequestService = app(HttpRequestService::class);
+    }
+
+    public function getWorkOrders($companyId, $jobId, $sectionId, $costCenterId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/sections/{$sectionId}/costCenters/{$costCenterId}/workOrders/");
+
+        return $this->makeRequest('get', $url, [
+            'columns' => 'ID,Staff,DescriptionNotes,WorkOrderDate',
+            'pageSize' => 250
+        ]);
+    }
+
+    public function downloadJobAttachment($companyId, $jobId, $attachmentId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}/view/");
+
+        return $this->downloadAttachment($url, $attachmentId);
+    }
+
+    public function getPublicJobAttachmentsAsGenerator($companyId, $jobId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+                'columns' => 'ID,Filename,Public',
+                'Public' => 'true'
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
     }
 
     public function getSchedule($companyId, $scheduleId)
@@ -145,6 +183,14 @@ class SimproApiClient
         $method = "send{$method}";
 
         $response = $this->httpRequestService->$method($url, $requestData, $headers);
+
+        return $this->httpRequestService->parseJsonResponse($response);
+    }
+
+    protected function downloadAttachment($url, $attachmentId)
+    {
+        $this->httpRequestService->set('sink', Storage::path($attachmentId));
+        $response = $this->httpRequestService->sendGet($url, null, $this->getHeaders());
 
         return $this->httpRequestService->parseJsonResponse($response);
     }

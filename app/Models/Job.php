@@ -45,4 +45,19 @@ class Job extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+    public function job_catalogs()
+    {
+        return $this->hasMany(JobCatalog::class);
+    }
+
+    public function job_attachments()
+    {
+        return $this->hasMany(JobAttachment::class);
+    }
+
+    public function job_work_orders()
+    {
+        return $this->hasMany(JobWorkOrder::class);
+    }
 }

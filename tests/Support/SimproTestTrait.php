@@ -18,6 +18,13 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockDownloadJobAttachment()
+    {
+        $this->mockHttpRequestService([
+            $this->getJobAttachmentFile(),
+        ]);
+    }
+
     protected function mockCreateOrUpdateSchedule()
     {
         $this->mockHttpRequestService([
@@ -31,7 +38,9 @@ trait SimproTestTrait
             $this->getJob(),
             $this->getSite(),
             $this->getCustomer(),
-            $this->getSchedules()
+            $this->getSchedules(),
+            $this->getJobAttachments(),
+            $this->getJobWorkOrders()
         ]);
     }
 
@@ -40,6 +49,63 @@ trait SimproTestTrait
         $this->mockHttpRequestService([
             $this->getCustomer()
         ]);
+    }
+
+    protected function getJobAttachmentFile()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://seville.simprosuite.com/api/v1.0/companies/0/jobs/2406/attachments/files/7Dcva_XBYo8fqg1hOtixXE5jSFDabVFFdU6l5GdS2FI/view/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_job_attachment_file_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getJobWorkOrders()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/209000/sections/9049/costCenters/9092/workOrders/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_job_work_orders_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getJobAttachments()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/209000/attachments/files/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_job_attachments_response_success.json'
+            ]
+        ];
     }
 
     protected function getSchedules()

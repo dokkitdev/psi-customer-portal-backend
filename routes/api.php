@@ -3,6 +3,7 @@
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupSimproSiteController;
+use App\Http\Controllers\JobAttachmentController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
@@ -77,6 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/jobs/{id}', ['uses' => JobController::class . '@get']);
     Route::get('/jobs', ['uses' => JobController::class . '@search']);
+
+    Route::get('/job-attachments/download/{id}', ['uses' => JobAttachmentController::class . '@download']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
