@@ -94,16 +94,10 @@ class ScheduleService extends EntityService
 
     protected function setRecentScheduleToJob($jobId)
     {
-        $recentScheduleId = null;
-
         $recentSchedule = $this->repository->getRecentSchedule($jobId);
 
-        if ($recentSchedule) {
-            $recentScheduleId = $recentSchedule['id'];
-        }
-
         $this->jobService->update($jobId, [
-            'recent_schedule_id' => $recentScheduleId
+            'recent_schedule_id' => Arr::get($recentSchedule, 'id')
         ]);
     }
 
