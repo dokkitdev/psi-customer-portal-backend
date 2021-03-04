@@ -28,20 +28,18 @@ class JobWorkOrderService extends EntityService
 
         $jobWorkOrders = $this->repository->get(['job_id' => $jobId]);
 
-        if ($workOrders) {
-            foreach ($workOrders as $data) {
-                $sectionId = $data['section_id'];
-                $costCenterId = $data['cost_center_id'];
-                $workOrderId = $data['work_order_id'];
-                $workOrder = $jobWorkOrders->first(function($item) use ($sectionId, $costCenterId, $workOrderId) {
-                    return ($item['section_id'] === $sectionId) && ($item['cost_center_id'] === $costCenterId) && ($item['work_order_id'] === $workOrderId);
-                });
-                if ($workOrder) {
-                    $this->repository->update($workOrder['id'], $data);
-                    $jobWorkOrders = $jobWorkOrders->where('id', '!=', $workOrder['id']);
-                } else {
-                    $this->repository->create($data);
-                }
+        foreach ($workOrders as $data) {
+            $sectionId = $data['section_id'];
+            $costCenterId = $data['cost_center_id'];
+            $workOrderId = $data['work_order_id'];
+            $workOrder = $jobWorkOrders->first(function($item) use ($sectionId, $costCenterId, $workOrderId) {
+                return ($item['section_id'] === $sectionId) && ($item['cost_center_id'] === $costCenterId) && ($item['work_order_id'] === $workOrderId);
+            });
+            if ($workOrder) {
+                $this->repository->update($workOrder['id'], $data);
+                $jobWorkOrders = $jobWorkOrders->where('id', '!=', $workOrder['id']);
+            } else {
+                $this->repository->create($data);
             }
         }
 
@@ -53,30 +51,25 @@ class JobWorkOrderService extends EntityService
 
     protected function getWorkOrdersFromSimpro($companyId, $jobFromSimpro, $jobId)
     {
-        $sections = Arr::get($jobFromSimpro, 'Sections');
+        $sections = Arr::get($jobFromSimpro, 'Sections', []);
         $allWorkOrders = [];
-        if ($sections) {
-            foreach ($sections as $section) {
-                $sectionId = $section['ID'];
-                $costCenters = Arr::get($section, 'CostCenters');
-                if ($costCenters) {
-                    foreach ($costCenters as $costCenter) {
-                        $costCenterId = $costCenter['ID'];
-                        $workOrders = $this->simproClient->getWorkOrders($companyId, $jobFromSimpro['ID'], $sectionId, $costCenterId);
-                        if ($workOrders) {
-                            foreach ($workOrders as $workOrder) {
-                                $allWorkOrders[] = [
-                                    'job_id' => $jobId,
-                                    'section_id' => $sectionId,
-                                    'cost_center_id' => $costCenterId,
-                                    'work_order_id' => $workOrder['ID'],
-                                    'name' => (Arr::get($workOrder, 'Staff.Type') === 'employee') ? 'Other Engineer' : Arr::get($workOrder, 'Staff.Name'),
-                                    'description' => Arr::get($workOrder, 'DescriptionNotes'),
-                                    'date' => Arr::get($workOrder, 'WorkOrderDate'),
-                                ];
-                            }
-                        }
-                    }
+
+        foreach ($sections as $section) {
+            $sectionId = $section['ID'];
+            $costCenters = Arr::get($section, 'CostCenters', []);
+            foreach ($costCenters as $costCenter) {
+                $costCenterId = $costCenter['ID'];
+                $workOrders = $this->simproClient->getWorkOrders($companyId, $jobFromSimpro['ID'], $sectionId, $costCenterId);
+                foreach ($workOrders as $workOrder) {
+                    $allWorkOrders[] = [
+                        'job_id' => $jobId,
+                        'section_id' => $sectionId,
+                        'cost_center_id' => $costCenterId,
+                        'work_order_id' => $workOrder['ID'],
+                        'name' => (Arr::get($workOrder, 'Staff.Type') === 'employee') ? 'Other Engineer' : Arr::get($workOrder, 'Staff.Name'),
+                        'description' => Arr::get($workOrder, 'DescriptionNotes'),
+                        'date' => Arr::get($workOrder, 'WorkOrderDate'),
+                    ];
                 }
             }
         }
