@@ -9,6 +9,14 @@ class Job extends Model
 {
     use ModelTrait;
 
+    const BUSINESS_GROUPS = [
+        'Maintenance',
+        'Reactives',
+        'Small Works',
+        'Projects',
+        'Supply Only'
+    ];
+
     protected $fillable = [
         'job_id',
         'simpro_customer_id',

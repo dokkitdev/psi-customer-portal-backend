@@ -3,8 +3,10 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\Job;
 use App\Repositories\JobRepository;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use RonasIT\Support\Services\EntityService;
 
 /**
@@ -78,9 +80,9 @@ class JobService extends EntityService
             'simpro_customer_id' => $simproCustomer['id'],
             'simpro_site_id' => $simproSite['id'],
             'description' => Arr::get($jobFromSimpro, 'Description'),
-            'priority' => Arr::get($jobFromSimpro, 'ResponseTime.Name'),
+            'priority' => $this->makePriorityValue(Arr::get($jobFromSimpro, 'ResponseTime')),
             'cost_center_name' => Arr::get($jobFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name'),
-            'business_group' => Arr::get($jobFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name'),
+            'business_group' => $this->matchBusinessGroup(Arr::get($jobFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name')),
             'date_created' => Arr::get($jobFromSimpro, 'DateIssued'),
             'stage' => Arr::get($jobFromSimpro, 'Stage'),
             'job_status' => Arr::get($jobFromSimpro, 'Status.Name'),
@@ -112,5 +114,37 @@ class JobService extends EntityService
         return collect($customFields)->first(function ($value) use ($defaultTagId) {
             return Arr::get($value, 'CustomField.ID') === $defaultTagId;
         }, []);
+    }
+
+    protected function matchBusinessGroup($costCenterName)
+    {
+        foreach (Job::BUSINESS_GROUPS as $businessGroup) {
+            $businessGroupName = ($businessGroup === 'Reactives') ? 'Reactive' : $businessGroup;
+
+            if (Str::contains($costCenterName, $businessGroupName)) {
+                return $businessGroup;
+            }
+        }
+
+        return null;
+    }
+
+    protected function makePriorityValue($responseTime)
+    {
+        if (!$responseTime) {
+            return null;
+        }
+
+        if ($responseTime['Days'] !== 0) {
+            $priority = "{$responseTime['Name']} {$responseTime['Days']} Days";
+        } elseif ($responseTime['Hours'] !== 0) {
+            $priority = "{$responseTime['Name']} {$responseTime['Hours']} Hours";
+        } elseif ($responseTime['Minutes'] !== 0) {
+            $priority = "{$responseTime['Name']} {$responseTime['Minutes']} Minutes";
+        } else {
+            $priority = $responseTime['Name'];
+        }
+
+        return $priority;
     }
 }
