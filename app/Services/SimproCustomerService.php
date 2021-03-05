@@ -118,7 +118,7 @@ class SimproCustomerService extends EntityService
     public function createOrUpdateBySimpro($webhook, $type)
     {
         $companyId = $webhook['data']['reference']['companyID'];
-        $customerId = $webhook['data']['reference']['customerID'];
+        $customerId = $this->getCustomerId($webhook);
 
         $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
 
@@ -132,7 +132,7 @@ class SimproCustomerService extends EntityService
 
     public function deleteBySimpro($webhook, $type)
     {
-        $customerId = $webhook['data']['reference']['customerID'];
+        $customerId = $this->getCustomerId($webhook);
 
         $this->repository->delete([
             'customer_id' => $customerId,
@@ -147,5 +147,12 @@ class SimproCustomerService extends EntityService
         }
 
         return $customer['CompanyName'];
+    }
+
+    protected function getCustomerId($webhook)
+    {
+        preg_match('/(\d+)/', $webhook['data']['description'], $matches);
+
+        return $matches[0];
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Tests;
 
 use App\Models\Job;
+use App\Models\JobAttachment;
+use App\Models\JobCatalog;
+use App\Models\JobWorkOrder;
 use App\Models\Schedule;
 use App\Models\SimproCustomer;
 use App\Models\SimproJob;
@@ -48,6 +51,15 @@ class JobTest extends TestCase
 
         $schedules = Schedule::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('schedules_create_or_update_event_fixture.json', $schedules);
+
+        $jobWorkOrders = JobCatalog::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('catalogs_create_or_update_event_fixture.json', $jobWorkOrders);
+
+        $jobWorkOrders = JobAttachment::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('attachments_create_or_update_event_fixture.json', $jobWorkOrders);
+
+        $jobWorkOrders = JobWorkOrder::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('work_orders_create_or_update_event_fixture.json', $jobWorkOrders);
     }
 
     public function testDeleteJobEvent()
@@ -62,6 +74,12 @@ class JobTest extends TestCase
         $this->assertDatabaseMissing('jobs', ['id' => 1]);
 
         $this->assertDatabaseMissing('schedules', ['job_id' => 1]);
+
+        $this->assertDatabaseMissing('job_catalogs', ['job_id' => 1]);
+
+        $this->assertDatabaseMissing('job_attachments', ['job_id' => 1]);
+
+        $this->assertDatabaseMissing('job_work_orders', ['job_id' => 1]);
     }
 
     public function testGet()
@@ -100,6 +118,22 @@ class JobTest extends TestCase
                     'per_page' => 2,
                 ],
                 'result' => 'search_by_page_per_page_jobs.json'
+            ],
+            [
+                'filter' => [
+                    'query' => 'Sitename',
+                ],
+                'result' => 'search_by_query_jobs.json'
+            ],
+            [
+                'filter' => [
+                    'site_name' => 'Sitename',
+                    'requested' => true,
+                    'stage' => ['Progress'],
+                    'appointment_from' => '2016-10-20 11:05:00',
+                    'appointment_to' => '2016-10-20 11:05:00'
+                ],
+                'result' => 'search_by_complex_jobs.json'
             ],
         ];
     }
