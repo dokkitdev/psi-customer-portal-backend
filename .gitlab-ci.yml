@@ -121,7 +121,7 @@ deploy_production:
   extends: .deploy_ansible
   variables:
     PLAYBOOK: prod.yml
-    HOSTS_FILE: hosts.stg
+    HOSTS_FILE: hosts.prod
   environment:
     name: "production"
     url:  https://api.pfscloud.app
