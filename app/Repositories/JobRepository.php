@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Job;
-use App\Models\Role;
 use Illuminate\Support\Arr;
 use RonasIT\Support\Repositories\BaseRepository;
 
@@ -17,14 +16,17 @@ class JobRepository extends BaseRepository
         $this->setModel(Job::class);
     }
 
-    public function filterByUserGroups($user)
+    public function filterByUserGroups()
     {
-        if ($user['role_id'] === Role::USER) {
-            $this->query->whereHas('simpro_site.group_simpro_sites', function ($query) use ($user) {
+        if (Arr::has($this->filter, 'site_has_user')) {
+
+            $userId = $this->filter['site_has_user'];
+
+            $this->query->whereHas('simpro_site.group_simpro_sites', function ($query) use ($userId) {
                 $query
                     ->where('is_enabled', true)
-                    ->whereHas('group.users', function ($query) use ($user) {
-                        $query->where('user_id', $user['id']);
+                    ->whereHas('group.users', function ($query) use ($userId) {
+                        $query->where('user_id', $userId);
                     });
             });
         }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
 use App\Models\Job;
+use App\Models\Role;
 use App\Repositories\JobRepository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -41,6 +42,12 @@ class JobService extends BaseService
 
     public function search($filters)
     {
+        $authUser = $this->getAuthUser();
+
+        if ($authUser['role_id'] === Role::USER) {
+            $filters['site_has_user'] = $authUser['id'];
+        }
+
         return $this->repository
             ->searchQuery($filters)
             ->filterBy('job_id')
@@ -60,7 +67,7 @@ class JobService extends BaseService
             ->filterFrom('recent_schedule.end_time', false, 'end_time_from')
             ->filterTo('recent_schedule.end_time', false, 'end_time_to')
             ->filterByQuery(['simpro_site.name', 'simpro_site.postal_code', 'simpro_customer.name'])
-            ->filterByUserGroups($this->getAuthUser())
+            ->filterByUserGroups()
             ->with()
             ->getSearchResults();
     }
