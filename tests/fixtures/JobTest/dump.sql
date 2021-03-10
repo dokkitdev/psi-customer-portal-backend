@@ -15,7 +15,10 @@ INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at
   (3, 100, 'For delete', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO simpro_sites(id, site_id, name, created_at, updated_at) VALUES
-  (1, 1, 'Sitename', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+  (1, 1, 'Sitename 1', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (2, 2, 'Sitename 2', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (3, 3, 'Sitename 3', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (4, 4, 'Sitename 4', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO groups(id, simpro_customer_id, title, created_at, updated_at) VALUES
   (1, 1, 'Group 1', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
@@ -23,8 +26,16 @@ INSERT INTO groups(id, simpro_customer_id, title, created_at, updated_at) VALUES
   (3, 1, 'Group 3', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (4, 3, 'Group 4', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
-INSERT INTO group_simpro_site(id, group_id, simpro_site_id, created_at, updated_at) VALUES
-  (1, 4, 1, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+INSERT INTO group_user(id, group_id, user_id) VALUES
+  (1, 4, 2),
+  (2, 1, 1),
+  (3, 2, 2);
+
+INSERT INTO group_simpro_site(id, group_id, simpro_site_id, is_enabled, created_at, updated_at) VALUES
+  (1, 4, 1, true, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (2, 1, 2, true, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (3, 2, 3, false, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (4, 4, 4, true, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO simpro_jobs(id, data, handle_status, handle_result) VALUES
   (1, '{"ID": "job.created", "build": "pfsgroup.simprosuite.com", "description": "Job #test has been crashed.", "name": "Job", "action": "created", "reference": {"companyID": 0, "jobID": 2406}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}');
@@ -34,7 +45,10 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (2, 101, 1, 3, '2016-10-20', 'Progress', null),
   (3, 102, 1, 3, '2016-10-20', 'Progress', null),
   (4, 103, 1, 3, '2016-10-20', 'Complete', null),
-  (5, 104, 1, 3, null, 'Archived', null);
+  (5, 104, 1, 3, null, 'Archived', null),
+  (6, 105, 2, 1, null, 'Archived', null),
+  (7, 106, 3, 1, null, 'Archived', null),
+  (8, 107, 4, 3, '2016-10-20', 'Complete', null);                                                                                                        ;
 
 INSERT INTO schedules(id, job_id, schedule_id, name, date, start_time, end_time) VALUES
   (1, 1, 100, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');

@@ -9,7 +9,7 @@ class InvitationMail extends BaseMail
         parent::__construct(
             $to,
             $data,
-            'Invitation',
+            'Invitation to the PFS Cloud App',
             'emails.invitation'
         );
     }
