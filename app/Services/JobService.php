@@ -4,16 +4,16 @@ namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
 use App\Models\Job;
+use App\Models\Role;
 use App\Repositories\JobRepository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use RonasIT\Support\Services\EntityService;
 
 /**
  * @property JobRepository $repository
  * @mixin JobRepository
  */
-class JobService extends EntityService
+class JobService extends BaseService
 {
     protected SimproApiClient $simproClient;
     protected SettingService $settingService;
@@ -26,6 +26,8 @@ class JobService extends EntityService
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->setRepository(JobRepository::class);
 
         $this->simproClient = app(SimproApiClient::class);
@@ -40,6 +42,12 @@ class JobService extends EntityService
 
     public function search($filters)
     {
+        $authUser = $this->getAuthUser();
+
+        if ($authUser['role_id'] === Role::USER) {
+            $filters['site_has_user'] = $authUser['id'];
+        }
+
         return $this->repository
             ->searchQuery($filters)
             ->filterBy('job_id')
@@ -48,7 +56,7 @@ class JobService extends EntityService
             ->filterBy('simpro_site.postal_code')
             ->filterByList('priority', 'priority')
             ->filterBy('cost_center_name')
-            ->filterBy('business_group')
+            ->filterByList('business_group', 'business_group')
             ->filterByList('stage', 'stage')
             ->filterByList('job_status', 'job_status')
             ->filterByRequested()
@@ -59,6 +67,7 @@ class JobService extends EntityService
             ->filterFrom('recent_schedule.end_time', false, 'end_time_from')
             ->filterTo('recent_schedule.end_time', false, 'end_time_to')
             ->filterByQuery(['simpro_site.name', 'simpro_site.postal_code', 'simpro_customer.name'])
+            ->filterByUserGroups()
             ->with()
             ->getSearchResults();
     }

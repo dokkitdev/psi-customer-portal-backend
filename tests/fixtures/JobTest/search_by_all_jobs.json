@@ -85,6 +85,23 @@
             "created_at": null,
             "updated_at": null,
             "recent_schedule_id": null
+        },
+        {
+            "id": 8,
+            "job_id": 107,
+            "simpro_customer_id": 3,
+            "simpro_site_id": 4,
+            "description": null,
+            "priority": null,
+            "cost_center_name": null,
+            "business_group": null,
+            "date_created": null,
+            "stage": "Complete",
+            "job_status": null,
+            "requested": "2016-10-20",
+            "created_at": null,
+            "updated_at": null,
+            "recent_schedule_id": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/jobs?page=1",
@@ -93,8 +110,8 @@
     "last_page_url": "http:\/\/localhost\/jobs?page=1",
     "next_page_url": null,
     "path": "jobs",
-    "per_page": 5,
+    "per_page": 6,
     "prev_page_url": null,
-    "to": 5,
-    "total": 5
+    "to": 6,
+    "total": 6
 }

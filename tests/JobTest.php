@@ -127,7 +127,7 @@ class JobTest extends TestCase
             ],
             [
                 'filter' => [
-                    'site_name' => 'Sitename',
+                    'site_name' => 'Sitename 1',
                     'requested' => true,
                     'stage' => ['Progress'],
                     'appointment_from' => '2016-10-20 11:05:00',

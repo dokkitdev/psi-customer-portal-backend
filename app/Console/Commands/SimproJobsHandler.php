@@ -20,7 +20,7 @@ class SimproJobsHandler extends Command
         $this->simproJobService = app(SimproJobService::class);
 
         $this->simproJobService
-            ->getForHandle()
+            ->getForHandle(1000)
             ->each(function ($job) {
                 try {
                     $this->simproJobService->handleJob($job);
