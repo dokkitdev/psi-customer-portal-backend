@@ -10,6 +10,8 @@ class SearchJobRequest extends Request
     {
         return [
             'job_id' => 'integer',
+            'simpro_customer_id' => 'integer',
+            'simpro_site_id' => 'integer',
             'customer_name' => 'string',
             'site_name' => 'string',
             'postal_code' => 'string',

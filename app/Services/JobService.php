@@ -51,6 +51,8 @@ class JobService extends BaseService
         return $this->repository
             ->searchQuery($filters)
             ->filterBy('job_id')
+            ->filterBy('simpro_customer_id')
+            ->filterBy('simpro_site_id')
             ->filterBy('simpro_customer.name', 'customer_name')
             ->filterBy('simpro_site.name', 'site_name')
             ->filterBy('simpro_site.postal_code')

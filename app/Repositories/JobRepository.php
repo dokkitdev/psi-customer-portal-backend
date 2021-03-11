@@ -16,20 +16,17 @@ class JobRepository extends BaseRepository
         $this->setModel(Job::class);
     }
 
+    public function checkGroupPermissions($jobId, $userId)
+    {
+        return $this->getQuery()
+            ->groupPermissions($userId)
+            ->find($jobId);
+    }
+
     public function filterByUserGroups()
     {
         if (Arr::has($this->filter, 'site_has_user')) {
-            $this->query
-                ->whereHas('simpro_customer.groups.users', function ($query) {
-                    $query->where('user_id', $this->filter['site_has_user']);
-                })
-                ->whereHas('simpro_site.group_simpro_sites', function ($query) {
-                    $query
-                        ->where('is_enabled', true)
-                        ->whereHas('group.users', function ($query) {
-                            $query->where('user_id', $this->filter['site_has_user']);
-                        });
-                });
+            $this->query->groupPermissions($this->filter['site_has_user']);
         }
 
         return $this;

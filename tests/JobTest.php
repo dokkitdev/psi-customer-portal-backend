@@ -91,6 +91,22 @@ class JobTest extends TestCase
         $this->assertEqualsFixture('get_job_fixture.json', $response->json());
     }
 
+    public function testGetNoPermission()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/jobs/9');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testGetByAdmin()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/jobs/9');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_job_by_admin_fixture.json', $response->json());
+    }
+
     public function testGetNotExists()
     {
         $response = $this->actingAs($this->user)->json('get', '/jobs/0');

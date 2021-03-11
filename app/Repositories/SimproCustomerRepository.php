@@ -15,6 +15,17 @@ class SimproCustomerRepository extends BaseRepository
         $this->setModel(SimproCustomer::class);
     }
 
+    public function filterByUserGroups()
+    {
+        if (Arr::has($this->filter, 'customer_has_user')) {
+            $this->query->whereHas('groups.users', function ($query) {
+                $query->where('user_id', $this->filter['customer_has_user']);
+            });
+        }
+
+        return $this;
+    }
+
     public function hasGroup()
     {
         if (Arr::has($this->filter, 'has_groups')) {

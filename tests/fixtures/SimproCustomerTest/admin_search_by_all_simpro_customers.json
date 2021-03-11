@@ -10,6 +10,14 @@
             "updated_at": "2016-10-20T10:05:00.000000Z"
         },
         {
+            "id": 2,
+            "customer_id": 6,
+            "name": "Old name",
+            "type": "companies",
+            "created_at": "2016-10-20T10:05:00.000000Z",
+            "updated_at": "2016-10-20T10:05:00.000000Z"
+        },
+        {
             "id": 3,
             "customer_id": 100,
             "name": "For delete",
@@ -24,8 +32,8 @@
     "last_page_url": "http:\/\/localhost\/simpro-customers?page=1",
     "next_page_url": null,
     "path": "simpro-customers",
-    "per_page": 2,
+    "per_page": 3,
     "prev_page_url": null,
-    "to": 2,
-    "total": 2
+    "to": 3,
+    "total": 3
 }
