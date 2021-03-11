@@ -19,13 +19,17 @@ class JobRepository extends BaseRepository
     public function filterByUserGroups()
     {
         if (Arr::has($this->filter, 'site_has_user')) {
-            $this->query->whereHas('simpro_site.group_simpro_sites', function ($query) {
-                $query
-                    ->where('is_enabled', true)
-                    ->whereHas('group.users', function ($query) {
-                        $query->where('user_id', $this->filter['site_has_user']);
-                    });
-            });
+            $this->query
+                ->whereHas('simpro_customer.groups.users', function ($query) {
+                    $query->where('user_id', $this->filter['site_has_user']);
+                })
+                ->whereHas('simpro_site.group_simpro_sites', function ($query) {
+                    $query
+                        ->where('is_enabled', true)
+                        ->whereHas('group.users', function ($query) {
+                            $query->where('user_id', $this->filter['site_has_user']);
+                        });
+                });
         }
 
         return $this;
