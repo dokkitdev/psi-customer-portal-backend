@@ -11,6 +11,24 @@
             "postal_code": null
         },
         {
+            "id": 2,
+            "site_id": 2,
+            "name": "Name 2",
+            "created_at": null,
+            "updated_at": null,
+            "address": null,
+            "postal_code": null
+        },
+        {
+            "id": 3,
+            "site_id": 3,
+            "name": "Name 3",
+            "created_at": null,
+            "updated_at": null,
+            "address": null,
+            "postal_code": null
+        },
+        {
             "id": 4,
             "site_id": 4,
             "name": "Name 4",
@@ -25,9 +43,9 @@
     "last_page": 1,
     "last_page_url": "http:\/\/localhost\/simpro-sites?page=1",
     "next_page_url": null,
-    "path": "http:\/\/localhost\/simpro-sites",
-    "per_page": 2,
+    "path": "simpro-sites",
+    "per_page": 4,
     "prev_page_url": null,
-    "to": 2,
-    "total": 2
+    "to": 4,
+    "total": 4
 }

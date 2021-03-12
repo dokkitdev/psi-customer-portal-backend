@@ -3,15 +3,9 @@
 namespace App\Http\Requests\SimproSites;
 
 use App\Http\Requests\Request;
-use App\Models\Role;
 
 class SearchSimproSiteRequest extends Request
 {
-    public function authorize()
-    {
-        return $this->user()->role_id == Role::ADMIN;
-    }
-
     public function rules()
     {
         return [

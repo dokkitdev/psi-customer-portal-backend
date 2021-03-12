@@ -126,10 +126,25 @@ class SimproCustomerTest extends TestCase
      */
     public function testSearch($filter, $fixture)
     {
-        $response = $this->actingAs($this->admin)->json('get', '/simpro-customers', $filter);
+        $response = $this->actingAs($this->user)->json('get', '/simpro-customers', $filter);
 
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture($fixture, $response->json());
+    }
+
+    /**
+     * @dataProvider  getSearchFilters
+     *
+     * @param  array $filter
+     * @param  string $fixture
+     */
+    public function testSearchByAdmin($filter, $fixture)
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/simpro-customers', $filter);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture("admin_{$fixture}", $response->json());
     }
 }
