@@ -91,6 +91,22 @@ class JobTest extends TestCase
         $this->assertEqualsFixture('get_job_fixture.json', $response->json());
     }
 
+    public function testGetNoPermission()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/jobs/9');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testGetByAdmin()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/jobs/9');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_job_by_admin_fixture.json', $response->json());
+    }
+
     public function testGetNotExists()
     {
         $response = $this->actingAs($this->user)->json('get', '/jobs/0');
@@ -127,13 +143,20 @@ class JobTest extends TestCase
             ],
             [
                 'filter' => [
-                    'site_name' => 'Sitename',
+                    'site_name' => 'Sitename 1',
                     'requested' => true,
                     'stage' => ['Progress'],
                     'appointment_from' => '2016-10-20 11:05:00',
                     'appointment_to' => '2016-10-20 11:05:00'
                 ],
                 'result' => 'search_by_complex_jobs.json'
+            ],
+            [
+                'filter' => [
+                    'start_time_from' => '2016-10-22 11:05:00',
+                    'start_time_to' => '2016-10-18 11:05:00'
+                ],
+                'result' => 'search_by_time_jobs.json'
             ],
         ];
     }
@@ -151,5 +174,20 @@ class JobTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture($fixture, $response->json());
+    }
+
+    /**
+     * @dataProvider  getSearchFilters
+     *
+     * @param  array $filter
+     * @param  string $fixture
+     */
+    public function testSearchByAdmin($filter, $fixture)
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/jobs', $filter);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture("admin_{$fixture}", $response->json());
     }
 }

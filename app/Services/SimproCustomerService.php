@@ -3,21 +3,23 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\Role;
 use App\Models\SimproCustomer;
 use App\Repositories\SimproCustomerRepository;
-use RonasIT\Support\Services\EntityService;
 
 /**
  * @property SimproCustomerRepository $repository
  * @mixin SimproCustomerRepository
  */
-class SimproCustomerService extends EntityService
+class SimproCustomerService extends BaseService
 {
     protected SimproApiClient $simproClient;
     protected $companyId;
 
     public function __construct()
     {
+        parent::__construct();
+
         $this->setRepository(SimproCustomerRepository::class);
 
         $this->simproClient = app(SimproApiClient::class);
@@ -27,10 +29,17 @@ class SimproCustomerService extends EntityService
 
     public function search($filters)
     {
+        $authUser = $this->getAuthUser();
+
+        if ($authUser['role_id'] === Role::USER) {
+            $filters['customer_has_user'] = $authUser['id'];
+        }
+
         return $this->repository
             ->searchQuery($filters)
             ->filterByQuery(['name'])
             ->hasGroup()
+            ->filterByUserGroups()
             ->with()
             ->getSearchResults();
     }

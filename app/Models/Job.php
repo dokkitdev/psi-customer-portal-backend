@@ -68,4 +68,20 @@ class Job extends Model
     {
         return $this->hasMany(JobWorkOrder::class);
     }
+
+    public function scopeGroupPermissions($query, $userId)
+    {
+        return
+            $query
+                ->whereHas('simpro_customer.groups.users', function ($query) use ($userId) {
+                    $query->where('user_id', $userId);
+                })
+                ->whereHas('simpro_site.group_simpro_sites', function ($query) use ($userId) {
+                    $query
+                        ->where('is_enabled', true)
+                        ->whereHas('group.users', function ($query) use ($userId) {
+                            $query->where('user_id', $userId);
+                        });
+                });
+    }
 }

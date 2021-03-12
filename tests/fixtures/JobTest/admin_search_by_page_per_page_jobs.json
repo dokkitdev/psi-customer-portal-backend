@@ -38,12 +38,12 @@
     ],
     "first_page_url": "http:\/\/localhost\/jobs?page=1",
     "from": 1,
-    "last_page": 3,
-    "last_page_url": "http:\/\/localhost\/jobs?page=3",
+    "last_page": 5,
+    "last_page_url": "http:\/\/localhost\/jobs?page=5",
     "next_page_url": "http:\/\/localhost\/jobs?page=2",
     "path": "http:\/\/localhost\/jobs",
     "per_page": 2,
     "prev_page_url": null,
     "to": 2,
-    "total": 6
+    "total": 9
 }

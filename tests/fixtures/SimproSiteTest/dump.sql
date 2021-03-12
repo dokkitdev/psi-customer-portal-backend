@@ -16,6 +16,10 @@ INSERT INTO groups(id, simpro_customer_id, title, created_at, updated_at) VALUES
   (3, 1, 'Group 3', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (4, 1, 'Group 4', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
+INSERT INTO group_user(id, group_id, user_id) VALUES
+  (1, 1, 2),
+  (2, 4, 2);
+
 INSERT INTO simpro_sites(id, site_id, name) VALUES
   (1, 1, 'Name 1'),
   (2, 2, 'Name 2'),

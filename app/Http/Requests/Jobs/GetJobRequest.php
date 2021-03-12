@@ -22,7 +22,13 @@ class GetJobRequest extends Request
 
         $service = app(JobService::class);
 
-        if (!$service->exists($this->route('id'))) {
+        if ($this->isUser()) {
+            $job = $service->checkGroupPermissions($this->route('id'), $this->getUserId());
+        } else {
+            $job = $service->find($this->route('id'));
+        }
+
+        if (!$job) {
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'Job']));
         }
     }
