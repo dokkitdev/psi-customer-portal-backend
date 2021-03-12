@@ -66,7 +66,7 @@ class JobRepository extends BaseRepository
                 }
                 if (Arr::has($this->filter, 'start_time_to')) {
                     $time = Carbon::createFromFormat('Y-m-d H:i:s', $this->filter['start_time_to'])->format('H:i');
-                    $query->where(DB::raw("cast(start_time as time)"), '<=', $time);
+                    $query->where(DB::raw('cast(start_time as time)'), '<=', $time);
                 }
                 if (Arr::has($this->filter, 'end_time_from')) {
                     $time = Carbon::createFromFormat('Y-m-d H:i:s', $this->filter['end_time_from'])->format('H:i');
