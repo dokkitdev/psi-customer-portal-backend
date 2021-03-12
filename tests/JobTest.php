@@ -151,6 +151,13 @@ class JobTest extends TestCase
                 ],
                 'result' => 'search_by_complex_jobs.json'
             ],
+            [
+                'filter' => [
+                    'start_time_from' => '2016-10-22 11:05:00',
+                    'start_time_to' => '2016-10-18 11:05:00'
+                ],
+                'result' => 'search_by_time_jobs.json'
+            ],
         ];
     }
 
@@ -167,5 +174,20 @@ class JobTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture($fixture, $response->json());
+    }
+
+    /**
+     * @dataProvider  getSearchFilters
+     *
+     * @param  array $filter
+     * @param  string $fixture
+     */
+    public function testSearchByAdmin($filter, $fixture)
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/jobs', $filter);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture("admin_{$fixture}", $response->json());
     }
 }
