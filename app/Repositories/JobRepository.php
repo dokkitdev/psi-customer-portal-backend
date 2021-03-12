@@ -70,7 +70,7 @@ class JobRepository extends BaseRepository
                 }
                 if (Arr::has($this->filter, 'end_time_from')) {
                     $time = Carbon::createFromFormat('Y-m-d H:i:s', $this->filter['end_time_from'])->format('H:i');
-                    $query->where(DB::raw("cast(end_time as time)"), '>=', $time);
+                    $query->where(DB::raw('cast(end_time as time)'), '>=', $time);
                 }
                 if (Arr::has($this->filter, 'end_time_to')) {
                     $time = Carbon::createFromFormat('Y-m-d H:i:s', $this->filter['end_time_to'])->format('H:i');
