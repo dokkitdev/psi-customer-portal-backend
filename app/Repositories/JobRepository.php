@@ -81,4 +81,17 @@ class JobRepository extends BaseRepository
 
         return $this;
     }
+
+    public function filterByPostalCode()
+    {
+        if (Arr::has($this->filter, 'postal_code')) {
+            $postalCode = str_replace(' ', '', $this->filter['postal_code']);
+
+            $this->query->whereHas('simpro_site', function ($query) use ($postalCode) {
+                $query->where(DB::raw("REPLACE(postal_code, ' ', '')"), $postalCode);
+            });
+        }
+
+        return $this;
+    }
 }

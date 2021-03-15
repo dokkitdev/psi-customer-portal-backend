@@ -6,6 +6,7 @@ use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Models\SimproCustomer;
 use App\Repositories\SimproCustomerRepository;
+use Illuminate\Support\Arr;
 
 /**
  * @property SimproCustomerRepository $repository
@@ -35,8 +36,13 @@ class SimproCustomerService extends BaseService
             $filters['customer_has_user'] = $authUser['id'];
         }
 
+        if (Arr::has($filters, 'query') && preg_match('/^\d+$/', $filters['query'])) {
+            $filters['customer_id'] = (int) Arr::pull($filters, 'query');
+        }
+
         return $this->repository
             ->searchQuery($filters)
+            ->filterBy('customer_id')
             ->filterByQuery(['name'])
             ->hasGroup()
             ->filterByUserGroups()
