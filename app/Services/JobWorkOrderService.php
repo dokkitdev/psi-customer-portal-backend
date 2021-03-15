@@ -66,7 +66,7 @@ class JobWorkOrderService extends EntityService
                         'section_id' => $sectionId,
                         'cost_center_id' => $costCenterId,
                         'work_order_id' => $workOrder['ID'],
-                        'name' => (Arr::get($workOrder, 'Staff.Type') === 'employee') ? 'Other Engineer' : Arr::get($workOrder, 'Staff.Name'),
+                        'name' => (Arr::get($workOrder, 'Staff.Type') === 'employee') ? Arr::get($workOrder, 'Staff.Name') : 'Other Engineer',
                         'description' => Arr::get($workOrder, 'DescriptionNotes'),
                         'date' => Arr::get($workOrder, 'WorkOrderDate'),
                     ];
