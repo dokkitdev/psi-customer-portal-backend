@@ -85,7 +85,7 @@ class ScheduleService extends EntityService
             'job_id' => $jobId,
             'schedule_id' => $schedule['ID']
         ], [
-            'name' => Arr::get($schedule, 'Staff.Name'),
+            'name' => (Arr::get($schedule, 'Staff.Type') === 'employee') ? Arr::get($schedule, 'Staff.Name') : 'Other Engineer',
             'date' => $this->prepareDate($schedule),
             'start_time' => Arr::get($schedule, 'Blocks.0.ISO8601StartTime'),
             'end_time' => Arr::get($schedule, 'Blocks.0.ISO8601EndTime')
