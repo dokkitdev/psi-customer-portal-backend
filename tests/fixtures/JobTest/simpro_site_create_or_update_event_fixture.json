@@ -6,7 +6,7 @@
         "created_at": "2016-10-20T10:05:00.000000Z",
         "updated_at": "2016-10-20T10:05:00.000000Z",
         "address": null,
-        "postal_code": null
+        "postal_code": "SL5 7HY"
     },
     {
         "id": 2,
@@ -15,7 +15,7 @@
         "created_at": "2016-10-20T10:05:00.000000Z",
         "updated_at": "2016-10-20T10:05:00.000000Z",
         "address": null,
-        "postal_code": null
+        "postal_code": "EC2M 3YD"
     },
     {
         "id": 3,
@@ -24,7 +24,7 @@
         "created_at": "2016-10-20T10:05:00.000000Z",
         "updated_at": "2016-10-20T10:05:00.000000Z",
         "address": null,
-        "postal_code": null
+        "postal_code": "W13 9BE"
     },
     {
         "id": 4,
@@ -33,7 +33,7 @@
         "created_at": "2016-10-20T10:05:00.000000Z",
         "updated_at": "2016-10-20T10:05:00.000000Z",
         "address": null,
-        "postal_code": null
+        "postal_code": "W1J 8LL"
     },
     {
         "id": 5,

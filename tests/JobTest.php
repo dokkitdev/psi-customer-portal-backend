@@ -52,11 +52,11 @@ class JobTest extends TestCase
         $schedules = Schedule::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('schedules_create_or_update_event_fixture.json', $schedules);
 
-        $jobWorkOrders = JobCatalog::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('catalogs_create_or_update_event_fixture.json', $jobWorkOrders);
+        $jobCatalogs = JobCatalog::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('catalogs_create_or_update_event_fixture.json', $jobCatalogs);
 
-        $jobWorkOrders = JobAttachment::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('attachments_create_or_update_event_fixture.json', $jobWorkOrders);
+        $jobAttachments = JobAttachment::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('attachments_create_or_update_event_fixture.json', $jobAttachments);
 
         $jobWorkOrders = JobWorkOrder::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('work_orders_create_or_update_event_fixture.json', $jobWorkOrders);
@@ -157,6 +157,12 @@ class JobTest extends TestCase
                     'start_time_to' => '2016-10-18 11:05:00'
                 ],
                 'result' => 'search_by_time_jobs.json'
+            ],
+            [
+                'filter' => [
+                    'postal_code' => 'SL5 7HY',
+                ],
+                'result' => 'search_by_postal_code_jobs.json'
             ],
         ];
     }

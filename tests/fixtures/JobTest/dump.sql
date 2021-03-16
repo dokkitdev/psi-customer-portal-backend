@@ -14,11 +14,11 @@ INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at
   (2, 6, 'Old name', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (3, 100, 'For delete', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
-INSERT INTO simpro_sites(id, site_id, name, created_at, updated_at) VALUES
-  (1, 1, 'Sitename 1', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (2, 2, 'Sitename 2', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (3, 3, 'Sitename 3', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (4, 4, 'Sitename 4', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+INSERT INTO simpro_sites(id, site_id, name, postal_code, created_at, updated_at) VALUES
+  (1, 1, 'Sitename 1', 'SL5 7HY', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (2, 2, 'Sitename 2', 'EC2M 3YD', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (3, 3, 'Sitename 3', 'W13 9BE', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (4, 4, 'Sitename 4', 'W1J 8LL', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO groups(id, simpro_customer_id, title, created_at, updated_at) VALUES
   (1, 1, 'Group 1', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),

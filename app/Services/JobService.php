@@ -55,7 +55,7 @@ class JobService extends BaseService
             ->filterBy('simpro_site_id')
             ->filterBy('simpro_customer.name', 'customer_name')
             ->filterBy('simpro_site.name', 'site_name')
-            ->filterBy('simpro_site.postal_code')
+            ->filterByPostalCode()
             ->filterByList('priority', 'priority')
             ->filterBy('cost_center_name')
             ->filterByList('business_group', 'business_group')
