@@ -18,6 +18,18 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockUpdateJobsCommand()
+    {
+        $this->mockHttpRequestService([
+            $this->getSchedules(),
+            $this->getJob(),
+            $this->getJobWorkOrders(),
+            $this->getSchedules(),
+            $this->getJob(),
+            $this->getJobWorkOrders()
+        ]);
+    }
+
     protected function mockDownloadJobAttachment()
     {
         $this->mockHttpRequestService([

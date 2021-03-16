@@ -81,14 +81,16 @@ class ScheduleService extends EntityService
 
     protected function createOrUpdate($schedule, $jobId)
     {
+        $block = $this->findBlock(Arr::get($schedule, 'Blocks', []));
+
         return $this->repository->updateOrCreate([
             'job_id' => $jobId,
             'schedule_id' => $schedule['ID']
         ], [
             'name' => (Arr::get($schedule, 'Staff.Type') === 'employee') ? Arr::get($schedule, 'Staff.Name') : 'Other Engineer',
-            'date' => $this->prepareDate($schedule),
-            'start_time' => Arr::get($schedule, 'Blocks.0.ISO8601StartTime'),
-            'end_time' => Arr::get($schedule, 'Blocks.0.ISO8601EndTime')
+            'date' => $this->prepareDate($schedule, $block),
+            'start_time' => Arr::get($block, 'ISO8601StartTime'),
+            'end_time' => Arr::get($block, 'ISO8601EndTime')
         ]);
     }
 
@@ -101,15 +103,20 @@ class ScheduleService extends EntityService
         ]);
     }
 
-    protected function prepareDate($schedule)
+    protected function prepareDate($schedule, $block)
     {
         $date = Arr::get($schedule, 'Date');
-        $startTime = Arr::get($schedule, 'Blocks.0.StartTime');
+        $startTime = Arr::get($block, 'StartTime');
 
         if ($startTime) {
             $date = "{$date} {$startTime}:00";
         }
 
         return $date;
+    }
+
+    protected function findBlock($blocks)
+    {
+        return collect($blocks)->sortBy('StartTime')->first(null, []);
     }
 }
