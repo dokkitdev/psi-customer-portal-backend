@@ -9,7 +9,8 @@ INSERT INTO users(id, name, email, password, remember_token, set_password_hash, 
 INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at) VALUES
   (1, 5, '18 Hyde Park Gardens Freehold Ltd', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 6, 'Old name', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (3, 100, 'For delete', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+  (3, 100, 'For delete', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (4, 18, 'For Query', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO simpro_sites(id, site_id, name, created_at, updated_at) VALUES
   (1, 1, 'Sitename', '2016-10-20 11:05:00', '2016-10-20 11:05:00');

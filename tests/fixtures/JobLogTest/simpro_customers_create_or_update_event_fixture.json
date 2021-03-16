@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "customer_id": 5,
+        "name": "18 Hyde Park Gardens Freehold Ltd",
+        "type": "companies",
+        "created_at": "2016-10-20T10:05:00.000000Z",
+        "updated_at": "2016-10-20T10:05:00.000000Z"
+    },
+    {
+        "id": 2,
+        "customer_id": 1026,
+        "name": "Odeon Cinemas Limited",
+        "type": "companies",
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    }
+]

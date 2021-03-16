@@ -12,9 +12,10 @@
     "doctrine/dbal": "^2.10",
     "laravel/framework": "^7.21",
     "laravel/tinker": "^2.4",
+    "ronasit/laravel-helpers": "1.5.*@beta",
+    "sentry/sentry-laravel": "^2.4",
     "superbalist/laravel-google-cloud-storage": "^2.2",
-    "symfony/yaml": "^4.4",
-    "ronasit/laravel-helpers":  "1.5.*@beta"
+    "symfony/yaml": "^4.4"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
