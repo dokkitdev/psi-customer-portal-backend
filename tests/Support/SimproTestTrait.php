@@ -18,6 +18,27 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockGetJobs()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_jobs_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
     protected function mockUpdateJobsCommand()
     {
         $this->mockHttpRequestService([

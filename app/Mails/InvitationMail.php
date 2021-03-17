@@ -2,6 +2,9 @@
 
 namespace App\Mails;
 
+use App\Services\SettingService;
+use Illuminate\Support\Arr;
+
 class InvitationMail extends BaseMail
 {
     public function __construct($to, array $data)
@@ -12,5 +15,11 @@ class InvitationMail extends BaseMail
             'Invitation to the PFS Cloud App',
             'emails.invitation'
         );
+
+        $adminEmail = app(SettingService::class)->get('admin_email');
+
+        if (Arr::get($adminEmail, 'email')) {
+            $this->cc($adminEmail['email']);
+        }
     }
 }
