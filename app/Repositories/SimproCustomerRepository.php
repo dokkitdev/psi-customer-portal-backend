@@ -39,7 +39,7 @@ class SimproCustomerRepository extends BaseRepository
         return $this;
     }
 
-    public function filterByNameyOrId()
+    public function filterByNameOrId()
     {
         if (Arr::has($this->filter, 'query')) {
             $this->query->where(function ($query) {
