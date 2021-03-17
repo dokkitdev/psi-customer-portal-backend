@@ -37,7 +37,7 @@ class SimproCustomerService extends BaseService
 
         return $this->repository
             ->searchQuery($filters)
-            ->filterByNameyOrId()
+            ->filterByNameOrId()
             ->hasGroup()
             ->filterByUserGroups()
             ->with()
