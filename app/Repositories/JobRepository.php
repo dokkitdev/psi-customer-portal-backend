@@ -94,4 +94,18 @@ class JobRepository extends BaseRepository
 
         return $this;
     }
+
+    public function filterByPriority()
+    {
+        if (Arr::has($this->filter, 'priority')) {
+            $this->query->where(function ($query) {
+                foreach ($this->filter['priority'] as $priority) {
+                    $loweredQuery = mb_strtolower($priority);
+                    $query->orWhere(DB::raw("lower(priority)"), 'like', "%{$loweredQuery}%");
+                }
+            });
+        }
+
+        return $this;
+    }
 }

@@ -193,6 +193,60 @@ class SimproApiClient
         } while (count($result) === $pageSize);
     }
 
+    public function getResponseTimesAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/setup/responseTimes/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
+    public function getCostCentersAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/setup/accounts/costCenters/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
+    public function getBusinessGroupsAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/setup/accounts/businessGroups/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
     protected function makeRequest($method, $url, $data = null, $headers = null)
     {
         $headers = empty($headers) ? $this->getHeaders() : $headers;

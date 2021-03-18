@@ -335,6 +335,69 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockGetResponseTimes()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/responseTimes'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_response_times_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockGetCostCenters()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/accounts/costCenters/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_cost_centers_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockGetBusinessGroups()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/accounts/businessGroups/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_business_groups_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
     protected function mockHttpRequestService(array $requestsChain = [], $className = HttpRequestService::class)
     {
         $mock = $this->createHttpRequestServiceMock([], $className);

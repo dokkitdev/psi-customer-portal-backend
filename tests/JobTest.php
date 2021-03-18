@@ -164,6 +164,12 @@ class JobTest extends TestCase
                 ],
                 'result' => 'search_by_postal_code_jobs.json'
             ],
+            [
+                'filter' => [
+                    'priority' => ['Fire Alarm - Standard', 'Intruder Alarm - Standard'],
+                ],
+                'result' => 'search_by_priority_jobs.json'
+            ],
         ];
     }
 
@@ -195,5 +201,59 @@ class JobTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture("admin_{$fixture}", $response->json());
+    }
+
+    public function testGetResponseTimes()
+    {
+        $this->mockGetResponseTimes();
+
+        $response = $this->actingAs($this->user)->json('get', '/jobs/response-times');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_response_times_fixture.json', $response->json());
+    }
+
+    public function testGetResponseTimesNoAuth()
+    {
+        $response = $this->json('get', '/jobs/response-times');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testGetCostCenters()
+    {
+        $this->mockGetCostCenters();
+
+        $response = $this->actingAs($this->user)->json('get', '/jobs/cost-centers');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_cost_centers_fixture.json', $response->json());
+    }
+
+    public function testGetCostCentersNoAuth()
+    {
+        $response = $this->json('get', '/jobs/cost-centers');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testGetBusinessGroups()
+    {
+        $this->mockGetBusinessGroups();
+
+        $response = $this->actingAs($this->user)->json('get', '/jobs/business-groups');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_business_groups_fixture.json', $response->json());
+    }
+
+    public function testGetBusinessGroupsNoAuth()
+    {
+        $response = $this->json('get', '/jobs/business-groups');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }
