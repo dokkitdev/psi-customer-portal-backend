@@ -76,6 +76,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/documents/{id}', ['uses' => DocumentController::class . '@get']);
     Route::get('/documents', ['uses' => DocumentController::class . '@search']);
 
+    Route::get('/jobs/response-times', ['uses' => JobController::class . '@getResponseTimes']);
+    Route::get('/jobs/cost-centers', ['uses' => JobController::class . '@getCostCenters']);
+    Route::get('/jobs/business-groups', ['uses' => JobController::class . '@getBusinessGroups']);
     Route::get('/jobs/{id}', ['uses' => JobController::class . '@get']);
     Route::get('/jobs', ['uses' => JobController::class . '@search']);
 

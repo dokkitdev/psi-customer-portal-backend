@@ -43,16 +43,16 @@ INSERT INTO group_simpro_site(id, group_id, simpro_site_id, is_enabled, created_
 INSERT INTO simpro_jobs(id, data, handle_status, handle_result) VALUES
   (1, '{"ID": "job.created", "build": "pfsgroup.simprosuite.com", "description": "Job #test has been crashed.", "name": "Job", "action": "created", "reference": {"companyID": 0, "jobID": 2406}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}');
 
-INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stage, recent_schedule_id) VALUES
-  (1, 100, 1, 3, '2016-10-20', 'Progress', 1),
-  (2, 101, 1, 3, '2016-10-20', 'Progress', null),
-  (3, 102, 1, 3, '2016-10-20', 'Progress', null),
-  (4, 103, 1, 3, '2016-10-20', 'Complete', null),
-  (5, 104, 1, 3, null, 'Archived', null),
-  (6, 105, 2, 1, null, 'Archived', null),
-  (7, 106, 3, 1, null, 'Archived', null),
-  (8, 107, 4, 3, '2016-10-20', 'Complete', null),
-  (9, 108, 4, 2, '2016-10-20', 'Progress', 1);                                                                                                        ;
+INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stage, priority, recent_schedule_id) VALUES
+  (1, 100, 1, 3, '2016-10-20', 'Progress', 'Fire Alarm - Standard 8 Hours', 1),
+  (2, 101, 1, 3, '2016-10-20', 'Progress', 'Fire Alarm - Standard', null),
+  (3, 102, 1, 3, '2016-10-20', 'Progress', 'Intruder Alarm - Standard 4 Hours', null),
+  (4, 103, 1, 3, '2016-10-20', 'Complete', null, null),
+  (5, 104, 1, 3, null, 'Archived', null, null),
+  (6, 105, 2, 1, null, 'Archived', null, null),
+  (7, 106, 3, 1, null, 'Archived', null, null),
+  (8, 107, 4, 3, '2016-10-20', 'Complete', null, null),
+  (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);                                                                                                        ;
 
 INSERT INTO schedules(id, job_id, schedule_id, name, date, start_time, end_time) VALUES
   (1, 1, 100, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');

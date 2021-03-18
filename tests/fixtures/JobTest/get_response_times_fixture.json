@@ -1,0 +1,17 @@
+[
+    {
+        "ID": 1,
+        "Name": "Fire Alarm - Standard",
+        "Archived": false
+    },
+    {
+        "ID": 2,
+        "Name": "Intruder Alarm - Standard",
+        "Archived": false
+    },
+    {
+        "ID": 3,
+        "Name": "Other - Standard",
+        "Archived": false
+    }
+]

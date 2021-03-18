@@ -39,4 +39,40 @@ class SimproService
 
         return $projectCustomFields;
     }
+
+    public function getResponseTimes()
+    {
+        $responseTimePages = $this->simproClient->getResponseTimesAsGenerator($this->companyId);
+
+        $responseTimes = [];
+        foreach ($responseTimePages as $responseTimePage) {
+            $responseTimes = array_merge($responseTimes, $responseTimePage);
+        }
+
+        return $responseTimes;
+    }
+
+    public function getCostCenters()
+    {
+        $costCenterPages = $this->simproClient->getCostCentersAsGenerator($this->companyId);
+
+        $costCenters = [];
+        foreach ($costCenterPages as $costCenterPage) {
+            $costCenters = array_merge($costCenters, $costCenterPage);
+        }
+
+        return $costCenters;
+    }
+
+    public function getBusinessGroups()
+    {
+        $businessGroupPages = $this->simproClient->getBusinessGroupsAsGenerator($this->companyId);
+
+        $businessGroups = [];
+        foreach ($businessGroupPages as $businessGroupPage) {
+            $businessGroups = array_merge($businessGroups, $businessGroupPage);
+        }
+
+        return $businessGroups;
+    }
 }
