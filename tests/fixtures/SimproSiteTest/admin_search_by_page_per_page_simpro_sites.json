@@ -8,7 +8,10 @@
             "created_at": null,
             "updated_at": null,
             "address": null,
-            "postal_code": null
+            "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null
         },
         {
             "id": 2,
@@ -17,17 +20,20 @@
             "created_at": null,
             "updated_at": null,
             "address": null,
-            "postal_code": null
+            "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",
     "from": 1,
-    "last_page": 2,
-    "last_page_url": "http:\/\/localhost\/simpro-sites?page=2",
+    "last_page": 3,
+    "last_page_url": "http:\/\/localhost\/simpro-sites?page=3",
     "next_page_url": "http:\/\/localhost\/simpro-sites?page=2",
     "path": "http:\/\/localhost\/simpro-sites",
     "per_page": 2,
     "prev_page_url": null,
     "to": 2,
-    "total": 4
+    "total": 5
 }

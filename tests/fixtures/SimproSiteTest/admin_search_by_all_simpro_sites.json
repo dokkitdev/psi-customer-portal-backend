@@ -8,7 +8,10 @@
             "created_at": null,
             "updated_at": null,
             "address": null,
-            "postal_code": null
+            "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null
         },
         {
             "id": 2,
@@ -17,7 +20,10 @@
             "created_at": null,
             "updated_at": null,
             "address": null,
-            "postal_code": null
+            "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null
         },
         {
             "id": 3,
@@ -26,7 +32,10 @@
             "created_at": null,
             "updated_at": null,
             "address": null,
-            "postal_code": null
+            "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null
         },
         {
             "id": 4,
@@ -35,7 +44,22 @@
             "created_at": null,
             "updated_at": null,
             "address": null,
-            "postal_code": null
+            "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null
+        },
+        {
+            "id": 5,
+            "site_id": 1700,
+            "name": "Name 1700",
+            "created_at": null,
+            "updated_at": null,
+            "address": null,
+            "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",
@@ -44,8 +68,8 @@
     "last_page_url": "http:\/\/localhost\/simpro-sites?page=1",
     "next_page_url": null,
     "path": "simpro-sites",
-    "per_page": 4,
+    "per_page": 5,
     "prev_page_url": null,
-    "to": 4,
-    "total": 4
+    "to": 5,
+    "total": 5
 }

@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Models\GroupSimproSite;
 use App\Models\Job;
 use App\Models\JobAttachment;
 use App\Models\JobCatalog;
@@ -48,6 +49,9 @@ class JobTest extends TestCase
 
         $simproSite = SimproSite::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
+
+        $groupSimproSites = GroupSimproSite::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('group_simpro_sites_create_or_update_event_fixture.json', $groupSimproSites);
 
         $schedules = Schedule::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('schedules_create_or_update_event_fixture.json', $schedules);
