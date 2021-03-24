@@ -49,6 +49,7 @@ class SimproSiteService extends BaseService
             ->filterByQuery(['name'])
             ->filterByUserGroups()
             ->with()
+            ->withCount()
             ->getSearchResults();
     }
 
@@ -103,6 +104,15 @@ class SimproSiteService extends BaseService
         $this->createGroupSimproSites($simproCustomer['id'], $simproSite['id']);
 
         return $simproSite;
+    }
+
+    public function deleteBySimpro($webhook)
+    {
+        $siteIdFromSimpro = $webhook['data']['reference']['siteID'];
+
+        return $this->repository->delete([
+            'site_id' => $siteIdFromSimpro,
+        ]);
     }
 
     protected function createOrUpdate($site, $simproCustomerId)

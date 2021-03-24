@@ -45,6 +45,8 @@ class SimproJobService extends EntityService
             case 'site.created':
             case 'site.updated':
                 return $this->simproSiteService->createOrUpdateBySimpro($webhook);
+            case 'site.deleted':
+                return $this->simproSiteService->deleteBySimpro($webhook);
             case 'company.customer.created':
             case 'company.customer.updated':
                 return $this->simproCustomerService->createOrUpdateBySimpro($webhook, SimproCustomer::TYPE_COMPANIES);

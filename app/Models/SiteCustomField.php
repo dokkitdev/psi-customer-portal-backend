@@ -9,6 +9,9 @@ class SiteCustomField extends Model
 {
     use ModelTrait;
 
+    const CUSTOMER_REF_ID = 22;
+    const REFERENCE_ID = 32;
+
     protected $fillable = [
         'simpro_site_id',
         'custom_field_id',

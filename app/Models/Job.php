@@ -9,6 +9,11 @@ class Job extends Model
 {
     use ModelTrait;
 
+    const OPEN_STAGES = [
+        'Pending',
+        'Progress'
+    ];
+
     const BUSINESS_GROUPS = [
         'Maintenance',
         'Reactives',

@@ -26,20 +26,21 @@ INSERT INTO group_user(id, group_id, user_id) VALUES
   (1, 1, 2),
   (2, 4, 2);
 
-INSERT INTO simpro_sites(id, site_id, name) VALUES
-  (1, 1, 'Name 1'),
-  (2, 2, 'Name 2'),
-  (3, 3, 'Name 3'),
-  (4, 4, 'Name 4'),
-  (5, 1700, 'Name 1700');
+INSERT INTO simpro_sites(id, site_id, name, simpro_customer_id) VALUES
+  (1, 1, 'Name 1', 1),
+  (2, 2, 'Name 2', 1),
+  (3, 3, 'Name 3', 1),
+  (4, 4, 'Name 4', 2),
+  (5, 1700, 'Name 1700', 3);
 
 INSERT INTO site_custom_fields(id, simpro_site_id, custom_field_id, value) VALUES
   (1, 1, 22, '100'),
-  (2, 5, 22, '100');
+  (2, 5, 22, '100'),
+  (3, 1, 32, '100');
 
-INSERT INTO site_contacts(id, simpro_site_id, contact_id, title) VALUES
-  (1, 1, 1, 'Title'),
-  (2, 5, 10862, 'Title');
+INSERT INTO site_contacts(id, simpro_site_id, contact_id, title, is_primary) VALUES
+  (1, 1, 1, 'Title', true),
+  (2, 5, 10862, 'Title', true);
 
 INSERT INTO group_simpro_site(id, group_id, simpro_site_id) VALUES
   (1, 1, 1),
@@ -48,3 +49,8 @@ INSERT INTO group_simpro_site(id, group_id, simpro_site_id) VALUES
   (4, 4, 4),
   (5, 4, 1),
   (6, 5, 5);
+
+INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stage, priority, recent_schedule_id) VALUES
+  (1, 100, 1, 3, '2016-10-20', 'Pending', 'Fire Alarm - Standard 8 Hours', 1),
+  (2, 101, 1, 3, '2016-10-20', 'Progress', 'Fire Alarm - Standard', null),
+  (3, 102, 1, 3, '2016-10-20', 'Invoiced', 'Fire Alarm - Standard', null);
