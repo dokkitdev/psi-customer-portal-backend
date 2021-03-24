@@ -6,7 +6,10 @@
         "created_at": "2016-10-20T10:05:00.000000Z",
         "updated_at": "2016-10-20T10:05:00.000000Z",
         "address": null,
-        "postal_code": "SL5 7HY"
+        "postal_code": "SL5 7HY",
+        "simpro_customer_id": null,
+        "city": null,
+        "country": null
     },
     {
         "id": 2,
@@ -15,6 +18,9 @@
         "created_at": "2018-11-11T11:11:11.000000Z",
         "updated_at": "2018-11-11T11:11:11.000000Z",
         "address": "The High Street, Beckenham, Kent",
-        "postal_code": "BR3 1DY"
+        "postal_code": "BR3 1DY",
+        "simpro_customer_id": 2,
+        "city": "Beckenham",
+        "country": ""
     }
 ]

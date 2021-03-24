@@ -102,6 +102,16 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function getSiteContacts($companyId, $siteId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/");
+
+        return $this->makeRequest('get', $url, [
+            'pageSize' => 250,
+            'columns' => 'ID,Title,GivenName,FamilyName,Email,WorkPhone,CellPhone,Position,PrimaryContact'
+        ]);
+    }
+
     public function getJob($companyId, $jobId)
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}");

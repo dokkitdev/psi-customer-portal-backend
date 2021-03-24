@@ -9,6 +9,9 @@
             "updated_at": null,
             "address": null,
             "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null,
             "group_simpro_sites": [
                 {
                     "id": 1,
@@ -36,6 +39,9 @@
             "updated_at": null,
             "address": null,
             "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null,
             "group_simpro_sites": [
                 {
                     "id": 4,

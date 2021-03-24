@@ -76,9 +76,9 @@ class JobService extends BaseService
 
         $jobFromSimpro = $this->simproClient->getJob($companyId, $jobIdFromSimpro);
 
-        $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $jobFromSimpro['Site']['ID']);
-
         $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, $jobFromSimpro['Customer']);
+
+        $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $jobFromSimpro['Site']['ID'], $simproCustomer['id']);
 
         $customField = $this->findCustomFieldById(Arr::get($jobFromSimpro, 'CustomFields', []));
 

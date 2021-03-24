@@ -5,6 +5,7 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Repositories\SimproSiteRepository;
+use Illuminate\Support\Arr;
 
 /**
  * @property SimproSiteRepository $repository
@@ -16,6 +17,9 @@ class SimproSiteService extends BaseService
     protected GroupSimproSiteService $groupSimproSiteService;
     protected SimproApiClient $simproClient;
     protected $companyId;
+    protected SiteCustomFieldService $siteCustomFieldService;
+    protected SiteContactService $siteContactService;
+    protected GroupService $groupService;
 
     public function __construct()
     {
@@ -27,6 +31,8 @@ class SimproSiteService extends BaseService
         $this->companyId = config('services.simpro.company_id');
         $this->simproCustomerService = app(SimproCustomerService::class);
         $this->groupSimproSiteService = app(GroupSimproSiteService::class);
+        $this->siteCustomFieldService = app(SiteCustomFieldService::class);
+        $this->siteContactService = app(SiteContactService::class);
     }
 
     public function search($filters)
@@ -54,7 +60,7 @@ class SimproSiteService extends BaseService
 
         foreach ($sitePages as $sitePage) {
             foreach ($sitePage as $site) {
-                $simproSite = $this->createOrUpdateBySimpro($site);
+                $simproSite = $this->createOrUpdate($site, $simproCustomerId);
 
                 $this->groupSimproSiteService->create([
                     'group_id' => $groupId,
@@ -64,20 +70,42 @@ class SimproSiteService extends BaseService
         }
     }
 
-    public function getOrCreateBySimpro($companyId, $siteId)
+    public function getOrCreateBySimpro($companyId, $siteId, $simproCustomerId)
     {
         $simproSite = $this->repository->findBy('site_id', $siteId);
 
         if (!$simproSite) {
             $site = $this->simproClient->getSite($companyId, $siteId);
 
-            $simproSite = $this->createOrUpdateBySimpro($site);
+            $simproSite = $this->createOrUpdate($site, $simproCustomerId);
+
+            $this->createGroupSimproSites($simproCustomerId, $simproSite['id']);
         }
 
         return $simproSite;
     }
 
-    protected function createOrUpdateBySimpro($site)
+    public function createOrUpdateBySimpro($webhook)
+    {
+        $companyId = $webhook['data']['reference']['companyID'];
+        $siteIdFromSimpro = $webhook['data']['reference']['siteID'];
+
+        $siteFromSimpro = $this->simproClient->getSite($companyId, $siteIdFromSimpro);
+
+        $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, Arr::first($siteFromSimpro['Customers']));
+
+        $simproSite = $this->createOrUpdate($siteFromSimpro, $simproCustomer['id']);
+
+        $this->siteCustomFieldService->createOrUpdateBySite($siteFromSimpro, $simproSite['id']);
+
+        $this->siteContactService->syncBySite($companyId, $siteIdFromSimpro, $simproSite['id']);
+
+        $this->createGroupSimproSites($simproCustomer['id'], $simproSite['id']);
+
+        return $simproSite;
+    }
+
+    protected function createOrUpdate($site, $simproCustomerId)
     {
         return $this->repository->updateOrCreate([
             'site_id' => $site['ID']
@@ -85,7 +113,26 @@ class SimproSiteService extends BaseService
             'name' => $site['Name'],
             'address' => $this->prepareAddress($site),
             'postal_code' => $site['Address']['PostalCode'],
+            'simpro_customer_id' => $simproCustomerId,
+            'city' => $site['Address']['City'],
+            'country' => $site['Address']['Country']
         ]);
+    }
+
+    protected function createGroupSimproSites($simproCustomerId, $simproSiteId)
+    {
+        $this->groupService = app(GroupService::class);
+
+        $groups = $this->groupService->get(['simpro_customer_id' => $simproCustomerId]);
+
+        foreach ($groups as $group) {
+            if (!$this->groupSimproSiteService->exists(['group_id' => $group['id'], 'simpro_site_id' => $simproSiteId])) {
+                $this->groupSimproSiteService->create([
+                    'group_id' => $group['id'],
+                    'simpro_site_id' => $simproSiteId
+                ]);
+            }
+        }
     }
 
     protected function prepareAddress($site)

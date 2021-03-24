@@ -8,7 +8,10 @@
             "created_at": null,
             "updated_at": null,
             "address": null,
-            "postal_code": null
+            "postal_code": null,
+            "simpro_customer_id": null,
+            "city": null,
+            "country": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",

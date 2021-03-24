@@ -13,7 +13,10 @@ class SimproSite extends Model
         'site_id',
         'name',
         'address',
-        'postal_code'
+        'postal_code',
+        'simpro_customer_id',
+        'city',
+        'country'
     ];
 
     protected $hidden = ['pivot'];
@@ -21,5 +24,10 @@ class SimproSite extends Model
     public function group_simpro_sites()
     {
         return $this->hasMany(GroupSimproSite::class);
+    }
+
+    public function simpro_customer()
+    {
+        return $this->belongsTo(SimproCustomer::class);
     }
 }

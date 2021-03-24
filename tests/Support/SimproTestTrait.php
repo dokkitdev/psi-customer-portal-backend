@@ -18,6 +18,14 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockCreateOrUpdateSite()
+    {
+        $this->mockHttpRequestService([
+            $this->getSite(),
+            $this->getSiteContacts()
+        ]);
+    }
+
     protected function mockGetJobs()
     {
         $this->mockHttpRequestService([
@@ -69,8 +77,8 @@ trait SimproTestTrait
     {
         $this->mockHttpRequestService([
             $this->getJob(),
-            $this->getSite(),
             $this->getCustomer(),
+            $this->getSite(),
             $this->getSchedules(),
             $this->getJobAttachments(),
             $this->getJobWorkOrders()
@@ -213,6 +221,25 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_site_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getSiteContacts()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2406/contacts'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_site_contacts_response_success.json'
             ]
         ];
     }
