@@ -34,36 +34,28 @@ class SimproJobService extends EntityService
         switch ($event) {
             case 'job.created':
             case 'job.updated':
-                $this->jobService->createOrUpdateBySimpro($webhook);
-                break;
+                return $this->jobService->createOrUpdateBySimpro($webhook);
             case 'job.deleted':
-                $this->jobService->deleteBySimpro($webhook);
-                break;
+                return $this->jobService->deleteBySimpro($webhook);
             case 'job.schedule.created':
             case 'job.schedule.updated':
-                $this->scheduleService->updateOrCreateBySimpro($webhook);
-                break;
+                return $this->scheduleService->updateOrCreateBySimpro($webhook);
             case 'job.schedule.deleted':
-                $this->scheduleService->deleteBySimpro($webhook);
-                break;
+                return $this->scheduleService->deleteBySimpro($webhook);
             case 'site.created':
             case 'site.updated':
-                $this->simproSiteService->createOrUpdateBySimpro($webhook);
-                break;
-            case "company.customer.created":
-            case "company.customer.updated":
-                $this->simproCustomerService->createOrUpdateBySimpro($webhook, SimproCustomer::TYPE_COMPANIES);
-                break;
-            case "company.customer.deleted":
-                $this->simproCustomerService->deleteBySimpro($webhook, SimproCustomer::TYPE_COMPANIES);
-                break;
-            case "individual.customer.created":
-            case "individual.customer.updated":
-                $this->simproCustomerService->createOrUpdateBySimpro($webhook, SimproCustomer::TYPE_INDIVIDUALS);
-                break;
-            case "individual.customer.deleted":
-                $this->simproCustomerService->deleteBySimpro($webhook, SimproCustomer::TYPE_INDIVIDUALS);
-                break;
+                return $this->simproSiteService->createOrUpdateBySimpro($webhook);
+            case 'company.customer.created':
+            case 'company.customer.updated':
+                return $this->simproCustomerService->createOrUpdateBySimpro($webhook, SimproCustomer::TYPE_COMPANIES);
+            case 'company.customer.deleted':
+                return $this->simproCustomerService->deleteBySimpro($webhook, SimproCustomer::TYPE_COMPANIES);
+            case 'individual.customer.created':
+            case 'individual.customer.updated':
+                return $this->simproCustomerService->createOrUpdateBySimpro($webhook, SimproCustomer::TYPE_INDIVIDUALS);
+            case 'individual.customer.deleted':
+                return $this->simproCustomerService->deleteBySimpro($webhook, SimproCustomer::TYPE_INDIVIDUALS);
+            default: return true;
         }
     }
 }
