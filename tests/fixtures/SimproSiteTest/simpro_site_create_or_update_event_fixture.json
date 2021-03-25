@@ -7,7 +7,7 @@
         "updated_at": null,
         "address": null,
         "postal_code": null,
-        "simpro_customer_id": null,
+        "simpro_customer_id": 1,
         "city": null,
         "country": null
     },
@@ -19,7 +19,7 @@
         "updated_at": null,
         "address": null,
         "postal_code": null,
-        "simpro_customer_id": null,
+        "simpro_customer_id": 1,
         "city": null,
         "country": null
     },
@@ -31,7 +31,7 @@
         "updated_at": null,
         "address": null,
         "postal_code": null,
-        "simpro_customer_id": null,
+        "simpro_customer_id": 1,
         "city": null,
         "country": null
     },
@@ -43,7 +43,7 @@
         "updated_at": null,
         "address": null,
         "postal_code": null,
-        "simpro_customer_id": null,
+        "simpro_customer_id": 2,
         "city": null,
         "country": null
     },

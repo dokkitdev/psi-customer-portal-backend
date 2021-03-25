@@ -9,7 +9,7 @@
         "work_phone": null,
         "cell_phone": null,
         "position": null,
-        "is_primary": false,
+        "is_primary": true,
         "created_at": null,
         "updated_at": null
     },

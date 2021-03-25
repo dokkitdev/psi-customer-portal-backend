@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/simpro-customers/{id}', ['uses' => SimproCustomerController::class . '@get']);
     Route::get('/simpro-customers', ['uses' => SimproCustomerController::class . '@search']);
 
+    Route::get('/simpro-sites/{id}', ['uses' => SimproSiteController::class . '@get']);
     Route::get('/simpro-sites', ['uses' => SimproSiteController::class . '@search']);
 
     Route::put('/group-simpro-sites/{id}', ['uses' => GroupSimproSiteController::class . '@update']);

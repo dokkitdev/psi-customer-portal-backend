@@ -50,6 +50,66 @@ class SimproSiteTest extends TestCase
         $this->assertEqualsFixture('group_simpro_sites_create_or_update_event_fixture.json', $groupSimproSites);
     }
 
+    public function testDeleteSiteEvent()
+    {
+        $this->createSimproJob('simpro_webhook_site_deleted_fixture.json');
+
+        $this->artisan('simpro:handle-jobs')->assertExitCode(0);
+
+        $simproJobs = SimproJob::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);
+
+        $this->assertDatabaseMissing('simpro_sites', ['id' => 5]);
+
+        $this->assertDatabaseMissing('site_custom_fields', ['simpro_site_id' => 5]);
+
+        $this->assertDatabaseMissing('site_contacts', ['simpro_site_id' => 5]);
+
+        $this->assertDatabaseMissing('group_simpro_site', ['simpro_site_id' => 5]);
+    }
+
+    public function testGet()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/simpro-sites/1', [
+            'with' => ['group_simpro_sites', 'simpro_customer', 'site_custom_fields', 'site_contacts', 'primary_site_contact', 'reference_site_custom_field', 'customer_ref_site_custom_field'],
+            'with_count' => ['open_jobs']
+        ]);
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_simpro_site_fixture.json', $response->json());
+    }
+
+    public function testGetNoPermission()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/simpro-sites/4');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testGetByAdmin()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/simpro-sites/4');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_simpro_site_by_admin_fixture.json', $response->json());
+    }
+
+    public function testGetNotExists()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/simpro-sites/0');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testGetNoAuth()
+    {
+        $response = $this->json('get', '/simpro-sites/1');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
     public function getSearchFilters()
     {
         return [
@@ -71,7 +131,8 @@ class SimproSiteTest extends TestCase
             [
                 'filter' => [
                     'group_id' => 4,
-                    'with' => ['group_simpro_sites']
+                    'with' => ['group_simpro_sites', 'simpro_customer', 'site_custom_fields', 'site_contacts', 'primary_site_contact', 'reference_site_custom_field', 'customer_ref_site_custom_field'],
+                    'with_count' => ['open_jobs']
                 ],
                 'result' => 'search_simpro_sites_by_group.json'
             ],

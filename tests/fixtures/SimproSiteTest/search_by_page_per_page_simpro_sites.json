@@ -9,19 +9,7 @@
             "updated_at": null,
             "address": null,
             "postal_code": null,
-            "simpro_customer_id": null,
-            "city": null,
-            "country": null
-        },
-        {
-            "id": 4,
-            "site_id": 4,
-            "name": "Name 4",
-            "created_at": null,
-            "updated_at": null,
-            "address": null,
-            "postal_code": null,
-            "simpro_customer_id": null,
+            "simpro_customer_id": 1,
             "city": null,
             "country": null
         }
@@ -34,6 +22,6 @@
     "path": "http:\/\/localhost\/simpro-sites",
     "per_page": 2,
     "prev_page_url": null,
-    "to": 2,
-    "total": 2
+    "to": 1,
+    "total": 1
 }
