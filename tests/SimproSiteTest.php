@@ -9,6 +9,7 @@ use App\Models\SiteContact;
 use App\Models\SiteCustomField;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
+use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 
 class SimproSiteTest extends TestCase
@@ -167,5 +168,107 @@ class SimproSiteTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture("admin_$fixture", $response->json());
+    }
+
+    public function testUpdate()
+    {
+        $this->mockUpdateSite();
+
+        $data = $this->getJsonFixture('update_simpro_site.json');
+
+        $response = $this->actingAs($this->user)->json('put', '/simpro-sites/1', $data);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseHas('simpro_sites', Arr::except($data, ['primary_site_contact_id', 'custom_fields']));
+
+        $siteContacts = SiteContact::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('update_primary_site_contact_fixture.json', $siteContacts);
+
+        foreach ($data['custom_fields'] as $customField) {
+            $this->assertDatabaseHas('site_custom_fields', $customField);
+        }
+    }
+
+    public function testUpdateNoPermission()
+    {
+        $data = $this->getJsonFixture('update_simpro_site.json');
+
+        $response = $this->actingAs($this->user)->json('put', '/simpro-sites/4', $data);
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testUpdatePrimarySiteContactNotExists()
+    {
+        $data = $this->getJsonFixture('update_simpro_site.json');
+
+        $data['primary_site_contact_id'] = 2;
+
+        $response = $this->actingAs($this->user)->json('put', '/simpro-sites/1', $data);
+
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    public function testUpdateCustomFieldNotExists()
+    {
+        $data = $this->getJsonFixture('update_simpro_site.json');
+
+        $data['custom_fields'] = [
+            [
+                'id' => 2,
+                'value' => 'some value...'
+            ]
+        ];
+
+        $response = $this->actingAs($this->user)->json('put', '/simpro-sites/1', $data);
+
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    public function testUpdateByAdmin()
+    {
+        $this->mockUpdateSiteByAdmin();
+
+        $data = $this->getJsonFixture('update_simpro_site.json');
+
+        $data['primary_site_contact_id'] = 3;
+        $data['custom_fields'] = [
+            [
+                'id' => 4,
+                'value' => 'some value...'
+            ]
+        ];
+
+        $response = $this->actingAs($this->admin)->json('put', '/simpro-sites/4', $data);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseHas('simpro_sites', Arr::except($data, ['primary_site_contact_id', 'custom_fields']));
+
+        $siteContacts = SiteContact::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('update_primary_site_contact_by_admin_fixture.json', $siteContacts);
+
+        foreach ($data['custom_fields'] as $customField) {
+            $this->assertDatabaseHas('site_custom_fields', $customField);
+        }
+    }
+
+    public function testUpdateNotExists()
+    {
+        $data = $this->getJsonFixture('update_simpro_site.json');
+
+        $response = $this->actingAs($this->user)->json('put', '/simpro-sites/0', $data);
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testUpdateNoAuth()
+    {
+        $data = $this->getJsonFixture('update_simpro_site.json');
+
+        $response = $this->json('put', '/simpro-sites/1', $data);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

@@ -1,6 +1,6 @@
 {
     "id": 1,
-    "site_id": 1,
+    "site_id": 3900,
     "name": "Name 1",
     "created_at": null,
     "updated_at": null,
@@ -58,7 +58,7 @@
         {
             "id": 1,
             "simpro_site_id": 1,
-            "contact_id": 1,
+            "contact_id": 11026,
             "title": "Title",
             "name": null,
             "email": null,
@@ -67,13 +67,15 @@
             "position": null,
             "is_primary": true,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "given_name": null,
+            "family_name": null
         }
     ],
     "primary_site_contact": {
         "id": 1,
         "simpro_site_id": 1,
-        "contact_id": 1,
+        "contact_id": 11026,
         "title": "Title",
         "name": null,
         "email": null,
@@ -82,7 +84,9 @@
         "position": null,
         "is_primary": true,
         "created_at": null,
-        "updated_at": null
+        "updated_at": null,
+        "given_name": null,
+        "family_name": null
     },
     "reference_site_custom_field": {
         "id": 3,

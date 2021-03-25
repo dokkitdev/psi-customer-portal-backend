@@ -18,6 +18,131 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockPatchSiteContact()
+    {
+        $this->mockHttpRequestService([
+            $this->patchSiteContact()
+        ]);
+    }
+
+    protected function mockDeleteSiteContact()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'delete',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900/contacts/11026'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'delete_site_contact_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockPostSiteContact()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'post',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900/contacts/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'post_site_contact_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockUpdateSite()
+    {
+        $this->mockHttpRequestService([
+            $this->patchSite(),
+            $this->patchSiteContact(),
+            $this->patchSiteCustomField(),
+            $this->patchSiteCustomField()
+        ]);
+    }
+
+    protected function mockUpdateSiteByAdmin()
+    {
+        $this->mockHttpRequestService([
+            $this->patchSite(),
+            $this->patchSiteContact(),
+            $this->patchSiteCustomField()
+        ]);
+    }
+
+    protected function patchSite()
+    {
+        return [
+            'type' => 'patch',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'patch_site_response_success.json'
+            ]
+        ];
+    }
+
+    protected function patchSiteContact()
+    {
+        return [
+            'type' => 'patch',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900/contacts/11026'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'patch_site_contact_response_success.json'
+            ]
+        ];
+    }
+
+    protected function patchSiteCustomField()
+    {
+        return [
+            'type' => 'patch',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900/customFields/22'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'patch_site_custom_field_response_success.json'
+            ]
+        ];
+    }
+
     protected function mockCreateOrUpdateSite()
     {
         $this->mockHttpRequestService([

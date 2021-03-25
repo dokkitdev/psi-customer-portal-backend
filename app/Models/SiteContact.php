@@ -14,6 +14,8 @@ class SiteContact extends Model
         'contact_id',
         'title',
         'name',
+        'given_name',
+        'family_name',
         'email',
         'work_phone',
         'cell_phone',
@@ -22,4 +24,9 @@ class SiteContact extends Model
     ];
 
     protected $hidden = ['pivot'];
+
+    public function simpro_site()
+    {
+        return $this->belongsTo(SimproSite::class);
+    }
 }

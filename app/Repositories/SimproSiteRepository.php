@@ -15,11 +15,11 @@ class SimproSiteRepository extends BaseRepository
         $this->setModel(SimproSite::class);
     }
 
-    public function checkGroupPermissions($jobId, $userId)
+    public function checkGroupPermissions($sitedId, $userId)
     {
         return $this->getQuery()
             ->groupPermissions($userId)
-            ->find($jobId);
+            ->find($sitedId);
     }
 
     public function filterByUserGroups()

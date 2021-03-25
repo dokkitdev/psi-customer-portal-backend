@@ -10,6 +10,7 @@ use App\Http\Controllers\QuoteRerequestReasonController;
 use App\Http\Controllers\SimproCustomerController;
 use App\Http\Controllers\SimproSiteController;
 use App\Http\Controllers\SimproWebhookController;
+use App\Http\Controllers\SiteContactController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -66,10 +67,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/simpro-customers/{id}', ['uses' => SimproCustomerController::class . '@get']);
     Route::get('/simpro-customers', ['uses' => SimproCustomerController::class . '@search']);
 
+    Route::put('/simpro-sites/{id}', ['uses' => SimproSiteController::class . '@update']);
     Route::get('/simpro-sites/{id}', ['uses' => SimproSiteController::class . '@get']);
     Route::get('/simpro-sites', ['uses' => SimproSiteController::class . '@search']);
 
     Route::put('/group-simpro-sites/{id}', ['uses' => GroupSimproSiteController::class . '@update']);
+
+    Route::post('/site-contacts', ['uses' => SiteContactController::class . '@create']);
+    Route::put('/site-contacts/{id}', ['uses' => SiteContactController::class . '@update']);
+    Route::delete('/site-contacts/{id}', ['uses' => SiteContactController::class . '@delete']);
+    Route::get('/site-contacts/{id}', ['uses' => SiteContactController::class . '@get']);
 
     Route::post('/documents', ['uses' => DocumentController::class . '@create']);
     Route::put('/documents/{id}', ['uses' => DocumentController::class . '@update']);

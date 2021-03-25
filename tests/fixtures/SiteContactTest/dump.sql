@@ -41,7 +41,7 @@ INSERT INTO site_custom_fields(id, simpro_site_id, custom_field_id, value) VALUE
 
 INSERT INTO site_contacts(id, simpro_site_id, contact_id, title, is_primary) VALUES
   (1, 1, 11026, 'Title', true),
-  (2, 5, 10862, 'Title', true),
+  (2, 5, 1, 'Title', true),
   (3, 4, 11027, 'Title', false),
   (4, 4, 3, 'Title', true);
 
