@@ -21,7 +21,7 @@ class UpdateSimproSiteRequest extends Request
             'country' => 'string|nullable',
             'primary_site_contact_id' => 'integer',
             'custom_fields' => 'array',
-            'custom_fields.*.id' => "required|integer",
+            'custom_fields.*.id' => 'required|integer',
             'custom_fields.*.value' => 'required|string|nullable'
         ];
     }

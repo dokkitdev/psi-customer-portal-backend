@@ -35,7 +35,7 @@ class SiteContactService extends BaseService
         $contact = $this->simproClient->postSiteContact($this->companyId, $simproSite['site_id'], $contactData);
 
         $data['contact_id'] = $contact['ID'];
-        $data["name"] = trim("{$data['given_name']} {$data['family_name']}");
+        $data['name'] = trim("{$data['given_name']} {$data['family_name']}");
 
         return $this->repository->create($data);
     }
@@ -51,13 +51,10 @@ class SiteContactService extends BaseService
         $this->simproClient->patchSiteContact($this->companyId, $siteId, $siteContact['contact_id'], $contactData);
 
         $givenName = Arr::get($data, 'given_name', $siteContact['given_name']);
-        if (Arr::has($data, 'family_name')) {
-            $familyName = $data['family_name'];
-        } else {
-            $familyName = $siteContact['family_name'];
-        }
 
-        $data["name"] = trim("{$givenName} {$familyName}");
+        $familyName = Arr::has($data, 'family_name') ? $data['family_name'] : $siteContact['family_name'];
+
+        $data['name'] = trim("{$givenName} {$familyName}");
 
         return $this->repository->update($where, $data);
     }
