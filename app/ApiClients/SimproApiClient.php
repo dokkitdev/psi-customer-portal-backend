@@ -102,6 +102,13 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function patchSite($companyId, $siteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}");
+
+        return $this->makeRequest('patch', $url, $data);
+    }
+
     public function getSiteContacts($companyId, $siteId)
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/");
@@ -110,6 +117,34 @@ class SimproApiClient
             'pageSize' => 250,
             'columns' => 'ID,Title,GivenName,FamilyName,Email,WorkPhone,CellPhone,Position,PrimaryContact'
         ]);
+    }
+
+    public function postSiteContact($companyId, $siteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
+    public function patchSiteContact($companyId, $siteId, $contactId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/$contactId");
+
+        return $this->makeRequest('patch', $url, $data);
+    }
+
+    public function deleteSiteContact($companyId, $siteId, $contactId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/$contactId");
+
+        return $this->makeRequest('delete', $url);
+    }
+
+    public function patchSiteCustomField($companyId, $siteId, $customFieldId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/customFields/$customFieldId");
+
+        return $this->makeRequest('patch', $url, $data);
     }
 
     public function getJob($companyId, $jobId)

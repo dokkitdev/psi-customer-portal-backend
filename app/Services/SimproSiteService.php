@@ -6,6 +6,7 @@ use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Repositories\SimproSiteRepository;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property SimproSiteRepository $repository
@@ -51,6 +52,35 @@ class SimproSiteService extends BaseService
             ->with()
             ->withCount()
             ->getSearchResults();
+    }
+
+    public function update($where, $data)
+    {
+        return DB::transaction(function () use ($where, $data) {
+            $simproSite = $this->repository->update($where, $data);
+
+            $siteData = $this->prepareSiteData($data);
+
+            $this->simproClient->patchSite($this->companyId, $simproSite['site_id'], $siteData);
+
+            if (Arr::has($data, 'primary_site_contact_id')) {
+                $this->siteContactService->setPrimary($data['primary_site_contact_id']);
+            }
+
+            if (Arr::has($data, 'custom_fields')) {
+                foreach ($data['custom_fields'] as $customField) {
+                    $siteCustomField = $this->siteCustomFieldService->update($customField['id'], [
+                        'value' =>  $customField['value']
+                    ]);
+
+                    $this->simproClient->patchSiteCustomField($this->companyId, $simproSite['site_id'], $siteCustomField['custom_field_id'], [
+                        'Value' => $customField['value']
+                    ]);
+                }
+            }
+
+            return $simproSite;
+        });
     }
 
     public function attachSites($simproCustomerId, $groupId)
@@ -121,7 +151,7 @@ class SimproSiteService extends BaseService
             'site_id' => $site['ID']
         ], [
             'name' => $site['Name'],
-            'address' => $this->prepareAddress($site),
+            'address' => $site['Address']['Address'],
             'postal_code' => $site['Address']['PostalCode'],
             'simpro_customer_id' => $simproCustomerId,
             'city' => $site['Address']['City'],
@@ -145,24 +175,26 @@ class SimproSiteService extends BaseService
         }
     }
 
-    protected function prepareAddress($site)
+    protected function prepareSiteData($data)
     {
-        $address = [];
+        $siteData = [];
 
-        if (!empty($site['Address']['Address'])) {
-            $address[] = str_replace(["\r\n", "\n", "\r"], ' ', $site['Address']['Address']);
+        if (Arr::has($data, 'name')) {
+            $siteData['Name'] = $data['name'];
+        }
+        if (Arr::has($data, 'address')) {
+            $siteData['Address']['Address'] = $data['address'];
+        }
+        if (Arr::has($data, 'postal_code')) {
+            $siteData['Address']['PostalCode'] = $data['postal_code'];
+        }
+        if (Arr::has($data, 'city')) {
+            $siteData['Address']['City'] = $data['city'];
+        }
+        if (Arr::has($data, 'country')) {
+            $siteData['Address']['Country'] = $data['country'];
         }
 
-        if (!empty($site['Address']['City'])) {
-            $address[] = $site['Address']['City'];
-        }
-
-        if (!empty($site['Address']['State'])) {
-            $address[] = $site['Address']['State'];
-        }
-
-        $address = trim(implode(', ', $address));
-
-        return $address ? $address : null;
+        return $siteData;
     }
 }
