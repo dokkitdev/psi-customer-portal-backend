@@ -69,6 +69,20 @@ class SimproApiClient
         } while (count($result) === $pageSize);
     }
 
+    public function postJobAttachment($companyId, $jobId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/$jobId/attachments/files/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
+    public function postQuoteAttachment($companyId, $quoteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/$quoteId/attachments/files/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
     public function getSchedule($companyId, $scheduleId)
     {
         $url = $this->getUrl("companies/{$companyId}/schedules/{$scheduleId}");
@@ -154,6 +168,20 @@ class SimproApiClient
         return $this->makeRequest('get', $url, [
             'display' => 'all'
         ]);
+    }
+
+    public function postJob($companyId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
+    public function postQuote($companyId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/");
+
+        return $this->makeRequest('post', $url, $data);
     }
 
     public function getCustomer($companyId, $type, $customerId)

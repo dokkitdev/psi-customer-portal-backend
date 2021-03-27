@@ -13,6 +13,7 @@ use App\Models\SimproJob;
 use App\Models\SimproSite;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
+use Illuminate\Http\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 
 class JobTest extends TestCase
@@ -21,6 +22,7 @@ class JobTest extends TestCase
 
     protected $admin;
     protected $user;
+    protected $files;
 
     public function setUp(): void
     {
@@ -28,6 +30,10 @@ class JobTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+        $this->files = [
+            UploadedFile::fake()->image('file1.png', 600, 600),
+            UploadedFile::fake()->image('file2.png', 600, 600)
+        ];
     }
 
     public function testCreateJobEvent()
@@ -257,6 +263,65 @@ class JobTest extends TestCase
     public function testGetBusinessGroupsNoAuth()
     {
         $response = $this->json('get', '/jobs/business-groups');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testCreateRequest()
+    {
+        $this->mockCreatejobRequest();
+
+        $response = $this->actingAs($this->user)->json('post', '/jobs/request', [
+            'simpro_site_id' => 1,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_CREATED);
+    }
+
+    public function testCreateRequestByAdmin()
+    {
+        $this->mockCreatejobRequest();
+
+        $response = $this->actingAs($this->admin)->json('post', '/jobs/request', [
+            'simpro_site_id' => 2,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_CREATED);
+    }
+
+    public function testCreateRequestNoPermissions()
+    {
+        $response = $this->actingAs($this->user)->json('post', '/jobs/request', [
+            'simpro_site_id' => 2,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCreateRequestSiteNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('post', '/jobs/request', [
+            'simpro_site_id' => 0,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCreateRequestNoAuth()
+    {
+        $response = $this->json('post', '/jobs/request', [
+            'simpro_site_id' => 1,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }

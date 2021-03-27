@@ -69,6 +69,38 @@ class JobService extends BaseService
             ->getSearchResults();
     }
 
+    public function createRequest($data)
+    {
+        $simproSite = $this->simproSiteService->withRelations(['simpro_customer'])->find($data['simpro_site_id']);
+
+        $defaultTag = $this->settingService->get('default_tag');
+
+        $jobData = [
+            'Type' => 'Project',
+            'Customer' => Arr::get($simproSite, 'simpro_customer.customer_id'),
+            'Site' => $simproSite['site_id'],
+            'Tags' => [$defaultTag['ID']]
+        ];
+
+        if (Arr::has($data, 'description')) {
+            $jobData['Description'] = $data['description'];
+        }
+
+        $job = $this->simproClient->postJob($this->companyId, $jobData);
+
+        if (Arr::has($data, 'files')) {
+            foreach ($data['files'] as $file) {
+                $this->simproClient->postJobAttachment($this->companyId, $job['ID'], [
+                    'Filename' => $file['filename'],
+                    'Base64Data' => base64_encode($file['content']),
+                    'Public' => true
+                ]);
+            }
+        }
+
+        return $job;
+    }
+
     public function createOrUpdateBySimpro($webhook)
     {
         $companyId = $webhook['data']['reference']['companyID'];
