@@ -30,7 +30,7 @@ class QuoteService extends BaseService
         $this->simproSiteService = app(SimproSiteService::class);
     }
 
-    public function createRequest($data)
+    public function createInSimpro($data)
     {
         $simproSite = $this->simproSiteService->withRelations(['simpro_customer'])->find($data['simpro_site_id']);
 

@@ -7,7 +7,7 @@ use App\Services\QuoteService;
 use App\Services\SimproSiteService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class CreateQuoteRequestRequest extends Request
+class CreateInSimproQuoteRequest extends Request
 {
     public function rules()
     {

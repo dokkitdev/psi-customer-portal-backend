@@ -271,7 +271,7 @@ class JobTest extends TestCase
     {
         $this->mockCreatejobRequest();
 
-        $response = $this->actingAs($this->user)->json('post', '/jobs/request', [
+        $response = $this->actingAs($this->user)->json('post', '/jobs/create-in-simpro', [
             'simpro_site_id' => 1,
             'description' => 'Test job...',
             'files' => $this->files
@@ -284,7 +284,7 @@ class JobTest extends TestCase
     {
         $this->mockCreatejobRequest();
 
-        $response = $this->actingAs($this->admin)->json('post', '/jobs/request', [
+        $response = $this->actingAs($this->admin)->json('post', '/jobs/create-in-simpro', [
             'simpro_site_id' => 2,
             'description' => 'Test job...',
             'files' => $this->files
@@ -295,7 +295,7 @@ class JobTest extends TestCase
 
     public function testCreateRequestNoPermissions()
     {
-        $response = $this->actingAs($this->user)->json('post', '/jobs/request', [
+        $response = $this->actingAs($this->user)->json('post', '/jobs/create-in-simpro', [
             'simpro_site_id' => 2,
             'description' => 'Test job...',
             'files' => $this->files
@@ -306,7 +306,7 @@ class JobTest extends TestCase
 
     public function testCreateRequestSiteNotExists()
     {
-        $response = $this->actingAs($this->admin)->json('post', '/jobs/request', [
+        $response = $this->actingAs($this->admin)->json('post', '/jobs/create-in-simpro', [
             'simpro_site_id' => 0,
             'description' => 'Test job...',
             'files' => $this->files
@@ -317,7 +317,7 @@ class JobTest extends TestCase
 
     public function testCreateRequestNoAuth()
     {
-        $response = $this->json('post', '/jobs/request', [
+        $response = $this->json('post', '/jobs/create-in-simpro', [
             'simpro_site_id' => 1,
             'description' => 'Test job...',
             'files' => $this->files

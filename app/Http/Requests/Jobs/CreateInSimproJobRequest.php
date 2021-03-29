@@ -6,7 +6,7 @@ use App\Http\Requests\Request;
 use App\Services\SimproSiteService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class CreateJobRequestRequest extends Request
+class CreateInSimproJobRequest extends Request
 {
     public function rules()
     {

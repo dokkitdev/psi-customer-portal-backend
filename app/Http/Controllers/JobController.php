@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Jobs\CreateJobRequestRequest;
+use App\Http\Requests\Jobs\CreateInSimproJobRequest;
 use App\Http\Requests\Jobs\GetBusinessGroupsRequest;
 use App\Http\Requests\Jobs\GetCostCentersRequest;
 use App\Http\Requests\Jobs\GetJobRequest;
@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JobController extends Controller
 {
-    public function createRequest(CreateJobRequestRequest $request, JobService $service)
+    public function createInSimpro(CreateInSimproJobRequest $request, JobService $service)
     {
         $data = Arr::except($request->onlyValidated(), 'files');
 
@@ -30,7 +30,7 @@ class JobController extends Controller
             }
         }
 
-        $result = $service->createRequest($data);
+        $result = $service->createInSimpro($data);
 
         return response()->json($result, Response::HTTP_CREATED);
     }

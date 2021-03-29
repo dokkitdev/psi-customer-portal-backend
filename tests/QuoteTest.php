@@ -31,7 +31,7 @@ class QuoteTest extends TestCase
     {
         $this->mockCreateQuoteRequest();
 
-        $response = $this->actingAs($this->user)->json('post', '/quotes/request', [
+        $response = $this->actingAs($this->user)->json('post', '/quotes/create-in-simpro', [
             'simpro_site_id' => 1,
             'type' => 1,
             'description' => 'Test quote...',
@@ -45,7 +45,7 @@ class QuoteTest extends TestCase
     {
         $this->mockCreateQuoteRequest();
 
-        $response = $this->actingAs($this->admin)->json('post', '/quotes/request', [
+        $response = $this->actingAs($this->admin)->json('post', '/quotes/create-in-simpro', [
             'simpro_site_id' => 2,
             'type' => 2,
             'description' => 'Test quote...',
@@ -57,7 +57,7 @@ class QuoteTest extends TestCase
 
     public function testCreateRequestNoPermissions()
     {
-        $response = $this->actingAs($this->user)->json('post', '/quotes/request', [
+        $response = $this->actingAs($this->user)->json('post', '/quotes/create-in-simpro', [
             'simpro_site_id' => 2,
             'type' => 1,
             'description' => 'Test quote...',
@@ -69,7 +69,7 @@ class QuoteTest extends TestCase
 
     public function testCreateRequestSiteNotExists()
     {
-        $response = $this->actingAs($this->admin)->json('post', '/quotes/request', [
+        $response = $this->actingAs($this->admin)->json('post', '/quotes/create-in-simpro', [
             'simpro_site_id' => 0,
             'type' => 1,
             'description' => 'Test quote...',
@@ -81,7 +81,7 @@ class QuoteTest extends TestCase
 
     public function testCreateRequestNoAuth()
     {
-        $response = $this->json('post', '/quotes/request', [
+        $response = $this->json('post', '/quotes/create-in-simpro', [
             'simpro_site_id' => 1,
             'type' => 1,
             'description' => 'Test quote...',
