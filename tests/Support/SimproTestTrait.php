@@ -18,6 +18,90 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockCreateQuoteRequest()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'post',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'post_quote_response_success.json'
+                ]
+            ],
+            $this->mockPostQuoteAttachment(),
+            $this->mockPostQuoteAttachment()
+        ]);
+    }
+
+    protected function mockCreatejobRequest()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'post',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'post_job_response_success.json'
+                ]
+            ],
+            $this->mockPostJobAttachment(),
+            $this->mockPostJobAttachment()
+        ]);
+    }
+
+    protected function mockPostJobAttachment()
+    {
+        return [
+            'type' => 'post',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/210600/attachments/files/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'post_job_attachment_response_success.json'
+            ]
+        ];
+    }
+
+    protected function mockPostQuoteAttachment()
+    {
+        return [
+            'type' => 'post',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/52820/attachments/files/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'post_quote_attachment_response_success.json'
+            ]
+        ];
+    }
+
     protected function mockPatchSiteContact()
     {
         $this->mockHttpRequestService([

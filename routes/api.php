@@ -5,6 +5,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupSimproSiteController;
 use App\Http\Controllers\JobAttachmentController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
 use App\Http\Controllers\SimproCustomerController;
@@ -84,6 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/documents/{id}', ['uses' => DocumentController::class . '@get']);
     Route::get('/documents', ['uses' => DocumentController::class . '@search']);
 
+    Route::post('/jobs/create-in-simpro', ['uses' => JobController::class . '@createInSimpro']);
     Route::get('/jobs/response-times', ['uses' => JobController::class . '@getResponseTimes']);
     Route::get('/jobs/cost-centers', ['uses' => JobController::class . '@getCostCenters']);
     Route::get('/jobs/business-groups', ['uses' => JobController::class . '@getBusinessGroups']);
@@ -91,6 +93,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jobs', ['uses' => JobController::class . '@search']);
 
     Route::get('/job-attachments/download/{id}', ['uses' => JobAttachmentController::class . '@download']);
+
+    Route::post('/quotes/create-in-simpro', ['uses' => QuoteController::class . '@createInSimpro']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
