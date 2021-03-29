@@ -11,7 +11,8 @@
             "postal_code": null,
             "simpro_customer_id": 1,
             "city": null,
-            "country": null
+            "country": null,
+            "county": null
         },
         {
             "id": 2,
@@ -23,7 +24,8 @@
             "postal_code": null,
             "simpro_customer_id": 1,
             "city": null,
-            "country": null
+            "country": null,
+            "county": null
         },
         {
             "id": 3,
@@ -35,7 +37,8 @@
             "postal_code": null,
             "simpro_customer_id": 1,
             "city": null,
-            "country": null
+            "country": null,
+            "county": null
         },
         {
             "id": 4,
@@ -47,7 +50,8 @@
             "postal_code": null,
             "simpro_customer_id": 2,
             "city": null,
-            "country": null
+            "country": null,
+            "county": null
         },
         {
             "id": 5,
@@ -59,7 +63,8 @@
             "postal_code": null,
             "simpro_customer_id": 3,
             "city": null,
-            "country": null
+            "country": null,
+            "county": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",

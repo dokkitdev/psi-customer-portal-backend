@@ -23,6 +23,7 @@ class JobService extends BaseService
     protected JobCatalogService $jobCatalogService;
     protected JobAttachmentService $jobAttachmentService;
     protected JobWorkOrderService $jobWorkOrderService;
+    protected InvoiceService $invoiceService;
 
     public function __construct()
     {
@@ -38,6 +39,7 @@ class JobService extends BaseService
         $this->jobCatalogService = app(JobCatalogService::class);
         $this->jobAttachmentService = app(JobAttachmentService::class);
         $this->jobWorkOrderService = app(JobWorkOrderService::class);
+        $this->invoiceService = app(InvoiceService::class);
     }
 
     public function search($filters)
@@ -134,6 +136,8 @@ class JobService extends BaseService
         $this->jobAttachmentService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
 
         $this->jobWorkOrderService->syncBySimpro($companyId, $jobFromSimpro, $job['id']);
+
+        $this->invoiceService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
 
         return $job;
     }

@@ -290,7 +290,8 @@ trait SimproTestTrait
             $this->getSite(),
             $this->getSchedules(),
             $this->getJobAttachments(),
-            $this->getJobWorkOrders()
+            $this->getJobWorkOrders(),
+            $this->getJobInvoices()
         ]);
     }
 
@@ -316,6 +317,25 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_job_attachment_file_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getJobInvoices()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/209000/invoices/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_invoices_response_success.json'
             ]
         ];
     }

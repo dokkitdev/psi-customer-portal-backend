@@ -3,6 +3,7 @@
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupSimproSiteController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobAttachmentController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\QuoteController;
@@ -95,6 +96,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/job-attachments/download/{id}', ['uses' => JobAttachmentController::class . '@download']);
 
     Route::post('/quotes/create-in-simpro', ['uses' => QuoteController::class . '@createInSimpro']);
+
+    Route::get('/invoices', ['uses' => InvoiceController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

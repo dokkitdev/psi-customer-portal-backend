@@ -155,7 +155,8 @@ class SimproSiteService extends BaseService
             'postal_code' => $site['Address']['PostalCode'],
             'simpro_customer_id' => $simproCustomerId,
             'city' => $site['Address']['City'],
-            'country' => $site['Address']['Country']
+            'country' => $site['Address']['Country'],
+            'county' => $site['Address']['State'],
         ]);
     }
 
@@ -193,6 +194,9 @@ class SimproSiteService extends BaseService
         }
         if (Arr::has($data, 'country')) {
             $siteData['Address']['Country'] = $data['country'];
+        }
+        if (Arr::has($data, 'county')) {
+            $siteData['Address']['State'] = $data['county'];
         }
 
         return $siteData;

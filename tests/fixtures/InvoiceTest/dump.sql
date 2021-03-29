@@ -6,9 +6,6 @@ INSERT INTO users(id, name, email, password, remember_token, set_password_hash, 
   (1, 'Gerhard Feest', 'fidel.kutch@example.com', '$2y$10$X4receiTrF24bXrEbAiChOZ8TMNPqoXuhuThgynvBdWIHZeu5HzsS', null, null, 1, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 'Alien West', 'alien.west@example.com', 'old_password', null, 'restore_token', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
-INSERT INTO settings(name, value) VALUES
-  ('default_tag', '{"ID": 55, "Name": "Alex Grant-Browning"}');
-
 INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at) VALUES
   (1, 1773, '18 Hyde Park Gardens Freehold Ltd', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 6, 'Old name', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
@@ -40,9 +37,6 @@ INSERT INTO group_simpro_site(id, group_id, simpro_site_id, is_enabled, created_
   (4, 4, 4, true, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (5, 5, 4, true, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
-INSERT INTO simpro_jobs(id, data, handle_status, handle_result) VALUES
-  (1, '{"ID": "job.created", "build": "pfsgroup.simprosuite.com", "description": "Job #test has been crashed.", "name": "Job", "action": "created", "reference": {"companyID": 0, "jobID": 2406}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}');
-
 INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stage, priority, recent_schedule_id) VALUES
   (1, 100, 1, 3, '2016-10-20', 'Progress', 'Fire Alarm - Standard 8 Hours', 1),
   (2, 101, 1, 3, '2016-10-20', 'Progress', 'Fire Alarm - Standard', null),
@@ -54,17 +48,14 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (8, 107, 4, 3, '2016-10-20', 'Complete', null, null),
   (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);                                                                                                        ;
 
-INSERT INTO schedules(id, job_id, schedule_id, name, date, start_time, end_time) VALUES
-  (1, 1, 100, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
-
-INSERT INTO job_catalogs(id, job_id, section_id, cost_center_id, catalog_id, original_catalog_id, name, part_no, qty) VALUES
-  (1, 1, 0, 0, 0, 0, 'Test', 'Test', 1);
-
-INSERT INTO job_attachments(id, job_id, attachment_id, name) VALUES
-  (1, 1, 'Test', 'Test');
-
-INSERT INTO job_work_orders(id, job_id, section_id, cost_center_id, work_order_id, name, description, date) VALUES
-  (1, 1, 0, 0, 0, 'Test', 'Test', '2020-10-06');
-
 INSERT INTO invoices(id, job_id, invoice_id, date_issued, status, total, date_paid) VALUES
-  (1, 1, 1, null, null, null, null);
+  (1, 1, 1, null, null, null, null),
+  (2, 2, 2, null, null, null, null),
+  (3, 3, 3, null, null, null, null),
+  (4, 4, 4, null, null, null, null),
+  (5, 5, 5, null, null, null, null),
+  (6, 6, 6, null, null, null, null),
+  (7, 7, 7, null, null, null, null),
+  (8, 8, 8, null, null, null, null),
+  (9, 9, 9, null, null, null, null),
+  (10, 9, 10, null, null, null, null);

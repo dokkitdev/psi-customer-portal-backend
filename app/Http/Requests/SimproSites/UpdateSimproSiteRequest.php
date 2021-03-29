@@ -19,6 +19,7 @@ class UpdateSimproSiteRequest extends Request
             'postal_code' => 'string|nullable',
             'city' => 'string|nullable',
             'country' => 'string|nullable',
+            'county' => 'string|nullable',
             'primary_site_contact_id' => 'integer',
             'custom_fields' => 'array',
             'custom_fields.*.id' => 'required|integer',

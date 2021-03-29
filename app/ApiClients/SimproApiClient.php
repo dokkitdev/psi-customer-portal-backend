@@ -14,6 +14,25 @@ class SimproApiClient
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
+    public function getJobInvoicesAsGenerator($companyId, $jobId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/jobs/$jobId/invoices/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+                'columns' => 'ID,DateIssued,Stage,Total'
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
     public function getJobsAsGenerator($companyId)
     {
         $page = 1;
