@@ -48,13 +48,14 @@ class InvoiceService extends BaseService
         foreach ($invoicesFromSimproPages as $invoicesFromSimproPage) {
             foreach ($invoicesFromSimproPage as $invoiceFromSimpro) {
                 $invoiceFromSimproId = $invoiceFromSimpro['ID'];
+                $customerInvoice = $this->simproClient->getCustomerInvoice($companyId, $invoiceFromSimproId);
                 $data = [
                     'job_id' => $jobId,
                     'invoice_id' => $invoiceFromSimproId,
                     'date_issued' => $invoiceFromSimpro['DateIssued'],
                     'status' => $invoiceFromSimpro['Stage'],
                     'total' => Arr::get($invoiceFromSimpro, 'Total.ExTax'),
-                    'date_paid' => null
+                    'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null
                 ];
                 $invoice = $invoices->firstWhere('invoice_id', $invoiceFromSimproId);
                 if ($invoice) {

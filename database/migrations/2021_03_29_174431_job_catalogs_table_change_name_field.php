@@ -16,7 +16,7 @@ class JobCatalogsTableChangeNameField extends Migration
     public function down()
     {
         Schema::table('job_catalogs', function (Blueprint $table) {
-            $table->string('name')->nullable()->change();
+            $table->string('name')->nullable(false)->change();
         });
     }
 }

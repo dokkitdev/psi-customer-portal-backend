@@ -14,6 +14,13 @@ class SimproApiClient
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
+    public function getCustomerInvoice($companyId, $invoiceId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/customerInvoices/$invoiceId");
+
+        return $this->makeRequest('get', $url);
+    }
+
     public function getJobInvoicesAsGenerator($companyId, $jobId)
     {
         $page = 1;
