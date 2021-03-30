@@ -67,8 +67,8 @@ class SimproSiteService extends BaseService
                 $this->siteContactService->setPrimary($data['primary_site_contact_id']);
             }
 
-            if (Arr::has($data, 'custom_fields')) {
-                foreach ($data['custom_fields'] as $customField) {
+            if (Arr::has($data, 'site_custom_fields')) {
+                foreach ($data['site_custom_fields'] as $customField) {
                     $siteCustomField = $this->siteCustomFieldService->update($customField['id'], [
                         'value' =>  $customField['value']
                     ]);

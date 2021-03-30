@@ -6,7 +6,7 @@
   "country": "Updated Country",
   "county": "Updated County",
   "primary_site_contact_id": 1,
-  "custom_fields": [
+  "site_custom_fields": [
     {
       "id": 1,
       "value": "Updated 22 value"
