@@ -19,10 +19,11 @@ class UpdateSimproSiteRequest extends Request
             'postal_code' => 'string|nullable',
             'city' => 'string|nullable',
             'country' => 'string|nullable',
+            'county' => 'string|nullable',
             'primary_site_contact_id' => 'integer',
-            'custom_fields' => 'array',
-            'custom_fields.*.id' => 'required|integer',
-            'custom_fields.*.value' => 'required|string|nullable'
+            'site_custom_fields' => 'array',
+            'site_custom_fields.*.id' => 'required|integer',
+            'site_custom_fields.*.value' => 'required|string|nullable'
         ];
     }
 
@@ -46,7 +47,7 @@ class UpdateSimproSiteRequest extends Request
             $this->checkPrimarySiteContact();
         }
 
-        if ($this->has('custom_fields')) {
+        if ($this->has('site_custom_fields')) {
             $this->checkCustomFields();
         }
     }
@@ -55,7 +56,7 @@ class UpdateSimproSiteRequest extends Request
     {
         $service = app(SiteCustomFieldService::class);
 
-        foreach ($this->get('custom_fields') as $customField) {
+        foreach ($this->get('site_custom_fields') as $customField) {
             $exists = $service->exists([
                 'id' => $customField['id'],
                 'simpro_site_id' => $this->route('id'),

@@ -180,12 +180,12 @@ class SimproSiteTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseHas('simpro_sites', Arr::except($data, ['primary_site_contact_id', 'custom_fields']));
+        $this->assertDatabaseHas('simpro_sites', Arr::except($data, ['primary_site_contact_id', 'site_custom_fields']));
 
         $siteContacts = SiteContact::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('update_primary_site_contact_fixture.json', $siteContacts);
 
-        foreach ($data['custom_fields'] as $customField) {
+        foreach ($data['site_custom_fields'] as $customField) {
             $this->assertDatabaseHas('site_custom_fields', $customField);
         }
     }
@@ -214,7 +214,7 @@ class SimproSiteTest extends TestCase
     {
         $data = $this->getJsonFixture('update_simpro_site.json');
 
-        $data['custom_fields'] = [
+        $data['site_custom_fields'] = [
             [
                 'id' => 2,
                 'value' => 'some value...'
@@ -233,7 +233,7 @@ class SimproSiteTest extends TestCase
         $data = $this->getJsonFixture('update_simpro_site.json');
 
         $data['primary_site_contact_id'] = 3;
-        $data['custom_fields'] = [
+        $data['site_custom_fields'] = [
             [
                 'id' => 4,
                 'value' => 'some value...'
@@ -244,12 +244,12 @@ class SimproSiteTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseHas('simpro_sites', Arr::except($data, ['primary_site_contact_id', 'custom_fields']));
+        $this->assertDatabaseHas('simpro_sites', Arr::except($data, ['primary_site_contact_id', 'site_custom_fields']));
 
         $siteContacts = SiteContact::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('update_primary_site_contact_by_admin_fixture.json', $siteContacts);
 
-        foreach ($data['custom_fields'] as $customField) {
+        foreach ($data['site_custom_fields'] as $customField) {
             $this->assertDatabaseHas('site_custom_fields', $customField);
         }
     }

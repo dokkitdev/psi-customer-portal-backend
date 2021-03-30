@@ -9,7 +9,8 @@
         "postal_code": "SL5 7HY",
         "simpro_customer_id": null,
         "city": null,
-        "country": null
+        "country": null,
+        "county": null
     },
     {
         "id": 2,
@@ -21,6 +22,7 @@
         "postal_code": "BR3 1DY",
         "simpro_customer_id": 2,
         "city": "Beckenham",
-        "country": ""
+        "country": "",
+        "county": "Kent"
     }
 ]

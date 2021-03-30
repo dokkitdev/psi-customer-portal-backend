@@ -1,0 +1,81 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "job_id": 1,
+            "invoice_id": 1,
+            "date_issued": null,
+            "status": null,
+            "total": null,
+            "date_paid": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 2,
+            "job_id": 2,
+            "invoice_id": 2,
+            "date_issued": null,
+            "status": null,
+            "total": null,
+            "date_paid": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 3,
+            "job_id": 3,
+            "invoice_id": 3,
+            "date_issued": null,
+            "status": null,
+            "total": null,
+            "date_paid": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 4,
+            "job_id": 4,
+            "invoice_id": 4,
+            "date_issued": null,
+            "status": null,
+            "total": null,
+            "date_paid": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 5,
+            "job_id": 5,
+            "invoice_id": 5,
+            "date_issued": null,
+            "status": null,
+            "total": null,
+            "date_paid": null,
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 8,
+            "job_id": 8,
+            "invoice_id": 8,
+            "date_issued": null,
+            "status": null,
+            "total": null,
+            "date_paid": null,
+            "created_at": null,
+            "updated_at": null
+        }
+    ],
+    "first_page_url": "http:\/\/localhost\/invoices?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/localhost\/invoices?page=1",
+    "next_page_url": null,
+    "path": "invoices",
+    "per_page": 6,
+    "prev_page_url": null,
+    "to": 6,
+    "total": 6
+}

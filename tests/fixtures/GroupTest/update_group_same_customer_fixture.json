@@ -22,7 +22,8 @@
                 "postal_code": null,
                 "simpro_customer_id": null,
                 "city": null,
-                "country": null
+                "country": null,
+                "county": null
             }
         },
         {
@@ -42,7 +43,8 @@
                 "postal_code": null,
                 "simpro_customer_id": null,
                 "city": null,
-                "country": null
+                "country": null,
+                "county": null
             }
         }
     ]

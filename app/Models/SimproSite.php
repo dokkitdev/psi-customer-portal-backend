@@ -16,7 +16,8 @@ class SimproSite extends Model
         'postal_code',
         'simpro_customer_id',
         'city',
-        'country'
+        'country',
+        'county'
     ];
 
     protected $hidden = ['pivot'];
