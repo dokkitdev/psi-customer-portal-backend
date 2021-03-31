@@ -18,6 +18,27 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockUpdateGroupsCommand()
+    {
+        $this->mockHttpRequestService([
+            $this->getSites(),
+            $this->getSites(),
+        ]);
+    }
+
+    protected function mockUpdateSitesCommand()
+    {
+        $this->mockHttpRequestService([
+            $this->getSite(),
+            $this->getSite(),
+            $this->getCustomer(),
+            $this->getSiteContacts(),
+            $this->getSite(),
+            $this->getSite(),
+            $this->getSiteContacts(),
+        ]);
+    }
+
     protected function mockCreateQuoteRequest()
     {
         $this->mockHttpRequestService([
@@ -259,12 +280,8 @@ trait SimproTestTrait
     protected function mockUpdateJobsCommand()
     {
         $this->mockHttpRequestService([
-            $this->getSchedules(),
             $this->getJob(),
-            $this->getJobWorkOrders(),
-            $this->getSchedules(),
             $this->getJob(),
-            $this->getJobWorkOrders()
         ]);
     }
 
@@ -515,22 +532,27 @@ trait SimproTestTrait
     protected function mockGetSites()
     {
         $this->mockHttpRequestService([
-            [
-                'type' => 'get',
-                'arguments' => [
-                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/'),
-                    $this->equalTo(null),
-                    $this->equalTo([
-                        'Accept' => 'application/json',
-                        'Content-Type' => 'application/json',
-                        'Authorization' => 'Bearer token',
-                    ])
-                ],
-                'response' => [
-                    'fixture' => 'get_sites_response_success.json'
-                ]
-            ]
+            $this->getSites()
         ]);
+    }
+
+    protected function getSites()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_sites_response_success.json'
+            ]
+        ];
     }
 
     protected function mockGetCustomersCommand()

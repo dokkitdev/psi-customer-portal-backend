@@ -126,7 +126,8 @@ class JobService extends BaseService
             'date_created' => Arr::get($jobFromSimpro, 'DateIssued'),
             'stage' => Arr::get($jobFromSimpro, 'Stage'),
             'job_status' => Arr::get($jobFromSimpro, 'Status.Name'),
-            'requested' => Arr::get($customField, 'Value')
+            'requested' => Arr::get($customField, 'Value'),
+            'name' => Arr::get($jobFromSimpro, 'Name'),
         ]);
 
         app(ScheduleService::class)->createOrUpdateManyBySimpro($companyId, $jobIdFromSimpro, $job['id']);

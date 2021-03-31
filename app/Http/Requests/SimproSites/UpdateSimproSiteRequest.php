@@ -23,7 +23,7 @@ class UpdateSimproSiteRequest extends Request
             'primary_site_contact_id' => 'integer',
             'site_custom_fields' => 'array',
             'site_custom_fields.*.id' => 'required|integer',
-            'site_custom_fields.*.value' => 'required|string|nullable'
+            'site_custom_fields.*.value' => 'string|nullable'
         ];
     }
 

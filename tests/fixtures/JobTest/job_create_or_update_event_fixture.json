@@ -14,7 +14,8 @@
         "requested": "2016-10-20",
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": 1
+        "recent_schedule_id": 1,
+        "name": null
     },
     {
         "id": 2,
@@ -31,7 +32,8 @@
         "requested": "2016-10-20",
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": null
+        "recent_schedule_id": null,
+        "name": null
     },
     {
         "id": 3,
@@ -48,7 +50,8 @@
         "requested": "2016-10-20",
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": null
+        "recent_schedule_id": null,
+        "name": null
     },
     {
         "id": 4,
@@ -65,7 +68,8 @@
         "requested": "2016-10-20",
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": null
+        "recent_schedule_id": null,
+        "name": null
     },
     {
         "id": 5,
@@ -82,7 +86,8 @@
         "requested": null,
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": null
+        "recent_schedule_id": null,
+        "name": null
     },
     {
         "id": 6,
@@ -99,7 +104,8 @@
         "requested": null,
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": null
+        "recent_schedule_id": null,
+        "name": null
     },
     {
         "id": 7,
@@ -116,7 +122,8 @@
         "requested": null,
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": null
+        "recent_schedule_id": null,
+        "name": null
     },
     {
         "id": 8,
@@ -133,7 +140,8 @@
         "requested": "2016-10-20",
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": null
+        "recent_schedule_id": null,
+        "name": null
     },
     {
         "id": 9,
@@ -150,7 +158,8 @@
         "requested": "2016-10-20",
         "created_at": null,
         "updated_at": null,
-        "recent_schedule_id": 1
+        "recent_schedule_id": 1,
+        "name": null
     },
     {
         "id": 10,
@@ -167,6 +176,7 @@
         "requested": null,
         "created_at": "2018-11-11T11:11:11.000000Z",
         "updated_at": "2018-11-11T11:11:11.000000Z",
-        "recent_schedule_id": 2
+        "recent_schedule_id": 2,
+        "name": "Reactive - Fire"
     }
 ]

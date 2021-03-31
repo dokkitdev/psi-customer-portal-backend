@@ -9,6 +9,7 @@ use App\Http\Requests\Auth\RefreshTokenRequest;
 use App\Http\Requests\Auth\RestorePasswordRequest;
 use App\Services\UserService;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\JWTAuth;
 
 class AuthController extends Controller
@@ -16,15 +17,19 @@ class AuthController extends Controller
     public function login(LoginRequest $request, UserService $service, JWTAuth $auth)
     {
         $credentials = $request->only('email', 'password');
-        $token = $auth->attempt($credentials);
+        $token = false;
+
+        $user = $service->getByEmailInsensitively($credentials['email']);
+
+        if ($user && Hash::check($credentials['password'], $user['password'])) {
+            $token = $auth->fromUser($user);
+        }
 
         if ($token === false) {
             return response()->json([
                 'message' => 'Authorization failed'
             ], Response::HTTP_UNAUTHORIZED);
         }
-
-        $user = $service->first(['email' => $request->input('email')]);
 
         return response()->json([
             'token' => $token,
