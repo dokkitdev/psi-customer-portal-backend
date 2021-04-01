@@ -12,13 +12,13 @@ class CreateSiteContactRequest extends Request
     {
         return [
             'simpro_site_id' => 'required|integer|exists:simpro_sites,id',
-            'title' => 'string|max:255',
+            'title' => 'string|max:255|nullable',
             'given_name' => 'required|string|max:255',
-            'family_name' => 'string|max:255',
-            'email' => 'string|max:255',
-            'work_phone' => 'string|max:255',
-            'cell_phone' => 'string|max:255',
-            'position' => 'string|max:255',
+            'family_name' => 'string|max:255|nullable',
+            'email' => 'string|max:255|nullable',
+            'work_phone' => 'string|max:255|nullable',
+            'cell_phone' => 'string|max:255|nullable',
+            'position' => 'string|max:255|nullable',
         ];
     }
 

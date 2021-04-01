@@ -16,7 +16,7 @@ class CreateInSimproJobRequest extends Request
             'simpro_site_id' => 'required|integer',
             'description' => 'string',
             'files' => 'array',
-            'file.*' => "file|required|max:5120|mimes:{$types}"
+            'files.*' => "file|required|max:5120|mimes:{$types}"
         ];
     }
 

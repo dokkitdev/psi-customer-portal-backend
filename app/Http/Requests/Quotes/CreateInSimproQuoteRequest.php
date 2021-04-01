@@ -20,7 +20,7 @@ class CreateInSimproQuoteRequest extends Request
             'type' => "required|in:{$quoteTypes}",
             'description' => 'string',
             'files' => 'array',
-            'file.*' => "file|required|max:5120|mimes:{$mediaTypes}"
+            'files.*' => "file|required|max:5120|mimes:{$mediaTypes}"
         ];
     }
 
