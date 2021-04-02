@@ -16,7 +16,8 @@
             "requested": "2016-10-20",
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": 1
+            "recent_schedule_id": 1,
+            "name": null
         },
         {
             "id": 2,
@@ -33,7 +34,8 @@
             "requested": "2016-10-20",
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": null
+            "recent_schedule_id": null,
+            "name": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/jobs?page=1",

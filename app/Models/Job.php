@@ -35,6 +35,7 @@ class Job extends Model
         'job_status',
         'requested',
         'recent_schedule_id',
+        'name'
     ];
 
     protected $hidden = ['pivot'];

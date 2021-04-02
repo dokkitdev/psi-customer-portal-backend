@@ -70,11 +70,11 @@ class SimproSiteService extends BaseService
             if (Arr::has($data, 'site_custom_fields')) {
                 foreach ($data['site_custom_fields'] as $customField) {
                     $siteCustomField = $this->siteCustomFieldService->update($customField['id'], [
-                        'value' =>  $customField['value']
+                        'value' => Arr::get($customField, 'value')
                     ]);
 
                     $this->simproClient->patchSiteCustomField($this->companyId, $simproSite['site_id'], $siteCustomField['custom_field_id'], [
-                        'Value' => $customField['value']
+                        'Value' => Arr::get($customField, 'value')
                     ]);
                 }
             }
@@ -93,7 +93,7 @@ class SimproSiteService extends BaseService
             foreach ($sitePage as $site) {
                 $simproSite = $this->createOrUpdate($site, $simproCustomerId);
 
-                $this->groupSimproSiteService->create([
+                $this->groupSimproSiteService->firstOrCreate([
                     'group_id' => $groupId,
                     'simpro_site_id' => $simproSite['id']
                 ]);
