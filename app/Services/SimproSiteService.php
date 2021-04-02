@@ -93,12 +93,10 @@ class SimproSiteService extends BaseService
             foreach ($sitePage as $site) {
                 $simproSite = $this->createOrUpdate($site, $simproCustomerId);
 
-                if (!$this->groupSimproSiteService->exists(['group_id' => $groupId, 'simpro_site_id' => $simproSite['id']])) {
-                    $this->groupSimproSiteService->create([
-                        'group_id' => $groupId,
-                        'simpro_site_id' => $simproSite['id']
-                    ]);
-                }
+                $this->groupSimproSiteService->firstOrCreate([
+                    'group_id' => $groupId,
+                    'simpro_site_id' => $simproSite['id']
+                ]);
             }
         }
     }

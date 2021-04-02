@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Simpro;
 
 use App\ApiClients\SimproApiClient;
 use App\Services\GroupService;
@@ -8,7 +8,7 @@ use App\Services\SimproSiteService;
 use Exception;
 use Illuminate\Console\Command;
 
-class UpdateGroupsHandler extends Command
+class UpdateGroups extends Command
 {
     protected $signature = 'simpro:update-groups';
 

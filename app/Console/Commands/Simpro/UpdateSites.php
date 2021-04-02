@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Simpro;
 
 use App\ApiClients\SimproApiClient;
 use App\Services\SimproSiteService;
@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Console\Command;
 use Symfony\Component\HttpFoundation\Response;
 
-class UpdateSimproSitesHandler extends Command
+class UpdateSites extends Command
 {
     protected $signature = 'simpro:update-sites';
 

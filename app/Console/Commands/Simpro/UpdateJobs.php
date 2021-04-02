@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Simpro;
 
 use App\ApiClients\SimproApiClient;
 use App\Services\JobService;
@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 
-class UpdateJobsHandler extends Command
+class UpdateJobs extends Command
 {
     protected $signature = 'simpro:update-jobs';
 
