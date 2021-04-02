@@ -123,15 +123,24 @@ class SimproSiteService extends BaseService
 
         $siteFromSimpro = $this->simproClient->getSite($companyId, $siteIdFromSimpro);
 
-        $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, Arr::first($siteFromSimpro['Customers']));
+        $siteCustomer = Arr::first($siteFromSimpro['Customers']);
 
-        $simproSite = $this->createOrUpdate($siteFromSimpro, $simproCustomer['id']);
+        $simproCustomerId = null;
+
+        if ($siteCustomer) {
+            $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, $siteCustomer);
+            $simproCustomerId = $simproCustomer['id'];
+        }
+
+        $simproSite = $this->createOrUpdate($siteFromSimpro, $simproCustomerId);
 
         $this->siteCustomFieldService->createOrUpdateBySite($siteFromSimpro, $simproSite['id']);
 
         $this->siteContactService->syncBySite($companyId, $siteIdFromSimpro, $simproSite['id']);
 
-        $this->createGroupSimproSites($simproCustomer['id'], $simproSite['id']);
+        if ($simproCustomerId) {
+            $this->createGroupSimproSites($simproCustomerId, $simproSite['id']);
+        }
 
         return $simproSite;
     }
@@ -145,7 +154,7 @@ class SimproSiteService extends BaseService
         ]);
     }
 
-    protected function createOrUpdate($site, $simproCustomerId)
+    protected function createOrUpdate($site, $simproCustomerId = null)
     {
         return $this->repository->updateOrCreate([
             'site_id' => $site['ID']
