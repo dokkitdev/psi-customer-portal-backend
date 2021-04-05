@@ -18,9 +18,9 @@ class Request extends BaseRequest
         return $this->user()->role_id === Role::USER;
     }
 
-    public function validateExistsByPermissions($id, $entityName, $serviceName)
+    public function validateExistsByPermissions($id, $entityName)
     {
-        $service = app($serviceName);
+        $service = app("App\Services\\{$entityName}Service");
 
         if ($this->isUser()) {
             $entity = $service->findByPermissions($id, $this->getUserId());

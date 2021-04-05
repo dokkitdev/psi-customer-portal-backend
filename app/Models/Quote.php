@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Traits\PermissionsTrait;
+use App\Models\Traits\SimproPermissionsTrait;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
 {
-    use ModelTrait, PermissionsTrait;
+    use ModelTrait, SimproPermissionsTrait;
 
     const TYPE_PPM_QUOTE = 1;
     const TYPE_REMEDIAL_INSTALLATION_QUOTE = 2;

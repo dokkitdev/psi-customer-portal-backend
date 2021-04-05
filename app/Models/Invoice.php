@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Traits\PermissionsTrait;
+use App\Models\Traits\SimproPermissionsTrait;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    use ModelTrait, PermissionsTrait;
+    use ModelTrait, SimproPermissionsTrait;
 
     const PERMITTED_CUSTOMERS_RELATION_PATH = 'job.simpro_customer.groups.users';
     const PERMITTED_SITES_RELATION_PATH = 'job.simpro_site.group_simpro_sites';

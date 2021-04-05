@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Traits\PermissionsTrait;
+use App\Models\Traits\SimproPermissionsTrait;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
-    use ModelTrait, PermissionsTrait;
+    use ModelTrait, SimproPermissionsTrait;
 
     const OPEN_STAGES = [
         'Pending',

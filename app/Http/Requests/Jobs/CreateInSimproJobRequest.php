@@ -3,8 +3,6 @@
 namespace App\Http\Requests\Jobs;
 
 use App\Http\Requests\Request;
-use App\Models\SimproSite;
-use App\Services\SimproSiteService;
 
 class CreateInSimproJobRequest extends Request
 {
@@ -24,6 +22,6 @@ class CreateInSimproJobRequest extends Request
     {
         parent::validateResolved();
 
-        $this->validateExistsByPermissions($this->get('simpro_site_id'), SimproSite::class, SimproSiteService::class);
+        $this->validateExistsByPermissions($this->get('simpro_site_id'), 'SimproSite');
     }
 }

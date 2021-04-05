@@ -3,8 +3,6 @@
 namespace App\Http\Requests\SimproSites;
 
 use App\Http\Requests\Request;
-use App\Models\SimproSite;
-use App\Services\SimproSiteService;
 use App\Services\SiteContactService;
 use App\Services\SiteCustomFieldService;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
@@ -31,7 +29,7 @@ class UpdateSimproSiteRequest extends Request
     {
         parent::validateResolved();
 
-        $this->validateExistsByPermissions($this->route('id'), SimproSite::class, SimproSiteService::class);
+        $this->validateExistsByPermissions($this->route('id'), 'SimproSite');
 
         if ($this->has('primary_site_contact_id')) {
             $this->checkPrimarySiteContact();

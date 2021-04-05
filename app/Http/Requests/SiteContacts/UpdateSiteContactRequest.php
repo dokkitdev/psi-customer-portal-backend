@@ -3,9 +3,7 @@
 namespace App\Http\Requests\SiteContacts;
 
 use App\Http\Requests\Request;
-use App\Models\SimproSite;
 use App\Models\SiteContact;
-use App\Services\SimproSiteService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UpdateSiteContactRequest extends Request
@@ -33,6 +31,6 @@ class UpdateSiteContactRequest extends Request
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'SiteContact']));
         }
 
-        $this->validateExistsByPermissions($siteContact['simpro_site_id'], SimproSite::class, SimproSiteService::class);
+        $this->validateExistsByPermissions($siteContact['simpro_site_id'], 'SimproSite');
     }
 }

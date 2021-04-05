@@ -15,13 +15,6 @@ class QuoteRepository extends BaseRepository
         $this->setModel(Quote::class);
     }
 
-    public function findByPermissions($quoteId, $userId)
-    {
-        return $this->getQuery()
-            ->onlyPermitted($userId)
-            ->find($quoteId);
-    }
-
     public function filterByUserGroups()
     {
         if (Arr::has($this->filter, 'site_has_user')) {

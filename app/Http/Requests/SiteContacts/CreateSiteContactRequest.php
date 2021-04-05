@@ -3,8 +3,6 @@
 namespace App\Http\Requests\SiteContacts;
 
 use App\Http\Requests\Request;
-use App\Models\SimproSite;
-use App\Services\SimproSiteService;
 
 class CreateSiteContactRequest extends Request
 {
@@ -26,6 +24,6 @@ class CreateSiteContactRequest extends Request
     {
         parent::validateResolved();
 
-        $this->validateExistsByPermissions($this->get('simpro_site_id'), SimproSite::class, SimproSiteService::class);
+        $this->validateExistsByPermissions($this->get('simpro_site_id'), 'SimproSite');
     }
 }

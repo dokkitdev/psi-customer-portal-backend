@@ -15,13 +15,6 @@ class SimproSiteRepository extends BaseRepository
         $this->setModel(SimproSite::class);
     }
 
-    public function findByPermissions($siteId, $userId)
-    {
-        return $this->getQuery()
-            ->onlyPermitted($userId)
-            ->find($siteId);
-    }
-
     public function filterByUserGroups()
     {
         if (Arr::has($this->filter, 'site_has_user')) {

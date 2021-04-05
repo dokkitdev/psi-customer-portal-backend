@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Traits\PermissionsTrait;
+use App\Models\Traits\SimproPermissionsTrait;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class SimproSite extends Model
 {
-    use ModelTrait, PermissionsTrait;
+    use ModelTrait, SimproPermissionsTrait;
 
     const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_customer.groups.users';
     const PERMITTED_SITES_RELATION_PATH = 'group_simpro_sites';

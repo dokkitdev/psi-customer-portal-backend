@@ -4,7 +4,6 @@ namespace App\Http\Requests\Quotes;
 
 use App\Http\Requests\Request;
 use App\Models\Quote;
-use App\Services\QuoteService;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ApproveQuoteRequest extends Request
@@ -18,7 +17,7 @@ class ApproveQuoteRequest extends Request
     {
         parent::validateResolved();
 
-        $quote = $this->validateExistsByPermissions($this->route('id'), Quote::class, QuoteService::class);
+        $quote = $this->validateExistsByPermissions($this->route('id'), 'Quote');
 
         if ($quote['stage'] === Quote::STAGE_APPROVED) {
             throw new BadRequestHttpException(__('validation.exceptions.already_processed', ['entity' => 'Quote']));

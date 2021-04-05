@@ -4,8 +4,6 @@ namespace App\Http\Requests\Quotes;
 
 use App\Http\Requests\Request;
 use App\Models\Quote;
-use App\Models\SimproSite;
-use App\Services\SimproSiteService;
 
 class CreateInSimproQuoteRequest extends Request
 {
@@ -28,6 +26,6 @@ class CreateInSimproQuoteRequest extends Request
     {
         parent::validateResolved();
 
-        $this->validateExistsByPermissions($this->get('simpro_site_id'), SimproSite::class, SimproSiteService::class);
+        $this->validateExistsByPermissions($this->get('simpro_site_id'), 'SimproSite');
     }
 }

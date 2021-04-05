@@ -3,8 +3,6 @@
 namespace App\Http\Requests\SimproSites;
 
 use App\Http\Requests\Request;
-use App\Models\SimproSite;
-use App\Services\SimproSiteService;
 
 class GetSimproSiteRequest extends Request
 {
@@ -32,6 +30,6 @@ class GetSimproSiteRequest extends Request
     {
         parent::validateResolved();
 
-        $this->validateExistsByPermissions($this->route('id'), SimproSite::class, SimproSiteService::class);
+        $this->validateExistsByPermissions($this->route('id'), 'SimproSite');
     }
 }

@@ -3,8 +3,6 @@
 namespace App\Http\Requests\Jobs;
 
 use App\Http\Requests\Request;
-use App\Models\Job;
-use App\Services\JobService;
 
 class GetJobRequest extends Request
 {
@@ -20,7 +18,7 @@ class GetJobRequest extends Request
     {
         parent::validateResolved();
 
-        $this->validateExistsByPermissions($this->route('id'), Job::class, JobService::class);
+        $this->validateExistsByPermissions($this->route('id'), 'Job');
 
     }
 }

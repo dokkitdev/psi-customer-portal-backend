@@ -6,7 +6,6 @@ use App\Models\Job;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use RonasIT\Support\Repositories\BaseRepository;
 
 /**
  * @property Job $model
@@ -16,13 +15,6 @@ class JobRepository extends BaseRepository
     public function __construct()
     {
         $this->setModel(Job::class);
-    }
-
-    public function findByPermissions($jobId, $userId)
-    {
-        return $this->getQuery()
-            ->onlyPermitted($userId)
-            ->find($jobId);
     }
 
     public function filterByUserGroups()
