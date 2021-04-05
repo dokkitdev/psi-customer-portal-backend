@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\SimproPermissionsTrait;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    use ModelTrait;
+    use ModelTrait, SimproPermissionsTrait;
+
+    const PERMITTED_CUSTOMERS_RELATION_PATH = 'job.simpro_customer.groups.users';
+    const PERMITTED_SITES_RELATION_PATH = 'job.simpro_site.group_simpro_sites';
 
     protected $fillable = [
         'job_id',
@@ -27,21 +31,5 @@ class Invoice extends Model
     public function job()
     {
         return $this->belongsTo(Job::class);
-    }
-
-    public function scopeGroupPermissions($query, $userId)
-    {
-        return
-            $query
-                ->whereHas('job.simpro_customer.groups.users', function ($query) use ($userId) {
-                    $query->where('user_id', $userId);
-                })
-                ->whereHas('job.simpro_site.group_simpro_sites', function ($query) use ($userId) {
-                    $query
-                        ->where('is_enabled', true)
-                        ->whereHas('group.users', function ($query) use ($userId) {
-                            $query->where('user_id', $userId);
-                        });
-                });
     }
 }

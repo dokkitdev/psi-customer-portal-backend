@@ -15,17 +15,10 @@ class SimproSiteRepository extends BaseRepository
         $this->setModel(SimproSite::class);
     }
 
-    public function checkGroupPermissions($sitedId, $userId)
-    {
-        return $this->getQuery()
-            ->groupPermissions($userId)
-            ->find($sitedId);
-    }
-
     public function filterByUserGroups()
     {
         if (Arr::has($this->filter, 'site_has_user')) {
-            $this->query->groupPermissions($this->filter['site_has_user']);
+            $this->query->onlyPermitted($this->filter['site_has_user']);
         }
 
         return $this;

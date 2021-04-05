@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Models\Traits\SimproPermissionsTrait;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class SimproSite extends Model
 {
-    use ModelTrait;
+    use ModelTrait, SimproPermissionsTrait;
+
+    const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_customer.groups.users';
+    const PERMITTED_SITES_RELATION_PATH = 'group_simpro_sites';
 
     protected $fillable = [
         'site_id',
@@ -60,21 +64,5 @@ class SimproSite extends Model
     public function primary_site_contact()
     {
         return $this->hasOne(SiteContact::class)->where('is_primary', true);
-    }
-
-    public function scopeGroupPermissions($query, $userId)
-    {
-        return
-            $query
-                ->whereHas('simpro_customer.groups.users', function ($query) use ($userId) {
-                    $query->where('user_id', $userId);
-                })
-                ->whereHas('group_simpro_sites', function ($query) use ($userId) {
-                    $query
-                        ->where('is_enabled', true)
-                        ->whereHas('group.users', function ($query) use ($userId) {
-                            $query->where('user_id', $userId);
-                        });
-                });
     }
 }

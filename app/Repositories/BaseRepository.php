@@ -84,4 +84,11 @@ class BaseRepository extends Repository
 
         return $model;
     }
+
+    public function findByPermissions($id, $userId)
+    {
+        return $this->getQuery()
+            ->onlyPermitted($userId)
+            ->find($id);
+    }
 }

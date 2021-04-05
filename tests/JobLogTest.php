@@ -54,7 +54,7 @@ class JobLogTest extends TestCase
         $simproCustomer = SimproCustomer::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('simpro_customers_create_or_update_event_fixture.json', $simproCustomer);
 
-        $simproSite = SimproSite::orderBy('id')->get()->toArray();
+        $simproSite = SimproSite::orderBy('id')->with(['site_custom_fields', 'site_contacts'])->get()->toArray();
         $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
 
         $schedules = Schedule::orderBy('id')->get()->toArray();

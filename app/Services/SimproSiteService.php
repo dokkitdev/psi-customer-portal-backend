@@ -93,6 +93,10 @@ class SimproSiteService extends BaseService
             foreach ($sitePage as $site) {
                 $simproSite = $this->createOrUpdate($site, $simproCustomerId);
 
+                $this->siteCustomFieldService->createOrUpdateBySite($site, $simproSite['id']);
+
+                $this->siteContactService->syncBySite($this->companyId, $site['ID'], $simproSite['id']);
+
                 $this->groupSimproSiteService->firstOrCreate([
                     'group_id' => $groupId,
                     'simpro_site_id' => $simproSite['id']
@@ -109,6 +113,10 @@ class SimproSiteService extends BaseService
             $site = $this->simproClient->getSite($companyId, $siteId);
 
             $simproSite = $this->createOrUpdate($site, $simproCustomerId);
+
+            $this->siteCustomFieldService->createOrUpdateBySite($site, $simproSite['id']);
+
+            $this->siteContactService->syncBySite($companyId, $siteId, $simproSite['id']);
 
             $this->createGroupSimproSites($simproCustomerId, $simproSite['id']);
         }

@@ -96,6 +96,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/job-attachments/download/{id}', ['uses' => JobAttachmentController::class . '@download']);
 
     Route::post('/quotes/create-in-simpro', ['uses' => QuoteController::class . '@createInSimpro']);
+    Route::put('/quotes/{id}/approve', ['uses' => QuoteController::class . '@approve']);
+    Route::put('/quotes/{id}/decline', ['uses' => QuoteController::class . '@decline']);
+    Route::put('/quotes/{id}/re-request', ['uses' => QuoteController::class . '@reRequest']);
+    Route::get('/quotes', ['uses' => QuoteController::class . '@search']);
 
     Route::get('/invoices', ['uses' => InvoiceController::class . '@search']);
 });
