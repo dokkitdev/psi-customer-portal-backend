@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Quotes;
 
 use App\Http\Requests\Request;
-use App\Services\QuoteService;
+use App\Models\Quote;
 use App\Services\SimproSiteService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -13,7 +13,7 @@ class CreateInSimproQuoteRequest extends Request
     {
         $mediaTypes = implode(',', config('defaults.permitted_media_types'));
 
-        $quoteTypes = implode(',', QuoteService::TYPES);
+        $quoteTypes = implode(',', Quote::TYPES);
 
         return [
             'simpro_site_id' => 'required|integer',

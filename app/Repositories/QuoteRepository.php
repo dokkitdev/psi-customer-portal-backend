@@ -2,24 +2,24 @@
 
 namespace App\Repositories;
 
-use App\Models\SimproSite;
+use App\Models\Quote;
 use Illuminate\Support\Arr;
 
 /**
- * @property SimproSite $model
+ * @property Quote $model
 */
-class SimproSiteRepository extends BaseRepository
+class QuoteRepository extends BaseRepository
 {
     public function __construct()
     {
-        $this->setModel(SimproSite::class);
+        $this->setModel(Quote::class);
     }
 
-    public function checkGroupPermissions($siteId, $userId)
+    public function checkGroupPermissions($quoteId, $userId)
     {
         return $this->getQuery()
             ->groupPermissions($userId)
-            ->find($siteId);
+            ->find($quoteId);
     }
 
     public function filterByUserGroups()

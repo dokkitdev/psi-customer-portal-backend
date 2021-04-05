@@ -109,6 +109,45 @@ class SimproApiClient
         return $this->makeRequest('post', $url, $data);
     }
 
+    public function getQuote($companyId, $quoteId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}");
+
+        return $this->makeRequest('get', $url, [
+            'display' => 'all'
+        ]);
+    }
+
+    public function patchQuote($companyId, $quoteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}");
+
+        return $this->makeRequest('patch', $url, $data);
+    }
+
+    public function getQuoteNoteAttachments($companyId, $quoteId, $noteId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}/attachments/files/");
+
+        return $this->makeRequest('get', $url, [
+            'columns' => 'ID,Filename,DateAdded',
+        ]);
+    }
+
+    public function getQuoteNote($companyId, $quoteId, $noteId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}");
+
+        return $this->makeRequest('get', $url);
+    }
+
+    public function postQuoteNote($companyId, $quoteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
     public function getSchedule($companyId, $scheduleId)
     {
         $url = $this->getUrl("companies/{$companyId}/schedules/{$scheduleId}");

@@ -7,7 +7,8 @@ INSERT INTO users(id, name, email, password, remember_token, set_password_hash, 
   (2, 'Alien West', 'alien.west@example.com', 'old_password', null, 'restore_token', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO settings(name, value) VALUES
-  ('default_tag', '{"ID": 55, "Name": "Alex Grant-Browning"}');
+  ('default_tag', '{"ID": 55, "Name": "Alex Grant-Browning"}'),
+  ('quote_date_created', '{"ID": 12, "Name": "Quote Added"}');
 
 INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at) VALUES
   (1, 1773, '18 Hyde Park Gardens Freehold Ltd', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
@@ -15,7 +16,7 @@ INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at
   (3, 100, 'For delete', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO simpro_sites(id, site_id, simpro_customer_id, name, postal_code, created_at, updated_at) VALUES
-  (1, 3900, 1, 'Sitename 1', 'SL5 7HY', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (1, 3421, 1, 'Sitename 1', 'SL5 7HY', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 2, 2, 'Sitename 2', 'EC2M 3YD', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (3, 3, 3, 'Sitename 3', 'W13 9BE', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (4, 4, 3, 'Sitename 4', 'W1J 8LL', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
@@ -32,6 +33,18 @@ INSERT INTO group_user(id, group_id, user_id) VALUES
   (2, 1, 1),
   (3, 2, 2),
   (4, 5, 1);
+
+INSERT INTO site_custom_fields(id, simpro_site_id, custom_field_id, value) VALUES
+  (1, 1, 22, '100'),
+  (2, 2, 22, '100'),
+  (3, 1, 32, '100'),
+  (4, 4, 32, '100');
+
+INSERT INTO site_contacts(id, simpro_site_id, contact_id, title, is_primary) VALUES
+  (1, 1, 11026, 'Title', true),
+  (2, 2, 10862, 'Title', true),
+  (3, 4, 11027, 'Title', false),
+  (4, 4, 3, 'Title', true);
 
 INSERT INTO group_simpro_site(id, group_id, simpro_site_id, is_enabled, created_at, updated_at) VALUES
   (1, 4, 1, true, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
@@ -52,16 +65,17 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (6, 105, 2, 1, null, 'Archived', null, null),
   (7, 106, 3, 1, null, 'Archived', null, null),
   (8, 107, 4, 3, '2016-10-20', 'Complete', null, null),
-  (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);                                                                                                        ;
+  (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);
 
-INSERT INTO schedules(id, job_id, schedule_id, name, date, start_time, end_time) VALUES
-  (1, 1, 100, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+INSERT INTO quotes(id, job_id, simpro_customer_id, simpro_site_id, quote_id, note_id, stage, status) VALUES
+  (1, 1, 3, 1, 52648, 17256, 'Approved', null),
+  (2, 2, 3, 1, 52820, null, null, 'Declined'),
+  (3, 3, 3, 1, 3, null, null, 'Pending'),
+  (4, 4, 3, 1, 4, null, null, null),
+  (5, 5, 3, 1, 5, null, null, null),
+  (6, 6, 1, 2, 6, null, null, 'New'),
+  (7, 7, 1, 3, 7, null, null, 'Declined'),
+  (8, 8, 3, 4, 8, null, null, null),
+  (9, 9, 2, 4, 9, null, null, null),
+  (10, 9, 2, 4, 10, null, null, null);
 
-INSERT INTO job_catalogs(id, job_id, section_id, cost_center_id, catalog_id, original_catalog_id, name, part_no, qty) VALUES
-  (1, 1, 0, 0, 0, 0, 'Test', 'Test', 1);
-
-INSERT INTO job_attachments(id, job_id, attachment_id, name) VALUES
-  (1, 1, 'Test', 'Test');
-
-INSERT INTO job_work_orders(id, job_id, section_id, cost_center_id, work_order_id, name, description, date) VALUES
-(1, 1, 0, 0, 0, 'Test', 'Test', '2020-10-06');
