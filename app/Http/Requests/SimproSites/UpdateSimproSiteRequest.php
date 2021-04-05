@@ -3,10 +3,10 @@
 namespace App\Http\Requests\SimproSites;
 
 use App\Http\Requests\Request;
+use App\Models\SimproSite;
 use App\Services\SimproSiteService;
 use App\Services\SiteContactService;
 use App\Services\SiteCustomFieldService;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class UpdateSimproSiteRequest extends Request
@@ -31,17 +31,7 @@ class UpdateSimproSiteRequest extends Request
     {
         parent::validateResolved();
 
-        $service = app(SimproSiteService::class);
-
-        if ($this->isUser()) {
-            $simproSite = $service->checkGroupPermissions($this->route('id'), $this->getUserId());
-        } else {
-            $simproSite = $service->find($this->route('id'));
-        }
-
-        if (!$simproSite) {
-            throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'SimproSite']));
-        }
+        $this->validateExistsByPermissions($this->route('id'), SimproSite::class, SimproSiteService::class);
 
         if ($this->has('primary_site_contact_id')) {
             $this->checkPrimarySiteContact();

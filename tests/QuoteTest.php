@@ -225,7 +225,7 @@ class QuoteTest extends TestCase
     {
         $response = $this->actingAs($this->user)->json('put', '/quotes/1/approve');
 
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
     public function testApproveQuoteNoAuth()
@@ -281,7 +281,7 @@ class QuoteTest extends TestCase
     {
         $response = $this->actingAs($this->user)->json('put', '/quotes/1/decline');
 
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
     public function testDeclineQuoteNoAuth()
@@ -337,7 +337,7 @@ class QuoteTest extends TestCase
     {
         $response = $this->actingAs($this->user)->json('put', '/quotes/1/re-request');
 
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
     public function testReRequestQuoteNoAuth()

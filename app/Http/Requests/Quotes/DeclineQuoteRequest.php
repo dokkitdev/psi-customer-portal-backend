@@ -5,8 +5,7 @@ namespace App\Http\Requests\Quotes;
 use App\Http\Requests\Request;
 use App\Models\Quote;
 use App\Services\QuoteService;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class DeclineQuoteRequest extends Request
 {
@@ -21,20 +20,10 @@ class DeclineQuoteRequest extends Request
     {
         parent::validateResolved();
 
-        $service = app(QuoteService::class);
-
-        if ($this->isUser()) {
-            $quote = $service->checkGroupPermissions($this->route('id'), $this->getUserId());
-        } else {
-            $quote = $service->find($this->route('id'));
-        }
-
-        if (!$quote) {
-            throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'Quote']));
-        }
+        $quote = $this->validateExistsByPermissions($this->route('id'), Quote::class, QuoteService::class);
 
         if (!in_array($quote['status'], [Quote::STATUS_NEW, Quote::STATUS_PENDING])) {
-            throw new UnprocessableEntityHttpException(__('validation.exceptions.incorrect_attribute', ['attribute' => 'status']));
+            throw new BadRequestHttpException(__('validation.exceptions.already_processed', ['entity' => 'Quote']));
         }
     }
 }

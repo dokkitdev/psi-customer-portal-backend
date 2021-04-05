@@ -18,7 +18,7 @@ class InvoiceRepository extends BaseRepository
     public function filterByUserGroups()
     {
         if (Arr::has($this->filter, 'site_has_user')) {
-            $this->query->groupPermissions($this->filter['site_has_user']);
+            $this->query->onlyPermitted($this->filter['site_has_user']);
         }
 
         return $this;

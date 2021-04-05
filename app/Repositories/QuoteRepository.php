@@ -15,17 +15,17 @@ class QuoteRepository extends BaseRepository
         $this->setModel(Quote::class);
     }
 
-    public function checkGroupPermissions($quoteId, $userId)
+    public function findByPermissions($quoteId, $userId)
     {
         return $this->getQuery()
-            ->groupPermissions($userId)
+            ->onlyPermitted($userId)
             ->find($quoteId);
     }
 
     public function filterByUserGroups()
     {
         if (Arr::has($this->filter, 'site_has_user')) {
-            $this->query->groupPermissions($this->filter['site_has_user']);
+            $this->query->onlyPermitted($this->filter['site_has_user']);
         }
 
         return $this;

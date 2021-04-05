@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\PermissionsTrait;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
 {
-    use ModelTrait;
+    use ModelTrait, PermissionsTrait;
 
     const TYPE_PPM_QUOTE = 1;
     const TYPE_REMEDIAL_INSTALLATION_QUOTE = 2;
@@ -22,6 +23,9 @@ class Quote extends Model
     const STATUS_NEW = 'New';
     const STATUS_PENDING = 'Pending';
     const STATUS_DECLINED = 'Declined';
+
+    const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_customer.groups.users';
+    const PERMITTED_SITES_RELATION_PATH = 'simpro_site.group_simpro_sites';
 
     protected $fillable = [
         'job_id',
@@ -60,21 +64,5 @@ class Quote extends Model
     public function simpro_site()
     {
         return $this->belongsTo(SimproSite::class);
-    }
-
-    public function scopeGroupPermissions($query, $userId)
-    {
-        return
-            $query
-                ->whereHas('simpro_customer.groups.users', function ($query) use ($userId) {
-                    $query->where('user_id', $userId);
-                })
-                ->whereHas('simpro_site.group_simpro_sites', function ($query) use ($userId) {
-                    $query
-                        ->where('is_enabled', true)
-                        ->whereHas('group.users', function ($query) use ($userId) {
-                            $query->where('user_id', $userId);
-                        });
-                });
     }
 }

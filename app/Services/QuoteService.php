@@ -125,14 +125,19 @@ class QuoteService extends BaseService
 
         $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $quoteFromSimpro['Site']['ID'], $simproCustomer['id']);
 
-        $jobId = null;
-        if (Arr::get($quoteFromSimpro, 'JobNo')) {
-            $job = $this->jobService->findBy('job_id', $quoteFromSimpro['JobNo']);
-            $jobId = $job['id'];
-        }
+        $jobId = $this->getJobId($quoteFromSimpro);
 
         $quote = $this->repository->first(['quote_id' => $quoteFromSimpro['ID'], 'simpro_site_id' => $simproSite['id']]);
 
+        list($note, $attachment) = $this->getNoteAndAttachment($quote, $companyId, $quoteId);
+
+        $quote = $this->createOrUpdate($quoteFromSimpro, $simproSite['id'], $simproCustomer['id'], $jobId, $note, $attachment);
+
+        return $quote;
+    }
+
+    protected function getNoteAndAttachment($quote, $companyId, $quoteId)
+    {
         $note = null;
         $attachment = null;
         if (Arr::get($quote, 'note_id')) {
@@ -147,9 +152,18 @@ class QuoteService extends BaseService
             }
         }
 
-        $quote = $this->createOrUpdate($quoteFromSimpro, $simproSite['id'], $simproCustomer['id'], $jobId, $note, $attachment);
+        return [$note, $attachment];
+    }
 
-        return $quote;
+    protected function getJobId($quoteFromSimpro)
+    {
+        if (Arr::get($quoteFromSimpro, 'JobNo')) {
+            $job = $this->jobService->findBy('job_id', $quoteFromSimpro['JobNo']);
+
+            return $job['id'];
+        }
+
+        return null;
     }
 
     protected function declineQuote($where, $data)
@@ -223,9 +237,7 @@ class QuoteService extends BaseService
     {
         $customFieldId = Arr::get($this->settingService->get('quote_date_created'), 'ID');
 
-        return collect($customFields)->first(function ($value) use ($customFieldId) {
-            return Arr::get($value, 'CustomField.ID') === $customFieldId;
-        }, []);
+        return collect($customFields)->firstWhere('CustomField.ID', $customFieldId);
     }
 
     protected function findMostRecentFile($attachments, $needles)
