@@ -19,6 +19,13 @@ class SearchSimproSiteRequest extends Request
         ]);
 
         return [
+            'site_id' => 'integer',
+            'simpro_customer_id' => 'integer',
+            'postal_code' => 'string',
+            'primary_contact' => 'string',
+            'reference' => 'string',
+            'customer_ref' => 'string',
+            'has_open_jobs' => 'boolean',
             'group_id' => 'integer',
             'page' => 'integer',
             'per_page' => 'integer',

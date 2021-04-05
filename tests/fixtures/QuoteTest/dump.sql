@@ -67,15 +67,15 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (8, 107, 4, 3, '2016-10-20', 'Complete', null, null),
   (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);
 
-INSERT INTO quotes(id, job_id, simpro_customer_id, simpro_site_id, quote_id, note_id, stage, status) VALUES
-  (1, 1, 3, 1, 52648, 17256, 'Approved', null),
-  (2, 2, 3, 1, 52820, null, null, 'Declined'),
-  (3, 3, 3, 1, 3, null, null, 'Pending'),
-  (4, 4, 3, 1, 4, null, null, null),
-  (5, 5, 3, 1, 5, null, null, null),
-  (6, 6, 1, 2, 6, null, null, 'New'),
-  (7, 7, 1, 3, 7, null, null, 'Declined'),
-  (8, 8, 3, 4, 8, null, null, null),
-  (9, 9, 2, 4, 9, null, null, null),
-  (10, 9, 2, 4, 10, null, null, null);
+INSERT INTO quotes(id, description, job_id, simpro_customer_id, simpro_site_id, quote_id, note, note_id, attachment_id, stage, status, cost_center_name, value, date_issued, date_expiry) VALUES
+  (1, 'Description...', 1, 3, 1, 52648, 'Note...', 17256, '1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g', 'Approved', null, 'Cost center', 25.50, '2021-04-05', '2021-05-05'),
+  (2, null, 2, 3, 1, 52820, null, null, null, null, 'Declined', null, null, null, null),
+  (3, null, 3, 3, 1, 3, null, null, null, null, 'Pending', null, null, null, null),
+  (4, null, 4, 3, 1, 4, null, null, null, null, null, null, null, null, null),
+  (5, null, 5, 3, 1, 5, null, null, null, null, null, null, null, null, null),
+  (6, null, 6, 1, 2, 6, null, null, null, null, 'New', null, null, null, null),
+  (7, null, 7, 1, 3, 7, null, null, null, null, 'Declined', null, null, null, null),
+  (8, null, 8, 3, 4, 8, null, null, null, null, null, null, null, null, null),
+  (9, null, 9, 2, 4, 9, null, null, null, null, null, null, null, null, null),
+  (10, null, 9, 2, 4, 10, null, null, null, null, null, null, null, null, null);
 

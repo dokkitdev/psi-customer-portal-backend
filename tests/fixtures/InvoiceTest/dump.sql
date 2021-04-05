@@ -49,7 +49,7 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);                                                                                                        ;
 
 INSERT INTO invoices(id, job_id, invoice_id, date_issued, status, total, date_paid) VALUES
-  (1, 1, 1, null, null, null, null),
+  (1, 1, 1, '2021-01-18', 'Approved', 83.33, '2021-03-30'),
   (2, 2, 2, null, null, null, null),
   (3, 3, 3, null, null, null, null),
   (4, 4, 4, null, null, null, null),

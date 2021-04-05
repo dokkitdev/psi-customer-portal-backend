@@ -146,7 +146,11 @@ class QuoteTest extends TestCase
             [
                 'filter' => [
                     'order_by' => 'job_id',
-                    'desc' => true
+                    'desc' => true,
+                    'date_issued' => '2021-04-05',
+                    'date_expiry' => '2021-05-05',
+                    'note' => 'note',
+                    'query' => 'Desc'
                 ],
                 'result' => 'search_quotes_complex.json'
             ],
@@ -343,6 +347,36 @@ class QuoteTest extends TestCase
     public function testReRequestQuoteNoAuth()
     {
         $response = $this->json('put', '/quotes/2/re-request');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testDownloadQuoteNoteAttachment()
+    {
+        $this->mockDownloadQuoteNoteAttachment();
+
+        $response = $this->actingAs($this->user)->json('get', '/quotes/1/download');
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    public function testDownloadQuoteNoteAttachmentNotExists()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/quotes/0/download');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testDownloadQuoteNoteAttachmentBadRequest()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/quotes/2/download');
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
+    }
+
+    public function testDownloadQuoteNoteAttachmentNoAuth()
+    {
+        $response = $this->json('get', '/quotes/1/download');
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }

@@ -26,12 +26,12 @@ INSERT INTO group_user(id, group_id, user_id) VALUES
   (1, 1, 2),
   (2, 4, 2);
 
-INSERT INTO simpro_sites(id, site_id, name, simpro_customer_id) VALUES
-  (1, 3900, 'Name 1', 1),
-  (2, 2, 'Name 2', 1),
-  (3, 3, 'Name 3', 1),
-  (4, 3901, 'Name 4', 2),
-  (5, 1700, 'Name 1700', 3);
+INSERT INTO simpro_sites(id, site_id, name, simpro_customer_id, postal_code) VALUES
+  (1, 3900, 'Name 1', 1, 'UB8 1JG'),
+  (2, 2, 'Name 2', 1, null),
+  (3, 3, 'Name 3', 1, null),
+  (4, 3901, 'Name 4', 2, null),
+  (5, 1700, 'Name 1700', 3, null);
 
 INSERT INTO site_custom_fields(id, simpro_site_id, custom_field_id, value) VALUES
   (1, 1, 22, '100'),
@@ -39,11 +39,11 @@ INSERT INTO site_custom_fields(id, simpro_site_id, custom_field_id, value) VALUE
   (3, 1, 32, '100'),
   (4, 4, 32, '100');
 
-INSERT INTO site_contacts(id, simpro_site_id, contact_id, title, is_primary) VALUES
-  (1, 1, 11026, 'Title', true),
-  (2, 5, 10862, 'Title', true),
-  (3, 4, 11027, 'Title', false),
-  (4, 4, 3, 'Title', true);
+INSERT INTO site_contacts(id, simpro_site_id, contact_id, title, name, is_primary) VALUES
+  (1, 1, 11026, 'Title', 'Name', true),
+  (2, 5, 10862, 'Title', 'Name', true),
+  (3, 4, 11027, 'Title', 'Name', false),
+  (4, 4, 3, 'Title', 'Name', true);
 
 INSERT INTO group_simpro_site(id, group_id, simpro_site_id) VALUES
   (1, 1, 1),
