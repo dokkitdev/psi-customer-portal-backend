@@ -28,7 +28,7 @@ class SearchQuoteRequest extends Request
             'date_expiry' => 'date',
             'date_expiry_from' => 'date',
             'date_expiry_to' => 'date',
-            'note' => 'string',
+            'note_query' => 'string',
             'page' => 'integer',
             'per_page' => 'integer',
             'all' => 'integer',

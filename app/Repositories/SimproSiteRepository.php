@@ -38,9 +38,9 @@ class SimproSiteRepository extends BaseRepository
 
     public function filterByPrimaryContact()
     {
-        if (Arr::has($this->filter, 'primary_contact')) {
+        if (Arr::has($this->filter, 'primary_contact_query')) {
             $this->query->whereHas('primary_site_contact', function ($query) {
-                $query->where($this->getQuerySearchCallbackWithValue('name', $this->filter['primary_contact']));
+                $query->where($this->getQuerySearchCallbackWithValue('name', $this->filter['primary_contact_query']));
             });
         }
 
@@ -49,9 +49,9 @@ class SimproSiteRepository extends BaseRepository
 
     public function filterByReference()
     {
-        if (Arr::has($this->filter, 'reference')) {
+        if (Arr::has($this->filter, 'reference_query')) {
             $this->query->whereHas('reference_site_custom_field', function ($query) {
-                $query->where($this->getQuerySearchCallbackWithValue('value', $this->filter['reference']));
+                $query->where($this->getQuerySearchCallbackWithValue('value', $this->filter['reference_query']));
             });
         }
 
@@ -60,9 +60,9 @@ class SimproSiteRepository extends BaseRepository
 
     public function filterByCustomerRef()
     {
-        if (Arr::has($this->filter, 'customer_ref')) {
+        if (Arr::has($this->filter, 'customer_ref_query')) {
             $this->query->whereHas('customer_ref_site_custom_field', function ($query) {
-                $query->where($this->getQuerySearchCallbackWithValue('value', $this->filter['customer_ref']));
+                $query->where($this->getQuerySearchCallbackWithValue('value', $this->filter['customer_ref_query']));
             });
         }
 

@@ -149,7 +149,7 @@ class QuoteTest extends TestCase
                     'desc' => true,
                     'date_issued' => '2021-04-05',
                     'date_expiry' => '2021-05-05',
-                    'note' => 'note',
+                    'note_query' => 'note',
                     'query' => 'Desc'
                 ],
                 'result' => 'search_quotes_complex.json'

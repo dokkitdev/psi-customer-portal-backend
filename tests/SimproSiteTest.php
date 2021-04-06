@@ -139,7 +139,7 @@ class SimproSiteTest extends TestCase
             ],
             [
                 'filter' => [
-                    'customer_ref' => '100',
+                    'customer_ref_query' => '100',
                     'has_open_jobs' => true,
                     'query' => 'name',
                     'with_count' => ['open_jobs']

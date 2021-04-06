@@ -26,8 +26,8 @@ class QuoteRepository extends BaseRepository
 
     public function filterByNote()
     {
-        if (Arr::has($this->filter, 'note')) {
-            $this->query->where($this->getQuerySearchCallbackWithValue('note', $this->filter['note']));
+        if (Arr::has($this->filter, 'note_query')) {
+            $this->query->where($this->getQuerySearchCallbackWithValue('note', $this->filter['note_query']));
         }
 
         return $this;
