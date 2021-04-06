@@ -68,6 +68,15 @@ class SimproApiClient
         ]);
     }
 
+    public function downloadQuoteNoteAttachment($companyId, $quoteId, $noteId, $attachmentId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}/attachments/files/{$attachmentId}");
+
+        return $this->makeRequest('get', $url, [
+            'display' => 'Base64'
+        ]);
+    }
+
     public function downloadJobAttachment($companyId, $jobId, $attachmentId)
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}/view/");

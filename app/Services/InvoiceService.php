@@ -34,6 +34,20 @@ class InvoiceService extends BaseService
 
         return $this->repository
             ->searchQuery($filters)
+            ->filterBy('invoice_id')
+            ->filterBy('job_id')
+            ->filterBy('job.simpro_site_id')
+            ->filterBy('job.simpro_customer_id')
+            ->filterByList('status', 'statuses')
+            ->filterBy('total')
+            ->filterFrom('total', false, 'total_from')
+            ->filterTo('total', false, 'total_to')
+            ->filterBy('date_issued')
+            ->filterFrom('date_issued', false, 'date_issued_from')
+            ->filterTo('date_issued', false, 'date_issued_to')
+            ->filterBy('date_paid')
+            ->filterFrom('date_paid', false, 'date_paid_from')
+            ->filterTo('date_paid', false, 'date_paid_to')
             ->filterByUserGroups()
             ->with()
             ->getSearchResults();

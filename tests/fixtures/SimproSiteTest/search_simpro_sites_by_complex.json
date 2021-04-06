@@ -12,7 +12,8 @@
             "simpro_customer_id": 1,
             "city": null,
             "country": null,
-            "county": null
+            "county": null,
+            "open_jobs_count": 2
         }
     ],
     "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",

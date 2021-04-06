@@ -38,7 +38,10 @@ class InvoiceTest extends TestCase
             [
                 'filter' => [
                     'order_by' => 'job.simpro_site.id',
-                    'desc' => true
+                    'desc' => true,
+                    'simpro_site_id' => 1,
+                    'date_issued' => '2021-01-18',
+                    'date_paid' => '2021-03-30'
                 ],
                 'result' => 'search_invoices_complex.json'
             ],

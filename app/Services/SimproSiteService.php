@@ -46,8 +46,15 @@ class SimproSiteService extends BaseService
 
         return $this->repository
             ->searchQuery($filters)
+            ->filterBy('site_id')
+            ->filterBy('simpro_customer_id')
             ->filterBy('group_simpro_sites.group_id')
-            ->filterByQuery(['name'])
+            ->filterByQuery(['name', 'city', 'county', 'address'])
+            ->filterByPostalCode()
+            ->filterByPrimaryContact()
+            ->filterByReference()
+            ->filterByCustomerRef()
+            ->filterByOpenJobs()
             ->filterByUserGroups()
             ->with()
             ->withCount()

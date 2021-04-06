@@ -9,6 +9,21 @@ class SearchInvoiceRequest extends Request
     public function rules()
     {
         return [
+            'invoice_id' => 'integer',
+            'job_id' => 'integer',
+            'simpro_site_id' => 'integer',
+            'simpro_customer_id' => 'integer',
+            'statuses' => 'array',
+            'statuses.*' => 'string',
+            'total' => 'numeric',
+            'total_from' => 'numeric',
+            'total_to' => 'numeric',
+            'date_issued' => 'date',
+            'date_issued_from' => 'date',
+            'date_issued_to' => 'date',
+            'date_paid' => 'date',
+            'date_paid_from' => 'date',
+            'date_paid_to' => 'date',
             'page' => 'integer',
             'per_page' => 'integer',
             'all' => 'integer',

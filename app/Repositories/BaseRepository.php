@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use RonasIT\Support\Repositories\BaseRepository as Repository;
 
 class BaseRepository extends Repository
@@ -90,5 +91,15 @@ class BaseRepository extends Repository
         return $this->getQuery()
             ->onlyPermitted($userId)
             ->find($id);
+    }
+
+    protected function getQuerySearchCallbackWithValue($field, $value)
+    {
+        return function ($query) use ($field, $value) {
+            $loweredQuery = mb_strtolower($value);
+            $field = DB::raw("lower({$field})");
+
+            $query->orWhere($field, 'like', "%{$loweredQuery}%");
+        };
     }
 }

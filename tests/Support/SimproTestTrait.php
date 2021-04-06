@@ -423,6 +423,13 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockDownloadQuoteNoteAttachment()
+    {
+        $this->mockHttpRequestService([
+            $this->getQuoteNoteAttachmentFile(),
+        ]);
+    }
+
     protected function mockCreateOrUpdateSchedule()
     {
         $this->mockHttpRequestService([
@@ -467,6 +474,25 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_job_attachment_file_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getQuoteNoteAttachmentFile()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://seville.simprosuite.com/api/v1.0/companies/0/quotes/52648/notes/17256/attachments/files/1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g/view/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_quote_note_attachment_file_response_success.json'
             ]
         ];
     }

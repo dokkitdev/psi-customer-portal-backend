@@ -137,6 +137,15 @@ class SimproSiteTest extends TestCase
                 ],
                 'result' => 'search_simpro_sites_by_group.json'
             ],
+            [
+                'filter' => [
+                    'customer_ref_query' => '100',
+                    'has_open_jobs' => true,
+                    'query' => 'name',
+                    'with_count' => ['open_jobs']
+                ],
+                'result' => 'search_simpro_sites_by_complex.json'
+            ],
         ];
     }
 

@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Repositories\QuoteRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -47,6 +48,24 @@ class QuoteService extends BaseService
 
         return $this->repository
             ->searchQuery($filters)
+            ->filterBy('quote_id')
+            ->filterBy('job_id')
+            ->filterBy('simpro_customer_id')
+            ->filterBy('simpro_site_id')
+            ->filterByList('stage', 'stages')
+            ->filterByList('status', 'statuses')
+            ->filterByList('cost_center_name', 'cost_center_names')
+            ->filterBy('value')
+            ->filterFrom('value', false, 'value_from')
+            ->filterTo('value', false, 'value_to')
+            ->filterBy('date_issued')
+            ->filterFrom('date_issued', false, 'date_issued_from')
+            ->filterTo('date_issued', false, 'date_issued_to')
+            ->filterBy('date_expiry')
+            ->filterFrom('date_expiry', false, 'date_expiry_from')
+            ->filterTo('date_expiry', false, 'date_expiry_to')
+            ->filterByQuery(['description'])
+            ->filterByNote()
             ->filterByUserGroups()
             ->with()
             ->getSearchResults();
@@ -132,6 +151,21 @@ class QuoteService extends BaseService
         list($note, $attachment) = $this->getNoteAndAttachment($quote, $companyId, $quoteId);
 
         $quote = $this->createOrUpdate($quoteFromSimpro, $simproSite['id'], $simproCustomer['id'], $jobId, $note, $attachment);
+
+        return $quote;
+    }
+
+    public function download($id)
+    {
+        $quote = $this->repository->find($id);
+
+        $quoteId = $quote['quote_id'];
+        $noteId = $quote['note_id'];
+        $attachmentId = $quote['attachment_id'];
+
+        $file = $this->simproClient->downloadQuoteNoteAttachment($this->companyId, $quoteId, $noteId, $attachmentId);
+
+        Storage::put($quote['attachment_id'], base64_decode($file['Base64Data']));
 
         return $quote;
     }
