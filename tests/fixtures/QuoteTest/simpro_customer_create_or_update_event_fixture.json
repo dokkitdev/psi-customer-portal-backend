@@ -30,5 +30,13 @@
         "type": "companies",
         "created_at": "2018-11-11T11:11:11.000000Z",
         "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 5,
+        "customer_id": 1026,
+        "name": "Grainger Invest No.1 LLP",
+        "type": "companies",
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
     }
 ]

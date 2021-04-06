@@ -144,7 +144,7 @@ class QuoteService extends BaseService
 
         $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $quoteFromSimpro['Site']['ID'], $simproCustomer['id']);
 
-        $jobId = $this->getJobId($quoteFromSimpro);
+        $jobId = $this->getJobId($companyId, $quoteFromSimpro);
 
         $quote = $this->repository->first(['quote_id' => $quoteFromSimpro['ID'], 'simpro_site_id' => $simproSite['id']]);
 
@@ -189,10 +189,10 @@ class QuoteService extends BaseService
         return [$note, $attachment];
     }
 
-    protected function getJobId($quoteFromSimpro)
+    protected function getJobId($companyId, $quoteFromSimpro)
     {
         if (Arr::get($quoteFromSimpro, 'JobNo')) {
-            $job = $this->jobService->findBy('job_id', $quoteFromSimpro['JobNo']);
+            $job = $this->jobService->getOrCreateBySimpro($companyId, $quoteFromSimpro['JobNo']);
 
             return $job['id'];
         }

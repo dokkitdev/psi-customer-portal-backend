@@ -43,11 +43,7 @@ class ScheduleService extends EntityService
         $jobId = $webhook['data']['reference']['jobID'];
         $scheduleId = $webhook['data']['reference']['scheduleID'];
 
-        $job = $this->jobService->findBy('job_id', $jobId);
-
-        if (!$job) {
-            return true;
-        }
+        $job = $this->jobService->getOrCreateBySimpro($companyId, $jobId);
 
         $scheduleFromSimpro = $this->simproClient->getSchedule($companyId, $scheduleId);
 

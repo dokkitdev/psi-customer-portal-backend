@@ -75,6 +75,10 @@ trait SimproTestTrait
         $this->mockHttpRequestService([
             $this->getQuote(),
             $this->getCustomer(),
+            $this->getJob(),
+            $this->getCustomer(),
+            $this->getSite(),
+            $this->getSiteContacts(),
             $this->getQuoteNote(),
             $this->getQuoteNoteAttachments()
         ]);
