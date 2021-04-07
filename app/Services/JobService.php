@@ -114,21 +114,7 @@ class JobService extends BaseService
 
         $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $jobFromSimpro['Site']['ID'], $simproCustomer['id']);
 
-        $customField = $this->findCustomFieldById(Arr::get($jobFromSimpro, 'CustomFields', []));
-
-        $job = $this->repository->updateOrCreate(['job_id' => $jobFromSimpro['ID']], [
-            'simpro_customer_id' => $simproCustomer['id'],
-            'simpro_site_id' => $simproSite['id'],
-            'description' => Arr::get($jobFromSimpro, 'Description'),
-            'priority' => $this->makePriorityValue(Arr::get($jobFromSimpro, 'ResponseTime')),
-            'cost_center_name' => Arr::get($jobFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name'),
-            'business_group' => $this->matchBusinessGroup(Arr::get($jobFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name')),
-            'date_created' => Arr::get($jobFromSimpro, 'DateIssued'),
-            'stage' => Arr::get($jobFromSimpro, 'Stage'),
-            'job_status' => Arr::get($jobFromSimpro, 'Status.Name'),
-            'requested' => Arr::get($customField, 'Value'),
-            'name' => Arr::get($jobFromSimpro, 'Name'),
-        ]);
+        $job = $this->createOrUpdate($jobFromSimpro, $simproCustomer['id'], $simproSite['id']);
 
         app(ScheduleService::class)->createOrUpdateManyBySimpro($companyId, $jobIdFromSimpro, $job['id']);
 
@@ -141,6 +127,42 @@ class JobService extends BaseService
         $this->invoiceService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
 
         return $job;
+    }
+
+    public function getOrCreateBySimpro($companyId, $jobIdFromSimpro)
+    {
+        $job = $this->repository->findBy('job_id', $jobIdFromSimpro);
+
+        if ($job) {
+            return $job;
+        }
+
+        $jobFromSimpro = $this->simproClient->getJob($companyId, $jobIdFromSimpro);
+
+        $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, $jobFromSimpro['Customer']);
+
+        $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $jobFromSimpro['Site']['ID'], $simproCustomer['id']);
+
+        return $this->createOrUpdate($jobFromSimpro, $simproCustomer['id'], $simproSite['id']);
+    }
+
+    protected function createOrUpdate($jobFromSimpro, $simproCustomerId, $simproSiteId)
+    {
+        $customField = $this->findCustomFieldById(Arr::get($jobFromSimpro, 'CustomFields', []));
+
+        return $this->repository->updateOrCreate(['job_id' => $jobFromSimpro['ID']], [
+            'simpro_customer_id' => $simproCustomerId,
+            'simpro_site_id' => $simproSiteId,
+            'description' => Arr::get($jobFromSimpro, 'Description'),
+            'priority' => $this->makePriorityValue(Arr::get($jobFromSimpro, 'ResponseTime')),
+            'cost_center_name' => Arr::get($jobFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name'),
+            'business_group' => $this->matchBusinessGroup(Arr::get($jobFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name')),
+            'date_created' => Arr::get($jobFromSimpro, 'DateIssued'),
+            'stage' => Arr::get($jobFromSimpro, 'Stage'),
+            'job_status' => Arr::get($jobFromSimpro, 'Status.Name'),
+            'requested' => Arr::get($customField, 'Value'),
+            'name' => Arr::get($jobFromSimpro, 'Name'),
+        ]);
     }
 
     public function deleteBySimpro($webhook)

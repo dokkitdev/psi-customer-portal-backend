@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Models\Job;
 use App\Models\Quote;
 use App\Models\SimproCustomer;
 use App\Models\SimproJob;
@@ -50,6 +51,9 @@ class QuoteTest extends TestCase
 
         $simproSite = SimproSite::orderBy('id')->with(['site_custom_fields', 'site_contacts'])->get()->toArray();
         $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
+
+        $jobs = Job::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('jobs_create_or_update_event_fixture.json', $jobs);
     }
 
     public function testDeleteQuoteEvent()
