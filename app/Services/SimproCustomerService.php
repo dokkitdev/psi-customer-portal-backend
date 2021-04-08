@@ -6,6 +6,7 @@ use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Models\SimproCustomer;
 use App\Repositories\SimproCustomerRepository;
+use Exception;
 
 /**
  * @property SimproCustomerRepository $repository
@@ -107,12 +108,16 @@ class SimproCustomerService extends BaseService
     {
         $customerId = $customer['ID'];
 
-        $type = (empty($customer['CompanyName'])) ? SimproCustomer::TYPE_INDIVIDUALS : SimproCustomer::TYPE_COMPANIES;
-
-        $simproCustomer = $this->repository->first(['customer_id' => $customerId, 'type' => $type]);
+        $simproCustomer = $this->repository->first(['customer_id' => $customerId]);
 
         if (!$simproCustomer) {
-            $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
+            try {
+                $type = SimproCustomer::TYPE_COMPANIES;
+                $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
+            } catch (Exception $e) {
+                $type = SimproCustomer::TYPE_INDIVIDUALS;
+                $customer = $this->simproClient->getCustomer($companyId, $type, $customerId);
+            }
 
             $simproCustomer = $this->repository->create([
                 'customer_id' => $customerId,

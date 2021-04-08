@@ -26,12 +26,12 @@ INSERT INTO group_user(id, group_id, user_id) VALUES
   (1, 1, 2),
   (2, 4, 2);
 
-INSERT INTO simpro_sites(id, site_id, name, simpro_customer_id, postal_code) VALUES
-  (1, 3900, 'Name 1', 1, 'UB8 1JG'),
-  (2, 2, 'Name 2', 1, null),
-  (3, 3, 'Name 3', 1, null),
-  (4, 3901, 'Name 4', 2, null),
-  (5, 1700, 'Name 1700', 3, null);
+INSERT INTO simpro_sites(id, site_id, name, simpro_customer_id, postal_code, address) VALUES
+  (1, 3900, 'Name 1', 1, 'UB8 1JG', 'Charter Place'),
+  (2, 2, 'Name 2', 1, null, null),
+  (3, 3, 'Name 3', 1, null, null),
+  (4, 3901, 'Name 4', 2, null, null),
+  (5, 1700, 'Name 1700', 3, null, null);
 
 INSERT INTO site_custom_fields(id, simpro_site_id, custom_field_id, value) VALUES
   (1, 1, 22, '100'),

@@ -26,6 +26,7 @@ class SearchSimproSiteRequest extends Request
             'reference_query' => 'string',
             'customer_ref_query' => 'string',
             'has_open_jobs' => 'boolean',
+            'name_query' => 'string',
             'group_id' => 'integer',
             'page' => 'integer',
             'per_page' => 'integer',

@@ -78,4 +78,14 @@ class Job extends Model
     {
         return $this->hasMany(JobWorkOrder::class);
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class);
+    }
 }
