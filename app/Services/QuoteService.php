@@ -123,14 +123,14 @@ class QuoteService extends BaseService
     {
         $data['subject'] = 'Decline';
 
-        return $this->declineQuote($where, $data);
+        return $this->declineQuote($where, $data, Quote::STATUS_DECLINED);
     }
 
     public function reRequest($where, $data)
     {
         $data['subject'] = 'Re-request';
 
-        return $this->declineQuote($where, $data);
+        return $this->declineQuote($where, $data, Quote::STATUS_PENDING);
     }
 
     public function updateOrCreateBySimpro($webhook)
@@ -200,7 +200,7 @@ class QuoteService extends BaseService
         return null;
     }
 
-    protected function declineQuote($where, $data)
+    protected function declineQuote($where, $data, $status)
     {
         $quote = $this->repository->first($where);
 
@@ -214,7 +214,7 @@ class QuoteService extends BaseService
         ]);
 
         return $this->repository->update($where, [
-            'status' => Quote::STATUS_DECLINED,
+            'status' => $status,
             'note_id' => $note['ID'],
             'note' => $note['Note'],
         ]);

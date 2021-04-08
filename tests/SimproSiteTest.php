@@ -126,7 +126,7 @@ class SimproSiteTest extends TestCase
                 'result' => 'search_by_page_per_page_simpro_sites.json'
             ],
             [
-                'filter' => ['query' => 'Name 1'],
+                'filter' => ['query' => 'Charter'],
                 'result' => 'search_simpro_sites_by_query.json'
             ],
             [
@@ -141,7 +141,7 @@ class SimproSiteTest extends TestCase
                 'filter' => [
                     'customer_ref_query' => '100',
                     'has_open_jobs' => true,
-                    'query' => 'name',
+                    'name_query' => 'name',
                     'with_count' => ['open_jobs']
                 ],
                 'result' => 'search_simpro_sites_by_complex.json'
