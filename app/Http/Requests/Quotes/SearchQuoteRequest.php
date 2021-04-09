@@ -11,6 +11,7 @@ class SearchQuoteRequest extends Request
         return [
             'quote_id' => 'integer',
             'job_id' => 'integer',
+            'simpro_job_id' => 'integer',
             'simpro_customer_id' => 'integer',
             'simpro_site_id' => 'integer',
             'stages' => 'array',
