@@ -28,7 +28,7 @@ class UpdateGroups extends Command
 
         foreach ($groups as $group) {
             try {
-                $this->simproSiteService->attachSites($group['simpro_customer_id'], $group['id']);
+                $this->simproSiteService->attachSites($group['simpro_customer_id'], $group);
             } catch (Exception $e) {
                 report($e);
             }

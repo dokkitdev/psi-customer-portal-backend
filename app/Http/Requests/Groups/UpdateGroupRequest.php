@@ -19,7 +19,8 @@ class UpdateGroupRequest extends Request
     {
         return [
             'title' => 'string|max:255',
-            'simpro_customer_id' => 'integer|exists:simpro_customers,id'
+            'simpro_customer_id' => 'integer|exists:simpro_customers,id',
+            'is_enabled_all_sites' => 'boolean'
         ];
     }
 

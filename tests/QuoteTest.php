@@ -155,7 +155,8 @@ class QuoteTest extends TestCase
                     'date_expiry' => '2021-05-05',
                     'note_query' => 'note',
                     'query' => 'Desc',
-                    'simpro_job_id' => 100
+                    'simpro_job_id' => 100,
+                    'quote_id' => 52648
                 ],
                 'result' => 'search_quotes_complex.json'
             ],

@@ -48,9 +48,9 @@ class QuoteService extends BaseService
 
         return $this->repository
             ->searchQuery($filters)
-            ->filterBy('quote_id')
+            ->filterByIntQuery('quote_id')
             ->filterBy('job_id')
-            ->filterBy('job.job_id', 'simpro_job_id')
+            ->filterByIntQuery('job.job_id', 'simpro_job_id')
             ->filterBy('simpro_customer_id')
             ->filterBy('simpro_site_id')
             ->filterByList('stage', 'stages')

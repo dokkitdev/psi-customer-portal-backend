@@ -43,6 +43,7 @@ class InvoiceTest extends TestCase
                     'date_issued' => '2021-01-18',
                     'date_paid' => '2021-03-30',
                     'simpro_job_id' => 100,
+                    'invoice_id' => 1
                 ],
                 'result' => 'search_invoices_complex.json'
             ],
