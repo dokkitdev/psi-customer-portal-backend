@@ -10,7 +10,7 @@ class GetJobRequest extends Request
     {
         return [
             'with' => 'array',
-            'with.*' => 'string|in:simpro_site,simpro_customer,recent_schedule,schedules,job_catalogs,job_attachments,job_work_orders'
+            'with.*' => 'string|in:simpro_site,simpro_customer,recent_schedule,schedules,job_catalogs,job_attachments,job_work_orders,invoices,quotes'
         ];
     }
 
