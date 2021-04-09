@@ -36,6 +36,7 @@ class InvoiceService extends BaseService
             ->searchQuery($filters)
             ->filterBy('invoice_id')
             ->filterBy('job_id')
+            ->filterBy('job.job_id', 'simpro_job_id')
             ->filterBy('job.simpro_site_id')
             ->filterBy('job.simpro_customer_id')
             ->filterByList('status', 'statuses')

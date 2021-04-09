@@ -11,6 +11,7 @@ class SearchInvoiceRequest extends Request
         return [
             'invoice_id' => 'integer',
             'job_id' => 'integer',
+            'simpro_job_id' => 'integer',
             'simpro_site_id' => 'integer',
             'simpro_customer_id' => 'integer',
             'statuses' => 'array',
