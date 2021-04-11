@@ -39,7 +39,7 @@ class GroupService extends EntityService
         return DB::transaction(function () use ($data) {
             $group = $this->repository->create($data);
 
-            $this->simproSiteService->attachSites($group['simpro_customer_id'], $group['id']);
+            $this->simproSiteService->attachSites($group['simpro_customer_id'], $group);
 
             return $group;
         });
@@ -48,14 +48,20 @@ class GroupService extends EntityService
     public function update($where, $data)
     {
         return DB::transaction(function () use ($where, $data) {
-            if (Arr::has($data, 'simpro_customer_id')) {
-                $group = $this->repository->first($where);
+            $group = $this->repository->first($where);
 
+            if (Arr::has($data, 'simpro_customer_id')) {
                 if ($group['simpro_customer_id'] !== $data['simpro_customer_id']) {
                     $this->groupSimproSiteService->delete(['group_id' => $group['id']]);
 
-                    $this->simproSiteService->attachSites($data['simpro_customer_id'], $group['id']);
+                    $this->simproSiteService->attachSites($data['simpro_customer_id'], $group);
                 }
+            }
+
+            if (Arr::has($data, 'is_enabled_all_sites')) {
+                $this->groupSimproSiteService->updateMany(['group_id' => $group['id']], [
+                    'is_enabled' => $data['is_enabled_all_sites']
+                ]);
             }
 
             return $this->repository->update($where, $data);

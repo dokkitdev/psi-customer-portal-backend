@@ -91,7 +91,7 @@ class SimproSiteService extends BaseService
         });
     }
 
-    public function attachSites($simproCustomerId, $groupId)
+    public function attachSites($simproCustomerId, $group)
     {
         $simproCustomer = $this->simproCustomerService->find($simproCustomerId);
 
@@ -106,8 +106,10 @@ class SimproSiteService extends BaseService
                 $this->siteContactService->syncBySite($this->companyId, $site['ID'], $simproSite['id']);
 
                 $this->groupSimproSiteService->firstOrCreate([
-                    'group_id' => $groupId,
+                    'group_id' => $group['id'],
                     'simpro_site_id' => $simproSite['id']
+                ], [
+                    'is_enabled' => $group['is_enabled_all_sites']
                 ]);
             }
         }
@@ -195,7 +197,8 @@ class SimproSiteService extends BaseService
             if (!$this->groupSimproSiteService->exists(['group_id' => $group['id'], 'simpro_site_id' => $simproSiteId])) {
                 $this->groupSimproSiteService->create([
                     'group_id' => $group['id'],
-                    'simpro_site_id' => $simproSiteId
+                    'simpro_site_id' => $simproSiteId,
+                    'is_enabled' => $group['is_enabled_all_sites']
                 ]);
             }
         }

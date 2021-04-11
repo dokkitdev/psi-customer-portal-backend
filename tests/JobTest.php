@@ -157,6 +157,7 @@ class JobTest extends TestCase
             ],
             [
                 'filter' => [
+                    'job_id' => 100,
                     'site_name' => 'Sitename 1',
                     'requested' => true,
                     'stage' => ['Progress'],

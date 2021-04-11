@@ -51,7 +51,7 @@ class SimproSiteRepository extends BaseRepository
     {
         if (Arr::has($this->filter, 'reference_query')) {
             $this->query->whereHas('reference_site_custom_field', function ($query) {
-                $query->where($this->getQuerySearchCallbackWithValue('value', $this->filter['reference_query']));
+                $query->where($this->getQuerySearchCallbackWithValue('value', $this->filter['reference_query'], null));
             });
         }
 
