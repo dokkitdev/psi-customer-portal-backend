@@ -3,17 +3,11 @@
 namespace App\Http\Requests\Media;
 
 use App\Http\Requests\Request;
-use App\Models\Role;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Services\MediaService;
 
 class ViewMediaRequest extends Request
 {
-    public function authorize()
-    {
-        return $this->user()->role_id == Role::ADMIN;
-    }
-
     public function rules()
     {
         return [];

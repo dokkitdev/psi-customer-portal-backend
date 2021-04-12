@@ -109,7 +109,7 @@ class DocumentTest extends TestCase
 
     public function testGet()
     {
-        $response = $this->actingAs($this->admin)->json('get', '/documents/1');
+        $response = $this->actingAs($this->user)->json('get', '/documents/1');
 
         $response->assertStatus(Response::HTTP_OK);
 
@@ -121,13 +121,6 @@ class DocumentTest extends TestCase
         $response = $this->actingAs($this->admin)->json('get', '/documents/0');
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testGetNoPermission()
-    {
-        $response = $this->actingAs($this->user)->json('get', '/documents/1');
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testGetNoAuth()
@@ -151,6 +144,17 @@ class DocumentTest extends TestCase
                 ],
                 'result' => 'search_by_page_per_page_documents.json'
             ],
+            [
+                'filter' => [
+                    'order_by' => 'created_at',
+                    'desc' => true,
+                    'created_at_from' => '2016-10-20',
+                    'created_at_to' => '2016-10-21',
+                    'title_query' => 'Docname 1',
+                    'query' => 'Product main photo',
+                ],
+                'result' => 'search_documents_complex.json'
+            ],
         ];
     }
 
@@ -162,7 +166,7 @@ class DocumentTest extends TestCase
      */
     public function testSearch($filter, $fixture)
     {
-        $response = $this->actingAs($this->admin)->json('get', '/documents', $filter);
+        $response = $this->actingAs($this->user)->json('get', '/documents', $filter);
 
         $response->assertStatus(Response::HTTP_OK);
 
