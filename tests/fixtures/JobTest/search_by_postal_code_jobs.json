@@ -7,7 +7,7 @@
             "simpro_customer_id": 3,
             "simpro_site_id": 1,
             "description": null,
-            "priority": null,
+            "priority": "Fire Alarm - Standard 8 Hours",
             "cost_center_name": null,
             "business_group": null,
             "date_created": null,
@@ -16,7 +16,8 @@
             "requested": "2016-10-20",
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": 1
+            "recent_schedule_id": 1,
+            "name": null
         },
         {
             "id": 2,
@@ -24,7 +25,7 @@
             "simpro_customer_id": 3,
             "simpro_site_id": 1,
             "description": null,
-            "priority": null,
+            "priority": "Fire Alarm - Standard",
             "cost_center_name": null,
             "business_group": null,
             "date_created": null,
@@ -33,7 +34,8 @@
             "requested": "2016-10-20",
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": null
+            "recent_schedule_id": null,
+            "name": null
         },
         {
             "id": 3,
@@ -41,7 +43,7 @@
             "simpro_customer_id": 3,
             "simpro_site_id": 1,
             "description": null,
-            "priority": null,
+            "priority": "Intruder Alarm - Standard 4 Hours",
             "cost_center_name": null,
             "business_group": null,
             "date_created": null,
@@ -50,7 +52,8 @@
             "requested": "2016-10-20",
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": null
+            "recent_schedule_id": null,
+            "name": null
         },
         {
             "id": 4,
@@ -67,7 +70,8 @@
             "requested": "2016-10-20",
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": null
+            "recent_schedule_id": null,
+            "name": null
         },
         {
             "id": 5,
@@ -84,7 +88,8 @@
             "requested": null,
             "created_at": null,
             "updated_at": null,
-            "recent_schedule_id": null
+            "recent_schedule_id": null,
+            "name": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/jobs?page=1",

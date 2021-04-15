@@ -6,7 +6,6 @@ use App\Models\Job;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use RonasIT\Support\Repositories\BaseRepository;
 
 /**
  * @property Job $model
@@ -18,17 +17,10 @@ class JobRepository extends BaseRepository
         $this->setModel(Job::class);
     }
 
-    public function checkGroupPermissions($jobId, $userId)
-    {
-        return $this->getQuery()
-            ->groupPermissions($userId)
-            ->find($jobId);
-    }
-
     public function filterByUserGroups()
     {
         if (Arr::has($this->filter, 'site_has_user')) {
-            $this->query->groupPermissions($this->filter['site_has_user']);
+            $this->query->onlyPermitted($this->filter['site_has_user']);
         }
 
         return $this;
@@ -89,6 +81,20 @@ class JobRepository extends BaseRepository
 
             $this->query->whereHas('simpro_site', function ($query) use ($postalCode) {
                 $query->where(DB::raw("REPLACE(postal_code, ' ', '')"), $postalCode);
+            });
+        }
+
+        return $this;
+    }
+
+    public function filterByPriority()
+    {
+        if (Arr::has($this->filter, 'priority')) {
+            $this->query->where(function ($query) {
+                foreach ($this->filter['priority'] as $priority) {
+                    $loweredQuery = mb_strtolower($priority);
+                    $query->orWhere(DB::raw("lower(priority)"), 'like', "%{$loweredQuery}%");
+                }
             });
         }
 

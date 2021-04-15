@@ -4,6 +4,7 @@
     "title": "Group 6",
     "created_at": "2016-10-20T10:05:00.000000Z",
     "updated_at": "2018-11-11T11:11:11.000000Z",
+    "is_enabled_all_sites": true,
     "group_simpro_sites": [
         {
             "id": 5,
@@ -18,8 +19,12 @@
                 "name": "181 Fulham Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": "181 Fulham Road, Chelsea, London",
-                "postal_code": "SW3 6JN"
+                "address": "181 Fulham Road",
+                "postal_code": "SW3 6JN",
+                "simpro_customer_id": 2,
+                "city": "Chelsea",
+                "country": "United Kingdom",
+                "county": "London"
             }
         },
         {
@@ -35,8 +40,12 @@
                 "name": "22 Devonshire Square",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": "22 Devonshire Place Westminster, Marylebone, London",
-                "postal_code": "W1G 6JA"
+                "address": "22 Devonshire Place\r\nWestminster",
+                "postal_code": "W1G 6JA",
+                "simpro_customer_id": 2,
+                "city": "Marylebone",
+                "country": "United Kingdom",
+                "county": "London"
             }
         },
         {
@@ -52,8 +61,12 @@
                 "name": "32 Dover Street",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": "Dover Street, London",
-                "postal_code": "W1S 4NE"
+                "address": "Dover Street",
+                "postal_code": "W1S 4NE",
+                "simpro_customer_id": 2,
+                "city": "",
+                "country": "United Kingdom",
+                "county": "London"
             }
         },
         {
@@ -69,8 +82,12 @@
                 "name": "44 Harrington Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": "Harrington Road, Kensington, London",
-                "postal_code": "SW7 3ND "
+                "address": "Harrington Road",
+                "postal_code": "SW7 3ND ",
+                "simpro_customer_id": 2,
+                "city": "Kensington",
+                "country": "United Kingdom",
+                "county": "London"
             }
         },
         {
@@ -86,8 +103,12 @@
                 "name": "600 King's Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": "600 King's Rd , Fulham, London",
-                "postal_code": "SW6 2YW"
+                "address": "600 King's Rd ",
+                "postal_code": "SW6 2YW",
+                "simpro_customer_id": 2,
+                "city": "Fulham",
+                "country": "United Kingdom",
+                "county": "London"
             }
         },
         {
@@ -103,8 +124,12 @@
                 "name": "606 King's Road",
                 "created_at": "2018-11-11T11:11:11.000000Z",
                 "updated_at": "2018-11-11T11:11:11.000000Z",
-                "address": "606 King's Rd, Fulham, London",
-                "postal_code": "SW6 2DX"
+                "address": "606 King's Rd",
+                "postal_code": "SW6 2DX",
+                "simpro_customer_id": 2,
+                "city": "Fulham",
+                "country": "United Kingdom",
+                "county": "London"
             }
         }
     ]

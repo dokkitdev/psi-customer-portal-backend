@@ -6,7 +6,13 @@
         "created_at": "2016-10-20T10:05:00.000000Z",
         "updated_at": "2016-10-20T10:05:00.000000Z",
         "address": null,
-        "postal_code": "SL5 7HY"
+        "postal_code": "SL5 7HY",
+        "simpro_customer_id": null,
+        "city": null,
+        "country": null,
+        "county": null,
+        "site_custom_fields": [],
+        "site_contacts": []
     },
     {
         "id": 2,
@@ -14,7 +20,103 @@
         "name": "Odeon Cinema - Beckenham",
         "created_at": "2018-11-11T11:11:11.000000Z",
         "updated_at": "2018-11-11T11:11:11.000000Z",
-        "address": "The High Street, Beckenham, Kent",
-        "postal_code": "BR3 1DY"
+        "address": "The High Street",
+        "postal_code": "BR3 1DY",
+        "simpro_customer_id": 2,
+        "city": "Beckenham",
+        "country": "",
+        "county": "Kent",
+        "site_custom_fields": [
+            {
+                "id": 1,
+                "simpro_site_id": 2,
+                "custom_field_id": 22,
+                "value": null,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            },
+            {
+                "id": 2,
+                "simpro_site_id": 2,
+                "custom_field_id": 32,
+                "value": "2406",
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            },
+            {
+                "id": 3,
+                "simpro_site_id": 2,
+                "custom_field_id": 25,
+                "value": null,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            },
+            {
+                "id": 4,
+                "simpro_site_id": 2,
+                "custom_field_id": 16,
+                "value": null,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            },
+            {
+                "id": 5,
+                "simpro_site_id": 2,
+                "custom_field_id": 76,
+                "value": null,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            }
+        ],
+        "site_contacts": [
+            {
+                "id": 1,
+                "simpro_site_id": 2,
+                "contact_id": 10862,
+                "title": "",
+                "name": "Daniel Lawrence",
+                "email": "Daniel.Lawrence@ngbailey.co.uk",
+                "work_phone": "",
+                "cell_phone": "",
+                "position": "Site Supervisor",
+                "is_primary": false,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "given_name": "Daniel",
+                "family_name": "Lawrence"
+            },
+            {
+                "id": 2,
+                "simpro_site_id": 2,
+                "contact_id": 10863,
+                "title": "",
+                "name": "Nezam Uddin",
+                "email": "ContractAdmin@ngbailey.co.uk",
+                "work_phone": "",
+                "cell_phone": "",
+                "position": "Contract Admin",
+                "is_primary": false,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "given_name": "Nezam",
+                "family_name": "Uddin"
+            },
+            {
+                "id": 3,
+                "simpro_site_id": 2,
+                "contact_id": 10861,
+                "title": "",
+                "name": "Peter Driussi",
+                "email": "Peter.Driussi@ngbailey.co.uk",
+                "work_phone": "",
+                "cell_phone": "",
+                "position": "Contracts Manager",
+                "is_primary": true,
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z",
+                "given_name": "Peter",
+                "family_name": "Driussi"
+            }
+        ]
     }
 ]

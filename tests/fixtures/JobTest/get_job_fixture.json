@@ -4,7 +4,7 @@
     "simpro_customer_id": 3,
     "simpro_site_id": 1,
     "description": null,
-    "priority": null,
+    "priority": "Fire Alarm - Standard 8 Hours",
     "cost_center_name": null,
     "business_group": null,
     "date_created": null,
@@ -13,5 +13,6 @@
     "requested": "2016-10-20",
     "created_at": null,
     "updated_at": null,
-    "recent_schedule_id": 1
+    "recent_schedule_id": 1,
+    "name": null
 }

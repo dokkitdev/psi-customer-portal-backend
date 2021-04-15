@@ -2,6 +2,8 @@
 
 namespace App\Tests;
 
+use App\Models\GroupSimproSite;
+use App\Models\Invoice;
 use App\Models\Job;
 use App\Models\JobAttachment;
 use App\Models\JobCatalog;
@@ -12,6 +14,7 @@ use App\Models\SimproJob;
 use App\Models\SimproSite;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
+use Illuminate\Http\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 
 class JobTest extends TestCase
@@ -20,6 +23,7 @@ class JobTest extends TestCase
 
     protected $admin;
     protected $user;
+    protected $files;
 
     public function setUp(): void
     {
@@ -27,6 +31,10 @@ class JobTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+        $this->files = [
+            UploadedFile::fake()->image('file1.png', 600, 600),
+            UploadedFile::fake()->image('file2.png', 600, 600)
+        ];
     }
 
     public function testCreateJobEvent()
@@ -46,8 +54,11 @@ class JobTest extends TestCase
         $simproCustomer = SimproCustomer::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('simpro_customers_create_or_update_event_fixture.json', $simproCustomer);
 
-        $simproSite = SimproSite::orderBy('id')->get()->toArray();
+        $simproSite = SimproSite::orderBy('id')->with(['site_custom_fields', 'site_contacts'])->get()->toArray();
         $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
+
+        $groupSimproSites = GroupSimproSite::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('group_simpro_sites_create_or_update_event_fixture.json', $groupSimproSites);
 
         $schedules = Schedule::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('schedules_create_or_update_event_fixture.json', $schedules);
@@ -60,6 +71,9 @@ class JobTest extends TestCase
 
         $jobWorkOrders = JobWorkOrder::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('work_orders_create_or_update_event_fixture.json', $jobWorkOrders);
+
+        $invoices = Invoice::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('invoices_create_or_update_event_fixture.json', $invoices);
     }
 
     public function testDeleteJobEvent()
@@ -143,6 +157,7 @@ class JobTest extends TestCase
             ],
             [
                 'filter' => [
+                    'job_id' => 100,
                     'site_name' => 'Sitename 1',
                     'requested' => true,
                     'stage' => ['Progress'],
@@ -163,6 +178,12 @@ class JobTest extends TestCase
                     'postal_code' => 'SL5 7HY',
                 ],
                 'result' => 'search_by_postal_code_jobs.json'
+            ],
+            [
+                'filter' => [
+                    'priority' => ['Fire Alarm - Standard', 'Intruder Alarm - Standard'],
+                ],
+                'result' => 'search_by_priority_jobs.json'
             ],
         ];
     }
@@ -195,5 +216,118 @@ class JobTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture("admin_{$fixture}", $response->json());
+    }
+
+    public function testGetResponseTimes()
+    {
+        $this->mockGetResponseTimes();
+
+        $response = $this->actingAs($this->user)->json('get', '/jobs/response-times');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_response_times_fixture.json', $response->json());
+    }
+
+    public function testGetResponseTimesNoAuth()
+    {
+        $response = $this->json('get', '/jobs/response-times');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testGetCostCenters()
+    {
+        $this->mockGetCostCenters();
+
+        $response = $this->actingAs($this->user)->json('get', '/jobs/cost-centers');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_cost_centers_fixture.json', $response->json());
+    }
+
+    public function testGetCostCentersNoAuth()
+    {
+        $response = $this->json('get', '/jobs/cost-centers');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testGetBusinessGroups()
+    {
+        $this->mockGetBusinessGroups();
+
+        $response = $this->actingAs($this->user)->json('get', '/jobs/business-groups');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_business_groups_fixture.json', $response->json());
+    }
+
+    public function testGetBusinessGroupsNoAuth()
+    {
+        $response = $this->json('get', '/jobs/business-groups');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testCreateRequest()
+    {
+        $this->mockCreatejobRequest();
+
+        $response = $this->actingAs($this->user)->json('post', '/jobs/create-in-simpro', [
+            'simpro_site_id' => 1,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_CREATED);
+    }
+
+    public function testCreateRequestByAdmin()
+    {
+        $this->mockCreatejobRequest();
+
+        $response = $this->actingAs($this->admin)->json('post', '/jobs/create-in-simpro', [
+            'simpro_site_id' => 2,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_CREATED);
+    }
+
+    public function testCreateRequestNoPermissions()
+    {
+        $response = $this->actingAs($this->user)->json('post', '/jobs/create-in-simpro', [
+            'simpro_site_id' => 2,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCreateRequestSiteNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('post', '/jobs/create-in-simpro', [
+            'simpro_site_id' => 0,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testCreateRequestNoAuth()
+    {
+        $response = $this->json('post', '/jobs/create-in-simpro', [
+            'simpro_site_id' => 1,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

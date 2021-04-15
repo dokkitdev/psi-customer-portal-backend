@@ -3,21 +3,16 @@
     "data": [
         {
             "id": 1,
-            "site_id": 1,
+            "site_id": 3900,
             "name": "Name 1",
             "created_at": null,
             "updated_at": null,
-            "address": null,
-            "postal_code": null
-        },
-        {
-            "id": 4,
-            "site_id": 4,
-            "name": "Name 4",
-            "created_at": null,
-            "updated_at": null,
-            "address": null,
-            "postal_code": null
+            "address": "Charter Place",
+            "postal_code": "UB8 1JG",
+            "simpro_customer_id": 1,
+            "city": null,
+            "country": null,
+            "county": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",
@@ -26,8 +21,8 @@
     "last_page_url": "http:\/\/localhost\/simpro-sites?page=1",
     "next_page_url": null,
     "path": "simpro-sites",
-    "per_page": 2,
+    "per_page": 1,
     "prev_page_url": null,
-    "to": 2,
-    "total": 2
+    "to": 1,
+    "total": 1
 }

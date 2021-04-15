@@ -5,6 +5,8 @@ return [
     'permitted_media_types' => ['jpg', 'jpeg', 'bmp', 'png', 'pdf'],
     'invoice_permissions' => ['View', 'No Access'],
     'quote_permissions' => ['View', 'Edit', 'No Access'],
+    'site_custom_field_ids' => [22, 32, 25, 16, 76],
+    'default_employee' => 660,
 
     /*
     |--------------------------------------------------------------------------

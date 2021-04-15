@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use App\Models\Traits\SimproPermissionsTrait;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model
 {
-    use ModelTrait;
+    use ModelTrait, SimproPermissionsTrait;
+
+    const OPEN_STAGES = [
+        'Pending',
+        'Progress'
+    ];
 
     const BUSINESS_GROUPS = [
         'Maintenance',
@@ -16,6 +22,9 @@ class Job extends Model
         'Projects',
         'Supply Only'
     ];
+
+    const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_customer.groups.users';
+    const PERMITTED_SITES_RELATION_PATH = 'simpro_site.group_simpro_sites';
 
     protected $fillable = [
         'job_id',
@@ -30,6 +39,7 @@ class Job extends Model
         'job_status',
         'requested',
         'recent_schedule_id',
+        'name'
     ];
 
     protected $hidden = ['pivot'];
@@ -69,19 +79,13 @@ class Job extends Model
         return $this->hasMany(JobWorkOrder::class);
     }
 
-    public function scopeGroupPermissions($query, $userId)
+    public function invoices()
     {
-        return
-            $query
-                ->whereHas('simpro_customer.groups.users', function ($query) use ($userId) {
-                    $query->where('user_id', $userId);
-                })
-                ->whereHas('simpro_site.group_simpro_sites', function ($query) use ($userId) {
-                    $query
-                        ->where('is_enabled', true)
-                        ->whereHas('group.users', function ($query) use ($userId) {
-                            $query->where('user_id', $userId);
-                        });
-                });
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class);
     }
 }

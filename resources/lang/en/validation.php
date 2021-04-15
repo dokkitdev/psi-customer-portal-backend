@@ -133,6 +133,8 @@ return [
         'not_found' => ':Entity does not exist',
         'not_unique' => ':Entity already exists.',
         'mismatched_hashes' => 'Hashes do not match',
+        'already_processed' => ':Entity already processed.',
+        'bad_request' => ':Entity does not have :attribute value'
     ]
 
 ];

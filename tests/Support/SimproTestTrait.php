@@ -18,6 +18,379 @@ trait SimproTestTrait
         SimproJob::create($webhookData);
     }
 
+    protected function mockApproveQuote()
+    {
+        $this->mockHttpRequestService([
+            $this->patchQuoteRequest()
+        ]);
+    }
+
+    protected function mockPostQuoteNote()
+    {
+        $this->mockHttpRequestService([
+            $this->postQuoteNoteRequest()
+        ]);
+    }
+
+    protected function postQuoteNoteRequest()
+    {
+        return [
+            'type' => 'post',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/52820/notes/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'post_quote_note_response_success.json'
+            ]
+        ];
+    }
+
+    protected function patchQuoteRequest()
+    {
+        return [
+            'type' => 'patch',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/52820'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'patch_quote_response_success.json'
+            ]
+        ];
+    }
+
+    protected function mockCreateOrUpdateQuote()
+    {
+        $this->mockHttpRequestService([
+            $this->getQuote(),
+            $this->getCustomer(),
+            $this->getJob(),
+            $this->getCustomer(),
+            $this->getSite(),
+            $this->getSiteContacts(),
+            $this->getQuoteNote(),
+            $this->getQuoteNoteAttachments()
+        ]);
+    }
+
+    protected function mockUpdateGroupsCommand()
+    {
+        $this->mockHttpRequestService([
+            $this->getSites(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSites(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+        ]);
+    }
+
+    protected function mockUpdateSitesCommand()
+    {
+        $this->mockHttpRequestService([
+            $this->getSite(),
+            $this->getSite(),
+            $this->getCustomer(),
+            $this->getSiteContacts(),
+            $this->getSite(),
+            $this->getSite(),
+            $this->getSiteContacts(),
+        ]);
+    }
+
+    protected function mockCreateQuoteRequest()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'post',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'post_quote_response_success.json'
+                ]
+            ],
+            $this->mockPostQuoteAttachment(),
+            $this->mockPostQuoteAttachment()
+        ]);
+    }
+
+    protected function mockCreatejobRequest()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'post',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'post_job_response_success.json'
+                ]
+            ],
+            $this->mockPostJobAttachment(),
+            $this->mockPostJobAttachment()
+        ]);
+    }
+
+    protected function getQuote()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/52648'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_quote_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getQuoteNote()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/52648/notes/17256'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_quote_note_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getQuoteNoteAttachments()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/52648/notes/17256/attachments/files/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_quote_note_attachments_response_success.json'
+            ]
+        ];
+    }
+
+    protected function mockPostJobAttachment()
+    {
+        return [
+            'type' => 'post',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/210600/attachments/files/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'post_job_attachment_response_success.json'
+            ]
+        ];
+    }
+
+    protected function mockPostQuoteAttachment()
+    {
+        return [
+            'type' => 'post',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/52820/attachments/files/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'post_quote_attachment_response_success.json'
+            ]
+        ];
+    }
+
+    protected function mockPatchSiteContact()
+    {
+        $this->mockHttpRequestService([
+            $this->patchSiteContact()
+        ]);
+    }
+
+    protected function mockDeleteSiteContact()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'delete',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900/contacts/11026'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'delete_site_contact_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockPostSiteContact()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'post',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900/contacts/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'post_site_contact_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockUpdateSite()
+    {
+        $this->mockHttpRequestService([
+            $this->patchSite(),
+            $this->patchSiteContact(),
+            $this->patchSiteCustomField(),
+            $this->patchSiteCustomField()
+        ]);
+    }
+
+    protected function mockUpdateSiteByAdmin()
+    {
+        $this->mockHttpRequestService([
+            $this->patchSite(),
+            $this->patchSiteContact(),
+            $this->patchSiteCustomField()
+        ]);
+    }
+
+    protected function patchSite()
+    {
+        return [
+            'type' => 'patch',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'patch_site_response_success.json'
+            ]
+        ];
+    }
+
+    protected function patchSiteContact()
+    {
+        return [
+            'type' => 'patch',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900/contacts/11026'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'patch_site_contact_response_success.json'
+            ]
+        ];
+    }
+
+    protected function patchSiteCustomField()
+    {
+        return [
+            'type' => 'patch',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/3900/customFields/22'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'patch_site_custom_field_response_success.json'
+            ]
+        ];
+    }
+
+    protected function mockCreateOrUpdateSite()
+    {
+        $this->mockHttpRequestService([
+            $this->getSite(),
+            $this->getSiteContacts()
+        ]);
+    }
+
     protected function mockGetJobs()
     {
         $this->mockHttpRequestService([
@@ -42,12 +415,8 @@ trait SimproTestTrait
     protected function mockUpdateJobsCommand()
     {
         $this->mockHttpRequestService([
-            $this->getSchedules(),
             $this->getJob(),
-            $this->getJobWorkOrders(),
-            $this->getSchedules(),
             $this->getJob(),
-            $this->getJobWorkOrders()
         ]);
     }
 
@@ -55,6 +424,13 @@ trait SimproTestTrait
     {
         $this->mockHttpRequestService([
             $this->getJobAttachmentFile(),
+        ]);
+    }
+
+    protected function mockDownloadQuoteNoteAttachment()
+    {
+        $this->mockHttpRequestService([
+            $this->getQuoteNoteAttachmentFile(),
         ]);
     }
 
@@ -69,11 +445,14 @@ trait SimproTestTrait
     {
         $this->mockHttpRequestService([
             $this->getJob(),
-            $this->getSite(),
             $this->getCustomer(),
+            $this->getSite(),
+            $this->getSiteContacts(),
             $this->getSchedules(),
             $this->getJobAttachments(),
-            $this->getJobWorkOrders()
+            $this->getJobWorkOrders(),
+            $this->getJobInvoices(),
+            $this->getCustomerInvoice()
         ]);
     }
 
@@ -99,6 +478,63 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_job_attachment_file_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getQuoteNoteAttachmentFile()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://seville.simprosuite.com/api/v1.0/companies/0/quotes/52648/notes/17256/attachments/files/1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g/view/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_quote_note_attachment_file_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getJobInvoices()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/209000/invoices/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_invoices_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getCustomerInvoice()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customerInvoices/103987'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_customer_invoice_response_success.json'
             ]
         ];
     }
@@ -217,6 +653,25 @@ trait SimproTestTrait
         ];
     }
 
+    protected function getSiteContacts()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2406/contacts'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_site_contacts_response_success.json'
+            ]
+        ];
+    }
+
     protected function getCustomer()
     {
         return [
@@ -239,22 +694,33 @@ trait SimproTestTrait
     protected function mockGetSites()
     {
         $this->mockHttpRequestService([
-            [
-                'type' => 'get',
-                'arguments' => [
-                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/'),
-                    $this->equalTo(null),
-                    $this->equalTo([
-                        'Accept' => 'application/json',
-                        'Content-Type' => 'application/json',
-                        'Authorization' => 'Bearer token',
-                    ])
-                ],
-                'response' => [
-                    'fixture' => 'get_sites_response_success.json'
-                ]
-            ]
+            $this->getSites(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
+            $this->getSiteContacts(),
         ]);
+    }
+
+    protected function getSites()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_sites_response_success.json'
+            ]
+        ];
     }
 
     protected function mockGetCustomersCommand()
@@ -330,6 +796,69 @@ trait SimproTestTrait
                 ],
                 'response' => [
                     'fixture' => 'get_project_custom_fields_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockGetResponseTimes()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/responseTimes'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_response_times_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockGetCostCenters()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/accounts/costCenters/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_cost_centers_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockGetBusinessGroups()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/accounts/businessGroups/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_business_groups_response_success.json'
                 ]
             ]
         ]);

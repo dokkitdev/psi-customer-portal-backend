@@ -14,6 +14,32 @@ class SimproApiClient
         $this->httpRequestService = app(HttpRequestService::class);
     }
 
+    public function getCustomerInvoice($companyId, $invoiceId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/customerInvoices/$invoiceId");
+
+        return $this->makeRequest('get', $url);
+    }
+
+    public function getJobInvoicesAsGenerator($companyId, $jobId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/jobs/$jobId/invoices/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+                'columns' => 'ID,DateIssued,Stage,Total'
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
     public function getJobsAsGenerator($companyId)
     {
         $page = 1;
@@ -42,6 +68,15 @@ class SimproApiClient
         ]);
     }
 
+    public function downloadQuoteNoteAttachment($companyId, $quoteId, $noteId, $attachmentId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}/attachments/files/{$attachmentId}");
+
+        return $this->makeRequest('get', $url, [
+            'display' => 'Base64'
+        ]);
+    }
+
     public function downloadJobAttachment($companyId, $jobId, $attachmentId)
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}/view/");
@@ -67,6 +102,59 @@ class SimproApiClient
 
             yield $result;
         } while (count($result) === $pageSize);
+    }
+
+    public function postJobAttachment($companyId, $jobId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/$jobId/attachments/files/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
+    public function postQuoteAttachment($companyId, $quoteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/$quoteId/attachments/files/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
+    public function getQuote($companyId, $quoteId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}");
+
+        return $this->makeRequest('get', $url, [
+            'display' => 'all'
+        ]);
+    }
+
+    public function patchQuote($companyId, $quoteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}");
+
+        return $this->makeRequest('patch', $url, $data);
+    }
+
+    public function getQuoteNoteAttachments($companyId, $quoteId, $noteId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}/attachments/files/");
+
+        return $this->makeRequest('get', $url, [
+            'columns' => 'ID,Filename,DateAdded',
+        ]);
+    }
+
+    public function getQuoteNote($companyId, $quoteId, $noteId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}");
+
+        return $this->makeRequest('get', $url);
+    }
+
+    public function postQuoteNote($companyId, $quoteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/");
+
+        return $this->makeRequest('post', $url, $data);
     }
 
     public function getSchedule($companyId, $scheduleId)
@@ -102,6 +190,51 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
+    public function patchSite($companyId, $siteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}");
+
+        return $this->makeRequest('patch', $url, $data);
+    }
+
+    public function getSiteContacts($companyId, $siteId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/");
+
+        return $this->makeRequest('get', $url, [
+            'pageSize' => 250,
+            'columns' => 'ID,Title,GivenName,FamilyName,Email,WorkPhone,CellPhone,Position,PrimaryContact'
+        ]);
+    }
+
+    public function postSiteContact($companyId, $siteId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
+    public function patchSiteContact($companyId, $siteId, $contactId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/$contactId");
+
+        return $this->makeRequest('patch', $url, $data);
+    }
+
+    public function deleteSiteContact($companyId, $siteId, $contactId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/$contactId");
+
+        return $this->makeRequest('delete', $url);
+    }
+
+    public function patchSiteCustomField($companyId, $siteId, $customFieldId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/customFields/$customFieldId");
+
+        return $this->makeRequest('patch', $url, $data);
+    }
+
     public function getJob($companyId, $jobId)
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}");
@@ -109,6 +242,20 @@ class SimproApiClient
         return $this->makeRequest('get', $url, [
             'display' => 'all'
         ]);
+    }
+
+    public function postJob($companyId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/");
+
+        return $this->makeRequest('post', $url, $data);
+    }
+
+    public function postQuote($companyId, $data)
+    {
+        $url = $this->getUrl("companies/{$companyId}/quotes/");
+
+        return $this->makeRequest('post', $url, $data);
     }
 
     public function getCustomer($companyId, $type, $customerId)
@@ -180,6 +327,60 @@ class SimproApiClient
         $page = 1;
         $pageSize = 250;
         $url = $this->getUrl("companies/{$companyId}/setup/tags/projects/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
+    public function getResponseTimesAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/setup/responseTimes/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
+    public function getCostCentersAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/setup/accounts/costCenters/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
+    public function getBusinessGroupsAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/setup/accounts/businessGroups/");
 
         do {
             $result = $this->makeRequest('get', $url, [

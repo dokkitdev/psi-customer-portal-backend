@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Models\Invoice;
 use App\Models\Job;
 use App\Models\JobAttachment;
 use App\Models\JobCatalog;
@@ -53,7 +54,7 @@ class JobLogTest extends TestCase
         $simproCustomer = SimproCustomer::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('simpro_customers_create_or_update_event_fixture.json', $simproCustomer);
 
-        $simproSite = SimproSite::orderBy('id')->get()->toArray();
+        $simproSite = SimproSite::orderBy('id')->with(['site_custom_fields', 'site_contacts'])->get()->toArray();
         $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
 
         $schedules = Schedule::orderBy('id')->get()->toArray();
@@ -67,5 +68,8 @@ class JobLogTest extends TestCase
 
         $jobWorkOrders = JobWorkOrder::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('work_orders_create_or_update_event_fixture.json', $jobWorkOrders);
+
+        $invoices = Invoice::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('invoices_create_or_update_event_fixture.json', $invoices);
     }
 }

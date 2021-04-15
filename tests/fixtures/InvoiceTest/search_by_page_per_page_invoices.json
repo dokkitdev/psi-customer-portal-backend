@@ -1,0 +1,37 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "job_id": 1,
+            "invoice_id": 1,
+            "date_issued": "2021-01-18",
+            "status": "Approved",
+            "total": 83.33,
+            "date_paid": "2021-03-30",
+            "created_at": null,
+            "updated_at": null
+        },
+        {
+            "id": 2,
+            "job_id": 2,
+            "invoice_id": 2,
+            "date_issued": null,
+            "status": null,
+            "total": null,
+            "date_paid": null,
+            "created_at": null,
+            "updated_at": null
+        }
+    ],
+    "first_page_url": "http:\/\/localhost\/invoices?page=1",
+    "from": 1,
+    "last_page": 3,
+    "last_page_url": "http:\/\/localhost\/invoices?page=3",
+    "next_page_url": "http:\/\/localhost\/invoices?page=2",
+    "path": "http:\/\/localhost\/invoices",
+    "per_page": 2,
+    "prev_page_url": null,
+    "to": 2,
+    "total": 6
+}

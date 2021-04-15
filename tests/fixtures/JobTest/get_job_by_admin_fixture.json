@@ -13,5 +13,6 @@
     "requested": "2016-10-20",
     "created_at": null,
     "updated_at": null,
-    "recent_schedule_id": 1
+    "recent_schedule_id": 1,
+    "name": null
 }

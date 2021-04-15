@@ -17,7 +17,8 @@ class SearchJobRequest extends Request
             'postal_code' => 'string',
             'priority' => 'array',
             'priority.*' => 'string',
-            'cost_center_name' => 'string',
+            'cost_center_name' => 'array',
+            'cost_center_name.*' => 'string',
             'business_group' => 'array',
             'business_group.*' => 'string',
             'stage' => 'array',
@@ -38,7 +39,7 @@ class SearchJobRequest extends Request
             'order_by' => 'string',
             'desc' => 'boolean',
             'with' => 'array',
-            'with.*' => 'string|in:simpro_site,simpro_customer,recent_schedule,schedules,job_catalogs,job_attachments,job_work_orders'
+            'with.*' => 'string|in:simpro_site,simpro_customer,recent_schedule,schedules,job_catalogs,job_attachments,job_work_orders,invoices,quotes'
         ];
     }
 }

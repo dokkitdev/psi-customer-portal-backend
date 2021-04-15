@@ -3,13 +3,16 @@
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupSimproSiteController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\JobAttachmentController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
 use App\Http\Controllers\SimproCustomerController;
 use App\Http\Controllers\SimproSiteController;
 use App\Http\Controllers\SimproWebhookController;
+use App\Http\Controllers\SiteContactController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -66,9 +69,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/simpro-customers/{id}', ['uses' => SimproCustomerController::class . '@get']);
     Route::get('/simpro-customers', ['uses' => SimproCustomerController::class . '@search']);
 
+    Route::put('/simpro-sites/{id}', ['uses' => SimproSiteController::class . '@update']);
+    Route::get('/simpro-sites/{id}', ['uses' => SimproSiteController::class . '@get']);
     Route::get('/simpro-sites', ['uses' => SimproSiteController::class . '@search']);
 
     Route::put('/group-simpro-sites/{id}', ['uses' => GroupSimproSiteController::class . '@update']);
+
+    Route::post('/site-contacts', ['uses' => SiteContactController::class . '@create']);
+    Route::put('/site-contacts/{id}', ['uses' => SiteContactController::class . '@update']);
+    Route::delete('/site-contacts/{id}', ['uses' => SiteContactController::class . '@delete']);
+    Route::get('/site-contacts/{id}', ['uses' => SiteContactController::class . '@get']);
 
     Route::post('/documents', ['uses' => DocumentController::class . '@create']);
     Route::put('/documents/{id}', ['uses' => DocumentController::class . '@update']);
@@ -76,10 +86,23 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/documents/{id}', ['uses' => DocumentController::class . '@get']);
     Route::get('/documents', ['uses' => DocumentController::class . '@search']);
 
+    Route::post('/jobs/create-in-simpro', ['uses' => JobController::class . '@createInSimpro']);
+    Route::get('/jobs/response-times', ['uses' => JobController::class . '@getResponseTimes']);
+    Route::get('/jobs/cost-centers', ['uses' => JobController::class . '@getCostCenters']);
+    Route::get('/jobs/business-groups', ['uses' => JobController::class . '@getBusinessGroups']);
     Route::get('/jobs/{id}', ['uses' => JobController::class . '@get']);
     Route::get('/jobs', ['uses' => JobController::class . '@search']);
 
     Route::get('/job-attachments/download/{id}', ['uses' => JobAttachmentController::class . '@download']);
+
+    Route::post('/quotes/create-in-simpro', ['uses' => QuoteController::class . '@createInSimpro']);
+    Route::get('/quotes/{id}/download', ['uses' => QuoteController::class . '@download']);
+    Route::put('/quotes/{id}/approve', ['uses' => QuoteController::class . '@approve']);
+    Route::put('/quotes/{id}/decline', ['uses' => QuoteController::class . '@decline']);
+    Route::put('/quotes/{id}/re-request', ['uses' => QuoteController::class . '@reRequest']);
+    Route::get('/quotes', ['uses' => QuoteController::class . '@search']);
+
+    Route::get('/invoices', ['uses' => InvoiceController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
