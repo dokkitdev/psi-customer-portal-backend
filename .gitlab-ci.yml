@@ -127,7 +127,6 @@ backup:
     - NOW=$(echo pfs-customer-portal-prod-)$(date +"%m%d%y%H%M%S")
     - aws ec2 create-snapshot --volume-id vol-0da5f5dac2e3aa4d8 --description $NOW
   only:
-    - development
     - production
     - tags
   tags:
