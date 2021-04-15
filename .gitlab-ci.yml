@@ -120,6 +120,7 @@ deploy_staging:
 
 backup:
   image: cmdlabs/eks-utils:2.3.0
+  entrypoint: [""]
   stage: backup 
   script:
     - NOW=$(echo pfs-customer-portal-prod-)$(date +"%m%d%y%H%M%S")
