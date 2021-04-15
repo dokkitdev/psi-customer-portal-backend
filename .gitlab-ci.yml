@@ -1,6 +1,7 @@
 stages:
   - prepare
   - tests
+  - backup
   - deploy
 
 variables:
@@ -117,6 +118,20 @@ deploy_staging:
   only:
     - master
 
+backup:
+  image: cmdlabs/eks-utils:2.3.0
+  stage: backup 
+  script:
+    - NOW=$(echo pfs-customer-portal-prod-)$(date +"%m%d%y%H%M%S")
+    - aws ec2 create-snapshot --volume-id vol-0da5f5dac2e3aa4d8 --description $NOW
+  only:
+    - development
+    - production
+    - tags
+  tags:
+    - docker
+    - linux
+
 deploy_production:
   extends: .deploy_ansible
   variables:
@@ -126,4 +141,4 @@ deploy_production:
     name: "production"
     url:  https://api.pfscloud.app
   only:
-    - production
+    - tags
