@@ -283,7 +283,7 @@ class MediaTest extends TestCase
     {
         Storage::put('test-image.png', file_get_contents('tests/fixtures/MediaTest/test-image.png'));
 
-        $response = $this->actingAs($this->admin)->json('get', '/media/1/download');
+        $response = $this->actingAs($this->user)->json('get', '/media/1/download');
 
         $response->assertStatus(Response::HTTP_OK);
 
@@ -297,13 +297,6 @@ class MediaTest extends TestCase
         $response->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
-    public function testDownloadNoPermission()
-    {
-        $response = $this->actingAs($this->user)->json('get', '/media/1/download');
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
-    }
-
     public function testDownloadNoAuth()
     {
         $response = $this->json('get', '/media/1/download');
@@ -315,7 +308,7 @@ class MediaTest extends TestCase
     {
         Storage::put('test-image.png', file_get_contents('tests/fixtures/MediaTest/test-image.png'));
 
-        $response = $this->actingAs($this->admin)->json('get', '/media/1/view');
+        $response = $this->actingAs($this->user)->json('get', '/media/1/view');
 
         $response->assertStatus(Response::HTTP_OK);
 
@@ -327,13 +320,6 @@ class MediaTest extends TestCase
         $response = $this->actingAs($this->admin)->json('get', '/media/0/view');
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
-    }
-
-    public function testViewNoPermission()
-    {
-        $response = $this->actingAs($this->user)->json('get', '/media/1/view');
-
-        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testViewNoAuth()

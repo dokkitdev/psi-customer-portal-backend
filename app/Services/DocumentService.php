@@ -20,6 +20,10 @@ class DocumentService extends EntityService
     {
         return $this->repository
             ->searchQuery($filters)
+            ->filterByTitle()
+            ->filterFrom('created_at', false, 'created_at_from')
+            ->filterTo('created_at', false, 'created_at_to')
+            ->filterByQuery(['description'])
             ->with()
             ->getSearchResults();
     }
