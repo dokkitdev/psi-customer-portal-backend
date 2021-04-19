@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\GroupSimproSiteController;
@@ -103,6 +104,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/quotes', ['uses' => QuoteController::class . '@search']);
 
     Route::get('/invoices', ['uses' => InvoiceController::class . '@search']);
+
+    Route::get('/assets/{id}', ['uses' => AssetController::class . '@get']);
+    Route::get('/assets', ['uses' => AssetController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
