@@ -139,6 +139,7 @@ class SimproSiteTest extends TestCase
             ],
             [
                 'filter' => [
+                    'site_id' => 3900,
                     'customer_ref_query' => '100',
                     'reference_query' => '100',
                     'has_open_jobs' => true,

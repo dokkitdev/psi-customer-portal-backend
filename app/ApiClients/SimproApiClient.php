@@ -68,9 +68,9 @@ class SimproApiClient
         ]);
     }
 
-    public function downloadQuoteNoteAttachment($companyId, $quoteId, $noteId, $attachmentId)
+    public function downloadQuoteAttachment($companyId, $quoteId, $attachmentId)
     {
-        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}/attachments/files/{$attachmentId}");
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/attachments/files/{$attachmentId}");
 
         return $this->makeRequest('get', $url, [
             'display' => 'Base64'
@@ -134,9 +134,9 @@ class SimproApiClient
         return $this->makeRequest('patch', $url, $data);
     }
 
-    public function getQuoteNoteAttachments($companyId, $quoteId, $noteId)
+    public function getQuoteAttachments($companyId, $quoteId)
     {
-        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/notes/{$noteId}/attachments/files/");
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/attachments/files/");
 
         return $this->makeRequest('get', $url, [
             'columns' => 'ID,Filename,DateAdded',

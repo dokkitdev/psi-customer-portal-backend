@@ -12,6 +12,7 @@ class InvoiceTest extends TestCase
 
     protected $admin;
     protected $user;
+    protected $userWithoutPermissions;
 
     public function setUp(): void
     {
@@ -19,6 +20,7 @@ class InvoiceTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+        $this->userWithoutPermissions = User::find(3);
     }
 
     public function getSearchFilters()
@@ -63,6 +65,18 @@ class InvoiceTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture($fixture, $response->json());
+    }
+
+    /**
+     * @dataProvider  getSearchFilters
+     *
+     * @param  array $filter
+     */
+    public function testSearchNoPermissions($filter)
+    {
+        $response = $this->actingAs($this->userWithoutPermissions)->json('get', '/invoices', $filter);
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
