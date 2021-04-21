@@ -84,6 +84,15 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockUpdateQuoteCommand()
+    {
+        $this->mockHttpRequestService([
+            $this->getQuoteNote(),
+            $this->getQuoteNoteAttachments(),
+            $this->getQuoteNoteAttachments(),
+        ]);
+    }
+
     protected function mockUpdateGroupsCommand()
     {
         $this->mockHttpRequestService([

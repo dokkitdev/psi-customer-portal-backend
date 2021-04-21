@@ -6,6 +6,11 @@ use App\Http\Requests\Request;
 
 class CreateInSimproJobRequest extends Request
 {
+    public function authorize()
+    {
+        return $this->user()->is_job_requests;
+    }
+
     public function rules()
     {
         $types = implode(',', config('defaults.permitted_media_types'));

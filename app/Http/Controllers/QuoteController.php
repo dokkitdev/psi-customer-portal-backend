@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Quotes\ApproveQuoteRequest;
 use App\Http\Requests\Quotes\CreateInSimproQuoteRequest;
 use App\Http\Requests\Quotes\DeclineQuoteRequest;
-use App\Http\Requests\Quotes\DownloadQuoteNoteAttachmentRequest;
+use App\Http\Requests\Quotes\DownloadQuoteAttachmentRequest;
 use App\Http\Requests\Quotes\ReRequestQuoteRequest;
 use App\Http\Requests\Quotes\SearchQuoteRequest;
 use App\Services\QuoteService;
@@ -56,7 +56,7 @@ class QuoteController extends Controller
         return response('', Response::HTTP_NO_CONTENT);
     }
 
-    public function download(DownloadQuoteNoteAttachmentRequest $request, QuoteService $service, $id)
+    public function download(DownloadQuoteAttachmentRequest $request, QuoteService $service, $id)
     {
         $quote = $service->download($id);
 

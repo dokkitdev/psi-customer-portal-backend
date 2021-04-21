@@ -3,9 +3,18 @@
 namespace App\Http\Requests\Quotes;
 
 use App\Http\Requests\Request;
+use App\Models\User;
 
 class SearchQuoteRequest extends Request
 {
+    public function authorize()
+    {
+        return in_array($this->user()->quote_permission_level, [
+            User::QUOTE_PERMISSION_LEVEL_VIEW,
+            User::QUOTE_PERMISSION_LEVEL_EDIT
+        ]);
+    }
+
     public function rules()
     {
         return [

@@ -23,6 +23,7 @@ class JobTest extends TestCase
 
     protected $admin;
     protected $user;
+    protected $userWithoutJobRequestsPermissions;
     protected $files;
 
     public function setUp(): void
@@ -31,6 +32,7 @@ class JobTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+        $this->userWithoutJobRequestsPermissions = User::find(3);
         $this->files = [
             UploadedFile::fake()->image('file1.png', 600, 600),
             UploadedFile::fake()->image('file2.png', 600, 600)
@@ -283,6 +285,17 @@ class JobTest extends TestCase
         ]);
 
         $response->assertStatus(Response::HTTP_CREATED);
+    }
+
+    public function testCreateRequestNoPermissionsForRequest()
+    {
+        $response = $this->actingAs($this->userWithoutJobRequestsPermissions)->json('post', '/jobs/create-in-simpro', [
+            'simpro_site_id' => 1,
+            'description' => 'Test job...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testCreateRequestByAdmin()
