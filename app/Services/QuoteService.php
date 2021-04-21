@@ -145,7 +145,7 @@ class QuoteService extends BaseService
 
         $quote = $this->repository->first(['quote_id' => $quoteFromSimpro['ID'], 'simpro_site_id' => $simproSite['id']]);
 
-        list($note, $attachment) = $this->getNoteAndAttachment($companyId, $quoteId, $quote['note_id']);
+        list($note, $attachment) = $this->getNoteAndAttachment($companyId, $quoteId, Arr::get($quote, 'note_id'));
 
         $quote = $this->createOrUpdate($quoteFromSimpro, $simproSite['id'], $simproCustomer['id'], $jobId, $note, $attachment);
 
