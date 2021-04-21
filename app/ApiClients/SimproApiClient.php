@@ -58,6 +58,60 @@ class SimproApiClient
         } while (count($result) === $pageSize);
     }
 
+    public function getInvoicesAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/customerInvoices/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
+    public function getSitesAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/sites/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
+    public function getQuotesAsGenerator($companyId)
+    {
+        $page = 1;
+        $pageSize = 250;
+        $url = $this->getUrl("companies/{$companyId}/quotes/");
+
+        do {
+            $result = $this->makeRequest('get', $url, [
+                'page' => $page,
+                'pageSize' => $pageSize,
+            ]);
+
+            $page++;
+
+            yield $result;
+        } while (count($result) === $pageSize);
+    }
+
     public function getWorkOrders($companyId, $jobId, $sectionId, $costCenterId)
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/sections/{$sectionId}/costCenters/{$costCenterId}/workOrders/");
@@ -283,7 +337,7 @@ class SimproApiClient
         } while (count($result) === $pageSize);
     }
 
-    public function getSitesAsGenerator($companyId, $customerId)
+    public function getCustomerSitesAsGenerator($companyId, $customerId)
     {
         $page = 1;
         $pageSize = 250;

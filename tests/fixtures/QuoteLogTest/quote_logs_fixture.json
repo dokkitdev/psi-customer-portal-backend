@@ -1,0 +1,1986 @@
+[
+    {
+        "id": 1,
+        "quote_id": 52820,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "quote_id": 53290,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 3,
+        "quote_id": 53289,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 4,
+        "quote_id": 53288,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 5,
+        "quote_id": 53287,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 6,
+        "quote_id": 53286,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 7,
+        "quote_id": 53285,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 8,
+        "quote_id": 53284,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 9,
+        "quote_id": 53283,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 10,
+        "quote_id": 53282,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 11,
+        "quote_id": 53281,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 12,
+        "quote_id": 53280,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 13,
+        "quote_id": 53279,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 14,
+        "quote_id": 53278,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 15,
+        "quote_id": 53277,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 16,
+        "quote_id": 53276,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 17,
+        "quote_id": 53275,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 18,
+        "quote_id": 53274,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 19,
+        "quote_id": 53273,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 20,
+        "quote_id": 53272,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 21,
+        "quote_id": 53271,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 22,
+        "quote_id": 53270,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 23,
+        "quote_id": 53269,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 24,
+        "quote_id": 53268,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 25,
+        "quote_id": 53267,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 26,
+        "quote_id": 53266,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 27,
+        "quote_id": 53265,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 28,
+        "quote_id": 53264,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 29,
+        "quote_id": 53263,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 30,
+        "quote_id": 53262,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 31,
+        "quote_id": 53261,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 32,
+        "quote_id": 53260,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 33,
+        "quote_id": 53259,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 34,
+        "quote_id": 53258,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 35,
+        "quote_id": 53257,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 36,
+        "quote_id": 53256,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 37,
+        "quote_id": 53255,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 38,
+        "quote_id": 53254,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 39,
+        "quote_id": 53253,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 40,
+        "quote_id": 53252,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 41,
+        "quote_id": 53251,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 42,
+        "quote_id": 53250,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 43,
+        "quote_id": 53249,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 44,
+        "quote_id": 53248,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 45,
+        "quote_id": 53247,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 46,
+        "quote_id": 53246,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 47,
+        "quote_id": 53245,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 48,
+        "quote_id": 53244,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 49,
+        "quote_id": 53243,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 50,
+        "quote_id": 53242,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 51,
+        "quote_id": 53241,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 52,
+        "quote_id": 53240,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 53,
+        "quote_id": 53239,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 54,
+        "quote_id": 53238,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 55,
+        "quote_id": 53237,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 56,
+        "quote_id": 53236,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 57,
+        "quote_id": 53235,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 58,
+        "quote_id": 53234,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 59,
+        "quote_id": 53233,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 60,
+        "quote_id": 53232,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 61,
+        "quote_id": 53231,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 62,
+        "quote_id": 53230,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 63,
+        "quote_id": 53229,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 64,
+        "quote_id": 53228,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 65,
+        "quote_id": 53227,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 66,
+        "quote_id": 53226,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 67,
+        "quote_id": 53225,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 68,
+        "quote_id": 53224,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 69,
+        "quote_id": 53223,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 70,
+        "quote_id": 53222,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 71,
+        "quote_id": 53221,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 72,
+        "quote_id": 53220,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 73,
+        "quote_id": 53219,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 74,
+        "quote_id": 53218,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 75,
+        "quote_id": 53217,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 76,
+        "quote_id": 53216,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 77,
+        "quote_id": 53215,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 78,
+        "quote_id": 53214,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 79,
+        "quote_id": 53213,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 80,
+        "quote_id": 53212,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 81,
+        "quote_id": 53211,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 82,
+        "quote_id": 53210,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 83,
+        "quote_id": 53209,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 84,
+        "quote_id": 53208,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 85,
+        "quote_id": 53207,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 86,
+        "quote_id": 53206,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 87,
+        "quote_id": 53205,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 88,
+        "quote_id": 53204,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 89,
+        "quote_id": 53203,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 90,
+        "quote_id": 53202,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 91,
+        "quote_id": 53201,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 92,
+        "quote_id": 53200,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 93,
+        "quote_id": 53199,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 94,
+        "quote_id": 53198,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 95,
+        "quote_id": 53197,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 96,
+        "quote_id": 53196,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 97,
+        "quote_id": 53195,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 98,
+        "quote_id": 53194,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 99,
+        "quote_id": 53193,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 100,
+        "quote_id": 53192,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 101,
+        "quote_id": 53191,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 102,
+        "quote_id": 53190,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 103,
+        "quote_id": 53189,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 104,
+        "quote_id": 53188,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 105,
+        "quote_id": 53187,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 106,
+        "quote_id": 53186,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 107,
+        "quote_id": 53185,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 108,
+        "quote_id": 53184,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 109,
+        "quote_id": 53183,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 110,
+        "quote_id": 53182,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 111,
+        "quote_id": 53181,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 112,
+        "quote_id": 53180,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 113,
+        "quote_id": 53179,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 114,
+        "quote_id": 53178,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 115,
+        "quote_id": 53177,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 116,
+        "quote_id": 53176,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 117,
+        "quote_id": 53175,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 118,
+        "quote_id": 53174,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 119,
+        "quote_id": 53173,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 120,
+        "quote_id": 53172,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 121,
+        "quote_id": 53171,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 122,
+        "quote_id": 53170,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 123,
+        "quote_id": 53169,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 124,
+        "quote_id": 53168,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 125,
+        "quote_id": 53167,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 126,
+        "quote_id": 53166,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 127,
+        "quote_id": 53165,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 128,
+        "quote_id": 53164,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 129,
+        "quote_id": 53163,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 130,
+        "quote_id": 53162,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 131,
+        "quote_id": 53161,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 132,
+        "quote_id": 53160,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 133,
+        "quote_id": 53159,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 134,
+        "quote_id": 53158,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 135,
+        "quote_id": 53157,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 136,
+        "quote_id": 53156,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 137,
+        "quote_id": 53155,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 138,
+        "quote_id": 53154,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 139,
+        "quote_id": 53153,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 140,
+        "quote_id": 53152,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 141,
+        "quote_id": 53151,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 142,
+        "quote_id": 53150,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 143,
+        "quote_id": 53149,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 144,
+        "quote_id": 53148,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 145,
+        "quote_id": 53147,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 146,
+        "quote_id": 53146,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 147,
+        "quote_id": 53145,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 148,
+        "quote_id": 53144,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 149,
+        "quote_id": 53143,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 150,
+        "quote_id": 53142,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 151,
+        "quote_id": 53141,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 152,
+        "quote_id": 53140,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 153,
+        "quote_id": 53139,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 154,
+        "quote_id": 53138,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 155,
+        "quote_id": 53137,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 156,
+        "quote_id": 53136,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 157,
+        "quote_id": 53135,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 158,
+        "quote_id": 53134,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 159,
+        "quote_id": 53133,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 160,
+        "quote_id": 53132,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 161,
+        "quote_id": 53131,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 162,
+        "quote_id": 53130,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 163,
+        "quote_id": 53129,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 164,
+        "quote_id": 53128,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 165,
+        "quote_id": 53127,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 166,
+        "quote_id": 53126,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 167,
+        "quote_id": 53125,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 168,
+        "quote_id": 53124,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 169,
+        "quote_id": 53123,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 170,
+        "quote_id": 53122,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 171,
+        "quote_id": 53121,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 172,
+        "quote_id": 53120,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 173,
+        "quote_id": 53119,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 174,
+        "quote_id": 53118,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 175,
+        "quote_id": 53117,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 176,
+        "quote_id": 53116,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 177,
+        "quote_id": 53115,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 178,
+        "quote_id": 53114,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 179,
+        "quote_id": 53113,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 180,
+        "quote_id": 53112,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 181,
+        "quote_id": 53111,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 182,
+        "quote_id": 53110,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 183,
+        "quote_id": 53109,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 184,
+        "quote_id": 53108,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 185,
+        "quote_id": 53107,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 186,
+        "quote_id": 53106,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 187,
+        "quote_id": 53105,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 188,
+        "quote_id": 53104,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 189,
+        "quote_id": 53103,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 190,
+        "quote_id": 53102,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 191,
+        "quote_id": 53101,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 192,
+        "quote_id": 53100,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 193,
+        "quote_id": 53099,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 194,
+        "quote_id": 53098,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 195,
+        "quote_id": 53097,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 196,
+        "quote_id": 53096,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 197,
+        "quote_id": 53095,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 198,
+        "quote_id": 53094,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 199,
+        "quote_id": 53093,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 200,
+        "quote_id": 53092,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 201,
+        "quote_id": 53091,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 202,
+        "quote_id": 53090,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 203,
+        "quote_id": 53089,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 204,
+        "quote_id": 53088,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 205,
+        "quote_id": 53087,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 206,
+        "quote_id": 53086,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 207,
+        "quote_id": 53085,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 208,
+        "quote_id": 53084,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 209,
+        "quote_id": 53083,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 210,
+        "quote_id": 53082,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 211,
+        "quote_id": 53081,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 212,
+        "quote_id": 53080,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 213,
+        "quote_id": 53079,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 214,
+        "quote_id": 53078,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 215,
+        "quote_id": 53077,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 216,
+        "quote_id": 53076,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 217,
+        "quote_id": 53075,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 218,
+        "quote_id": 53074,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 219,
+        "quote_id": 53073,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 220,
+        "quote_id": 53072,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 221,
+        "quote_id": 53071,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 222,
+        "quote_id": 53070,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 223,
+        "quote_id": 53069,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 224,
+        "quote_id": 53068,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 225,
+        "quote_id": 53067,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 226,
+        "quote_id": 53066,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 227,
+        "quote_id": 53065,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 228,
+        "quote_id": 53064,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 229,
+        "quote_id": 53063,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 230,
+        "quote_id": 53062,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 231,
+        "quote_id": 53061,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 232,
+        "quote_id": 53060,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 233,
+        "quote_id": 53059,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 234,
+        "quote_id": 53058,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 235,
+        "quote_id": 53057,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 236,
+        "quote_id": 53056,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 237,
+        "quote_id": 53055,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 238,
+        "quote_id": 53054,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 239,
+        "quote_id": 53053,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 240,
+        "quote_id": 53052,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 241,
+        "quote_id": 53051,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 242,
+        "quote_id": 53050,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 243,
+        "quote_id": 53049,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 244,
+        "quote_id": 53048,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 245,
+        "quote_id": 53047,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 246,
+        "quote_id": 53046,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 247,
+        "quote_id": 53045,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 248,
+        "quote_id": 53044,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    }
+]

@@ -40,6 +40,12 @@ class QuoteService extends BaseService
 
     public function search($filters)
     {
+        $authUser = $this->getAuthUser();
+
+        if ($authUser['role_id'] === Role::USER) {
+            $filters['site_has_user'] = $authUser['id'];
+        }
+
         return $this->repository
             ->searchQuery($filters)
             ->filterByIntQuery('quote_id')
@@ -61,6 +67,7 @@ class QuoteService extends BaseService
             ->filterTo('date_expiry', false, 'date_expiry_to')
             ->filterByQuery(['description'])
             ->filterByNote()
+            ->filterByUserGroups()
             ->with()
             ->getSearchResults();
     }

@@ -25,7 +25,7 @@ class GroupTest extends TestCase
 
     public function testCreate()
     {
-        $this->mockGetSites();
+        $this->mockGetGroupSites();
 
         $response = $this->actingAs($this->admin)->json('post', '/groups', $this->data);
 
@@ -68,7 +68,7 @@ class GroupTest extends TestCase
 
     public function testUpdate()
     {
-        $this->mockGetSites();
+        $this->mockGetGroupSites();
 
         $this->data['simpro_customer_id'] = 2;
 

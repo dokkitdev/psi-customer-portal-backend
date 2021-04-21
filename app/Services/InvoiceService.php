@@ -87,4 +87,21 @@ class InvoiceService extends BaseService
             $this->repository->deleteByList($ids);
         }
     }
+
+    public function updateOrCreateBySimpro($companyId, $invoiceFromSimproId)
+    {
+        $customerInvoice = $this->simproClient->getCustomerInvoice($companyId, $invoiceFromSimproId);
+
+        $job = app(JobService::class)->getOrCreateBySimpro($companyId, Arr::get($customerInvoice, 'Jobs.0.ID'));
+
+        return $this->repository->updateOrCreate([
+            'job_id' => $job['id'],
+            'invoice_id' => $invoiceFromSimproId,
+        ], [
+            'date_issued' => $customerInvoice['DateIssued'],
+            'status' => $customerInvoice['Stage'],
+            'total' => Arr::get($customerInvoice, 'Total.ExTax'),
+            'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null
+        ]);
+    }
 }

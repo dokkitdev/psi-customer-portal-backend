@@ -84,6 +84,13 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockCreateOrUpdateInvoice()
+    {
+        $this->mockHttpRequestService([
+            $this->getCustomerInvoice(),
+        ]);
+    }
+
     protected function mockUpdateQuoteCommand()
     {
         $this->mockHttpRequestService([
@@ -700,7 +707,7 @@ trait SimproTestTrait
         ];
     }
 
-    protected function mockGetSites()
+    protected function mockGetGroupSites()
     {
         $this->mockHttpRequestService([
             $this->getSites(),
@@ -710,6 +717,55 @@ trait SimproTestTrait
             $this->getSiteContacts(),
             $this->getSiteContacts(),
             $this->getSiteContacts(),
+        ]);
+    }
+
+    protected function mockGetSites()
+    {
+        $this->mockHttpRequestService([
+            $this->getSites(),
+        ]);
+    }
+
+    protected function mockGetQuotes()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_quotes_response_success.json'
+                ]
+            ]
+        ]);
+    }
+
+    protected function mockGetInvoices()
+    {
+        $this->mockHttpRequestService([
+            [
+                'type' => 'get',
+                'arguments' => [
+                    $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customerInvoices/'),
+                    $this->equalTo(null),
+                    $this->equalTo([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                        'Authorization' => 'Bearer token',
+                    ])
+                ],
+                'response' => [
+                    'fixture' => 'get_invoices_response_success.json'
+                ]
+            ]
         ]);
     }
 
