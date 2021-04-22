@@ -5,11 +5,11 @@ namespace App\Console\Commands\Simpro;
 use App\Services\SiteLogService;
 use Illuminate\Console\Command;
 
-class GetSitesToLog extends Command
+class SaveSitesToLog extends Command
 {
-    protected $signature = 'simpro:get-sites-to-log';
+    protected $signature = 'simpro:save-sites-to-log';
 
-    protected $description = 'Get Simpro Sites to SiteLogs table';
+    protected $description = 'Save Simpro Sites to SiteLogs table';
 
     public function handle()
     {

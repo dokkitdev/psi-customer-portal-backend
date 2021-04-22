@@ -14,13 +14,4 @@ class InvoiceLogRepository extends BaseRepository
     {
         $this->setModel(InvoiceLog::class);
     }
-
-    public function getForHandle($limit = 100)
-    {
-        return $this
-            ->getQuery(['handle_status' => InvoiceLog::HANDLE_STATUS_NEW])
-            ->orderBy('id', 'asc')
-            ->limit($limit)
-            ->get();
-    }
 }

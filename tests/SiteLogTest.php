@@ -29,7 +29,7 @@ class SiteLogTest extends TestCase
     {
         $this->mockGetSites();
 
-        $this->artisan('simpro:get-sites-to-log')->assertExitCode(0);
+        $this->artisan('simpro:save-sites-to-log')->assertExitCode(0);
 
         $siteLogs = SiteLog::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('site_logs_fixture.json', $siteLogs);

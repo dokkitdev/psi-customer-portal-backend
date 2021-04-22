@@ -29,7 +29,7 @@ class QuoteLogTest extends TestCase
     {
         $this->mockGetQuotes();
 
-        $this->artisan('simpro:get-quotes-to-log')->assertExitCode(0);
+        $this->artisan('simpro:save-quotes-to-log')->assertExitCode(0);
 
         $quoteLogs = QuoteLog::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('quote_logs_fixture.json', $quoteLogs);

@@ -5,11 +5,11 @@ namespace App\Console\Commands\Simpro;
 use App\Services\QuoteLogService;
 use Illuminate\Console\Command;
 
-class GetQuotesToLog extends Command
+class SaveQuotesToLog extends Command
 {
-    protected $signature = 'simpro:get-quotes-to-log';
+    protected $signature = 'simpro:save-quotes-to-log';
 
-    protected $description = 'Get Simpro Quotes to QuoteLogs table';
+    protected $description = 'Save Simpro Quotes to QuoteLogs table';
 
     public function handle()
     {

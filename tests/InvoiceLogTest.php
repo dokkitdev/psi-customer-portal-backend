@@ -26,7 +26,7 @@ class InvoiceLogTest extends TestCase
     {
         $this->mockGetInvoices();
 
-        $this->artisan('simpro:get-invoices-to-log')->assertExitCode(0);
+        $this->artisan('simpro:save-invoices-to-log')->assertExitCode(0);
 
         $invoiceLogs = InvoiceLog::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('invoice_logs_fixture.json', $invoiceLogs);
@@ -39,9 +39,9 @@ class InvoiceLogTest extends TestCase
         $this->artisan('invoices-log:handle')->assertExitCode(0);
 
         $invoiceLogs = InvoiceLog::orderBy('id')->get()->toArray();
-        $this->exportJson('invoice_log_create_or_update_event_fixture.json', $invoiceLogs);
+        $this->assertEqualsFixture('invoice_log_create_or_update_event_fixture.json', $invoiceLogs);
 
         $invoices = Invoice::orderBy('id')->get()->toArray();
-        $this->exportJson('invoice_create_or_update_event_fixture.json', $invoices);
+        $this->assertEqualsFixture('invoice_create_or_update_event_fixture.json', $invoices);
     }
 }

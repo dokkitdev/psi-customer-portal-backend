@@ -56,7 +56,11 @@ class InvoiceService extends BaseService
 
     public function syncBySimpro($companyId, $jobIdFromSimpro, $jobId)
     {
-        $invoicesFromSimproPages = $this->simproClient->getJobInvoicesAsGenerator($companyId, $jobIdFromSimpro);
+        $invoicesFromSimproPages = $this->simproClient->getAsGenerator(
+            "companies/{$companyId}/jobs/$jobIdFromSimpro/invoices/",
+            250,
+            ['columns' => 'ID,DateIssued,Stage,Total']
+        );
 
         $invoices = $this->repository->get(['job_id' => $jobId]);
 

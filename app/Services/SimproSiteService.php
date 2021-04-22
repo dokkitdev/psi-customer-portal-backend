@@ -95,7 +95,14 @@ class SimproSiteService extends BaseService
     {
         $simproCustomer = $this->simproCustomerService->find($simproCustomerId);
 
-        $sitePages = $this->simproClient->getCustomerSitesAsGenerator($this->companyId, $simproCustomer['customer_id']);
+        $sitePages = $this->simproClient->getAsGenerator(
+            "companies/{$this->companyId}/sites/",
+            250,
+            [
+                'Customers.ID' => $simproCustomer['customer_id'],
+                'columns' => 'ID,Name,Address'
+            ]
+        );
 
         foreach ($sitePages as $sitePage) {
             foreach ($sitePage as $site) {
