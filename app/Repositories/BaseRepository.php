@@ -93,6 +93,7 @@ class BaseRepository extends Repository
             ->onlyPermitted($userId)
             ->find($id);
     }
+
     public function filterByIntQuery($field, $filterName = null)
     {
         if (empty($filterName)) {

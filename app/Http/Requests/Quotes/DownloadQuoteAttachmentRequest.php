@@ -3,12 +3,21 @@
 namespace App\Http\Requests\Quotes;
 
 use App\Http\Requests\Request;
+use App\Models\User;
 use App\Services\QuoteService;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class DownloadQuoteNoteAttachmentRequest extends Request
+class DownloadQuoteAttachmentRequest extends Request
 {
+    public function authorize()
+    {
+        return in_array($this->user()->quote_permission_level, [
+            User::QUOTE_PERMISSION_LEVEL_VIEW,
+            User::QUOTE_PERMISSION_LEVEL_EDIT
+        ]);
+    }
+
     public function rules()
     {
         return [];
@@ -22,10 +31,6 @@ class DownloadQuoteNoteAttachmentRequest extends Request
 
         if (!$quote) {
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'Quote']));
-        }
-
-        if (empty($quote['note_id'])) {
-            throw new BadRequestHttpException(__('validation.exceptions.bad_request', ['entity' => 'Quote', 'attribute' => 'note_id']));
         }
 
         if (empty($quote['attachment_id'])) {

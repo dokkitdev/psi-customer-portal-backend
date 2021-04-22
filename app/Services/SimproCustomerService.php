@@ -47,8 +47,10 @@ class SimproCustomerService extends BaseService
 
     public function syncCustomers()
     {
-        $companiesPages = $this->simproClient->getCustomersAsGenerator($this->companyId, SimproCustomer::TYPE_COMPANIES);
-        $individualPages = $this->simproClient->getCustomersAsGenerator($this->companyId, SimproCustomer:: TYPE_INDIVIDUALS);
+        $typeCompanies = SimproCustomer::TYPE_COMPANIES;
+        $companiesPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customers/{$typeCompanies}/");
+        $typeIndividuals = SimproCustomer::TYPE_INDIVIDUALS;
+        $individualPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customers/{$typeIndividuals}/");
 
         $companiesMapped = [];
         foreach ($companiesPages as $companyPage) {

@@ -3,9 +3,15 @@
 namespace App\Http\Requests\Invoices;
 
 use App\Http\Requests\Request;
+use App\Models\User;
 
 class SearchInvoiceRequest extends Request
 {
+    public function authorize()
+    {
+        return $this->user()->invoice_permission_level === User::INVOICE_PERMISSION_LEVEL_VIEW;
+    }
+
     public function rules()
     {
         return [

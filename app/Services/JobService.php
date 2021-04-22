@@ -77,11 +77,14 @@ class JobService extends BaseService
 
         $defaultTag = $this->settingService->get('default_tag');
 
+        $jobStatus = config('defaults.job_status');
+
         $jobData = [
             'Type' => 'Project',
             'Customer' => Arr::get($simproSite, 'simpro_customer.customer_id'),
             'Site' => $simproSite['site_id'],
-            'Tags' => [$defaultTag['ID']]
+            'Tags' => [$defaultTag['ID']],
+            'Status' => $jobStatus
         ];
 
         if (Arr::has($data, 'description')) {

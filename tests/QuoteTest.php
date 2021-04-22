@@ -18,6 +18,8 @@ class QuoteTest extends TestCase
 
     protected $admin;
     protected $user;
+    protected $userWithoutPermissions;
+    protected $userOnlyView;
     protected $files;
 
     public function setUp(): void
@@ -26,6 +28,8 @@ class QuoteTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+        $this->userWithoutPermissions = User::find(3);
+        $this->userOnlyView = User::find(4);
         $this->files = [
             UploadedFile::fake()->image('file1.png', 600, 600),
             UploadedFile::fake()->image('file2.png', 600, 600)
@@ -81,6 +85,18 @@ class QuoteTest extends TestCase
         ]);
 
         $response->assertStatus(Response::HTTP_CREATED);
+    }
+
+    public function testCreateRequestNoPermissionsForRequest()
+    {
+        $response = $this->actingAs($this->userWithoutPermissions)->json('post', '/quotes/create-in-simpro', [
+            'simpro_site_id' => 2,
+            'type' => 1,
+            'description' => 'Test quote...',
+            'files' => $this->files
+        ]);
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testCreateRequestByAdmin()
@@ -184,6 +200,19 @@ class QuoteTest extends TestCase
      * @param  array $filter
      * @param  string $fixture
      */
+    public function testSearchNoPermission($filter)
+    {
+        $response = $this->actingAs($this->userWithoutPermissions)->json('get', '/quotes', $filter);
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    /**
+     * @dataProvider  getSearchFilters
+     *
+     * @param  array $filter
+     * @param  string $fixture
+     */
     public function testSearchByAdmin($filter, $fixture)
     {
         $response = $this->actingAs($this->admin)->json('get', '/quotes', $filter);
@@ -219,9 +248,9 @@ class QuoteTest extends TestCase
 
     public function testApproveQuoteNoPermission()
     {
-        $response = $this->actingAs($this->user)->json('put', '/quotes/6/approve');
+        $response = $this->actingAs($this->userOnlyView)->json('put', '/quotes/6/approve');
 
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testApproveQuoteNotExists()
@@ -275,9 +304,9 @@ class QuoteTest extends TestCase
 
     public function testDeclineQuoteNoPermission()
     {
-        $response = $this->actingAs($this->user)->json('put', '/quotes/6/decline');
+        $response = $this->actingAs($this->userOnlyView)->json('put', '/quotes/6/decline');
 
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testDeclineQuoteNotExists()
@@ -331,9 +360,9 @@ class QuoteTest extends TestCase
 
     public function testReRequestQuoteNoPermission()
     {
-        $response = $this->actingAs($this->user)->json('put', '/quotes/7/re-request');
+        $response = $this->actingAs($this->userOnlyView)->json('put', '/quotes/7/re-request');
 
-        $response->assertStatus(Response::HTTP_NOT_FOUND);
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     public function testReRequestQuoteNotExists()
@@ -357,7 +386,7 @@ class QuoteTest extends TestCase
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
-    public function testDownloadQuoteNoteAttachment()
+    public function testDownloadQuoteAttachment()
     {
         $this->mockDownloadQuoteNoteAttachment();
 
@@ -366,21 +395,28 @@ class QuoteTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function testDownloadQuoteNoteAttachmentNotExists()
+    public function testDownloadQuoteAttachmentNotExists()
     {
         $response = $this->actingAs($this->user)->json('get', '/quotes/0/download');
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
-    public function testDownloadQuoteNoteAttachmentBadRequest()
+    public function testDownloadQuoteAttachmentBadRequest()
     {
         $response = $this->actingAs($this->user)->json('get', '/quotes/2/download');
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
-    public function testDownloadQuoteNoteAttachmentNoAuth()
+    public function testDownloadQuoteAttachmentNoPermissions()
+    {
+        $response = $this->actingAs($this->userWithoutPermissions)->json('get', '/quotes/2/download');
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testDownloadQuoteAttachmentNoAuth()
     {
         $response = $this->json('get', '/quotes/1/download');
 

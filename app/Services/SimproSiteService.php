@@ -46,7 +46,7 @@ class SimproSiteService extends BaseService
 
         return $this->repository
             ->searchQuery($filters)
-            ->filterBy('site_id')
+            ->filterByIntQuery('site_id')
             ->filterBy('simpro_customer_id')
             ->filterBy('group_simpro_sites.group_id')
             ->filterByQuery(['city', 'county', 'address'])
@@ -95,7 +95,14 @@ class SimproSiteService extends BaseService
     {
         $simproCustomer = $this->simproCustomerService->find($simproCustomerId);
 
-        $sitePages = $this->simproClient->getSitesAsGenerator($this->companyId, $simproCustomer['customer_id']);
+        $sitePages = $this->simproClient->getAsGenerator(
+            "companies/{$this->companyId}/sites/",
+            250,
+            [
+                'Customers.ID' => $simproCustomer['customer_id'],
+                'columns' => 'ID,Name,Address'
+            ]
+        );
 
         foreach ($sitePages as $sitePage) {
             foreach ($sitePage as $site) {

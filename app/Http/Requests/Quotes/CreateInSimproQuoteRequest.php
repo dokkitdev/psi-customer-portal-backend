@@ -7,6 +7,11 @@ use App\Models\Quote;
 
 class CreateInSimproQuoteRequest extends Request
 {
+    public function authorize()
+    {
+        return $this->user()->is_quote_requests;
+    }
+
     public function rules()
     {
         $mediaTypes = implode(',', config('defaults.permitted_media_types'));

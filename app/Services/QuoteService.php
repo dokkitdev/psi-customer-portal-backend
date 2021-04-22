@@ -80,12 +80,15 @@ class QuoteService extends BaseService
 
         $type = ($data['type'] === Quote::TYPE_PPM_QUOTE) ? 'Service' : 'Project';
 
+        $quoteStatus = config('defaults.quote_status');
+
         $quoteData = [
             'Customer' => Arr::get($simproSite, 'simpro_customer.customer_id'),
             'Site' => $simproSite['site_id'],
             'Type' => $type,
             'Tags' => [$defaultTag['ID']],
-            'DueDate' => now()->addMonth()->format('Y-m-d')
+            'DueDate' => now()->addMonth()->format('Y-m-d'),
+            'Status' => $quoteStatus
         ];
 
         if (Arr::has($data, 'description')) {
@@ -149,7 +152,7 @@ class QuoteService extends BaseService
 
         $quote = $this->repository->first(['quote_id' => $quoteFromSimpro['ID'], 'simpro_site_id' => $simproSite['id']]);
 
-        list($note, $attachment) = $this->getNoteAndAttachment($quote, $companyId, $quoteId);
+        list($note, $attachment) = $this->getNoteAndAttachment($companyId, $quoteId, Arr::get($quote, 'note_id'));
 
         $quote = $this->createOrUpdate($quoteFromSimpro, $simproSite['id'], $simproCustomer['id'], $jobId, $note, $attachment);
 
@@ -161,30 +164,29 @@ class QuoteService extends BaseService
         $quote = $this->repository->find($id);
 
         $quoteId = $quote['quote_id'];
-        $noteId = $quote['note_id'];
         $attachmentId = $quote['attachment_id'];
 
-        $file = $this->simproClient->downloadQuoteNoteAttachment($this->companyId, $quoteId, $noteId, $attachmentId);
+        $file = $this->simproClient->downloadQuoteAttachment($this->companyId, $quoteId, $attachmentId);
 
         Storage::put($quote['attachment_id'], base64_decode($file['Base64Data']));
 
         return $quote;
     }
 
-    protected function getNoteAndAttachment($quote, $companyId, $quoteId)
+    public function getNoteAndAttachment($companyId, $quoteId, $noteId)
     {
         $note = null;
-        $attachment = null;
-        if (Arr::get($quote, 'note_id')) {
-            $note = $this->simproClient->getQuoteNote($companyId, $quoteId, $quote['note_id']);
 
-            $attachments = $this->simproClient->getQuoteNoteAttachments($companyId, $quoteId, $quote['note_id']);
+        if ($noteId) {
+            $note = $this->simproClient->getQuoteNote($companyId, $quoteId, $noteId);
+        }
 
-            $attachment = $this->findMostRecentFile($attachments, ['quote', 'no']);
+        $attachments = $this->simproClient->getQuoteAttachments($companyId, $quoteId);
 
-            if (!$attachment) {
-                $attachment = $this->findMostRecentFile($attachments, ['maintenance', 'quotation']);
-            }
+        $attachment = $this->findMostRecentFile($attachments, ['quote', 'no']);
+
+        if (!$attachment) {
+            $attachment = $this->findMostRecentFile($attachments, ['maintenance', 'quotation']);
         }
 
         return [$note, $attachment];
