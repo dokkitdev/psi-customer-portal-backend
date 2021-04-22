@@ -18,7 +18,7 @@ class SimproService
 
     public function getProjectTags()
     {
-        $projectTagPages = $this->simproClient->getProjectTagsAsGenerator($this->companyId);
+        $projectTagPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/setup/tags/projects/");
 
         $projectTags = [];
         foreach ($projectTagPages as $projectTagPage) {
@@ -30,7 +30,11 @@ class SimproService
 
     public function getProjectCustomFields()
     {
-        $projectCustomFieldPages = $this->simproClient->getProjectCustomFieldsAsGenerator($this->companyId);
+        $projectCustomFieldPages = $this->simproClient->getAsGenerator(
+            "companies/{$this->companyId}/setup/customFields/projects/",
+            250,
+            ['ShowFor.Quotes' => 'true']
+        );
 
         $projectCustomFields = [];
         foreach ($projectCustomFieldPages as $projectCustomFieldPage) {
@@ -42,7 +46,7 @@ class SimproService
 
     public function getResponseTimes()
     {
-        $responseTimePages = $this->simproClient->getResponseTimesAsGenerator($this->companyId);
+        $responseTimePages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/setup/responseTimes/");
 
         $responseTimes = [];
         foreach ($responseTimePages as $responseTimePage) {
@@ -54,7 +58,7 @@ class SimproService
 
     public function getCostCenters()
     {
-        $costCenterPages = $this->simproClient->getCostCentersAsGenerator($this->companyId);
+        $costCenterPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/setup/accounts/costCenters/");
 
         $costCenters = [];
         foreach ($costCenterPages as $costCenterPage) {
@@ -66,7 +70,7 @@ class SimproService
 
     public function getBusinessGroups()
     {
-        $businessGroupPages = $this->simproClient->getBusinessGroupsAsGenerator($this->companyId);
+        $businessGroupPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/setup/accounts/businessGroups/");
 
         $businessGroups = [];
         foreach ($businessGroupPages as $businessGroupPage) {

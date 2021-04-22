@@ -21,43 +21,6 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
-    public function getJobInvoicesAsGenerator($companyId, $jobId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/jobs/$jobId/invoices/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-                'columns' => 'ID,DateIssued,Stage,Total'
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
-    }
-
-    public function getJobsAsGenerator($companyId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/jobs/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
-    }
-
     public function getWorkOrders($companyId, $jobId, $sectionId, $costCenterId)
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/sections/{$sectionId}/costCenters/{$costCenterId}/workOrders/");
@@ -82,26 +45,6 @@ class SimproApiClient
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}/view/");
 
         return $this->downloadAttachment($url, $attachmentId);
-    }
-
-    public function getPublicJobAttachmentsAsGenerator($companyId, $jobId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-                'columns' => 'ID,Filename,Public',
-                'Public' => 'true'
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
     }
 
     public function postJobAttachment($companyId, $jobId, $data)
@@ -162,25 +105,6 @@ class SimproApiClient
         $url = $this->getUrl("companies/{$companyId}/schedules/{$scheduleId}");
 
         return $this->makeRequest('get', $url);
-    }
-
-    public function getSchedulesAsGenerator($companyId, $jobId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/schedules/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-                'Reference' => "{$jobId}%",
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
     }
 
     public function getSite($companyId, $siteId)
@@ -265,130 +189,22 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
-    public function getCustomersAsGenerator($companyId, $type)
+    public function getAsGenerator($url, $pageSize = 250, $additionalFilters = [], $callback = null)
     {
         $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/customers/{$type}/");
+        $url = $this->getUrl($url);
 
         do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
-    }
-
-    public function getSitesAsGenerator($companyId, $customerId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/sites/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
+            $result = $this->makeRequest('get', $url, array_merge($additionalFilters, [
                 'page' => $page,
                 'pageSize' => $pageSize,
-                'Customers.ID' => $customerId,
-                'columns' => 'ID,Name,Address'
-            ]);
+            ]));
 
             $page++;
 
-            yield $result;
-        } while (count($result) === $pageSize);
-    }
-
-    public function getProjectCustomFieldsAsGenerator($companyId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/setup/customFields/projects/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-                'ShowFor.Quotes' => 'true'
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
-    }
-
-    public function getProjectTagsAsGenerator($companyId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/setup/tags/projects/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
-    }
-
-    public function getResponseTimesAsGenerator($companyId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/setup/responseTimes/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
-    }
-
-    public function getCostCentersAsGenerator($companyId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/setup/accounts/costCenters/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-            ]);
-
-            $page++;
-
-            yield $result;
-        } while (count($result) === $pageSize);
-    }
-
-    public function getBusinessGroupsAsGenerator($companyId)
-    {
-        $page = 1;
-        $pageSize = 250;
-        $url = $this->getUrl("companies/{$companyId}/setup/accounts/businessGroups/");
-
-        do {
-            $result = $this->makeRequest('get', $url, [
-                'page' => $page,
-                'pageSize' => $pageSize,
-            ]);
-
-            $page++;
+            if (!empty($callback)) {
+                $result = $callback($result);
+            }
 
             yield $result;
         } while (count($result) === $pageSize);

@@ -12,6 +12,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('jobs-log:handle')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('sites-log:handle')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('quotes-log:handle')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('invoices-log:handle')->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('simpro:handle-jobs')->everyMinute()->withoutOverlapping();
         $schedule->command('clear:set-password-hash')->hourly();
     }

@@ -26,7 +26,7 @@ class JobLogService extends EntityService
 
     public function saveAllJobs()
     {
-        $jobPages = $this->simproClient->getJobsAsGenerator($this->companyId);
+        $jobPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/jobs/");
 
         foreach ($jobPages as $jobPage) {
             foreach ($jobPage as $jobFromSimpro) {

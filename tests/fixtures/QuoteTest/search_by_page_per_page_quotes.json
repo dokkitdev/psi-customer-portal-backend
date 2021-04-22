@@ -44,12 +44,12 @@
     ],
     "first_page_url": "http:\/\/localhost\/quotes?page=1",
     "from": 1,
-    "last_page": 5,
-    "last_page_url": "http:\/\/localhost\/quotes?page=5",
+    "last_page": 3,
+    "last_page_url": "http:\/\/localhost\/quotes?page=3",
     "next_page_url": "http:\/\/localhost\/quotes?page=2",
     "path": "http:\/\/localhost\/quotes",
     "per_page": 2,
     "prev_page_url": null,
     "to": 2,
-    "total": 10
+    "total": 6
 }
