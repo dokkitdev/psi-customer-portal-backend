@@ -25,7 +25,6 @@ class JobAttachmentService extends EntityService
     {
         $attachmentsFromSimproPages = $this->simproClient->getAsGenerator(
             "companies/{$companyId}/jobs/{$jobIdFromSimpro}/attachments/files/",
-            250,
             [
                 'columns' => 'ID,Filename,Public',
                 'Public' => 'true'

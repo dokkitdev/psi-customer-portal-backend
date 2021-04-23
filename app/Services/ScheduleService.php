@@ -28,7 +28,6 @@ class ScheduleService extends EntityService
     {
         $schedulePages = $this->simproClient->getAsGenerator(
             "companies/{$companyId}/schedules/",
-            250,
             ['Reference' => "{$jobIdFromSimpro}%"]
         );
 
