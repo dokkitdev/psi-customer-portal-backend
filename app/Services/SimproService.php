@@ -32,7 +32,6 @@ class SimproService
     {
         $projectCustomFieldPages = $this->simproClient->getAsGenerator(
             "companies/{$this->companyId}/setup/customFields/projects/",
-            250,
             ['ShowFor.Quotes' => 'true']
         );
 

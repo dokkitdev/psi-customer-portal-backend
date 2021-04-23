@@ -183,10 +183,10 @@ class QuoteService extends BaseService
 
         $attachments = $this->simproClient->getQuoteAttachments($companyId, $quoteId);
 
-        $attachment = $this->findMostRecentFile($attachments, ['quote', 'no']);
+        $attachment = $this->findMostRecentFile($attachments, ['quote no', 'quote_no']);
 
         if (!$attachment) {
-            $attachment = $this->findMostRecentFile($attachments, ['maintenance', 'quotation']);
+            $attachment = $this->findMostRecentFile($attachments, ['maintenance quotation', 'maintenance_quotation']);
         }
 
         return [$note, $attachment];
@@ -282,7 +282,7 @@ class QuoteService extends BaseService
         return collect($attachments)->sortByDesc('DateAdded')->first(function ($attachment) use ($needles) {
             $lowerFilename = Str::lower($attachment['Filename']);
 
-            return Str::containsAll($lowerFilename, $needles);
+            return Str::contains($lowerFilename, $needles);
         });
     }
 }
