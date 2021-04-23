@@ -58,7 +58,6 @@ class InvoiceService extends BaseService
     {
         $invoicesFromSimproPages = $this->simproClient->getAsGenerator(
             "companies/{$companyId}/jobs/$jobIdFromSimpro/invoices/",
-            250,
             ['columns' => 'ID,DateIssued,Stage,Total']
         );
 

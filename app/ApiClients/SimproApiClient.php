@@ -189,7 +189,7 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
-    public function getAsGenerator($url, $pageSize = 250, $additionalFilters = [], $callback = null)
+    public function getAsGenerator($url, $additionalFilters = [], $callback = null, $pageSize = 250)
     {
         $page = 1;
         $url = $this->getUrl($url);
@@ -207,7 +207,7 @@ class SimproApiClient
             }
 
             yield $result;
-        } while (count($result) === $pageSize);
+        } while (!empty($result));
     }
 
     protected function makeRequest($method, $url, $data = null, $headers = null)
