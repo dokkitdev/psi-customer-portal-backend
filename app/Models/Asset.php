@@ -13,6 +13,9 @@ class Asset extends Model
     const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_customer.groups.users';
     const PERMITTED_SITES_RELATION_PATH = 'simpro_site.group_simpro_sites';
 
+    const TYPE_PARENT = 'Parent';
+    const TYPE_CHILD = 'Child';
+
     protected $fillable = [
         'asset_id',
         'simpro_customer_id',

@@ -2,6 +2,10 @@
 
 namespace App\Tests;
 
+use App\Models\Asset;
+use App\Models\SimproCustomer;
+use App\Models\SimproJob;
+use App\Models\SimproSite;
 use App\Models\User;
 use App\Tests\Support\SimproTestTrait;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +23,40 @@ class AssetTest extends TestCase
 
         $this->admin = User::find(1);
         $this->user = User::find(2);
+    }
+
+    public function testUpdateAssetEvent()
+    {
+        $this->mockCreateOrUpdateAsset();
+
+        $this->createSimproJob('simpro_webhook_asset_updated_fixture.json');
+
+        $this->artisan('simpro:handle-jobs')->assertExitCode(0);
+
+        $simproJob = SimproJob::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
+
+        $assets = Asset::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('asset_create_or_update_event_fixture.json', $assets);
+
+        $simproCustomer = SimproCustomer::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_customer_create_or_update_event_fixture.json', $simproCustomer);
+
+        $simproSite = SimproSite::orderBy('id')->with(['site_custom_fields', 'site_contacts'])->get()->toArray();
+        $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
+    }
+
+    public function testDeleteAssetEvent()
+    {
+        $this->createSimproJob('simpro_webhook_asset_deleted_fixture.json');
+
+        $this->artisan('simpro:handle-jobs')->assertExitCode(0);
+
+        $simproJob = SimproJob::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
+
+        $assets = Asset::orderBy('id')->get()->toArray();
+        $this->exportJson('asset_delete_event_fixture.json', $assets);
     }
 
     public function testGet()
