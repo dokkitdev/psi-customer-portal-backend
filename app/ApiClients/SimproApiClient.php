@@ -70,6 +70,20 @@ class SimproApiClient
         ]);
     }
 
+    public function getAsset($companyId, $assetId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/customerAssets/{$assetId}");
+
+        return $this->makeRequest('get', $url);
+    }
+
+    public function getAssetServiceLevels($companyId, $siteId, $assetId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/serviceLevels/");
+
+        return $this->makeRequest('get', $url);
+    }
+
     public function patchQuote($companyId, $quoteId, $data)
     {
         $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}");

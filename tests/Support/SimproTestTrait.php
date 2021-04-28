@@ -84,6 +84,55 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockCreateOrUpdateAsset()
+    {
+        $this->mockHttpRequestService([
+            $this->getAsset(),
+            $this->getSite(),
+            $this->getCustomer(),
+            $this->getSiteContacts(),
+            $this->getAssetServiceLevels(),
+        ]);
+    }
+
+    protected function getAsset()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customerAssets/10000'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_asset_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getAssetServiceLevels()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2752/assets/10000/serviceLevels/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_asset_service_levels_response_success.json'
+            ]
+        ];
+    }
+
     protected function mockCreateOrUpdateInvoice()
     {
         $this->mockHttpRequestService([

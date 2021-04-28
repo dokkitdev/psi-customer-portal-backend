@@ -128,6 +128,11 @@ class SimproSiteService extends BaseService
         if (!$simproSite) {
             $site = $this->simproClient->getSite($companyId, $siteId);
 
+            if (!$simproCustomerId) {
+                $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, Arr::get($site, 'Customers.0'));
+                $simproCustomerId = $simproCustomer['id'];
+            }
+
             $simproSite = $this->createOrUpdate($site, $simproCustomerId);
 
             $this->siteCustomFieldService->createOrUpdateBySite($site, $simproSite['id']);
