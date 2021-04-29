@@ -5,6 +5,7 @@ namespace App\Tests;
 use App\Mails\InvitationMail;
 use App\Models\User;
 use App\Tests\Support\AuthTestTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -326,5 +327,48 @@ class UserTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture($fixture, $response->json());
+    }
+
+    public function testResendInvitation()
+    {
+        $this->mockUniqueTokenGeneration('some_token');
+
+        $response = $this->actingAs($this->admin)->json('post', '/users/1/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseMissing('users', [
+            'id' => 1,
+            'set_password_hash' => 'some_token',
+            'set_password_hash_created_at' => Carbon::now()
+        ]);
+
+        $this->assertMailEquals(InvitationMail::class, [
+            [
+                'emails' => 'admin@example.com',
+                'fixture' => 'invitation_email.html'
+            ]
+        ]);
+    }
+
+    public function testResendInvitationNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('post', '/users/0/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testResendInvitationNoPermissions()
+    {
+        $response = $this->actingAs($this->user)->json('post', '/users/1/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testResendInvitationNoAuth()
+    {
+        $response = $this->json('post', '/users/1/resend-invitation');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

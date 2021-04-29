@@ -3,6 +3,9 @@
 namespace App\Tests;
 
 use App\Models\Asset;
+use App\Models\AssetAttachment;
+use App\Models\AssetCustomField;
+use App\Models\AssetTestRecord;
 use App\Models\SimproCustomer;
 use App\Models\SimproJob;
 use App\Models\SimproSite;
@@ -42,8 +45,17 @@ class AssetTest extends TestCase
         $simproCustomer = SimproCustomer::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('simpro_customer_create_or_update_event_fixture.json', $simproCustomer);
 
-        $simproSite = SimproSite::orderBy('id')->with(['site_custom_fields', 'site_contacts'])->get()->toArray();
-        $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
+        $simproSites = SimproSite::orderBy('id')->with(['site_custom_fields', 'site_contacts'])->get()->toArray();
+        $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSites);
+
+        $assetCustomFields = AssetCustomField::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('asset_custom_fields_create_or_update_event_fixture.json', $assetCustomFields);
+
+        $assetAttachments = AssetAttachment::orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('asset_attachments_create_or_update_event_fixture.json', $assetAttachments);
+
+        $assetTestRecords = AssetTestRecord::with(['asset_test_record_readings'])->orderBy('id')->get()->toArray();
+        $this->assertEqualsFixture('asset_test_records_create_or_update_event_fixture.json', $assetTestRecords);
     }
 
     public function testDeleteAssetEvent()
@@ -161,5 +173,28 @@ class AssetTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertEqualsFixture("admin_{$fixture}", $response->json());
+    }
+
+    public function testDownloadAssetAttachment()
+    {
+        $this->mockDownloadAssetAttachment();
+
+        $response = $this->actingAs($this->user)->json('get', '/asset-attachments/1/download');
+
+        $response->assertStatus(Response::HTTP_OK);
+    }
+
+    public function testDownloadAssetAttachmentNotExists()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/asset-attachments/0/download');
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testDownloadAssetAttachmentNoAuth()
+    {
+        $response = $this->json('get', '/asset-attachments/1/download');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

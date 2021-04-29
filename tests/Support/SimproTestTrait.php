@@ -92,6 +92,18 @@ trait SimproTestTrait
             $this->getCustomer(),
             $this->getSiteContacts(),
             $this->getAssetServiceLevels(),
+            $this->getAssetAttachments('get_asset_attachments_response_success.json'),
+            $this->getAssetAttachments('get_asset_attachments_empty_response_success.json'),
+            $this->getAssetTestHistories(),
+            $this->getJob(),
+            $this->getJob(),
+        ]);
+    }
+
+    protected function mockDownloadAssetAttachment()
+    {
+        $this->mockHttpRequestService([
+            $this->getAssetAttachmentFile(),
         ]);
     }
 
@@ -283,6 +295,44 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_quote_note_attachments_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getAssetAttachments($fixture)
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2765/assets/10000/attachments/files/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => $fixture
+            ]
+        ];
+    }
+
+    protected function getAssetTestHistories()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2765/assets/10000/testHistory/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_asset_test_histories_response_success.json'
             ]
         ];
     }
@@ -544,7 +594,7 @@ trait SimproTestTrait
         return [
             'type' => 'get',
             'arguments' => [
-                $this->equalTo('https://seville.simprosuite.com/api/v1.0/companies/0/jobs/2406/attachments/files/7Dcva_XBYo8fqg1hOtixXE5jSFDabVFFdU6l5GdS2FI/view/'),
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/jobs/2406/attachments/files/7Dcva_XBYo8fqg1hOtixXE5jSFDabVFFdU6l5GdS2FI/view/'),
                 $this->equalTo(null),
                 $this->equalTo([
                     'Accept' => 'application/json',
@@ -563,7 +613,7 @@ trait SimproTestTrait
         return [
             'type' => 'get',
             'arguments' => [
-                $this->equalTo('https://seville.simprosuite.com/api/v1.0/companies/0/quotes/52648/notes/17256/attachments/files/1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g/view/'),
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/quotes/52648/notes/17256/attachments/files/1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g/view/'),
                 $this->equalTo(null),
                 $this->equalTo([
                     'Accept' => 'application/json',
@@ -573,6 +623,25 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_quote_note_attachment_file_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getAssetAttachmentFile()
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/sites/2765/assets/10000/attachments/files/1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => 'get_asset_attachment_file_response_success.json'
             ]
         ];
     }
@@ -824,12 +893,39 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockGetAssets()
+    {
+        $this->mockHttpRequestService([
+            $this->getAssets('get_assets_response_success.json'),
+            $this->getAssets('get_assets_empty_response_success.json'),
+        ]);
+    }
+
     protected function getInvoices($fixture)
     {
         return [
             'type' => 'get',
             'arguments' => [
                 $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customerInvoices/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => $fixture
+            ]
+        ];
+    }
+
+    protected function getAssets($fixture)
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/customerAssets/'),
                 $this->equalTo(null),
                 $this->equalTo([
                     'Accept' => 'application/json',
@@ -931,7 +1027,7 @@ trait SimproTestTrait
         return [
             'type' => 'get',
             'arguments' => [
-                $this->equalTo('https://seville.simprosuite.com/api/v1.0/companies/0/setup/customFields/projects'),
+                $this->equalTo('https://pfsgroup .simprosuite.com/api/v1.0/companies/0/setup/customFields/projects'),
                 $this->equalTo(null),
                 $this->equalTo([
                     'Accept' => 'application/json',

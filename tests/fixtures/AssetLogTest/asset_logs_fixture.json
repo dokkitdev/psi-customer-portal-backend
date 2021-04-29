@@ -1,0 +1,2002 @@
+[
+    {
+        "id": 1,
+        "asset_id": 440,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "asset_id": 476,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 3,
+        "asset_id": 965,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 4,
+        "asset_id": 975,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 5,
+        "asset_id": 7581,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 6,
+        "asset_id": 7715,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 7,
+        "asset_id": 7722,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 8,
+        "asset_id": 7867,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 9,
+        "asset_id": 7869,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 10,
+        "asset_id": 7880,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 11,
+        "asset_id": 7958,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 12,
+        "asset_id": 7961,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 13,
+        "asset_id": 7965,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 14,
+        "asset_id": 7973,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 15,
+        "asset_id": 7980,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 16,
+        "asset_id": 7982,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 17,
+        "asset_id": 7998,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 18,
+        "asset_id": 7999,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 19,
+        "asset_id": 8008,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 20,
+        "asset_id": 8028,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 21,
+        "asset_id": 8039,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 22,
+        "asset_id": 8057,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 23,
+        "asset_id": 8069,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 24,
+        "asset_id": 8083,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 25,
+        "asset_id": 8111,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 26,
+        "asset_id": 8123,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 27,
+        "asset_id": 8125,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 28,
+        "asset_id": 8126,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 29,
+        "asset_id": 8133,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 30,
+        "asset_id": 8138,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 31,
+        "asset_id": 8164,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 32,
+        "asset_id": 8184,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 33,
+        "asset_id": 8278,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 34,
+        "asset_id": 9546,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 35,
+        "asset_id": 9646,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 36,
+        "asset_id": 9686,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 37,
+        "asset_id": 9687,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 38,
+        "asset_id": 9688,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 39,
+        "asset_id": 9692,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 40,
+        "asset_id": 9889,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 41,
+        "asset_id": 10014,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 42,
+        "asset_id": 10164,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 43,
+        "asset_id": 10205,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 44,
+        "asset_id": 10439,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 45,
+        "asset_id": 10442,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 46,
+        "asset_id": 10447,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 47,
+        "asset_id": 10454,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 48,
+        "asset_id": 10470,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 49,
+        "asset_id": 10482,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 50,
+        "asset_id": 10483,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 51,
+        "asset_id": 10484,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 52,
+        "asset_id": 10487,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 53,
+        "asset_id": 10503,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 54,
+        "asset_id": 10535,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 55,
+        "asset_id": 10541,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 56,
+        "asset_id": 10595,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 57,
+        "asset_id": 10610,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 58,
+        "asset_id": 10747,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 59,
+        "asset_id": 10841,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 60,
+        "asset_id": 10934,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 61,
+        "asset_id": 10937,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 62,
+        "asset_id": 10942,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 63,
+        "asset_id": 10947,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 64,
+        "asset_id": 10956,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 65,
+        "asset_id": 10957,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 66,
+        "asset_id": 10958,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 67,
+        "asset_id": 10959,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 68,
+        "asset_id": 10963,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 69,
+        "asset_id": 10964,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 70,
+        "asset_id": 10966,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 71,
+        "asset_id": 10967,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 72,
+        "asset_id": 10971,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 73,
+        "asset_id": 10980,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 74,
+        "asset_id": 10981,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 75,
+        "asset_id": 10983,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 76,
+        "asset_id": 10984,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 77,
+        "asset_id": 10986,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 78,
+        "asset_id": 10998,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 79,
+        "asset_id": 11001,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 80,
+        "asset_id": 11004,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 81,
+        "asset_id": 11007,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 82,
+        "asset_id": 11008,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 83,
+        "asset_id": 11009,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 84,
+        "asset_id": 11011,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 85,
+        "asset_id": 11013,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 86,
+        "asset_id": 11014,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 87,
+        "asset_id": 11015,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 88,
+        "asset_id": 11016,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 89,
+        "asset_id": 11017,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 90,
+        "asset_id": 11018,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 91,
+        "asset_id": 11023,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 92,
+        "asset_id": 11024,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 93,
+        "asset_id": 11030,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 94,
+        "asset_id": 11031,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 95,
+        "asset_id": 11032,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 96,
+        "asset_id": 11033,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 97,
+        "asset_id": 11034,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 98,
+        "asset_id": 11035,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 99,
+        "asset_id": 11047,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 100,
+        "asset_id": 11367,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 101,
+        "asset_id": 11673,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 102,
+        "asset_id": 11845,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 103,
+        "asset_id": 11859,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 104,
+        "asset_id": 11963,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 105,
+        "asset_id": 12374,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 106,
+        "asset_id": 12976,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 107,
+        "asset_id": 13579,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 108,
+        "asset_id": 13657,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 109,
+        "asset_id": 14771,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 110,
+        "asset_id": 18411,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 111,
+        "asset_id": 18459,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 112,
+        "asset_id": 19441,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 113,
+        "asset_id": 19718,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 114,
+        "asset_id": 19902,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 115,
+        "asset_id": 20473,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 116,
+        "asset_id": 20710,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 117,
+        "asset_id": 20763,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 118,
+        "asset_id": 20795,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 119,
+        "asset_id": 21116,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 120,
+        "asset_id": 21169,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 121,
+        "asset_id": 21418,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 122,
+        "asset_id": 21620,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 123,
+        "asset_id": 21755,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 124,
+        "asset_id": 21783,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 125,
+        "asset_id": 21810,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 126,
+        "asset_id": 21913,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 127,
+        "asset_id": 22104,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 128,
+        "asset_id": 22143,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 129,
+        "asset_id": 22197,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 130,
+        "asset_id": 22215,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 131,
+        "asset_id": 22309,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 132,
+        "asset_id": 22406,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 133,
+        "asset_id": 22675,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 134,
+        "asset_id": 22690,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 135,
+        "asset_id": 22801,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 136,
+        "asset_id": 22805,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 137,
+        "asset_id": 22815,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 138,
+        "asset_id": 22826,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 139,
+        "asset_id": 22904,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 140,
+        "asset_id": 23177,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 141,
+        "asset_id": 23298,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 142,
+        "asset_id": 23523,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 143,
+        "asset_id": 24122,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 144,
+        "asset_id": 24147,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 145,
+        "asset_id": 24556,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 146,
+        "asset_id": 26211,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 147,
+        "asset_id": 26223,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 148,
+        "asset_id": 26227,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 149,
+        "asset_id": 26229,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 150,
+        "asset_id": 26231,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 151,
+        "asset_id": 26235,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 152,
+        "asset_id": 26238,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 153,
+        "asset_id": 26249,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 154,
+        "asset_id": 26252,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 155,
+        "asset_id": 26255,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 156,
+        "asset_id": 26258,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 157,
+        "asset_id": 26262,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 158,
+        "asset_id": 26267,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 159,
+        "asset_id": 26271,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 160,
+        "asset_id": 26274,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 161,
+        "asset_id": 26276,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 162,
+        "asset_id": 26278,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 163,
+        "asset_id": 26280,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 164,
+        "asset_id": 26282,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 165,
+        "asset_id": 26283,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 166,
+        "asset_id": 26288,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 167,
+        "asset_id": 26304,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 168,
+        "asset_id": 26355,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 169,
+        "asset_id": 26363,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 170,
+        "asset_id": 26365,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 171,
+        "asset_id": 26389,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 172,
+        "asset_id": 27222,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 173,
+        "asset_id": 29467,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 174,
+        "asset_id": 29827,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 175,
+        "asset_id": 29917,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 176,
+        "asset_id": 32017,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 177,
+        "asset_id": 32025,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 178,
+        "asset_id": 32265,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 179,
+        "asset_id": 34386,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 180,
+        "asset_id": 34427,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 181,
+        "asset_id": 34519,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 182,
+        "asset_id": 34554,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 183,
+        "asset_id": 34702,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 184,
+        "asset_id": 34808,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 185,
+        "asset_id": 34834,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 186,
+        "asset_id": 34848,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 187,
+        "asset_id": 34875,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 188,
+        "asset_id": 35609,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 189,
+        "asset_id": 35632,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 190,
+        "asset_id": 35649,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 191,
+        "asset_id": 35673,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 192,
+        "asset_id": 35706,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 193,
+        "asset_id": 44227,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 194,
+        "asset_id": 45454,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 195,
+        "asset_id": 46376,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 196,
+        "asset_id": 46440,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 197,
+        "asset_id": 46508,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 198,
+        "asset_id": 46579,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 199,
+        "asset_id": 46650,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 200,
+        "asset_id": 46661,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 201,
+        "asset_id": 48961,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 202,
+        "asset_id": 50224,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 203,
+        "asset_id": 50281,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 204,
+        "asset_id": 50309,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 205,
+        "asset_id": 50769,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 206,
+        "asset_id": 51112,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 207,
+        "asset_id": 51114,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 208,
+        "asset_id": 52023,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 209,
+        "asset_id": 52049,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 210,
+        "asset_id": 52088,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 211,
+        "asset_id": 52245,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 212,
+        "asset_id": 52280,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 213,
+        "asset_id": 52330,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 214,
+        "asset_id": 52402,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 215,
+        "asset_id": 52425,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 216,
+        "asset_id": 52455,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 217,
+        "asset_id": 52503,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 218,
+        "asset_id": 52511,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 219,
+        "asset_id": 52535,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 220,
+        "asset_id": 52558,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 221,
+        "asset_id": 52580,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 222,
+        "asset_id": 52582,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 223,
+        "asset_id": 52585,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 224,
+        "asset_id": 52588,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 225,
+        "asset_id": 52601,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 226,
+        "asset_id": 52603,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 227,
+        "asset_id": 52606,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 228,
+        "asset_id": 52608,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 229,
+        "asset_id": 52613,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 230,
+        "asset_id": 52629,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 231,
+        "asset_id": 52646,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 232,
+        "asset_id": 53213,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 233,
+        "asset_id": 54068,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 234,
+        "asset_id": 54374,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 235,
+        "asset_id": 54410,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 236,
+        "asset_id": 54421,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 237,
+        "asset_id": 54594,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 238,
+        "asset_id": 55939,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 239,
+        "asset_id": 56201,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 240,
+        "asset_id": 59759,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 241,
+        "asset_id": 60200,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 242,
+        "asset_id": 61951,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 243,
+        "asset_id": 62022,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 244,
+        "asset_id": 64715,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 245,
+        "asset_id": 64919,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 246,
+        "asset_id": 65035,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 247,
+        "asset_id": 65048,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 248,
+        "asset_id": 65060,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 249,
+        "asset_id": 65373,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    },
+    {
+        "id": 250,
+        "asset_id": 65408,
+        "handle_status": "new",
+        "handle_result": null,
+        "created_at": "2018-11-11T11:11:11.000000Z",
+        "updated_at": "2018-11-11T11:11:11.000000Z"
+    }
+]
