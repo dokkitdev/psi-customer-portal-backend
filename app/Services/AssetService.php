@@ -17,6 +17,9 @@ class AssetService extends BaseService
     protected SimproApiClient $simproClient;
     protected SimproSiteService $simproSiteService;
     protected SimproCustomerService $simproCustomerService;
+    protected AssetCustomFieldService $assetCustomFieldService;
+    protected AssetAttachmentService $assetAttachmentService;
+    protected AssetTestRecordService $assetTestRecordService;
 
     public function __construct()
     {
@@ -27,6 +30,9 @@ class AssetService extends BaseService
         $this->simproClient = app(SimproApiClient::class);
         $this->simproSiteService = app(SimproSiteService::class);
         $this->simproCustomerService = app(SimproCustomerService::class);
+        $this->assetCustomFieldService = app(AssetCustomFieldService::class);
+        $this->assetAttachmentService = app(AssetAttachmentService::class);
+        $this->assetTestRecordService = app(AssetTestRecordService::class);
     }
 
     public function search($filters)
@@ -73,6 +79,12 @@ class AssetService extends BaseService
         $serviceLevels = $this->simproClient->getAssetServiceLevels($companyId, $siteId, $assetId);
 
         $asset = $this->createOrUpdate($assetFromSimpro, $simproSite['id'], $simproSite['simpro_customer_id'], Arr::get($serviceLevels, '0.ServiceDate'));
+
+        $this->assetCustomFieldService->syncByAsset($assetFromSimpro, $asset['id']);
+
+        $this->assetAttachmentService->syncByAsset($companyId, $siteId, $assetId, $asset['id']);
+
+        $this->assetTestRecordService->syncByAsset($companyId, $siteId, $assetId, $asset['id']);
 
         return $asset;
     }

@@ -5,20 +5,22 @@ namespace App\Models;
 use RonasIT\Support\Traits\ModelTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class AssetAttachment extends Model
+class AssetLog extends Model
 {
     use ModelTrait;
 
+    const HANDLE_STATUS_NEW = 'new';
+    const HANDLE_STATUS_ERROR = 'error';
+
     protected $fillable = [
         'asset_id',
-        'attachment_id',
-        'name',
+        'handle_status',
+        'handle_result'
     ];
 
     protected $hidden = ['pivot'];
 
-    public function asset()
-    {
-        return $this->belongsTo(Asset::class);
-    }
+    protected $casts = [
+        'handle_result' => 'array',
+    ];
 }

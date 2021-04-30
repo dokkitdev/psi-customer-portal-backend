@@ -55,11 +55,22 @@ class UserService extends BaseService
         });
 
         if (Arr::get($data, 'is_send_email')) {
-            $mail = new InvitationMail($data['email'], ['hash' => $data['set_password_hash']]);
-            dispatch(new SendMailJob($mail));
+            $this->sendInvitationEmail($data['email'], $data['set_password_hash']);
         }
 
         return $user;
+    }
+
+    public function resendInvitation($id)
+    {
+        $data = [
+            'set_password_hash' => $this->generateHash(),
+            'set_password_hash_created_at' => Carbon::now()
+        ];
+
+        $user = $this->repository->update($id, $data);
+
+        $this->sendInvitationEmail($user['email'], $data['set_password_hash']);
     }
 
     public function update($where, $data)
@@ -114,6 +125,12 @@ class UserService extends BaseService
                 'password' => Hash::make($password),
                 'set_password_hash' => null
             ]);
+    }
+
+    protected function sendInvitationEmail($email, $hash)
+    {
+        $mail = new InvitationMail($email, ['hash' => $hash]);
+        dispatch(new SendMailJob($mail));
     }
 
     protected function generateHash($length = 32)

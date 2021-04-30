@@ -40,6 +40,15 @@ class SimproApiClient
         ]);
     }
 
+    public function downloadAssetAttachment($companyId, $siteId, $assetId, $attachmentId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/attachments/files/{$attachmentId}");
+
+        return $this->makeRequest('get', $url, [
+            'display' => 'Base64'
+        ]);
+    }
+
     public function downloadJobAttachment($companyId, $jobId, $attachmentId)
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}/view/");
@@ -81,7 +90,18 @@ class SimproApiClient
     {
         $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/serviceLevels/");
 
-        return $this->makeRequest('get', $url);
+        return $this->makeRequest('get', $url, [
+            'pageSize' => 250
+        ]);
+    }
+
+    public function getAssetTestHistories($companyId, $siteId, $assetId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/testHistory/");
+
+        return $this->makeRequest('get', $url, [
+            'pageSize' => 250
+        ]);
     }
 
     public function patchQuote($companyId, $quoteId, $data)
@@ -97,6 +117,7 @@ class SimproApiClient
 
         return $this->makeRequest('get', $url, [
             'columns' => 'ID,Filename,DateAdded',
+            'pageSize' => 250
         ]);
     }
 

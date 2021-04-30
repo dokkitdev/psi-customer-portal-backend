@@ -32,6 +32,7 @@ use App\Http\Controllers\SettingController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('/users/{id}/resend-invitation', ['uses' => UserController::class . '@resendInvitation']);
     Route::post('/users', ['uses' => UserController::class . '@create']);
     Route::put('/users/{id}', ['uses' => UserController::class . '@update']);
     Route::delete('/users/{id}', ['uses' => UserController::class . '@delete']);
@@ -107,6 +108,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/assets/{id}', ['uses' => AssetController::class . '@get']);
     Route::get('/assets', ['uses' => AssetController::class . '@search']);
+
+    Route::get('/asset-attachments/{id}/download', ['uses' => AssetController::class . '@download']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
