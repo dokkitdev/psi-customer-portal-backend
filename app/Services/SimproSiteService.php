@@ -129,8 +129,11 @@ class SimproSiteService extends BaseService
             $site = $this->simproClient->getSite($companyId, $siteId);
 
             if (!$simproCustomerId) {
-                $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, Arr::get($site, 'Customers.0'));
-                $simproCustomerId = $simproCustomer['id'];
+                $siteCustomer = Arr::first($site['Customers']);
+                if ($siteCustomer) {
+                    $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, $siteCustomer);
+                    $simproCustomerId = $simproCustomer['id'];
+                }
             }
 
             $simproSite = $this->createOrUpdate($site, $simproCustomerId);
@@ -139,7 +142,9 @@ class SimproSiteService extends BaseService
 
             $this->siteContactService->syncBySite($companyId, $siteId, $simproSite['id']);
 
-            $this->createGroupSimproSites($simproCustomerId, $simproSite['id']);
+            if ($simproCustomerId) {
+                $this->createGroupSimproSites($simproCustomerId, $simproSite['id']);
+            }
         }
 
         return $simproSite;
