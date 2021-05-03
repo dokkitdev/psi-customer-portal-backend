@@ -62,8 +62,8 @@ class AssetLogService extends EntityService
                     'data' => [
                         'reference' => [
                             'companyID' => 0,
-                            'assetID' => $assetLog['asset_id']
                         ],
+                        'description' => "{$assetLog['asset_id']}"
                     ]
                 ]);
 

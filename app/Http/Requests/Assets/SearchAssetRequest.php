@@ -13,6 +13,7 @@ class SearchAssetRequest extends Request
             'simpro_customer_id' => 'integer',
             'simpro_site_id' => 'integer',
             'parent_id' => 'integer',
+            'parent_asset_id' => 'integer',
             'type' => 'string',
             'archived' => 'boolean',
             'last_test_date' => 'date',
@@ -30,7 +31,7 @@ class SearchAssetRequest extends Request
             'order_by' => 'string',
             'desc' => 'boolean',
             'with' => 'array',
-            'with.*' => 'string|in:simpro_site,simpro_customer,asset_custom_fields,asset_attachments,asset_test_records,asset_test_records.job,asset_test_records.asset_test_record_readings',
+            'with.*' => 'string|in:simpro_site,simpro_site.simpro_customer,asset_custom_fields,asset_attachments,asset_test_records,asset_test_records.job,asset_test_records.asset_test_record_readings,parent',
         ];
     }
 }

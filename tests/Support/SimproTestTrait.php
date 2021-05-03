@@ -107,6 +107,14 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockGetAssetServiceLevels()
+    {
+        $this->mockHttpRequestService([
+            $this->getAssetsServiceLevels('get_assets_service_levels_response_success.json'),
+            $this->getAssetsServiceLevels('get_assets_service_levels_empty_response_success.json'),
+        ]);
+    }
+
     protected function getAsset()
     {
         return [
@@ -642,6 +650,25 @@ trait SimproTestTrait
             ],
             'response' => [
                 'fixture' => 'get_asset_attachment_file_response_success.json'
+            ]
+        ];
+    }
+
+    protected function getAssetsServiceLevels($fixture)
+    {
+        return [
+            'type' => 'get',
+            'arguments' => [
+                $this->equalTo('https://pfsgroup.simprosuite.com/api/v1.0/companies/0/setup/assets/serviceLevels/'),
+                $this->equalTo(null),
+                $this->equalTo([
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => 'Bearer token',
+                ])
+            ],
+            'response' => [
+                'fixture' => $fixture
             ]
         ];
     }

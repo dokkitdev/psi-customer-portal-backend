@@ -106,6 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/invoices', ['uses' => InvoiceController::class . '@search']);
 
+    Route::get('/assets/service-levels', ['uses' => AssetController::class . '@getServiceLevels']);
     Route::get('/assets/{id}', ['uses' => AssetController::class . '@get']);
     Route::get('/assets', ['uses' => AssetController::class . '@search']);
 

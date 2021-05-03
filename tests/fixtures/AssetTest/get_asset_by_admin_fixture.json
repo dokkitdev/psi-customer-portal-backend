@@ -1,7 +1,6 @@
 {
     "id": 9,
     "asset_id": 9,
-    "simpro_customer_id": 2,
     "simpro_site_id": 4,
     "type": "Parent",
     "parent_id": null,

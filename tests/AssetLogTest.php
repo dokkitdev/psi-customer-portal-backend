@@ -42,8 +42,7 @@ class AssetLogTest extends TestCase
         $this->assertEqualsFixture('asset_log_create_or_update_event_fixture.json', $assetlogs);
 
         $assets = Asset::orderBy('id')->with([
-            'simpro_site',
-            'simpro_customer',
+            'simpro_site.simpro_customer',
             'asset_custom_fields',
             'asset_attachments',
             'asset_test_records.job',

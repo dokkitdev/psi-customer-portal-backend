@@ -82,7 +82,7 @@ class AssetTest extends TestCase
 
     public function testGetNoPermission()
     {
-        $response = $this->actingAs($this->user)->json('get', '/assets/9');
+        $response = $this->actingAs($this->user)->json('get', '/assets/6');
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
     }
@@ -131,8 +131,9 @@ class AssetTest extends TestCase
                     'query' => 'Name',
                     'type' => 'Child',
                     'parent_id' => 1,
+                    'parent_asset_id' => 1,
                     'archived' => false,
-                    'simpro_customer_id' => 3,
+                    'simpro_customer_id' => 1,
                     'simpro_site_id' => 1,
                     'last_test_date' => '2016-10-20',
                     'next_service_date' => '2016-10-20',
@@ -194,6 +195,24 @@ class AssetTest extends TestCase
     public function testDownloadAssetAttachmentNoAuth()
     {
         $response = $this->json('get', '/asset-attachments/1/download');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function testGetAssetServiceLevels()
+    {
+        $this->mockGetAssetServiceLevels();
+
+        $response = $this->actingAs($this->user)->json('get', '/assets/service-levels');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_asset_service_levels_fixture.json', $response->json());
+    }
+
+    public function testGetAssetServiceLevelsNoAuth()
+    {
+        $response = $this->json('get', '/assets/service-levels');
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }

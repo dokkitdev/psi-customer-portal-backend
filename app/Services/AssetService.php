@@ -16,7 +16,6 @@ class AssetService extends BaseService
 {
     protected SimproApiClient $simproClient;
     protected SimproSiteService $simproSiteService;
-    protected SimproCustomerService $simproCustomerService;
     protected AssetCustomFieldService $assetCustomFieldService;
     protected AssetAttachmentService $assetAttachmentService;
     protected AssetTestRecordService $assetTestRecordService;
@@ -29,7 +28,6 @@ class AssetService extends BaseService
 
         $this->simproClient = app(SimproApiClient::class);
         $this->simproSiteService = app(SimproSiteService::class);
-        $this->simproCustomerService = app(SimproCustomerService::class);
         $this->assetCustomFieldService = app(AssetCustomFieldService::class);
         $this->assetAttachmentService = app(AssetAttachmentService::class);
         $this->assetTestRecordService = app(AssetTestRecordService::class);
@@ -46,9 +44,10 @@ class AssetService extends BaseService
         return $this->repository
             ->searchQuery($filters)
             ->filterByIntQuery('asset_id')
-            ->filterBy('simpro_customer_id')
+            ->filterBy('simpro_site.simpro_customer_id')
             ->filterBy('simpro_site_id')
             ->filterByIntQuery('parent_id')
+            ->filterByIntQuery('parent.asset_id', 'parent_asset_id')
             ->filterBy('type')
             ->filterBy('archived')
             ->filterByQuery(['name'])
@@ -68,7 +67,7 @@ class AssetService extends BaseService
     public function updateOrCreateBySimpro($webhook)
     {
         $companyId = $webhook['data']['reference']['companyID'];
-        $assetId = $webhook['data']['reference']['assetID'];
+        $assetId = $this->getAssetId($webhook);
 
         $assetFromSimpro = $this->simproClient->getAsset($companyId, $assetId);
 
@@ -78,7 +77,7 @@ class AssetService extends BaseService
 
         $serviceLevels = $this->simproClient->getAssetServiceLevels($companyId, $siteId, $assetId);
 
-        $asset = $this->createOrUpdate($assetFromSimpro, $simproSite['id'], $simproSite['simpro_customer_id'], Arr::get($serviceLevels, '0.ServiceDate'));
+        $asset = $this->createOrUpdate($assetFromSimpro, $simproSite['id'], Arr::get($serviceLevels, '0.ServiceDate'));
 
         $this->assetCustomFieldService->syncByAsset($assetFromSimpro, $asset['id']);
 
@@ -91,20 +90,19 @@ class AssetService extends BaseService
 
     public function deleteBySimpro($webhook)
     {
-        $assetId = $webhook['data']['reference']['assetID'];
+        $assetId = $this->getAssetId($webhook);
 
         return $this->repository->delete([
             'asset_id' => $assetId,
         ]);
     }
 
-    protected function createOrUpdate($asset, $simproSiteId, $simproCustomerId, $serviceDate)
+    protected function createOrUpdate($asset, $simproSiteId, $serviceDate)
     {
         return $this->repository->updateOrCreate([
             'asset_id' => $asset['ID'],
         ], [
             'simpro_site_id' => $simproSiteId,
-            'simpro_customer_id' => $simproCustomerId,
             'name' => Arr::get($asset, 'AssetType.Name'),
             'type' => $asset['ParentID'] ? Asset::TYPE_CHILD : Asset::TYPE_PARENT,
             'parent_id' => $asset['ParentID'],
@@ -114,5 +112,12 @@ class AssetService extends BaseService
             'service_level_name' => Arr::get($asset, 'LastTest.ServiceLevel.Name'),
             'archived' => $asset['Archived']
         ]);
+    }
+
+    protected function getAssetId($webhook)
+    {
+        preg_match('/(\d+)/', $webhook['data']['description'], $matches);
+
+        return $matches[0];
     }
 }
