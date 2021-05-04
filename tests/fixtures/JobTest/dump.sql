@@ -53,7 +53,8 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (6, 105, 2, 1, null, 'Archived', null, null),
   (7, 106, 3, 1, null, 'Archived', null, null),
   (8, 107, 4, 3, '2016-10-20', 'Complete', null, null),
-  (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);                                                                                                        ;
+  (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1),
+  (10, 209000, 4, 2, '2016-10-20', 'Progress', null, 1);                                                                                                        ;
 
 INSERT INTO schedules(id, job_id, schedule_id, name, date, start_time, end_time) VALUES
   (1, 1, 100, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
@@ -69,3 +70,9 @@ INSERT INTO job_work_orders(id, job_id, section_id, cost_center_id, work_order_i
 
 INSERT INTO invoices(id, job_id, invoice_id, date_issued, status, total, date_paid) VALUES
   (1, 1, 1, null, null, null, null);
+
+INSERT INTO assets(id, asset_id, simpro_site_id, type, parent_id, name, last_test_date, next_service_date, last_test_result, service_level_name, archived) VALUES
+  (1, 1, 1, 'Parent', null, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Monthly', false);
+
+INSERT INTO asset_test_records(id, asset_id, job_id, name, test_date, notes, result) VALUES
+  (1, 1, 10, 'name', '2016-10-20', 'Some notes...', 'Result...');

@@ -53,6 +53,6 @@ class Asset extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Asset::class);
+        return $this->belongsTo(Asset::class, 'parent_id', 'asset_id');
     }
 }

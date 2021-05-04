@@ -52,9 +52,9 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);
 
 INSERT INTO assets(id, asset_id, simpro_site_id, type, parent_id, name, last_test_date, next_service_date, last_test_result, service_level_name, archived) VALUES
-  (1, 1, 1, 'Child', 1, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false),
-  (2, 2, 1, 'Parent', null, 'Name 2', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false),
-  (3, 3, 1, 'Parent', null, 'Name 3', null, null, 'Test result...', 'Service level...', true),
+  (1, 1, 1, 'Child', 2, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Monthly', false),
+  (2, 2, 1, 'Parent', null, 'Name 2', '2016-10-20', '2016-10-20', 'Test result...', 'Monthly', false),
+  (3, 3, 1, 'Parent', null, 'Name 3', null, null, 'Test result...', 'Six Monthly', true),
   (4, 4, 1, 'Child', 1, 'Name 4', null, null, null, null, false),
   (5, 5, 1, 'Child', 1, 'Name 5', null, null, null, null, false),
   (6, 6, 2, 'Child', 2, 'Name 6', null, null, null, null, false),
