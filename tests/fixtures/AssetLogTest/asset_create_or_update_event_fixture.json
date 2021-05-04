@@ -2,7 +2,6 @@
     {
         "id": 1,
         "asset_id": 1,
-        "simpro_customer_id": 3,
         "simpro_site_id": 1,
         "type": "Child",
         "parent_id": 1,
@@ -25,15 +24,15 @@
             "simpro_customer_id": 1,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 3,
-            "customer_id": 100,
-            "name": "For delete",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 1,
+                "customer_id": 1773,
+                "name": "18 Hyde Park Gardens Freehold Ltd",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [
             {
@@ -157,7 +156,6 @@
     {
         "id": 2,
         "asset_id": 2,
-        "simpro_customer_id": 3,
         "simpro_site_id": 1,
         "type": "Parent",
         "parent_id": null,
@@ -180,15 +178,15 @@
             "simpro_customer_id": 1,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 3,
-            "customer_id": 100,
-            "name": "For delete",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 1,
+                "customer_id": 1773,
+                "name": "18 Hyde Park Gardens Freehold Ltd",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [
             {
@@ -256,7 +254,6 @@
     {
         "id": 3,
         "asset_id": 3,
-        "simpro_customer_id": 3,
         "simpro_site_id": 1,
         "type": "Parent",
         "parent_id": null,
@@ -279,15 +276,15 @@
             "simpro_customer_id": 1,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 3,
-            "customer_id": 100,
-            "name": "For delete",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 1,
+                "customer_id": 1773,
+                "name": "18 Hyde Park Gardens Freehold Ltd",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [
             {
@@ -355,7 +352,6 @@
     {
         "id": 4,
         "asset_id": 4,
-        "simpro_customer_id": 3,
         "simpro_site_id": 1,
         "type": "Child",
         "parent_id": 1,
@@ -378,15 +374,15 @@
             "simpro_customer_id": 1,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 3,
-            "customer_id": 100,
-            "name": "For delete",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 1,
+                "customer_id": 1773,
+                "name": "18 Hyde Park Gardens Freehold Ltd",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [],
         "asset_attachments": [],
@@ -395,7 +391,6 @@
     {
         "id": 5,
         "asset_id": 5,
-        "simpro_customer_id": 3,
         "simpro_site_id": 1,
         "type": "Child",
         "parent_id": 1,
@@ -418,15 +413,15 @@
             "simpro_customer_id": 1,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 3,
-            "customer_id": 100,
-            "name": "For delete",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 1,
+                "customer_id": 1773,
+                "name": "18 Hyde Park Gardens Freehold Ltd",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [],
         "asset_attachments": [],
@@ -435,7 +430,6 @@
     {
         "id": 6,
         "asset_id": 6,
-        "simpro_customer_id": 1,
         "simpro_site_id": 2,
         "type": "Child",
         "parent_id": 2,
@@ -458,15 +452,15 @@
             "simpro_customer_id": 2,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 1,
-            "customer_id": 1773,
-            "name": "18 Hyde Park Gardens Freehold Ltd",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 2,
+                "customer_id": 6,
+                "name": "Old name",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [],
         "asset_attachments": [],
@@ -475,7 +469,6 @@
     {
         "id": 7,
         "asset_id": 7,
-        "simpro_customer_id": 1,
         "simpro_site_id": 3,
         "type": "Child",
         "parent_id": 2,
@@ -498,15 +491,15 @@
             "simpro_customer_id": 3,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 1,
-            "customer_id": 1773,
-            "name": "18 Hyde Park Gardens Freehold Ltd",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 3,
+                "customer_id": 100,
+                "name": "For delete",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [],
         "asset_attachments": [],
@@ -515,7 +508,6 @@
     {
         "id": 8,
         "asset_id": 8,
-        "simpro_customer_id": 3,
         "simpro_site_id": 4,
         "type": "Parent",
         "parent_id": null,
@@ -538,15 +530,15 @@
             "simpro_customer_id": 3,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 3,
-            "customer_id": 100,
-            "name": "For delete",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 3,
+                "customer_id": 100,
+                "name": "For delete",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [],
         "asset_attachments": [],
@@ -555,7 +547,6 @@
     {
         "id": 9,
         "asset_id": 9,
-        "simpro_customer_id": 2,
         "simpro_site_id": 4,
         "type": "Parent",
         "parent_id": null,
@@ -578,15 +569,15 @@
             "simpro_customer_id": 3,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 2,
-            "customer_id": 6,
-            "name": "Old name",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 3,
+                "customer_id": 100,
+                "name": "For delete",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [],
         "asset_attachments": [],
@@ -595,7 +586,6 @@
     {
         "id": 10,
         "asset_id": 10,
-        "simpro_customer_id": 2,
         "simpro_site_id": 4,
         "type": "Parent",
         "parent_id": null,
@@ -618,15 +608,15 @@
             "simpro_customer_id": 3,
             "city": null,
             "country": null,
-            "county": null
-        },
-        "simpro_customer": {
-            "id": 2,
-            "customer_id": 6,
-            "name": "Old name",
-            "type": "companies",
-            "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "county": null,
+            "simpro_customer": {
+                "id": 3,
+                "customer_id": 100,
+                "name": "For delete",
+                "type": "companies",
+                "created_at": "2016-10-20T10:05:00.000000Z",
+                "updated_at": "2016-10-20T10:05:00.000000Z"
+            }
         },
         "asset_custom_fields": [],
         "asset_attachments": [],
@@ -635,7 +625,6 @@
     {
         "id": 11,
         "asset_id": 10000,
-        "simpro_customer_id": 4,
         "simpro_site_id": 5,
         "type": "Parent",
         "parent_id": null,
@@ -658,15 +647,15 @@
             "simpro_customer_id": 4,
             "city": "London",
             "country": "",
-            "county": ""
-        },
-        "simpro_customer": {
-            "id": 4,
-            "customer_id": 1474,
-            "name": "United Facilities Management Ltd",
-            "type": "companies",
-            "created_at": "2018-11-11T11:11:11.000000Z",
-            "updated_at": "2018-11-11T11:11:11.000000Z"
+            "county": "",
+            "simpro_customer": {
+                "id": 4,
+                "customer_id": 1474,
+                "name": "United Facilities Management Ltd",
+                "type": "companies",
+                "created_at": "2018-11-11T11:11:11.000000Z",
+                "updated_at": "2018-11-11T11:11:11.000000Z"
+            }
         },
         "asset_custom_fields": [
             {

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Assets\GetAssetRequest;
+use App\Http\Requests\Assets\GetAssetServiceLevelsRequest;
 use App\Http\Requests\Assets\SearchAssetRequest;
 use App\Http\Requests\Assets\DownloadAssetAttachmentRequest;
 use App\Services\AssetAttachmentService;
 use App\Services\AssetService;
+use App\Services\SimproService;
 use Illuminate\Support\Facades\Storage;
 
 class AssetController extends Controller
@@ -30,6 +32,13 @@ class AssetController extends Controller
     public function search(SearchAssetRequest $request, AssetService $service)
     {
         $result = $service->search($request->onlyValidated());
+
+        return response()->json($result);
+    }
+
+    public function getServiceLevels(GetAssetServiceLevelsRequest $request, SimproService $service)
+    {
+        $result = $service->getAssetServiceLevels();
 
         return response()->json($result);
     }

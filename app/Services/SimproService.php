@@ -78,4 +78,16 @@ class SimproService
 
         return $businessGroups;
     }
+
+    public function getAssetServiceLevels()
+    {
+        $assetServiceLevelPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/setup/assets/serviceLevels/");
+
+        $serviceLevels = [];
+        foreach ($assetServiceLevelPages as $assetServiceLevelPage) {
+            $serviceLevels = array_merge($serviceLevels, $assetServiceLevelPage);
+        }
+
+        return $serviceLevels;
+    }
 }
