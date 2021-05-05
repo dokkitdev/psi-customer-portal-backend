@@ -19,7 +19,8 @@ INSERT INTO job_logs(id, job_id, handle_status, handle_result) VALUES
   (1, 209000, 'new', null);
 
 INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stage, recent_schedule_id) VALUES
-  (1, 100, 1, 1, '2016-10-20', 'Progress', 1);                                                                                                        ;
+  (1, 100, 1, 1, '2016-10-20', 'Progress', 1),
+  (2, 209000, 1, 1, '2016-10-20', 'Progress', 1);                                                                                                        ;
 
 INSERT INTO schedules(id, job_id, schedule_id, name, date, start_time, end_time) VALUES
   (1, 1, 100, 'Name', '2016-10-20 11:05:00', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
@@ -32,4 +33,10 @@ INSERT INTO job_attachments(id, job_id, attachment_id, name) VALUES
 
 INSERT INTO job_work_orders(id, job_id, section_id, cost_center_id, work_order_id, name, description, date) VALUES
   (1, 1, 0, 0, 0, 'Test', 'Test', '2020-10-06');
+
+INSERT INTO assets(id, asset_id, simpro_site_id, type, parent_id, name, last_test_date, next_service_date, last_test_result, service_level_name, archived) VALUES
+  (1, 1, 1, 'Parent', null, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Monthly', false);
+
+INSERT INTO asset_test_records(id, asset_id, job_id, name, test_date, notes, result) VALUES
+  (1, 1, 2, 'name', '2016-10-20', 'Some notes...', 'Result...');
 

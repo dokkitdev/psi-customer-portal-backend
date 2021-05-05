@@ -587,6 +587,16 @@ trait SimproTestTrait
             $this->getJobInvoices('get_invoices_response_success.json'),
             $this->getCustomerInvoice(),
             $this->getJobInvoices('get_invoices_empty_response_success.json'),
+            $this->getAsset(),
+            $this->getSite(),
+            $this->getSiteContacts(),
+            $this->getAssetServiceLevels(),
+            $this->getAssetAttachments('get_asset_attachments_response_success.json'),
+            $this->getAssetAttachments('get_asset_attachments_empty_response_success.json'),
+            $this->getAssetTestHistories(),
+            $this->getJob(),
+            $this->getJob(),
+            $this->getJob(),
         ]);
     }
 

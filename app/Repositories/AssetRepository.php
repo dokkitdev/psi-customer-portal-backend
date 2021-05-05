@@ -32,13 +32,4 @@ class AssetRepository extends BaseRepository
 
         return $this;
     }
-
-    public function filterByServiceLevelName()
-    {
-        if (Arr::has($this->filter, 'service_level_name_query')) {
-            $this->query->where($this->getQuerySearchCallbackWithValue('service_level_name', $this->filter['service_level_name_query']));
-        }
-
-        return $this;
-    }
 }

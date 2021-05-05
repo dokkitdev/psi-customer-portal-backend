@@ -130,15 +130,14 @@ class AssetTest extends TestCase
                     'desc' => false,
                     'query' => 'Name',
                     'type' => 'Child',
-                    'parent_id' => 1,
-                    'parent_asset_id' => 1,
+                    'parent_id' => 2,
                     'archived' => false,
                     'simpro_customer_id' => 1,
                     'simpro_site_id' => 1,
                     'last_test_date' => '2016-10-20',
                     'next_service_date' => '2016-10-20',
                     'last_test_result_query' => 'Test result',
-                    'service_level_name_query' => 'Service level',
+                    'service_level_names' => ['Monthly'],
                     'asset_id' => 1
                 ],
                 'result' => 'search_assets_complex.json'

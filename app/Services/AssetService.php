@@ -37,19 +37,20 @@ class AssetService extends BaseService
     {
         $authUser = $this->getAuthUser();
 
-        if ($authUser['role_id'] === Role::USER) {
+        if ($authUser && ($authUser['role_id'] === Role::USER)) {
             $filters['site_has_user'] = $authUser['id'];
         }
 
         return $this->repository
             ->searchQuery($filters)
             ->filterByIntQuery('asset_id')
+            ->filterBy('asset_test_records.job_id')
             ->filterBy('simpro_site.simpro_customer_id')
             ->filterBy('simpro_site_id')
             ->filterByIntQuery('parent_id')
-            ->filterByIntQuery('parent.asset_id', 'parent_asset_id')
             ->filterBy('type')
             ->filterBy('archived')
+            ->filterByList('service_level_name', 'service_level_names')
             ->filterByQuery(['name'])
             ->filterBy('last_test_date')
             ->filterFrom('last_test_date', false, 'last_test_date_from')
@@ -58,7 +59,6 @@ class AssetService extends BaseService
             ->filterFrom('next_service_date', false, 'next_service_date_from')
             ->filterTo('next_service_date', false, 'next_service_date_to')
             ->filterByLastTestResult()
-            ->filterByServiceLevelName()
             ->filterByUserGroups()
             ->with()
             ->getSearchResults();
@@ -69,6 +69,29 @@ class AssetService extends BaseService
         $companyId = $webhook['data']['reference']['companyID'];
         $assetId = $this->getAssetId($webhook);
 
+        return $this->createOrUpdateAsset($companyId, $assetId);
+    }
+
+    public function updateByJob($companyId, $jobId)
+    {
+        $assets = $this->search(['job_id' => $jobId]);
+
+        foreach ($assets['data'] as $asset) {
+            $this->createOrUpdateAsset($companyId, $asset['asset_id']);
+        }
+    }
+
+    public function deleteBySimpro($webhook)
+    {
+        $assetId = $this->getAssetId($webhook);
+
+        return $this->repository->delete([
+            'asset_id' => $assetId,
+        ]);
+    }
+
+    protected function createOrUpdateAsset($companyId, $assetId)
+    {
         $assetFromSimpro = $this->simproClient->getAsset($companyId, $assetId);
 
         $siteId = $assetFromSimpro['Site']['ID'];
@@ -86,15 +109,6 @@ class AssetService extends BaseService
         $this->assetTestRecordService->syncByAsset($companyId, $siteId, $assetId, $asset['id']);
 
         return $asset;
-    }
-
-    public function deleteBySimpro($webhook)
-    {
-        $assetId = $this->getAssetId($webhook);
-
-        return $this->repository->delete([
-            'asset_id' => $assetId,
-        ]);
     }
 
     protected function createOrUpdate($asset, $simproSiteId, $serviceDate)
