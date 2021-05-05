@@ -337,7 +337,7 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseMissing('users', [
+        $this->assertDatabaseHas('users', [
             'id' => 1,
             'set_password_hash' => 'some_token',
             'set_password_hash_created_at' => Carbon::now()
