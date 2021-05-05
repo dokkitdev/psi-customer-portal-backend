@@ -68,7 +68,9 @@ class UserService extends BaseService
             'set_password_hash_created_at' => Carbon::now()
         ];
 
-        $user = $this->repository->update($id, $data);
+        $user = $this->repository
+            ->force()
+            ->update($id, $data);
 
         $this->sendInvitationEmail($user['email'], $data['set_password_hash']);
     }
