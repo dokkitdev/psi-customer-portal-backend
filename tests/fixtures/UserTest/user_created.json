@@ -9,5 +9,6 @@
     "invoice_permission_level": "View",
     "quote_permission_level": "View",
     "is_quote_requests": true,
-    "is_job_requests": true
+    "is_job_requests": true,
+    "new_email": null
 }

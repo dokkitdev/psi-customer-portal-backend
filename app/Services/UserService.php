@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Jobs\SendMailJob;
+use App\Mails\EmailConfirmationMail;
 use App\Mails\ForgotPasswordMail;
 use App\Mails\InvitationMail;
 use App\Models\Role;
@@ -79,12 +80,17 @@ class UserService extends BaseService
     {
         $authUser = $this->getAuthUser();
 
-        if ($authUser['role_id'] !== Role::ADMIN) {
-            $data = Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']);
+        if (!$authUser || ($authUser['role_id'] !== Role::ADMIN)) {
+            $data = Arr::only($data, ['password', 'email', 'name']);
         }
 
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
+        }
+
+        if (!empty($data['email'])) {
+            $data['new_email'] = $data['email'];
+            $data = Arr::except($data, 'email');
         }
 
         $user = DB::transaction(function () use ($where, $data) {
@@ -96,6 +102,10 @@ class UserService extends BaseService
 
             return $user;
         });
+
+        if (Arr::has($data, 'new_email')) {
+            $this->updateEmail($data['new_email']);
+        }
 
         return $user;
     }
@@ -127,6 +137,36 @@ class UserService extends BaseService
                 'password' => Hash::make($password),
                 'set_password_hash' => null
             ]);
+    }
+
+    public function confirmEmail($token)
+    {
+        $user = $this->repository->findBy('set_password_hash', $token);
+
+        $this->repository
+            ->force()
+            ->update($user['id'], [
+                'email' => $user['new_email'],
+                'new_email' => null,
+                'set_password_hash' => null
+            ]);
+    }
+
+    protected function updateEmail($email)
+    {
+        $hash = $this->generateHash();
+
+        $this->repository
+            ->force()
+            ->update([
+                'new_email' => $email
+            ], [
+                'set_password_hash' => $hash,
+                'set_password_hash_created_at' => Carbon::now()
+            ]);
+
+        $mail = new EmailConfirmationMail($email, ['hash' => $hash]);
+        dispatch(new SendMailJob($mail));
     }
 
     protected function sendInvitationEmail($email, $hash)

@@ -23,6 +23,7 @@ class UserRepository extends BaseRepository
             ->getQuery()
             ->where('set_password_hash_created_at', '<', Carbon::now()->subHours(config('defaults.password_hash_lifetime')))
             ->update([
+                'new_email' => null,
                 'set_password_hash' => null,
                 'set_password_hash_created_at' => null
             ]);
@@ -32,6 +33,14 @@ class UserRepository extends BaseRepository
     {
         return $this->getQuery()
             ->where(DB::raw('lower(email)'), Str::lower($email))
+            ->first();
+    }
+
+    public function getByEmailOrNewEmailInsensitively($email)
+    {
+        return $this->getQuery()
+            ->where(DB::raw('lower(email)'), Str::lower($email))
+            ->orWhere(DB::raw('lower(new_email)'), Str::lower($email))
             ->first();
     }
 }

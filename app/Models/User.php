@@ -27,7 +27,8 @@ class User extends Authenticatable implements JWTSubject
         'invoice_permission_level',
         'quote_permission_level',
         'is_quote_requests',
-        'is_job_requests'
+        'is_job_requests',
+        'new_email'
     ];
 
     protected $guarded = [

@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\Mails\EmailConfirmationMail;
 use App\Mails\InvitationMail;
 use App\Models\User;
 use App\Tests\Support\AuthTestTrait;
@@ -86,6 +87,8 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
+        $data['new_email'] = $data['email'];
+        $data['email'] = 'user@example.com';
         $this->assertDatabaseHas('users', Arr::except($data, 'group_ids'));
 
         $this->assertDatabaseMissing('group_user', ['user_id' => 2, 'group_id' => 1]);
@@ -100,6 +103,9 @@ class UserTest extends TestCase
         $response = $this->actingAs($this->user)->json('put', '/users/2', $data);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $data['new_email'] = $data['email'];
+        $data['email'] = 'user@example.com';
 
         $this->assertDatabaseMissing('users', Arr::except($data, 'group_ids'));
 
@@ -160,13 +166,26 @@ class UserTest extends TestCase
 
     public function testUpdateProfile()
     {
+        $this->mockUniqueTokenGeneration('some_token');
+
         $data = $this->getJsonFixture('update_user.json');
 
         $response = $this->actingAs($this->admin)->json('put', '/profile', $data);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
+        $data['new_email'] = $data['email'];
+        $data['email'] = 'admin@example.com';
+        $data['set_password_hash'] = 'some_token';
+        $data['set_password_hash_created_at'] = now();
         $this->assertDatabaseHas('users', Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']));
+
+        $this->assertMailEquals(EmailConfirmationMail::class, [
+            [
+                'emails' => $data['new_email'],
+                'fixture' => 'email_confirmation_email.html'
+            ]
+        ]);
     }
 
     public function testUpdateProfileWithPassword()
@@ -268,6 +287,31 @@ class UserTest extends TestCase
         $response = $this->actingAs($this->admin)->json('get', '/users/0');
 
         $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testGetDashboardByAdmin()
+    {
+        $response = $this->actingAs($this->admin)->json('get', '/dashboard');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_dashboard_by_admin.json', $response->json());
+    }
+
+    public function testGetDashboardByUser()
+    {
+        $response = $this->actingAs($this->user)->json('get', '/dashboard');
+
+        $response->assertStatus(Response::HTTP_OK);
+
+        $this->assertEqualsFixture('get_dashboard_by_user.json', $response->json());
+    }
+
+    public function testGetDashboardNoAuth()
+    {
+        $response = $this->json('get', '/dashboard');
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 
     public function getSearchFilters()
