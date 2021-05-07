@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', ['uses' => UserController::class . '@search']);
     Route::get('/profile', ['uses' => UserController::class . '@profile']);
     Route::put('/profile', ['uses' => UserController::class . '@updateProfile']);
+    Route::get('/dashboard', ['uses' => UserController::class . '@dashboard']);
 
     Route::post('/media', ['uses' => MediaController::class . '@create']);
     Route::delete('/media/{id}', ['uses' => MediaController::class . '@delete']);
@@ -119,6 +120,7 @@ Route::group(['middleware' => 'guest'], function () {
         ->middleware(['jwt.refresh']);
     Route::post('/auth/forgot-password', ['uses' => AuthController::class . '@forgotPassword']);
     Route::post('/auth/restore-password', ['uses' => AuthController::class . '@restorePassword']);
+    Route::post('/auth/confirm-email', ['uses' => AuthController::class . '@confirmEmail']);
     Route::post('/auth/token/check', ['uses' => AuthController::class . '@checkRestoreToken']);
 
     Route::get('/status', ['uses' => StatusController::class . '@status']);

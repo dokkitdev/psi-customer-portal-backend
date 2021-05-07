@@ -49,6 +49,7 @@ class InvoiceService extends BaseService
             ->filterBy('date_paid')
             ->filterFrom('date_paid', false, 'date_paid_from')
             ->filterTo('date_paid', false, 'date_paid_to')
+            ->filterByPaid()
             ->filterByUserGroups()
             ->with()
             ->getSearchResults();

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Jobs\SendMailJob;
+use App\Mails\EmailConfirmationMail;
 use App\Mails\ForgotPasswordMail;
 use App\Mails\InvitationMail;
 use App\Models\Role;
@@ -79,16 +80,25 @@ class UserService extends BaseService
     {
         $authUser = $this->getAuthUser();
 
-        if ($authUser['role_id'] !== Role::ADMIN) {
-            $data = Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']);
+        if (!$authUser || ($authUser['role_id'] !== Role::ADMIN)) {
+            $data = Arr::only($data, ['password', 'email', 'name']);
         }
 
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
 
+        if (!empty($data['email'])) {
+            $data['new_email'] = $data['email'];
+            $data = Arr::except($data, 'email');
+            $data['set_password_hash'] = $this->generateHash();
+            $data['set_password_hash_created_at'] = Carbon::now();
+        }
+
         $user = DB::transaction(function () use ($where, $data) {
-            $user = $this->repository->update($where, $data);
+            $user = $this->repository
+                ->force()
+                ->update($where, $data);
 
             if (Arr::has($data, 'group_ids')) {
                 $user->groups()->sync($data['group_ids']);
@@ -96,6 +106,11 @@ class UserService extends BaseService
 
             return $user;
         });
+
+        if (Arr::has($data, 'new_email')) {
+            $mail = new EmailConfirmationMail($data['new_email'], ['hash' => $data['set_password_hash']]);
+            dispatch(new SendMailJob($mail));
+        }
 
         return $user;
     }
@@ -125,6 +140,19 @@ class UserService extends BaseService
                 'set_password_hash' => $token
             ], [
                 'password' => Hash::make($password),
+                'set_password_hash' => null
+            ]);
+    }
+
+    public function confirmEmail($token)
+    {
+        $user = $this->repository->findBy('set_password_hash', $token);
+
+        $this->repository
+            ->force()
+            ->update($user['id'], [
+                'email' => $user['new_email'],
+                'new_email' => null,
                 'set_password_hash' => null
             ]);
     }

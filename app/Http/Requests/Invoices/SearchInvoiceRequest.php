@@ -15,6 +15,7 @@ class SearchInvoiceRequest extends Request
     public function rules()
     {
         return [
+            'is_paid' => 'boolean',
             'invoice_id' => 'integer',
             'job_id' => 'integer',
             'simpro_job_id' => 'integer',

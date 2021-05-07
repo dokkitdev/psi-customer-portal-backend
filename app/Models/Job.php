@@ -10,9 +10,14 @@ class Job extends Model
 {
     use ModelTrait, SimproPermissionsTrait;
 
+    const PENDING_STAGE = 'Pending';
+    const PROGRESS_STAGE = 'Progress';
+    const COMPLETE_STAGE = 'Complete';
+    const ARCHIVED_STAGE = 'Archived';
+
     const OPEN_STAGES = [
-        'Pending',
-        'Progress'
+        self::PENDING_STAGE,
+        self::PROGRESS_STAGE
     ];
 
     const BUSINESS_GROUPS = [

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\GetDashboardRequest;
 use App\Http\Requests\Users\ResendInvitationRequest;
+use App\Services\SimproService;
 use App\Services\UserService;
 use App\Http\Requests\Users\GetUserRequest;
 use App\Http\Requests\Users\CreateUserRequest;
@@ -45,6 +47,13 @@ class UserController extends Controller
         $service->update($id, $request->onlyValidated());
 
         return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function dashboard(GetDashboardRequest $request, SimproService $service)
+    {
+        $result = $service->getDashboardCounters();
+
+        return response()->json($result);
     }
 
     public function profile(GetUserProfileRequest $request, UserService $service)

@@ -150,6 +150,42 @@ class AuthTest extends TestCase
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
+    public function testConfirmEmail()
+    {
+        $response = $this->json('post', '/auth/confirm-email', [
+            'password' => '123456',
+            'token' => 'good_token1',
+        ]);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseHas('users', [
+            'email' => 'new_admin@example.com',
+            'new_email' => null,
+            'set_password_hash' => null,
+        ]);
+    }
+
+    public function testConfirmEmailWrongPassword()
+    {
+        $response = $this->json('post', '/auth/confirm-email', [
+            'password' => '1234',
+            'token' => 'good_token1',
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    public function testConfirmEmailWrongToken()
+    {
+        $response = $this->json('post', '/auth/confirm-email', [
+            'password' => '123456',
+            'token' => 'incorrect_token',
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
     public function testCheckRestoreToken()
     {
         $response = $this->json('post', '/auth/token/check', [
