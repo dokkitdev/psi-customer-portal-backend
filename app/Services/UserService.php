@@ -91,10 +91,14 @@ class UserService extends BaseService
         if (!empty($data['email'])) {
             $data['new_email'] = $data['email'];
             $data = Arr::except($data, 'email');
+            $data['set_password_hash'] = $this->generateHash();
+            $data['set_password_hash_created_at'] = Carbon::now();
         }
 
         $user = DB::transaction(function () use ($where, $data) {
-            $user = $this->repository->update($where, $data);
+            $user = $this->repository
+                ->force()
+                ->update($where, $data);
 
             if (Arr::has($data, 'group_ids')) {
                 $user->groups()->sync($data['group_ids']);
@@ -104,7 +108,8 @@ class UserService extends BaseService
         });
 
         if (Arr::has($data, 'new_email')) {
-            $this->updateEmail($data['new_email']);
+            $mail = new EmailConfirmationMail($data['new_email'], ['hash' => $data['set_password_hash']]);
+            dispatch(new SendMailJob($mail));
         }
 
         return $user;
@@ -150,23 +155,6 @@ class UserService extends BaseService
                 'new_email' => null,
                 'set_password_hash' => null
             ]);
-    }
-
-    protected function updateEmail($email)
-    {
-        $hash = $this->generateHash();
-
-        $this->repository
-            ->force()
-            ->update([
-                'new_email' => $email
-            ], [
-                'set_password_hash' => $hash,
-                'set_password_hash_created_at' => Carbon::now()
-            ]);
-
-        $mail = new EmailConfirmationMail($email, ['hash' => $hash]);
-        dispatch(new SendMailJob($mail));
     }
 
     protected function sendInvitationEmail($email, $hash)

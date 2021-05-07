@@ -174,15 +174,16 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $data['new_email'] = $data['email'];
-        $data['email'] = 'admin@example.com';
-        $data['set_password_hash'] = 'some_token';
-        $data['set_password_hash_created_at'] = now();
-        $this->assertDatabaseHas('users', Arr::except($data, ['invoice_permission_level', 'quote_permission_level', 'is_quote_requests', 'is_job_requests', 'group_ids']));
+        $this->assertEqualsFixture('update_profile_fixture.json', User::query()->find($this->admin->id)->toArray());
+
+        $this->assertDatabaseHas('users', [
+            'id' => $this->admin->id,
+            'set_password_hash' => 'some_token'
+        ]);
 
         $this->assertMailEquals(EmailConfirmationMail::class, [
             [
-                'emails' => $data['new_email'],
+                'emails' => $data['email'],
                 'fixture' => 'email_confirmation_email.html'
             ]
         ]);
