@@ -12,7 +12,6 @@ class Group extends Model
     protected $fillable = [
         'simpro_customer_id',
         'title',
-        'is_enabled_all_sites'
     ];
 
     protected $hidden = ['pivot'];

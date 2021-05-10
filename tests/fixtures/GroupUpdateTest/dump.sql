@@ -32,6 +32,6 @@ INSERT INTO site_contacts(id, simpro_site_id, contact_id, title, is_primary) VAL
   (1, 1, 1, 'Title', true),
   (2, 2, 2, 'Title', true);
 
-INSERT INTO group_simpro_site(id, group_id, simpro_site_id) VALUES
-  (1, 1, 1),
-  (2, 2, 2);
+INSERT INTO group_simpro_site(id, group_id, simpro_site_id, is_enabled) VALUES
+  (1, 1, 1, true),
+  (2, 2, 2, false);
