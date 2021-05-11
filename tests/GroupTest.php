@@ -83,8 +83,6 @@ class GroupTest extends TestCase
 
     public function testUpdateSameCustomer()
     {
-        $this->data['is_enabled_all_sites'] = false;
-
         $response = $this->actingAs($this->admin)->json('put', '/groups/1', $this->data);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
