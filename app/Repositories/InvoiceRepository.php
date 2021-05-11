@@ -23,17 +23,4 @@ class InvoiceRepository extends BaseRepository
 
         return $this;
     }
-
-    public function filterByPaid()
-    {
-        if (Arr::has($this->filter, 'is_paid')) {
-            if (Arr::get($this->filter, 'is_paid')) {
-                $this->query->whereNotNull('date_paid');
-            } else {
-                $this->query->whereNull('date_paid');
-            }
-        }
-
-        return $this;
-    }
 }

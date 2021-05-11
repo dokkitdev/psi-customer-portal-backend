@@ -10,7 +10,8 @@
             "total": 83.33,
             "date_paid": "2021-03-30",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false
         },
         {
             "id": 2,
@@ -21,7 +22,8 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false
         },
         {
             "id": 3,
@@ -32,7 +34,8 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false
         },
         {
             "id": 4,
@@ -43,7 +46,8 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false
         },
         {
             "id": 5,
@@ -54,7 +58,8 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false
         },
         {
             "id": 8,
@@ -65,7 +70,8 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false
         }
     ],
     "first_page_url": "http:\/\/localhost\/invoices?page=1",
