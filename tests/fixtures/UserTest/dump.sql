@@ -62,14 +62,14 @@ INSERT INTO quotes(id, description, job_id, simpro_customer_id, simpro_site_id, 
   (9, null, 9, 2, 4, 9, null, null, null, null, null, null, null, null, null),
   (10, null, 9, 2, 4, 10, null, null, null, null, 'Pending', null, null, null, null);
 
-INSERT INTO invoices(id, job_id, invoice_id, date_issued, status, total, date_paid) VALUES
-  (1, 1, 1, '2021-01-18', 'Approved', 83.33, '2021-03-30'),
-  (2, 2, 2, null, null, null, null),
-  (3, 3, 3, null, null, null, '2021-03-30'),
-  (4, 4, 4, null, null, null, null),
-  (5, 5, 5, null, null, null, null),
-  (6, 6, 6, null, null, null, '2021-03-30'),
-  (7, 7, 7, null, null, null, null),
-  (8, 8, 8, null, null, null, null),
-  (9, 9, 9, null, null, null, '2021-03-30'),
-  (10, 9, 10, null, null, null, null);
+INSERT INTO invoices(id, job_id, invoice_id, date_issued, status, total, date_paid, is_paid) VALUES
+  (1, 1, 1, '2021-01-18', 'Approved', 83.33, '2021-03-30', true),
+  (2, 2, 2, null, null, null, null, false),
+  (3, 3, 3, null, null, null, '2021-03-30', true),
+  (4, 4, 4, null, null, null, null, false),
+  (5, 5, 5, null, null, null, null, false),
+  (6, 6, 6, null, null, null, '2021-03-30', true),
+  (7, 7, 7, null, null, null, null, false),
+  (8, 8, 8, null, null, null, null, false),
+  (9, 9, 9, null, null, null, '2021-03-30', true),
+  (10, 9, 10, null, null, null, null, false);

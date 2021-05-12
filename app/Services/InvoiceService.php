@@ -49,7 +49,7 @@ class InvoiceService extends BaseService
             ->filterBy('date_paid')
             ->filterFrom('date_paid', false, 'date_paid_from')
             ->filterTo('date_paid', false, 'date_paid_to')
-            ->filterByPaid()
+            ->filterBy('is_paid')
             ->filterByUserGroups()
             ->with()
             ->getSearchResults();
@@ -74,7 +74,8 @@ class InvoiceService extends BaseService
                     'date_issued' => $invoiceFromSimpro['DateIssued'],
                     'status' => $invoiceFromSimpro['Stage'],
                     'total' => Arr::get($invoiceFromSimpro, 'Total.ExTax'),
-                    'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null
+                    'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
+                    'is_paid' => $customerInvoice['IsPaid']
                 ];
                 $invoice = $invoices->firstWhere('invoice_id', $invoiceFromSimproId);
                 if ($invoice) {
@@ -105,7 +106,8 @@ class InvoiceService extends BaseService
             'date_issued' => $customerInvoice['DateIssued'],
             'status' => $customerInvoice['Stage'],
             'total' => Arr::get($customerInvoice, 'Total.ExTax'),
-            'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null
+            'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
+            'is_paid' => $customerInvoice['IsPaid']
         ]);
     }
 }
