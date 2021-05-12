@@ -41,6 +41,9 @@ INSERT INTO group_simpro_site(id, group_id, simpro_site_id, is_enabled, created_
 INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stage, priority, recent_schedule_id) VALUES
   (1, 209000, 1, 3, '2016-10-20', 'Progress', 'Fire Alarm - Standard 8 Hours', 1);                                                                                                        ;
 
+INSERT INTO job_attachments(id, job_id, attachment_id, name) VALUES
+  (1, 1, 'Test', 'Invoice_No_103987_16-03-2021_0731.pdf');
+
 INSERT INTO invoices(id, job_id, invoice_id, date_issued, status, total, date_paid) VALUES
   (1, 1, 1, '2021-01-18', 'Approved', 83.33, '2021-03-30');
 

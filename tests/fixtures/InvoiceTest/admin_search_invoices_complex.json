@@ -12,6 +12,7 @@
             "created_at": null,
             "updated_at": null,
             "is_paid": false,
+            "job_attachment_id": null,
             "job_simpro_site_id": 1
         }
     ],

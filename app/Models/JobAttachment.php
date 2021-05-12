@@ -13,6 +13,7 @@ class JobAttachment extends Model
         'job_id',
         'attachment_id',
         'name',
+        'date_added'
     ];
 
     protected $hidden = ['pivot'];

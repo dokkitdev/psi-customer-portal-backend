@@ -79,6 +79,8 @@ trait SimproTestTrait
             $this->getCustomer(),
             $this->getSite(),
             $this->getSiteContacts(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
             $this->getQuoteNote(),
             $this->getQuoteNoteAttachments()
         ]);
@@ -96,7 +98,11 @@ trait SimproTestTrait
             $this->getAssetAttachments('get_asset_attachments_empty_response_success.json'),
             $this->getAssetTestHistories(),
             $this->getJob(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
             $this->getJob(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
         ]);
     }
 
@@ -595,8 +601,14 @@ trait SimproTestTrait
             $this->getAssetAttachments('get_asset_attachments_empty_response_success.json'),
             $this->getAssetTestHistories(),
             $this->getJob(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
             $this->getJob(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
             $this->getJob(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
+            $this->getJobAttachments('get_job_attachments_empty_response_success.json'),
         ]);
     }
 
