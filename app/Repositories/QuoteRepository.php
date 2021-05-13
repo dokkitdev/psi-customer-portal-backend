@@ -32,4 +32,13 @@ class QuoteRepository extends BaseRepository
 
         return $this;
     }
+
+    public function filterByName()
+    {
+        if (Arr::has($this->filter, 'name_query')) {
+            $this->query->where($this->getQuerySearchCallbackWithValue('name', $this->filter['name_query']));
+        }
+
+        return $this;
+    }
 }

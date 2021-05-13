@@ -171,8 +171,10 @@ class QuoteTest extends TestCase
                     'date_expiry' => '2021-05-05',
                     'note_query' => 'note',
                     'query' => 'Desc',
+                    'name_query' => 'Name',
                     'simpro_job_id' => 100,
-                    'quote_id' => 52648
+                    'quote_id' => 52648,
+                    'business_groups' => ['Maintenance']
                 ],
                 'result' => 'search_quotes_complex.json'
             ],
@@ -276,7 +278,7 @@ class QuoteTest extends TestCase
 
     public function testDeclineQuote()
     {
-        $this->mockPostQuoteNote();
+        $this->mockDeclineQuote();
 
         $response = $this->actingAs($this->user)->json('put', '/quotes/3/decline', [
             'reason' => 'Some reason...'
@@ -290,7 +292,7 @@ class QuoteTest extends TestCase
 
     public function testDeclineQuoteByAdmin()
     {
-        $this->mockPostQuoteNote();
+        $this->mockDeclineQuote();
 
         $response = $this->actingAs($this->admin)->json('put', '/quotes/6/decline', [
             'reason' => 'Some reason...'
@@ -332,7 +334,7 @@ class QuoteTest extends TestCase
 
     public function testReRequestQuote()
     {
-        $this->mockPostQuoteNote();
+        $this->mockReRequestQuote();
 
         $response = $this->actingAs($this->user)->json('put', '/quotes/2/re-request', [
             'reason' => 'Some reason...'
@@ -346,7 +348,7 @@ class QuoteTest extends TestCase
 
     public function testReRequestQuoteByAdmin()
     {
-        $this->mockPostQuoteNote();
+        $this->mockReRequestQuote();
 
         $response = $this->actingAs($this->admin)->json('put', '/quotes/7/re-request', [
             'reason' => 'Some reason...'

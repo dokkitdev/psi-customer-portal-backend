@@ -32,6 +32,22 @@ trait SimproTestTrait
         ]);
     }
 
+    protected function mockDeclineQuote()
+    {
+        $this->mockHttpRequestService([
+            $this->postQuoteNoteRequest(),
+            $this->patchQuoteRequest()
+        ]);
+    }
+
+    protected function mockReRequestQuote()
+    {
+        $this->mockHttpRequestService([
+            $this->postQuoteNoteRequest(),
+            $this->patchQuoteRequest()
+        ]);
+    }
+
     protected function postQuoteNoteRequest()
     {
         return [

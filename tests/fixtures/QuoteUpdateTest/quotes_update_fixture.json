@@ -17,7 +17,9 @@
         "attachment_id": "1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g",
         "attachment_name": "PFS Group Quote No 52648.pdf",
         "created_at": null,
-        "updated_at": "2018-11-11T11:11:11.000000Z"
+        "updated_at": "2018-11-11T11:11:11.000000Z",
+        "name": null,
+        "business_group": null
     },
     {
         "id": 2,
@@ -37,6 +39,8 @@
         "attachment_id": "1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g",
         "attachment_name": "PFS Group Quote No 52648.pdf",
         "created_at": null,
-        "updated_at": "2018-11-11T11:11:11.000000Z"
+        "updated_at": "2018-11-11T11:11:11.000000Z",
+        "name": null,
+        "business_group": null
     }
 ]

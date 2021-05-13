@@ -40,7 +40,7 @@ class JobAttachmentService extends EntityService
                     'job_id' => $jobId,
                     'attachment_id' => $attachmentFromSimproId,
                     'name' => $attachmentFromSimpro['Filename'],
-                    'date_added' => $attachmentFromSimpro['DateAdded'],
+                    'date_added' => empty($attachmentFromSimpro['DateAdded']) ? null : $attachmentFromSimpro['DateAdded'],
                 ];
                 $attachment = $jobAttachments->firstWhere('attachment_id', $attachmentFromSimproId);
                 if ($attachment) {
