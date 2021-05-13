@@ -39,7 +39,7 @@ class SearchInvoiceRequest extends Request
             'order_by' => 'string',
             'desc' => 'boolean',
             'with' => 'array',
-            'with.*' => 'string|in:job,job.simpro_site,job.simpro_customer',
+            'with.*' => 'string|in:job,job.simpro_site,job.simpro_customer,job_attachment',
         ];
     }
 }

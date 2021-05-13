@@ -11,7 +11,8 @@
             "date_paid": "2021-03-30",
             "created_at": null,
             "updated_at": null,
-            "is_paid": false
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 2,
@@ -23,7 +24,8 @@
             "date_paid": null,
             "created_at": null,
             "updated_at": null,
-            "is_paid": false
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 3,
@@ -35,7 +37,8 @@
             "date_paid": null,
             "created_at": null,
             "updated_at": null,
-            "is_paid": false
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 4,
@@ -47,7 +50,8 @@
             "date_paid": null,
             "created_at": null,
             "updated_at": null,
-            "is_paid": false
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 5,
@@ -59,7 +63,8 @@
             "date_paid": null,
             "created_at": null,
             "updated_at": null,
-            "is_paid": false
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 8,
@@ -71,7 +76,8 @@
             "date_paid": null,
             "created_at": null,
             "updated_at": null,
-            "is_paid": false
+            "is_paid": false,
+            "job_attachment_id": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/invoices?page=1",

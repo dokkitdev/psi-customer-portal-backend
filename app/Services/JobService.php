@@ -148,7 +148,11 @@ class JobService extends BaseService
 
         $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $jobFromSimpro['Site']['ID'], $simproCustomer['id']);
 
-        return $this->createOrUpdate($jobFromSimpro, $simproCustomer['id'], $simproSite['id']);
+        $job = $this->createOrUpdate($jobFromSimpro, $simproCustomer['id'], $simproSite['id']);
+
+        $this->jobAttachmentService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
+
+        return $job;
     }
 
     protected function createOrUpdate($jobFromSimpro, $simproCustomerId, $simproSiteId)
