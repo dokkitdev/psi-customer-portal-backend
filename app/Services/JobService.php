@@ -190,7 +190,7 @@ class JobService extends BaseService
         }, []);
     }
 
-    protected function matchBusinessGroup($costCenterName)
+    public function matchBusinessGroup($costCenterName)
     {
         foreach (Job::BUSINESS_GROUPS as $businessGroup) {
             $businessGroupName = ($businessGroup === 'Reactives') ? 'Reactive' : $businessGroup;

@@ -9,7 +9,7 @@
             "quote_id": 52648,
             "date_issued": "2021-04-05",
             "status": null,
-            "stage": "Approved",
+            "stage": null,
             "description": "Description...",
             "cost_center_name": "Cost center",
             "value": 25.5,
@@ -19,7 +19,9 @@
             "attachment_id": "1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g",
             "attachment_name": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "name": "Name",
+            "business_group": "Maintenance"
         },
         {
             "id": 2,
@@ -29,17 +31,19 @@
             "quote_id": 52820,
             "date_issued": null,
             "status": "Declined",
-            "stage": null,
+            "stage": "Sent",
             "description": null,
             "cost_center_name": null,
             "value": null,
-            "date_expiry": null,
+            "date_expiry": "2021-05-05",
             "note_id": null,
             "note": null,
             "attachment_id": null,
             "attachment_name": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "name": null,
+            "business_group": "Maintenance"
         }
     ],
     "first_page_url": "http:\/\/localhost\/quotes?page=1",
