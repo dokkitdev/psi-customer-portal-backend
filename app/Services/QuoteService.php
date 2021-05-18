@@ -222,7 +222,7 @@ class QuoteService extends BaseService
         $attachment = $this->findMostRecentFile($attachments, ['quote no', 'quote_no']);
 
         if (!$attachment) {
-            $attachment = $this->findMostRecentFile($attachments, ['maintenance quotation', 'maintenance_quotation']);
+            $attachment = $this->findMostRecentFile($attachments, ['maintenance quotation', 'maintenance_quotation'], true);
         }
 
         return [$note, $attachment];
@@ -315,12 +315,12 @@ class QuoteService extends BaseService
         return collect($customFields)->firstWhere('CustomField.ID', $customFieldId);
     }
 
-    protected function findMostRecentFile($attachments, $needles)
+    protected function findMostRecentFile($attachments, $needles, $contains = false)
     {
-        return collect($attachments)->sortByDesc('DateAdded')->first(function ($attachment) use ($needles) {
+        return collect($attachments)->sortByDesc('DateAdded')->first(function ($attachment) use ($needles, $contains) {
             $lowerFilename = Str::lower($attachment['Filename']);
 
-            return Str::contains($lowerFilename, $needles);
+            return $contains ? Str::contains($lowerFilename, $needles) : Str::startsWith($lowerFilename, $needles);
         });
     }
 }
