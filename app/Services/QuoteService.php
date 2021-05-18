@@ -320,11 +320,7 @@ class QuoteService extends BaseService
         return collect($attachments)->sortByDesc('DateAdded')->first(function ($attachment) use ($needles, $contains) {
             $lowerFilename = Str::lower($attachment['Filename']);
 
-            if ($contains) {
-                return Str::contains($lowerFilename, $needles);
-            }
-
-            return Str::startsWith($lowerFilename, $needles);
+            return $contains ? Str::contains($lowerFilename, $needles) : Str::startsWith($lowerFilename, $needles);
         });
     }
 }
