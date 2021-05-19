@@ -261,13 +261,9 @@ class QuoteService extends BaseService
 
     protected function createOrUpdate($quoteFromSimpro, $simproSiteId, $simproCustomerId, $jobId, $note, $attachment)
     {
-        $dateExpiry = null;
-        $customField = $this->findCustomFieldById(Arr::get($quoteFromSimpro, 'CustomFields', []));
-        if (Arr::get($customField, 'Value')) {
-            $dateExpiry = Carbon::createFromFormat('Y-m-d', $customField['Value'])
-                ->addDays($quoteFromSimpro['ValidityDays'])
-                ->format('Y-m-d');
-        }
+        $dateExpiry = Carbon::createFromFormat('Y-m-d', $quoteFromSimpro['DateIssued'])
+            ->addDays($quoteFromSimpro['ValidityDays'])
+            ->format('Y-m-d');
 
         return $this->repository->updateOrCreate([
             'quote_id' => $quoteFromSimpro['ID'],
@@ -306,13 +302,6 @@ class QuoteService extends BaseService
         preg_match('/(\d+)/', $webhook['data']['description'], $matches);
 
         return $matches[0];
-    }
-
-    protected function findCustomFieldById($customFields)
-    {
-        $customFieldId = Arr::get($this->settingService->get('quote_date_created'), 'ID');
-
-        return collect($customFields)->firstWhere('CustomField.ID', $customFieldId);
     }
 
     protected function findMostRecentFile($attachments, $needles, $contains = false)
