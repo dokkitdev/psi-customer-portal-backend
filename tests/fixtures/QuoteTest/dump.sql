@@ -71,13 +71,13 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
 
 INSERT INTO quotes(id, name, description, job_id, simpro_customer_id, simpro_site_id, quote_id, note, note_id, attachment_id, stage, status, cost_center_name, value, date_issued, date_expiry, business_group) VALUES
   (1, 'Name', 'Description...', 1, 3, 1, 52648, 'Note...', 17256, '1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g', null, null, 'Cost center', 25.50, '2021-04-05', '2021-05-05', 'Maintenance'),
-  (2, null, null, 2, 3, 1, 52820, null, null, null, 'Sent', 'Declined', null, null, null, '2021-05-05', 'Maintenance'),
-  (3, null, null, 3, 3, 1, 3, null, null, null, 'Sent', 'Pending', null, null, null, '2021-05-05', 'Maintenance'),
-  (4, null, null, 4, 3, 1, 4, null, null, null, 'Sent', null, null, null, null, '2021-05-05', 'Maintenance'),
-  (5, null, null, 5, 3, 1, 5, null, null, null, 'Sent', null, null, null, null, '2021-05-05', null),
-  (6, null, null, 6, 1, 2, 6, null, null, null, 'Sent', 'New', null, null, null, '2021-05-05', null),
-  (7, null, null, 7, 1, 3, 7, null, null, null, 'Sent', 'Declined', null, null, null, '2021-05-05', null),
-  (8, null, null, 8, 3, 4, 8, null, null, null, 'Sent', null, null, null, null, '2021-05-05', null),
-  (9, null, null, 9, 2, 4, 9, null, null, null, 'Sent', null, null, null, null, '2021-05-05', null),
-  (10, null, null, 9, 2, 4, 10, null, null, null, 'Sent', null, null, null, null, '2021-05-05', null);
+  (2, null, null, 2, 3, 1, 52820, null, null, null, 'Approved', 'Declined', null, null, null, '2021-05-05', 'Maintenance'),
+  (3, null, null, 3, 3, 1, 3, null, null, null, 'Approved', 'Pending', null, null, null, '2021-05-05', 'Maintenance'),
+  (4, null, null, 4, 3, 1, 4, null, null, null, 'Approved', null, null, null, null, '2021-05-05', 'Maintenance'),
+  (5, null, null, 5, 3, 1, 5, null, null, null, 'Approved', null, null, null, null, '2021-05-05', null),
+  (6, null, null, 6, 1, 2, 6, null, null, null, 'Approved', 'New', null, null, null, '2021-05-05', null),
+  (7, null, null, 7, 1, 3, 7, null, null, null, 'Approved', 'Declined', null, null, null, '2021-05-05', null),
+  (8, null, null, 8, 3, 4, 8, null, null, null, 'Approved', null, null, null, null, '2021-05-05', null),
+  (9, null, null, 9, 2, 4, 9, null, null, null, 'Approved', null, null, null, null, '2021-05-05', null),
+  (10, null, null, 9, 2, 4, 10, null, null, null, 'Approved', null, null, null, null, '2021-05-05', null);
 
