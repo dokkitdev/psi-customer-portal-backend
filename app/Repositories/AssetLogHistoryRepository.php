@@ -2,17 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Models\AssetLogDate;
+use App\Models\AssetLogHistory;
 use RonasIT\Support\Repositories\BaseRepository;
 
 /**
- * @property AssetLogDate $model
+ * @property AssetLogHistory $model
 */
-class AssetLogDateRepository extends BaseRepository
+class AssetLogHistoryRepository extends BaseRepository
 {
     public function __construct()
     {
-        $this->setModel(AssetLogDate::class);
+        $this->setModel(AssetLogHistory::class);
     }
 
     public function last()

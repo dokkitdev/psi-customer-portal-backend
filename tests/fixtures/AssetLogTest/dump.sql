@@ -90,6 +90,6 @@ INSERT INTO asset_test_record_readings(id, asset_test_record_id, name, value) VA
 INSERT INTO asset_logs(id, asset_id) VALUES
   (1, 440);
 
-INSERT INTO asset_log_dates(id, last_date) VALUES
-  (1, '2021-05-20 07:00:00'),
-  (2, '2021-05-20 08:00:00');
+INSERT INTO asset_log_histories(id, last_date, count) VALUES
+  (1, '2021-05-20 07:00:00', 100),
+  (2, '2021-05-20 08:00:00', 100);

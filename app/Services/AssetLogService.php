@@ -18,7 +18,7 @@ class AssetLogService extends EntityService
     protected SimproApiClient $simproClient;
     protected AssetService $assetService;
     protected $companyId;
-    protected AssetLogDateService $assetLogDateService;
+    protected AssetLogHistoryService $assetLogHistoryService;
 
     public function __construct()
     {
@@ -26,7 +26,7 @@ class AssetLogService extends EntityService
 
         $this->simproClient = app(SimproApiClient::class);
         $this->assetService = app(AssetService::class);
-        $this->assetLogDateService = app(AssetLogDateService::class);
+        $this->assetLogHistoryService = app(AssetLogHistoryService::class);
 
         $this->companyId = config('services.simpro.company_id');
     }
@@ -43,30 +43,35 @@ class AssetLogService extends EntityService
     {
         $startDate = now()->subMinutes(30);
 
-        $assetLogDate = $this->assetLogDateService->last();
+        $assetLogHistory = $this->assetLogHistoryService->last();
 
         $headers = [];
 
-        if ($assetLogDate) {
-            $headers['If-Modified-Since'] = Carbon::createFromFormat('Y-m-d H:i:s', $assetLogDate['last_date'])->toRfc7231String();
+        if ($assetLogHistory) {
+            $headers['If-Modified-Since'] = Carbon::createFromFormat('Y-m-d H:i:s', $assetLogHistory['last_date'])->toRfc7231String();
         }
 
         $assetsPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customerAssets/", [], null, 250, $headers);
 
+        $assetsCount = 0;
+
         foreach ($assetsPages as $assetsPage) {
+            $assetsCount += count($assetsPage);
+
             foreach ($assetsPage as $assetFromSimpro) {
                 $this->repository->updateOrCreate(['asset_id' => $assetFromSimpro['ID']], []);
             }
         }
 
-        if ($assetLogDate) {
-            $this->assetLogDateService->update($assetLogDate['id'], [
-                'last_date' => $startDate
-            ]);
+        $data = [
+            'last_date' => $startDate,
+            'count' => $assetsCount
+        ];
+
+        if ($assetLogHistory) {
+            $this->assetLogHistoryService->update($assetLogHistory['id'], $data);
         } else {
-            $this->assetLogDateService->create([
-                'last_date' => $startDate
-            ]);
+            $this->assetLogHistoryService->create($data);
         }
     }
 
