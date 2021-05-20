@@ -72,12 +72,5 @@ class JobLogTest extends TestCase
 
         $invoices = Invoice::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('invoices_create_or_update_event_fixture.json', $invoices);
-
-        $assets = Asset::with([
-            'asset_custom_fields',
-            'asset_attachments',
-            'asset_test_records.asset_test_record_readings'
-        ])->orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('assets_create_or_update_event_fixture.json', $assets);
     }
 }

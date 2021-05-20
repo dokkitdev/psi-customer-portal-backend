@@ -129,8 +129,6 @@ class JobService extends BaseService
 
         $this->invoiceService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
 
-        app(AssetService::class)->updateByJob($companyId, $job['id']);
-
         return $job;
     }
 

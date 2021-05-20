@@ -72,15 +72,6 @@ class AssetService extends BaseService
         return $this->createOrUpdateAsset($companyId, $assetId);
     }
 
-    public function updateByJob($companyId, $jobId)
-    {
-        $assets = $this->search(['job_id' => $jobId]);
-
-        foreach ($assets['data'] as $asset) {
-            $this->createOrUpdateAsset($companyId, $asset['asset_id']);
-        }
-    }
-
     public function deleteBySimpro($webhook)
     {
         $assetId = $this->getAssetId($webhook);

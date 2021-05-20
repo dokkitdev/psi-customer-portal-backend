@@ -5,6 +5,7 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Models\AssetLog;
 use App\Repositories\AssetLogRepository;
+use Carbon\Carbon;
 use Exception;
 use RonasIT\Support\Services\EntityService;
 
@@ -17,6 +18,7 @@ class AssetLogService extends EntityService
     protected SimproApiClient $simproClient;
     protected AssetService $assetService;
     protected $companyId;
+    protected AssetLogDateService $assetLogDateService;
 
     public function __construct()
     {
@@ -24,6 +26,7 @@ class AssetLogService extends EntityService
 
         $this->simproClient = app(SimproApiClient::class);
         $this->assetService = app(AssetService::class);
+        $this->assetLogDateService = app(AssetLogDateService::class);
 
         $this->companyId = config('services.simpro.company_id');
     }
@@ -38,12 +41,32 @@ class AssetLogService extends EntityService
 
     public function saveAllAssets()
     {
-        $assetsPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customerAssets/");
+        $startDate = now()->subMinutes(30);
+
+        $assetLogDate = $this->assetLogDateService->last();
+
+        $headers = [];
+
+        if ($assetLogDate) {
+            $headers['If-Modified-Since'] = Carbon::createFromFormat('Y-m-d H:i:s', $assetLogDate['last_date'])->toRfc7231String();
+        }
+
+        $assetsPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customerAssets/", [], null, 250, $headers);
 
         foreach ($assetsPages as $assetsPage) {
             foreach ($assetsPage as $assetFromSimpro) {
                 $this->repository->updateOrCreate(['asset_id' => $assetFromSimpro['ID']], []);
             }
+        }
+
+        if ($assetLogDate) {
+            $this->assetLogDateService->update($assetLogDate['id'], [
+                'last_date' => $startDate
+            ]);
+        } else {
+            $this->assetLogDateService->create([
+                'last_date' => $startDate
+            ]);
         }
     }
 

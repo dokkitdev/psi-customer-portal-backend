@@ -224,7 +224,7 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
-    public function getAsGenerator($url, $additionalFilters = [], $callback = null, $pageSize = 250)
+    public function getAsGenerator($url, $additionalFilters = [], $callback = null, $pageSize = 250, $headers = [])
     {
         $page = 1;
         $url = $this->getUrl($url);
@@ -233,7 +233,7 @@ class SimproApiClient
             $result = $this->makeRequest('get', $url, array_merge($additionalFilters, [
                 'page' => $page,
                 'pageSize' => $pageSize,
-            ]));
+            ]), array_merge($this->getHeaders(), $headers));
 
             $page++;
 
