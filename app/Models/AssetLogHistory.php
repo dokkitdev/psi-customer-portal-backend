@@ -10,8 +10,8 @@ class AssetLogHistory extends Model
     use ModelTrait;
 
     protected $fillable = [
-        'last_date',
-        'count'
+        'assets_pulled_at',
+        'assets_count'
     ];
 
     protected $hidden = ['pivot'];

@@ -10,8 +10,8 @@ class AssetLogHistoriesCreate extends Migration
     {
         Schema::create('asset_log_histories', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('last_date');
-            $table->integer('count');
+            $table->dateTime('assets_pulled_at');
+            $table->integer('assets_count');
             $table->timestamps();
         });
     }

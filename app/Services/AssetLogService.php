@@ -48,7 +48,7 @@ class AssetLogService extends EntityService
         $headers = [];
 
         if ($assetLogHistory) {
-            $headers['If-Modified-Since'] = Carbon::createFromFormat('Y-m-d H:i:s', $assetLogHistory['last_date'])->toRfc7231String();
+            $headers['If-Modified-Since'] = Carbon::createFromFormat('Y-m-d H:i:s', $assetLogHistory['assets_pulled_at'])->toRfc7231String();
         }
 
         $assetsPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customerAssets/", [], null, 250, $headers);
@@ -63,16 +63,10 @@ class AssetLogService extends EntityService
             }
         }
 
-        $data = [
-            'last_date' => $startDate,
-            'count' => $assetsCount
-        ];
-
-        if ($assetLogHistory) {
-            $this->assetLogHistoryService->update($assetLogHistory['id'], $data);
-        } else {
-            $this->assetLogHistoryService->create($data);
-        }
+        $this->assetLogHistoryService->create([
+            'assets_pulled_at' => $startDate,
+            'assets_count' => $assetsCount
+        ]);
     }
 
     public function handleLog()
