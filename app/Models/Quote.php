@@ -18,7 +18,7 @@ class Quote extends Model
         self::TYPE_REMEDIAL_INSTALLATION_QUOTE
     ];
 
-    const STAGE_SENT = 'Sent';
+    const STAGE_SENT = 'Approved';
 
     const STATUS_NEW = 'New';
     const STATUS_PENDING = 'Pending';
