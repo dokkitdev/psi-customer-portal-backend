@@ -5,6 +5,7 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Models\AssetLog;
 use App\Repositories\AssetLogRepository;
+use Carbon\Carbon;
 use Exception;
 use RonasIT\Support\Services\EntityService;
 
@@ -17,6 +18,7 @@ class AssetLogService extends EntityService
     protected SimproApiClient $simproClient;
     protected AssetService $assetService;
     protected $companyId;
+    protected AssetLogHistoryService $assetLogHistoryService;
 
     public function __construct()
     {
@@ -24,6 +26,7 @@ class AssetLogService extends EntityService
 
         $this->simproClient = app(SimproApiClient::class);
         $this->assetService = app(AssetService::class);
+        $this->assetLogHistoryService = app(AssetLogHistoryService::class);
 
         $this->companyId = config('services.simpro.company_id');
     }
@@ -38,13 +41,32 @@ class AssetLogService extends EntityService
 
     public function saveAllAssets()
     {
-        $assetsPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customerAssets/");
+        $startDate = now()->subMinutes(30);
+
+        $assetLogHistory = $this->assetLogHistoryService->last();
+
+        $headers = [];
+
+        if ($assetLogHistory) {
+            $headers['If-Modified-Since'] = Carbon::createFromFormat('Y-m-d H:i:s', $assetLogHistory['assets_pulled_at'])->toRfc7231String();
+        }
+
+        $assetsPages = $this->simproClient->getAsGenerator("companies/{$this->companyId}/customerAssets/", [], null, 250, $headers);
+
+        $assetsCount = 0;
 
         foreach ($assetsPages as $assetsPage) {
+            $assetsCount += count($assetsPage);
+
             foreach ($assetsPage as $assetFromSimpro) {
                 $this->repository->updateOrCreate(['asset_id' => $assetFromSimpro['ID']], []);
             }
         }
+
+        $this->assetLogHistoryService->create([
+            'assets_pulled_at' => $startDate,
+            'assets_count' => $assetsCount
+        ]);
     }
 
     public function handleLog()

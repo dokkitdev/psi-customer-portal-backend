@@ -30,6 +30,11 @@ class AssetLogTest extends TestCase
 
         $assetLogs = AssetLog::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('asset_logs_fixture.json', $assetLogs);
+
+        $this->assertDatabaseHas('asset_log_histories', [
+            'assets_pulled_at' => '2018-11-11 10:41:11.000000',
+            'assets_count' => 250
+        ]);
     }
 
     public function testHandleAssetsLogCommand()
