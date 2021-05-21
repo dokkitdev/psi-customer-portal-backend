@@ -119,7 +119,6 @@ class QuoteService extends BaseService
         $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
             'Stage' => Quote::STAGE_SENT,
             'Status' => 34,
-            'CustomerStage' => Quote::STATUS_ACCEPTED
         ]);
 
         return $this->repository->update($where, [
@@ -141,7 +140,6 @@ class QuoteService extends BaseService
 
         $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
             'Status' => 92,
-            'CustomerStage' => Quote::STATUS_DECLINED
         ]);
 
         return $this->repository->update($where, [
