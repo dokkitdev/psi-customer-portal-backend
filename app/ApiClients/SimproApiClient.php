@@ -16,7 +16,7 @@ class SimproApiClient
 
     public function getCustomerInvoice($companyId, $invoiceId)
     {
-        $url = $this->getUrl("companies/{$companyId}/customerInvoices/$invoiceId");
+        $url = $this->getUrl("companies/{$companyId}/customerInvoices/{$invoiceId}");
 
         return $this->makeRequest('get', $url);
     }
@@ -40,6 +40,15 @@ class SimproApiClient
         ]);
     }
 
+    public function downloadAssetAttachment($companyId, $siteId, $assetId, $attachmentId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/attachments/files/{$attachmentId}");
+
+        return $this->makeRequest('get', $url, [
+            'display' => 'Base64'
+        ]);
+    }
+
     public function downloadJobAttachment($companyId, $jobId, $attachmentId)
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}/view/");
@@ -49,14 +58,14 @@ class SimproApiClient
 
     public function postJobAttachment($companyId, $jobId, $data)
     {
-        $url = $this->getUrl("companies/{$companyId}/jobs/$jobId/attachments/files/");
+        $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/");
 
         return $this->makeRequest('post', $url, $data);
     }
 
     public function postQuoteAttachment($companyId, $quoteId, $data)
     {
-        $url = $this->getUrl("companies/{$companyId}/quotes/$quoteId/attachments/files/");
+        $url = $this->getUrl("companies/{$companyId}/quotes/{$quoteId}/attachments/files/");
 
         return $this->makeRequest('post', $url, $data);
     }
@@ -67,6 +76,31 @@ class SimproApiClient
 
         return $this->makeRequest('get', $url, [
             'display' => 'all'
+        ]);
+    }
+
+    public function getAsset($companyId, $assetId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/customerAssets/{$assetId}");
+
+        return $this->makeRequest('get', $url);
+    }
+
+    public function getAssetServiceLevels($companyId, $siteId, $assetId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/serviceLevels/");
+
+        return $this->makeRequest('get', $url, [
+            'pageSize' => 250
+        ]);
+    }
+
+    public function getAssetTestHistories($companyId, $siteId, $assetId)
+    {
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/assets/{$assetId}/testHistory/");
+
+        return $this->makeRequest('get', $url, [
+            'pageSize' => 250
         ]);
     }
 
@@ -83,6 +117,7 @@ class SimproApiClient
 
         return $this->makeRequest('get', $url, [
             'columns' => 'ID,Filename,DateAdded',
+            'pageSize' => 250
         ]);
     }
 
@@ -140,21 +175,21 @@ class SimproApiClient
 
     public function patchSiteContact($companyId, $siteId, $contactId, $data)
     {
-        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/$contactId");
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/{$contactId}");
 
         return $this->makeRequest('patch', $url, $data);
     }
 
     public function deleteSiteContact($companyId, $siteId, $contactId)
     {
-        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/$contactId");
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/contacts/{$contactId}");
 
         return $this->makeRequest('delete', $url);
     }
 
     public function patchSiteCustomField($companyId, $siteId, $customFieldId, $data)
     {
-        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/customFields/$customFieldId");
+        $url = $this->getUrl("companies/{$companyId}/sites/{$siteId}/customFields/{$customFieldId}");
 
         return $this->makeRequest('patch', $url, $data);
     }
@@ -189,7 +224,7 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
-    public function getAsGenerator($url, $additionalFilters = [], $callback = null, $pageSize = 250)
+    public function getAsGenerator($url, $additionalFilters = [], $callback = null, $pageSize = 250, $headers = [])
     {
         $page = 1;
         $url = $this->getUrl($url);
@@ -198,7 +233,7 @@ class SimproApiClient
             $result = $this->makeRequest('get', $url, array_merge($additionalFilters, [
                 'page' => $page,
                 'pageSize' => $pageSize,
-            ]));
+            ]), array_merge($this->getHeaders(), $headers));
 
             $page++;
 

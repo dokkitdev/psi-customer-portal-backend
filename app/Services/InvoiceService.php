@@ -6,6 +6,7 @@ use App\ApiClients\SimproApiClient;
 use App\Models\Role;
 use App\Repositories\InvoiceRepository;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * @property InvoiceRepository $repository
@@ -14,6 +15,7 @@ use Illuminate\Support\Arr;
 class InvoiceService extends BaseService
 {
     protected SimproApiClient $simproClient;
+    protected JobAttachmentService $jobAttachmentService;
 
     public function __construct()
     {
@@ -22,6 +24,7 @@ class InvoiceService extends BaseService
         $this->setRepository(InvoiceRepository::class);
 
         $this->simproClient = app(SimproApiClient::class);
+        $this->jobAttachmentService = app(JobAttachmentService::class);
     }
 
     public function search($filters)
@@ -49,6 +52,7 @@ class InvoiceService extends BaseService
             ->filterBy('date_paid')
             ->filterFrom('date_paid', false, 'date_paid_from')
             ->filterTo('date_paid', false, 'date_paid_to')
+            ->filterBy('is_paid')
             ->filterByUserGroups()
             ->with()
             ->getSearchResults();
@@ -67,13 +71,16 @@ class InvoiceService extends BaseService
             foreach ($invoicesFromSimproPage as $invoiceFromSimpro) {
                 $invoiceFromSimproId = $invoiceFromSimpro['ID'];
                 $customerInvoice = $this->simproClient->getCustomerInvoice($companyId, $invoiceFromSimproId);
+                $attachment = $this->findMostRecentAttachment($jobId, $invoiceFromSimproId);
                 $data = [
                     'job_id' => $jobId,
                     'invoice_id' => $invoiceFromSimproId,
                     'date_issued' => $invoiceFromSimpro['DateIssued'],
                     'status' => $invoiceFromSimpro['Stage'],
                     'total' => Arr::get($invoiceFromSimpro, 'Total.ExTax'),
-                    'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null
+                    'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
+                    'is_paid' => $customerInvoice['IsPaid'],
+                    'job_attachment_id' => Arr::get($attachment, 'id')
                 ];
                 $invoice = $invoices->firstWhere('invoice_id', $invoiceFromSimproId);
                 if ($invoice) {
@@ -97,6 +104,8 @@ class InvoiceService extends BaseService
 
         $job = app(JobService::class)->getOrCreateBySimpro($companyId, Arr::get($customerInvoice, 'Jobs.0.ID'));
 
+        $attachment = $this->findMostRecentAttachment($job['id'], $invoiceFromSimproId);
+
         return $this->repository->updateOrCreate([
             'job_id' => $job['id'],
             'invoice_id' => $invoiceFromSimproId,
@@ -104,7 +113,22 @@ class InvoiceService extends BaseService
             'date_issued' => $customerInvoice['DateIssued'],
             'status' => $customerInvoice['Stage'],
             'total' => Arr::get($customerInvoice, 'Total.ExTax'),
-            'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null
+            'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
+            'is_paid' => $customerInvoice['IsPaid'],
+            'job_attachment_id' => Arr::get($attachment, 'id')
         ]);
+    }
+
+    protected function findMostRecentAttachment($jobId, $invoiceFromSimproId)
+    {
+        $attachments = $this->jobAttachmentService->get(['job_id' => $jobId]);
+
+        $needles = "invoice_no_{$invoiceFromSimproId}_";
+
+        return collect($attachments)->sortByDesc('date_added')->first(function ($attachment) use ($needles) {
+            $lowerFilename = Str::lower($attachment['name']);
+
+            return Str::contains($lowerFilename, $needles);
+        });
     }
 }

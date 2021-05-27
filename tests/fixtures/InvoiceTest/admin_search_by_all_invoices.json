@@ -10,7 +10,9 @@
             "total": 83.33,
             "date_paid": "2021-03-30",
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 2,
@@ -21,7 +23,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 3,
@@ -32,7 +36,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 4,
@@ -43,7 +49,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 5,
@@ -54,7 +62,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 6,
@@ -65,7 +75,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 7,
@@ -76,7 +88,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 8,
@@ -87,7 +101,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 9,
@@ -98,7 +114,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         },
         {
             "id": 10,
@@ -109,7 +127,9 @@
             "total": null,
             "date_paid": null,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "is_paid": false,
+            "job_attachment_id": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/invoices?page=1",

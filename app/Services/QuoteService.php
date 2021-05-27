@@ -56,6 +56,7 @@ class QuoteService extends BaseService
             ->filterByList('stage', 'stages')
             ->filterByList('status', 'statuses')
             ->filterByList('cost_center_name', 'cost_center_names')
+            ->filterByList('business_group', 'business_groups')
             ->filterBy('value')
             ->filterFrom('value', false, 'value_from')
             ->filterTo('value', false, 'value_to')
@@ -67,6 +68,7 @@ class QuoteService extends BaseService
             ->filterTo('date_expiry', false, 'date_expiry_to')
             ->filterByQuery(['description'])
             ->filterByNote()
+            ->filterByName()
             ->filterByUserGroups()
             ->with()
             ->getSearchResults();
@@ -115,26 +117,58 @@ class QuoteService extends BaseService
         $quote = $this->repository->first($where);
 
         $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
-            'Stage' => Quote::STAGE_APPROVED
+            'Stage' => Quote::STAGE_SENT,
+            'Status' => 34,
         ]);
 
         return $this->repository->update($where, [
-            'stage' => Quote::STAGE_APPROVED
+            'stage' => Quote::STAGE_SENT,
+            'status' => Quote::STATUS_ACCEPTED,
         ]);
     }
 
     public function decline($where, $data)
     {
-        $data['subject'] = 'Decline';
+        $quote = $this->repository->first($where);
 
-        return $this->declineQuote($where, $data, Quote::STATUS_DECLINED);
+        $note = $this->simproClient->postQuoteNote($this->companyId, $quote['quote_id'], [
+            'Subject' => 'Decline',
+            'Note' => Arr::get($data, 'reason'),
+            'FollowUpDate' => null,
+            'AssignTo' => config('defaults.default_employee'),
+        ]);
+
+        $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
+            'Status' => 92,
+        ]);
+
+        return $this->repository->update($where, [
+            'status' => Quote::STATUS_DECLINED,
+            'note_id' => $note['ID'],
+            'note' => $note['Note'],
+        ]);
     }
 
     public function reRequest($where, $data)
     {
-        $data['subject'] = 'Re-request';
+        $quote = $this->repository->first($where);
 
-        return $this->declineQuote($where, $data, Quote::STATUS_PENDING);
+        $note = $this->simproClient->postQuoteNote($this->companyId, $quote['quote_id'], [
+            'Subject' => 'Re-request',
+            'Note' => Arr::get($data, 'reason'),
+            'FollowUpDate' => null,
+            'AssignTo' => config('defaults.default_employee'),
+        ]);
+
+        $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
+            'Status' => 101
+        ]);
+
+        return $this->repository->update($where, [
+            'status' => Quote::STATUS_PENDING,
+            'note_id' => $note['ID'],
+            'note' => $note['Note'],
+        ]);
     }
 
     public function updateOrCreateBySimpro($webhook)
@@ -186,7 +220,7 @@ class QuoteService extends BaseService
         $attachment = $this->findMostRecentFile($attachments, ['quote no', 'quote_no']);
 
         if (!$attachment) {
-            $attachment = $this->findMostRecentFile($attachments, ['maintenance quotation', 'maintenance_quotation']);
+            $attachment = $this->findMostRecentFile($attachments, ['maintenance quotation', 'maintenance_quotation'], true);
         }
 
         return [$note, $attachment];
@@ -225,13 +259,9 @@ class QuoteService extends BaseService
 
     protected function createOrUpdate($quoteFromSimpro, $simproSiteId, $simproCustomerId, $jobId, $note, $attachment)
     {
-        $dateExpiry = null;
-        $customField = $this->findCustomFieldById(Arr::get($quoteFromSimpro, 'CustomFields', []));
-        if (Arr::get($customField, 'Value')) {
-            $dateExpiry = Carbon::createFromFormat('Y-m-d', $customField['Value'])
-                ->addDays($quoteFromSimpro['ValidityDays'])
-                ->format('Y-m-d');
-        }
+        $dateExpiry = Carbon::createFromFormat('Y-m-d', $quoteFromSimpro['DateIssued'])
+            ->addDays($quoteFromSimpro['ValidityDays'])
+            ->format('Y-m-d');
 
         return $this->repository->updateOrCreate([
             'quote_id' => $quoteFromSimpro['ID'],
@@ -240,11 +270,13 @@ class QuoteService extends BaseService
             'simpro_customer_id' => $simproCustomerId,
             'job_id' => $jobId,
             'quote_id' => $quoteFromSimpro['ID'],
+            'name' => $quoteFromSimpro['Name'],
             'date_issued' => $quoteFromSimpro['DateIssued'],
             'status' => $quoteFromSimpro['CustomerStage'],
             'stage' => $quoteFromSimpro['Stage'],
             'description' => $quoteFromSimpro['Description'],
             'cost_center_name' => Arr::get($quoteFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name'),
+            'business_group' => $this->jobService->matchBusinessGroup(Arr::get($quoteFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name')),
             'value' => Arr::get($quoteFromSimpro, 'Total.ExTax'),
             'date_expiry' => $dateExpiry,
             'note_id' => Arr::get($note, 'ID'),
@@ -270,19 +302,12 @@ class QuoteService extends BaseService
         return $matches[0];
     }
 
-    protected function findCustomFieldById($customFields)
+    protected function findMostRecentFile($attachments, $needles, $contains = false)
     {
-        $customFieldId = Arr::get($this->settingService->get('quote_date_created'), 'ID');
-
-        return collect($customFields)->firstWhere('CustomField.ID', $customFieldId);
-    }
-
-    protected function findMostRecentFile($attachments, $needles)
-    {
-        return collect($attachments)->sortByDesc('DateAdded')->first(function ($attachment) use ($needles) {
+        return collect($attachments)->sortByDesc('DateAdded')->first(function ($attachment) use ($needles, $contains) {
             $lowerFilename = Str::lower($attachment['Filename']);
 
-            return Str::contains($lowerFilename, $needles);
+            return $contains ? Str::contains($lowerFilename, $needles) : Str::startsWith($lowerFilename, $needles);
         });
     }
 }

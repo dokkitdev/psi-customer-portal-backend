@@ -103,6 +103,8 @@ class SimproSiteService extends BaseService
             ]
         );
 
+        $isSiteEnabled = $this->groupSimproSiteService->isSiteEnabled($group['id']);
+
         foreach ($sitePages as $sitePage) {
             foreach ($sitePage as $site) {
                 $simproSite = $this->createOrUpdate($site, $simproCustomerId);
@@ -111,12 +113,7 @@ class SimproSiteService extends BaseService
 
                 $this->siteContactService->syncBySite($this->companyId, $site['ID'], $simproSite['id']);
 
-                $this->groupSimproSiteService->firstOrCreate([
-                    'group_id' => $group['id'],
-                    'simpro_site_id' => $simproSite['id']
-                ], [
-                    'is_enabled' => $group['is_enabled_all_sites']
-                ]);
+                $this->getOrCreateGroupSimproSite($group['id'], $simproSite['id'], $isSiteEnabled);
             }
         }
     }
@@ -128,13 +125,23 @@ class SimproSiteService extends BaseService
         if (!$simproSite) {
             $site = $this->simproClient->getSite($companyId, $siteId);
 
+            if (!$simproCustomerId) {
+                $siteCustomer = Arr::first($site['Customers']);
+                if ($siteCustomer) {
+                    $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, $siteCustomer);
+                    $simproCustomerId = $simproCustomer['id'];
+                }
+            }
+
             $simproSite = $this->createOrUpdate($site, $simproCustomerId);
 
             $this->siteCustomFieldService->createOrUpdateBySite($site, $simproSite['id']);
 
             $this->siteContactService->syncBySite($companyId, $siteId, $simproSite['id']);
 
-            $this->createGroupSimproSites($simproCustomerId, $simproSite['id']);
+            if ($simproCustomerId) {
+                $this->createGroupSimproSites($simproCustomerId, $simproSite['id']);
+            }
         }
 
         return $simproSite;
@@ -200,14 +207,20 @@ class SimproSiteService extends BaseService
         $groups = $this->groupService->get(['simpro_customer_id' => $simproCustomerId]);
 
         foreach ($groups as $group) {
-            if (!$this->groupSimproSiteService->exists(['group_id' => $group['id'], 'simpro_site_id' => $simproSiteId])) {
-                $this->groupSimproSiteService->create([
-                    'group_id' => $group['id'],
-                    'simpro_site_id' => $simproSiteId,
-                    'is_enabled' => $group['is_enabled_all_sites']
-                ]);
-            }
+            $isSiteEnabled = $this->groupSimproSiteService->isSiteEnabled($group['id']);
+
+            $this->getOrCreateGroupSimproSite($group['id'], $simproSiteId, $isSiteEnabled);
         }
+    }
+
+    protected function getOrCreateGroupSimproSite($groupId, $simproSiteId, $isEnabled = true)
+    {
+        return $this->groupSimproSiteService->firstOrCreate([
+            'group_id' => $groupId,
+            'simpro_site_id' => $simproSiteId
+        ], [
+            'is_enabled' => $isEnabled
+        ]);
     }
 
     protected function prepareSiteData($data)

@@ -6,17 +6,19 @@
         "simpro_site_id": 1,
         "quote_id": 52820,
         "date_issued": null,
-        "status": "Declined",
+        "status": "Accepted",
         "stage": "Approved",
         "description": null,
         "cost_center_name": null,
         "value": null,
-        "date_expiry": null,
+        "date_expiry": "2021-05-05",
         "note_id": null,
         "note": null,
         "attachment_id": null,
         "attachment_name": null,
         "created_at": null,
-        "updated_at": "2018-11-11T11:11:11.000000Z"
+        "updated_at": "2018-11-11T11:11:11.000000Z",
+        "name": null,
+        "business_group": "Maintenance"
     }
 ]

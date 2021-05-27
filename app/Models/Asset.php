@@ -10,12 +10,14 @@ class Asset extends Model
 {
     use ModelTrait, SimproPermissionsTrait;
 
-    const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_customer.groups.users';
+    const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_site.simpro_customer.groups.users';
     const PERMITTED_SITES_RELATION_PATH = 'simpro_site.group_simpro_sites';
+
+    const TYPE_PARENT = 'Parent';
+    const TYPE_CHILD = 'Child';
 
     protected $fillable = [
         'asset_id',
-        'simpro_customer_id',
         'simpro_site_id',
         'type',
         'parent_id',
@@ -28,11 +30,6 @@ class Asset extends Model
     ];
 
     protected $hidden = ['pivot'];
-
-    public function simpro_customer()
-    {
-        return $this->belongsTo(SimproCustomer::class);
-    }
 
     public function simpro_site()
     {
@@ -52,5 +49,10 @@ class Asset extends Model
     public function asset_test_records()
     {
         return $this->hasMany(AssetTestRecord::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Asset::class, 'parent_id', 'asset_id');
     }
 }

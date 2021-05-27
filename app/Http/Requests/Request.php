@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Models\Role;
+use App\Services\UserService;
 use RonasIT\Support\BaseRequest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class Request extends BaseRequest
 {
@@ -33,5 +35,14 @@ class Request extends BaseRequest
         }
 
         return $entity;
+    }
+
+    public function validateEmailInsensitively($value, $userId = null, $attributeName = 'email')
+    {
+        $user = app(UserService::class)->getByEmailOrNewEmailInsensitively($value);
+
+        if ($user && (($userId === null) || ($user['id'] !== (int) $userId))) {
+            throw new UnprocessableEntityHttpException(__('validation.exceptions.unique', ['attribute' => $attributeName]));
+        }
     }
 }

@@ -32,6 +32,7 @@ use App\Http\Controllers\SettingController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('/users/{id}/resend-invitation', ['uses' => UserController::class . '@resendInvitation']);
     Route::post('/users', ['uses' => UserController::class . '@create']);
     Route::put('/users/{id}', ['uses' => UserController::class . '@update']);
     Route::delete('/users/{id}', ['uses' => UserController::class . '@delete']);
@@ -39,6 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', ['uses' => UserController::class . '@search']);
     Route::get('/profile', ['uses' => UserController::class . '@profile']);
     Route::put('/profile', ['uses' => UserController::class . '@updateProfile']);
+    Route::get('/dashboard', ['uses' => UserController::class . '@dashboard']);
 
     Route::post('/media', ['uses' => MediaController::class . '@create']);
     Route::delete('/media/{id}', ['uses' => MediaController::class . '@delete']);
@@ -105,8 +107,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/invoices', ['uses' => InvoiceController::class . '@search']);
 
+    Route::get('/assets/service-levels', ['uses' => AssetController::class . '@getServiceLevels']);
     Route::get('/assets/{id}', ['uses' => AssetController::class . '@get']);
     Route::get('/assets', ['uses' => AssetController::class . '@search']);
+
+    Route::get('/asset-attachments/{id}/download', ['uses' => AssetController::class . '@download']);
 });
 
 Route::group(['middleware' => 'guest'], function () {
@@ -115,6 +120,7 @@ Route::group(['middleware' => 'guest'], function () {
         ->middleware(['jwt.refresh']);
     Route::post('/auth/forgot-password', ['uses' => AuthController::class . '@forgotPassword']);
     Route::post('/auth/restore-password', ['uses' => AuthController::class . '@restorePassword']);
+    Route::post('/auth/confirm-email', ['uses' => AuthController::class . '@confirmEmail']);
     Route::post('/auth/token/check', ['uses' => AuthController::class . '@checkRestoreToken']);
 
     Route::get('/status', ['uses' => StatusController::class . '@status']);

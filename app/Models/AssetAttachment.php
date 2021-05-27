@@ -16,4 +16,9 @@ class AssetAttachment extends Model
     ];
 
     protected $hidden = ['pivot'];
+
+    public function asset()
+    {
+        return $this->belongsTo(Asset::class);
+    }
 }

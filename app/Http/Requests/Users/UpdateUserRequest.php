@@ -20,7 +20,7 @@ class UpdateUserRequest extends Request
         $quotes = implode(',', config('defaults.quote_permissions'));
 
         return [
-            'email' => "string|email|unique:users,email,{$this->route('id')}",
+            'email' => 'string|email',
             'name' => 'string',
             'group_ids' => 'array|nullable',
             'group_ids.*' => 'integer|exists:groups,id',
@@ -39,6 +39,10 @@ class UpdateUserRequest extends Request
 
         if (!$service->exists($this->route('id'))) {
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'User']));
+        }
+
+        if ($this->has('email')) {
+            $this->validateEmailInsensitively($this->get('email'), $this->route('id'));
         }
     }
 }

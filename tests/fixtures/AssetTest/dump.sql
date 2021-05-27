@@ -6,6 +6,9 @@ INSERT INTO users(id, name, email, password, remember_token, set_password_hash, 
   (1, 'Gerhard Feest', 'fidel.kutch@example.com', '$2y$10$X4receiTrF24bXrEbAiChOZ8TMNPqoXuhuThgynvBdWIHZeu5HzsS', null, null, 1, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 'Alien West', 'alien.west@example.com', 'old_password', null, 'restore_token', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
+INSERT INTO simpro_jobs(id, data, handle_status, handle_result) VALUES
+  (1, '{"ID": "job.created", "build": "pfsgroup.simprosuite.com", "description": "Job #test has been crashed.", "name": "Job", "action": "created", "reference": {"companyID": 0, "jobID": 2406}, "date_triggered": "2019-12-18T11:52:29+00:00"}', 'error', '{}');
+
 INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at) VALUES
   (1, 1773, '18 Hyde Park Gardens Freehold Ltd', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 6, 'Old name', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
@@ -48,17 +51,17 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (8, 107, 4, 3, '2016-10-20', 'Complete', null, null),
   (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);
 
-INSERT INTO assets(id, asset_id, simpro_customer_id, simpro_site_id, type, parent_id, name, last_test_date, next_service_date, last_test_result, service_level_name, archived) VALUES
-  (1, 1, 3, 1, 'Child', 1, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false),
-  (2, 2, 3, 1, 'Parent', null, 'Name 2', '2016-10-20', '2016-10-20', 'Test result...', 'Service level...', false),
-  (3, 3, 3, 1, 'Parent', null, 'Name 3', null, null, 'Test result...', 'Service level...', true),
-  (4, 4, 3, 1, 'Child', 1, 'Name 4', null, null, null, null, false),
-  (5, 5, 3, 1, 'Child', 1, 'Name 5', null, null, null, null, false),
-  (6, 6, 1, 2, 'Child', 2, 'Name 6', null, null, null, null, false),
-  (7, 7, 1, 3, 'Child', 2, 'Name 7', null, null, null, null, false),
-  (8, 8, 3, 4, 'Parent', null, null, null, null, null, null, false),
-  (9, 9, 2, 4, 'Parent', null, null, null, null, null, null, false),
-  (10, 10, 2, 4, 'Parent', null, null, null, null, null, null, false);
+INSERT INTO assets(id, asset_id, simpro_site_id, type, parent_id, name, last_test_date, next_service_date, last_test_result, service_level_name, archived) VALUES
+  (1, 1, 1, 'Child', 2, 'Name 1', '2016-10-20', '2016-10-20', 'Test result...', 'Monthly', false),
+  (2, 2, 1, 'Parent', null, 'Name 2', '2016-10-20', '2016-10-20', 'Test result...', 'Monthly', false),
+  (3, 3, 1, 'Parent', null, 'Name 3', null, null, 'Test result...', 'Six Monthly', true),
+  (4, 4, 1, 'Child', 1, 'Name 4', null, null, null, null, false),
+  (5, 5, 1, 'Child', 1, 'Name 5', null, null, null, null, false),
+  (6, 6, 2, 'Child', 2, 'Name 6', null, null, null, null, false),
+  (7, 7, 3, 'Child', 2, 'Name 7', null, null, null, null, false),
+  (8, 8, 4, 'Parent', null, null, null, null, null, null, false),
+  (9, 9, 4, 'Parent', null, null, null, null, null, null, false),
+  (10, 10, 4, 'Parent', null, null, null, null, null, null, false);
 
 INSERT INTO asset_custom_fields(id, asset_id, custom_field_id, name, value) VALUES
   (1, 1, 1, 'name', 'value'),

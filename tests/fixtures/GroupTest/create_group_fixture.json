@@ -4,7 +4,6 @@
     "title": "Group 6",
     "created_at": "2018-11-11T11:11:11.000000Z",
     "updated_at": "2018-11-11T11:11:11.000000Z",
-    "is_enabled_all_sites": true,
     "group_simpro_sites": [
         {
             "id": 5,

@@ -146,7 +146,11 @@ class JobService extends BaseService
 
         $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $jobFromSimpro['Site']['ID'], $simproCustomer['id']);
 
-        return $this->createOrUpdate($jobFromSimpro, $simproCustomer['id'], $simproSite['id']);
+        $job = $this->createOrUpdate($jobFromSimpro, $simproCustomer['id'], $simproSite['id']);
+
+        $this->jobAttachmentService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
+
+        return $job;
     }
 
     protected function createOrUpdate($jobFromSimpro, $simproCustomerId, $simproSiteId)
@@ -184,7 +188,7 @@ class JobService extends BaseService
         }, []);
     }
 
-    protected function matchBusinessGroup($costCenterName)
+    public function matchBusinessGroup($costCenterName)
     {
         foreach (Job::BUSINESS_GROUPS as $businessGroup) {
             $businessGroupName = ($businessGroup === 'Reactives') ? 'Reactive' : $businessGroup;

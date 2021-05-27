@@ -15,6 +15,7 @@ class SearchInvoiceRequest extends Request
     public function rules()
     {
         return [
+            'is_paid' => 'boolean',
             'invoice_id' => 'integer',
             'job_id' => 'integer',
             'simpro_job_id' => 'integer',
@@ -38,7 +39,7 @@ class SearchInvoiceRequest extends Request
             'order_by' => 'string',
             'desc' => 'boolean',
             'with' => 'array',
-            'with.*' => 'string|in:job,job.simpro_site,job.simpro_customer',
+            'with.*' => 'string|in:job,job.simpro_site,job.simpro_customer,job_attachment',
         ];
     }
 }

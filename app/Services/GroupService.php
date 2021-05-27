@@ -58,12 +58,6 @@ class GroupService extends EntityService
                 }
             }
 
-            if (Arr::has($data, 'is_enabled_all_sites')) {
-                $this->groupSimproSiteService->updateMany(['group_id' => $group['id']], [
-                    'is_enabled' => $data['is_enabled_all_sites']
-                ]);
-            }
-
             return $this->repository->update($where, $data);
         });
     }

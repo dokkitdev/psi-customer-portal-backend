@@ -19,7 +19,9 @@ class Invoice extends Model
         'date_issued',
         'status',
         'total',
-        'date_paid'
+        'date_paid',
+        'is_paid',
+        'job_attachment_id'
     ];
 
     protected $casts = [
@@ -31,5 +33,10 @@ class Invoice extends Model
     public function job()
     {
         return $this->belongsTo(Job::class);
+    }
+
+    public function job_attachment()
+    {
+        return $this->belongsTo(JobAttachment::class);
     }
 }

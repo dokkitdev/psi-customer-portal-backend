@@ -18,11 +18,12 @@ class Quote extends Model
         self::TYPE_REMEDIAL_INSTALLATION_QUOTE
     ];
 
-    const STAGE_APPROVED = 'Approved';
+    const STAGE_SENT = 'Approved';
 
     const STATUS_NEW = 'New';
     const STATUS_PENDING = 'Pending';
     const STATUS_DECLINED = 'Declined';
+    const STATUS_ACCEPTED = 'Accepted';
 
     const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_customer.groups.users';
     const PERMITTED_SITES_RELATION_PATH = 'simpro_site.group_simpro_sites';
@@ -42,7 +43,9 @@ class Quote extends Model
         'note_id',
         'note',
         'attachment_id',
-        'attachment_name'
+        'attachment_name',
+        'name',
+        'business_group'
     ];
 
     protected $casts = [

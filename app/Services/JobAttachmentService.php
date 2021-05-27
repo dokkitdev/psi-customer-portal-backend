@@ -26,7 +26,7 @@ class JobAttachmentService extends EntityService
         $attachmentsFromSimproPages = $this->simproClient->getAsGenerator(
             "companies/{$companyId}/jobs/{$jobIdFromSimpro}/attachments/files/",
             [
-                'columns' => 'ID,Filename,Public',
+                'columns' => 'ID,Filename,Public,DateAdded',
                 'Public' => 'true'
             ]
         );
@@ -40,6 +40,7 @@ class JobAttachmentService extends EntityService
                     'job_id' => $jobId,
                     'attachment_id' => $attachmentFromSimproId,
                     'name' => $attachmentFromSimpro['Filename'],
+                    'date_added' => empty($attachmentFromSimpro['DateAdded']) ? null : $attachmentFromSimpro['DateAdded'],
                 ];
                 $attachment = $jobAttachments->firstWhere('attachment_id', $attachmentFromSimproId);
                 if ($attachment) {

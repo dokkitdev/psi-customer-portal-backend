@@ -12,7 +12,8 @@
             "invoice_permission_level": "No Access",
             "quote_permission_level": "No Access",
             "is_quote_requests": false,
-            "is_job_requests": false
+            "is_job_requests": false,
+            "new_email": "new_admin@example.com"
         },
         {
             "id": 2,
@@ -25,7 +26,8 @@
             "invoice_permission_level": "No Access",
             "quote_permission_level": "No Access",
             "is_quote_requests": false,
-            "is_job_requests": false
+            "is_job_requests": false,
+            "new_email": "new_user@example.com"
         }
     ],
     "first_page_url": "http:\/\/localhost\/users?page=1",

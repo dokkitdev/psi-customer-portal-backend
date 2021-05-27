@@ -15,7 +15,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('sites-log:handle')->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('quotes-log:handle')->everyMinute()->withoutOverlapping()->runInBackground();
         $schedule->command('invoices-log:handle')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('assets-log:handle')->everyMinute()->withoutOverlapping()->runInBackground();
+
         $schedule->command('simpro:handle-jobs')->everyMinute()->withoutOverlapping();
+
+        $schedule->command('simpro:save-assets-to-log')->hourly()->withoutOverlapping()->runInBackground();
+
         $schedule->command('clear:set-password-hash')->hourly();
     }
 

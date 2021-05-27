@@ -20,6 +20,11 @@ class AssetTestRecord extends Model
 
     protected $hidden = ['pivot'];
 
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
+
     public function asset_test_record_readings()
     {
         return $this->hasMany(AssetTestRecordReading::class);

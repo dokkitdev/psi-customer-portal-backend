@@ -15,4 +15,9 @@ class GroupSimproSiteService extends EntityService
     {
         $this->setRepository(GroupSimproSiteRepository::class);
     }
+
+    public function isSiteEnabled($groupId)
+    {
+        return !$this->repository->exists(['group_id' => $groupId, 'is_enabled' => false]);
+    }
 }
