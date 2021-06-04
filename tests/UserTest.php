@@ -343,6 +343,9 @@ class UserTest extends TestCase
             ],
             [
                 'filter' => [
+                    'name_query' => 'Mr Admin',
+                    'email_query' => 'admin@example.com',
+                    'simpro_customer_id' => 1,
                     'query' => 'Admin',
                     'order_by' => 'created_at',
                     'desc' => false

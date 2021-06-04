@@ -31,7 +31,10 @@ class UserService extends BaseService
         return $this->repository
             ->searchQuery($filters)
             ->filterBy('role_id')
+            ->filterBy('groups.simpro_customer_id')
             ->filterByQuery(['name', 'email'])
+            ->filterByQueryWithValue('name', 'name_query')
+            ->filterByQueryWithValue('email', 'email_query')
             ->with()
             ->getSearchResults();
     }

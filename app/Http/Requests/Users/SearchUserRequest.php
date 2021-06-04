@@ -15,6 +15,9 @@ class SearchUserRequest extends Request
     public function rules()
     {
         return [
+            'name_query' => 'string|nullable',
+            'email_query' => 'string|nullable',
+            'simpro_customer_id' => 'integer|nullable',
             'role_id' => 'integer|nullable',
             'page' => 'integer|nullable',
             'per_page' => 'integer|nullable',
