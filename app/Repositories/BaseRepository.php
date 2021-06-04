@@ -112,6 +112,15 @@ class BaseRepository extends Repository
         return $this;
     }
 
+    public function filterByQueryWithValue($field, $filterName)
+    {
+        if (Arr::has($this->filter, $filterName)) {
+            $this->query->where($this->getQuerySearchCallbackWithValue($field, $this->filter[$filterName]));
+        }
+
+        return $this;
+    }
+
     protected function addIntQueryWhere(&$query, $field, $value)
     {
         $this->applyWhereCallback($query, $field, function (&$q, $field) use ($value) {
