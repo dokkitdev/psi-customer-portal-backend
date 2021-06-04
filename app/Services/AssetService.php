@@ -7,6 +7,7 @@ use App\Models\Asset;
 use App\Models\Role;
 use App\Repositories\AssetRepository;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * @property AssetRepository $repository
@@ -84,6 +85,10 @@ class AssetService extends BaseService
     protected function createOrUpdateAsset($companyId, $assetId)
     {
         $assetFromSimpro = $this->simproClient->getAsset($companyId, $assetId);
+
+        if (Str::startsWith(Arr::get($assetFromSimpro, 'AssetType.Name'), 'MAINTENANCE CHARGE')) {
+            return true;
+        }
 
         $siteId = $assetFromSimpro['Site']['ID'];
 
