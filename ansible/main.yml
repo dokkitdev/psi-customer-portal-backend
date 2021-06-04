@@ -23,7 +23,7 @@ cronjob: false
 worker: true
 
 # enable ssl
-ssl: true
+ssl: false
 
 # config for worker in supervisor
 supervisor_programs:
