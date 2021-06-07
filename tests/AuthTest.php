@@ -32,6 +32,10 @@ class AuthTest extends TestCase
 
         $response->assertStatus(Response::HTTP_OK);
 
+        $this->assertDatabaseHas('users', [
+            'last_login' => '2018-11-11 11:11:11'
+        ]);
+
         $this->assertArrayHasKey('token', $response->json());
     }
 

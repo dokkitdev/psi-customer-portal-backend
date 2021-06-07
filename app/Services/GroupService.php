@@ -61,4 +61,11 @@ class GroupService extends EntityService
             return $this->repository->update($where, $data);
         });
     }
+
+    public function enableSites($where, $data)
+    {
+        $this->groupSimproSiteService->updateMany(['group_id' => $where], [
+            'is_enabled' => $data['is_enabled']
+        ]);
+    }
 }

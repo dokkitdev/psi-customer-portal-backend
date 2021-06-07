@@ -141,6 +141,47 @@ class GroupTest extends TestCase
         ]);
     }
 
+    public function testEnableSites()
+    {
+        $response = $this->actingAs($this->admin)->json('put', '/groups/1/enable-sites', [
+            'is_enabled' => false
+        ]);
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseMissing('group_simpro_site', [
+            'group_id' => 1,
+            'is_enabled' => true
+        ]);
+    }
+
+    public function testEnableSitesNotExists()
+    {
+        $response = $this->actingAs($this->admin)->json('put', '/groups/0/enable-sites', [
+            'is_enabled' => false
+        ]);
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+
+    public function testEnableSitesNoPermission()
+    {
+        $response = $this->actingAs($this->user)->json('put', '/groups/1/enable-sites', [
+            'is_enabled' => false
+        ]);
+
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
+    }
+
+    public function testEnableSitesNoAuth()
+    {
+        $response = $this->json('put', '/groups/1/enable-sites', [
+            'is_enabled' => false
+        ]);
+
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
     public function testDelete()
     {
         $response = $this->actingAs($this->admin)->json('delete', '/groups/1');

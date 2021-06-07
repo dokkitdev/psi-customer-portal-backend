@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Groups\CreateGroupRequest;
 use App\Http\Requests\Groups\DeleteGroupRequest;
+use App\Http\Requests\Groups\EnableSitesRequest;
 use App\Http\Requests\Groups\GetGroupRequest;
 use App\Http\Requests\Groups\SearchGroupRequest;
 use App\Http\Requests\Groups\UpdateGroupRequest;
@@ -22,6 +23,13 @@ class GroupController extends Controller
     public function update(UpdateGroupRequest $request, GroupService $service, $id)
     {
         $service->update($id, $request->onlyValidated());
+
+        return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function enableSites(EnableSitesRequest $request, GroupService $service, $id)
+    {
+        $service->enableSites($id, $request->onlyValidated());
 
         return response('', Response::HTTP_NO_CONTENT);
     }
