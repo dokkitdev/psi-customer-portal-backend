@@ -29,7 +29,7 @@ class GroupController extends Controller
 
     public function changeSitesVisibility(ChangeSitesVisibilityRequest $request, GroupService $service, $id)
     {
-        $service->ChangeSitesVisibility($id, $request->onlyValidated());
+        $service->changeSitesVisibility($id, $request->onlyValidated());
 
         return response('', Response::HTTP_NO_CONTENT);
     }
