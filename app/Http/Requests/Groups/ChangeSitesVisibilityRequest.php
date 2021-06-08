@@ -7,7 +7,7 @@ use App\Models\Role;
 use App\Services\GroupService;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class EnableSitesRequest extends Request
+class ChangeSitesVisibilityRequest extends Request
 {
     public function authorize()
     {

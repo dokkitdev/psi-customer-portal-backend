@@ -65,7 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/groups', ['uses' => GroupController::class . '@create']);
     Route::put('/groups/{id}', ['uses' => GroupController::class . '@update']);
-    Route::put('/groups/{id}/enable-sites', ['uses' => GroupController::class . '@enableSites']);
+    Route::put('/groups/{id}/change-sites-visibility', ['uses' => GroupController::class . '@changeSitesVisibility']);
     Route::delete('/groups/{id}', ['uses' => GroupController::class . '@delete']);
     Route::get('/groups/{id}', ['uses' => GroupController::class . '@get']);
     Route::get('/groups', ['uses' => GroupController::class . '@search']);

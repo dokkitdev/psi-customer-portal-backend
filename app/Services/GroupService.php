@@ -62,7 +62,7 @@ class GroupService extends EntityService
         });
     }
 
-    public function enableSites($where, $data)
+    public function ChangeSitesVisibility($where, $data)
     {
         $this->groupSimproSiteService->updateMany(['group_id' => $where], [
             'is_enabled' => $data['is_enabled']

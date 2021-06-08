@@ -143,7 +143,7 @@ class GroupTest extends TestCase
 
     public function testEnableSites()
     {
-        $response = $this->actingAs($this->admin)->json('put', '/groups/1/enable-sites', [
+        $response = $this->actingAs($this->admin)->json('put', '/groups/1/change-sites-visibility', [
             'is_enabled' => false
         ]);
 
@@ -157,7 +157,7 @@ class GroupTest extends TestCase
 
     public function testEnableSitesNotExists()
     {
-        $response = $this->actingAs($this->admin)->json('put', '/groups/0/enable-sites', [
+        $response = $this->actingAs($this->admin)->json('put', '/groups/0/change-sites-visibility', [
             'is_enabled' => false
         ]);
 
@@ -166,7 +166,7 @@ class GroupTest extends TestCase
 
     public function testEnableSitesNoPermission()
     {
-        $response = $this->actingAs($this->user)->json('put', '/groups/1/enable-sites', [
+        $response = $this->actingAs($this->user)->json('put', '/groups/1/change-sites-visibility', [
             'is_enabled' => false
         ]);
 
@@ -175,7 +175,7 @@ class GroupTest extends TestCase
 
     public function testEnableSitesNoAuth()
     {
-        $response = $this->json('put', '/groups/1/enable-sites', [
+        $response = $this->json('put', '/groups/1/change-sites-visibility', [
             'is_enabled' => false
         ]);
 
