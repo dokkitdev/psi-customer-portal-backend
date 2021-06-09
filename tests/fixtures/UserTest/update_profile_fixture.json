@@ -10,5 +10,6 @@
     "quote_permission_level": "No Access",
     "is_quote_requests": false,
     "is_job_requests": false,
-    "new_email": "updateuser@example.com"
+    "new_email": "updateuser@example.com",
+    "last_login": null
 }

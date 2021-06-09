@@ -32,6 +32,8 @@ class AuthController extends Controller
             ], Response::HTTP_UNAUTHORIZED);
         }
 
+        $service->update($user['id'], ['last_login' => now()]);
+
         return response()->json([
             'token' => $token,
             'ttl' => config('jwt.ttl'),

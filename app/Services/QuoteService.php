@@ -161,7 +161,7 @@ class QuoteService extends BaseService
         ]);
 
         $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
-            'Status' => 101
+            'Status' => 135
         ]);
 
         return $this->repository->update($where, [

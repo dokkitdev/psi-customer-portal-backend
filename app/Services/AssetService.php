@@ -94,9 +94,9 @@ class AssetService extends BaseService
 
         $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $siteId, null);
 
-        $serviceLevels = $this->simproClient->getAssetServiceLevels($companyId, $siteId, $assetId);
+        $recentServiceLevel = $this->findMostRecentServiceLevel($this->simproClient->getAssetServiceLevels($companyId, $siteId, $assetId));
 
-        $asset = $this->createOrUpdate($assetFromSimpro, $simproSite['id'], $serviceLevels);
+        $asset = $this->createOrUpdate($assetFromSimpro, $simproSite['id'], $recentServiceLevel);
 
         $this->assetCustomFieldService->syncByAsset($assetFromSimpro, $asset['id']);
 
@@ -107,7 +107,7 @@ class AssetService extends BaseService
         return $asset;
     }
 
-    protected function createOrUpdate($asset, $simproSiteId, $serviceLevels)
+    protected function createOrUpdate($asset, $simproSiteId, $serviceLevel)
     {
         return $this->repository->updateOrCreate([
             'asset_id' => $asset['ID'],
@@ -117,9 +117,9 @@ class AssetService extends BaseService
             'type' => $asset['ParentID'] ? Asset::TYPE_CHILD : Asset::TYPE_PARENT,
             'parent_id' => $asset['ParentID'],
             'last_test_date' => Arr::get($asset, 'LastTest.Date'),
-            'next_service_date' => Arr::get($serviceLevels, '0.ServiceDate'),
+            'next_service_date' => Arr::get($serviceLevel, 'ServiceDate'),
             'last_test_result' => Arr::get($asset, 'LastTest.Result'),
-            'service_level_name' => Arr::get($serviceLevels, '0.ServiceLevel.Name'),
+            'service_level_name' => Arr::get($serviceLevel, 'ServiceLevel.Name'),
             'archived' => $asset['Archived']
         ]);
     }
@@ -129,5 +129,10 @@ class AssetService extends BaseService
         preg_match('/(\d+)/', $webhook['data']['description'], $matches);
 
         return $matches[0];
+    }
+
+    protected function findMostRecentServiceLevel($serviceLevels)
+    {
+        return collect($serviceLevels)->sortByDesc('ServiceDate')->first();
     }
 }
