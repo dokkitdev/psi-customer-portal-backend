@@ -360,6 +360,18 @@ class QuoteTest extends TestCase
         $this->assertEqualsFixture('re-request_quote_by_admin_fixture.json', $quote);
     }
 
+    public function testReRequestQuoteExpiredDate()
+    {
+        $this->mockReRequestQuote();
+
+        $response = $this->actingAs($this->user)->json('put', '/quotes/4/re-request');
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $quote = Quote::orderBy('id')->where('id', 4)->get()->toArray();
+        $this->assertEqualsFixture('re-request_quote_expired_date_fixture.json', $quote);
+    }
+
     public function testReRequestQuoteNoPermission()
     {
         $response = $this->actingAs($this->userOnlyView)->json('put', '/quotes/7/re-request');

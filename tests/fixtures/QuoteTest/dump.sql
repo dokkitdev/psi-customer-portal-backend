@@ -73,7 +73,7 @@ INSERT INTO quotes(id, name, description, job_id, simpro_customer_id, simpro_sit
   (1, 'Name', 'Description...', 1, 3, 1, 52648, 'Note...', 17256, '1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g', null, null, 'Cost center', 25.50, '2021-04-05', '2021-05-05', 'Maintenance'),
   (2, null, null, 2, 3, 1, 52820, null, null, null, 'Approved', 'Declined', null, null, null, '2021-05-05', 'Maintenance'),
   (3, null, null, 3, 3, 1, 3, null, null, null, 'Approved', 'Pending', null, null, null, '2021-05-05', 'Maintenance'),
-  (4, null, null, 4, 3, 1, 4, null, null, null, 'Approved', null, null, null, null, '2021-05-05', 'Maintenance'),
+  (4, null, null, 4, 3, 1, 4, null, null, null, 'Approved', null, null, null, null, '2018-11-10', 'Maintenance'),
   (5, null, null, 5, 3, 1, 5, null, null, null, 'Approved', null, null, null, null, '2021-05-05', null),
   (6, null, null, 6, 1, 2, 6, null, null, null, 'Approved', 'New', null, null, null, '2021-05-05', null),
   (7, null, null, 7, 1, 3, 7, null, null, null, 'Approved', 'Declined', null, null, null, '2021-05-05', null),
