@@ -283,6 +283,7 @@ class QuoteService extends BaseService
             'note' => Arr::get($note, 'Note'),
             'attachment_id' => Arr::get($attachment, 'ID'),
             'attachment_name' => Arr::get($attachment, 'Filename'),
+            'status_id' => Arr::get($quoteFromSimpro, 'Status.ID')
         ]);
     }
 

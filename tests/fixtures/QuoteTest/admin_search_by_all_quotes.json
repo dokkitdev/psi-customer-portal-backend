@@ -21,7 +21,8 @@
             "created_at": null,
             "updated_at": null,
             "name": "Name",
-            "business_group": "Maintenance"
+            "business_group": "Maintenance",
+            "status_id": null
         },
         {
             "id": 2,
@@ -43,7 +44,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": "Maintenance"
+            "business_group": "Maintenance",
+            "status_id": null
         },
         {
             "id": 3,
@@ -65,7 +67,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": "Maintenance"
+            "business_group": "Maintenance",
+            "status_id": null
         },
         {
             "id": 4,
@@ -87,7 +90,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": "Maintenance"
+            "business_group": "Maintenance",
+            "status_id": null
         },
         {
             "id": 5,
@@ -109,7 +113,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": null
+            "business_group": null,
+            "status_id": null
         },
         {
             "id": 6,
@@ -131,7 +136,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": null
+            "business_group": null,
+            "status_id": null
         },
         {
             "id": 7,
@@ -153,7 +159,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": null
+            "business_group": null,
+            "status_id": null
         },
         {
             "id": 8,
@@ -175,7 +182,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": null
+            "business_group": null,
+            "status_id": null
         },
         {
             "id": 9,
@@ -197,7 +205,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": null
+            "business_group": null,
+            "status_id": null
         },
         {
             "id": 10,
@@ -206,7 +215,7 @@
             "simpro_site_id": 4,
             "quote_id": 10,
             "date_issued": null,
-            "status": null,
+            "status": "Declined",
             "stage": "Approved",
             "description": null,
             "cost_center_name": null,
@@ -219,7 +228,8 @@
             "created_at": null,
             "updated_at": null,
             "name": null,
-            "business_group": null
+            "business_group": null,
+            "status_id": 135
         }
     ],
     "first_page_url": "http:\/\/localhost\/quotes?page=1",

@@ -45,7 +45,8 @@ class Quote extends Model
         'attachment_id',
         'attachment_name',
         'name',
-        'business_group'
+        'business_group',
+        'status_id'
     ];
 
     protected $casts = [
