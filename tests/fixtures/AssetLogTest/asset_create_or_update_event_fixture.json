@@ -13,6 +13,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 1,
             "site_id": 3900,
@@ -167,6 +168,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 1,
             "site_id": 3900,
@@ -265,6 +267,7 @@
         "archived": true,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 1,
             "site_id": 3900,
@@ -363,6 +366,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 1,
             "site_id": 3900,
@@ -402,6 +406,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 1,
             "site_id": 3900,
@@ -441,6 +446,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 2,
             "site_id": 2,
@@ -480,6 +486,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 3,
             "site_id": 3,
@@ -519,6 +526,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 4,
             "site_id": 4,
@@ -558,6 +566,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 4,
             "site_id": 4,
@@ -597,6 +606,7 @@
         "archived": false,
         "created_at": null,
         "updated_at": null,
+        "location": null,
         "simpro_site": {
             "id": 4,
             "site_id": 4,
@@ -636,6 +646,7 @@
         "archived": false,
         "created_at": "2018-11-11T11:11:11.000000Z",
         "updated_at": "2018-11-11T11:11:11.000000Z",
+        "location": "Ground floor reception",
         "simpro_site": {
             "id": 5,
             "site_id": 2752,

@@ -109,6 +109,8 @@ class AssetService extends BaseService
 
     protected function createOrUpdate($asset, $simproSiteId, $serviceLevel)
     {
+        $locationCustomField = $this->findCustomFieldByName(Arr::get($asset, 'CustomFields'), 'Location');
+
         return $this->repository->updateOrCreate([
             'asset_id' => $asset['ID'],
         ], [
@@ -120,7 +122,8 @@ class AssetService extends BaseService
             'next_service_date' => Arr::get($serviceLevel, 'ServiceDate'),
             'last_test_result' => Arr::get($asset, 'LastTest.Result'),
             'service_level_name' => Arr::get($serviceLevel, 'ServiceLevel.Name'),
-            'archived' => $asset['Archived']
+            'archived' => $asset['Archived'],
+            'location' => Arr::get($locationCustomField, 'Value')
         ]);
     }
 
@@ -134,5 +137,12 @@ class AssetService extends BaseService
     protected function findMostRecentServiceLevel($serviceLevels)
     {
         return collect($serviceLevels)->sortByDesc('ServiceDate')->first();
+    }
+
+    protected function findCustomFieldByName($customFields, $name)
+    {
+        return collect($customFields)->first(function ($customField) use ($name) {
+            return Arr::get($customField, 'CustomField.Name') === $name;
+        });
     }
 }
