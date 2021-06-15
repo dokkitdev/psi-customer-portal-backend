@@ -26,7 +26,8 @@ class Asset extends Model
         'name',
         'last_test_result',
         'service_level_name',
-        'archived'
+        'archived',
+        'location'
     ];
 
     protected $hidden = ['pivot'];
