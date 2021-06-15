@@ -136,6 +136,7 @@ return [
         'already_processed' => ':Entity already processed.',
         'bad_request' => ':Entity does not have :attribute value',
         'unique' => 'The :attribute has already been taken.',
+        'wrong_status' => ':Entity has wrong status.',
     ]
 
 ];

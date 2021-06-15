@@ -9,6 +9,7 @@ return [
     'default_employee' => 660,
     'quote_status' => 34,
     'job_status' => 100,
+    'wrong_quotes_re_request_statuses' => [34, 35, 101, 135],
 
     /*
     |--------------------------------------------------------------------------

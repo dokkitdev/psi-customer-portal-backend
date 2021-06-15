@@ -393,6 +393,13 @@ class QuoteTest extends TestCase
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
+    public function testReRequestQuoteWrongStatusId()
+    {
+        $response = $this->actingAs($this->user)->json('put', '/quotes/10/re-request');
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
+    }
+
     public function testReRequestQuoteNoAuth()
     {
         $response = $this->json('put', '/quotes/2/re-request');

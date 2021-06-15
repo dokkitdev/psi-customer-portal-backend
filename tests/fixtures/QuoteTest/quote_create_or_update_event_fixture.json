@@ -19,7 +19,8 @@
         "created_at": null,
         "updated_at": "2018-11-11T11:11:11.000000Z",
         "name": "Fire Alarm Remedial Works",
-        "business_group": "Small Works"
+        "business_group": "Small Works",
+        "status_id": 5
     },
     {
         "id": 2,
@@ -41,7 +42,8 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": "Maintenance"
+        "business_group": "Maintenance",
+        "status_id": null
     },
     {
         "id": 3,
@@ -63,7 +65,8 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": "Maintenance"
+        "business_group": "Maintenance",
+        "status_id": null
     },
     {
         "id": 4,
@@ -85,7 +88,8 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": "Maintenance"
+        "business_group": "Maintenance",
+        "status_id": null
     },
     {
         "id": 5,
@@ -107,7 +111,8 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": null
+        "business_group": null,
+        "status_id": null
     },
     {
         "id": 6,
@@ -129,7 +134,8 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": null
+        "business_group": null,
+        "status_id": null
     },
     {
         "id": 7,
@@ -151,7 +157,8 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": null
+        "business_group": null,
+        "status_id": null
     },
     {
         "id": 8,
@@ -173,7 +180,8 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": null
+        "business_group": null,
+        "status_id": null
     },
     {
         "id": 9,
@@ -195,7 +203,8 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": null
+        "business_group": null,
+        "status_id": null
     },
     {
         "id": 10,
@@ -204,7 +213,7 @@
         "simpro_site_id": 4,
         "quote_id": 10,
         "date_issued": null,
-        "status": null,
+        "status": "Declined",
         "stage": "Approved",
         "description": null,
         "cost_center_name": null,
@@ -217,6 +226,7 @@
         "created_at": null,
         "updated_at": null,
         "name": null,
-        "business_group": null
+        "business_group": null,
+        "status_id": 135
     }
 ]

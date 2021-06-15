@@ -19,6 +19,7 @@
         "created_at": null,
         "updated_at": "2018-11-11T11:11:11.000000Z",
         "name": null,
-        "business_group": "Maintenance"
+        "business_group": "Maintenance",
+        "status_id": null
     }
 ]

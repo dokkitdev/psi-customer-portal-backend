@@ -37,5 +37,11 @@ class ReRequestQuoteRequest extends Request
         if (($quote['status'] !== Quote::STATUS_DECLINED) && Carbon::createFromFormat('Y-m-d', $quote['date_expiry'])->greaterThan(now())) {
             throw new BadRequestHttpException(__('validation.exceptions.already_processed', ['entity' => 'Quote']));
         }
+
+        $wrongStatuses = config('defaults.wrong_quotes_re_request_statuses');
+
+        if (in_array($quote['status_id'], $wrongStatuses)) {
+            throw new BadRequestHttpException(__('validation.exceptions.wrong_status', ['entity' => 'Quote']));
+        }
     }
 }

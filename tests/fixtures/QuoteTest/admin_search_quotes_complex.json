@@ -21,7 +21,8 @@
             "created_at": null,
             "updated_at": null,
             "name": "Name",
-            "business_group": "Maintenance"
+            "business_group": "Maintenance",
+            "status_id": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/quotes?page=1",

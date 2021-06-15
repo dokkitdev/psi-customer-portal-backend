@@ -19,7 +19,8 @@
         "created_at": null,
         "updated_at": "2018-11-11T11:11:11.000000Z",
         "name": null,
-        "business_group": null
+        "business_group": null,
+        "status_id": null
     },
     {
         "id": 2,
@@ -41,6 +42,7 @@
         "created_at": null,
         "updated_at": "2018-11-11T11:11:11.000000Z",
         "name": null,
-        "business_group": null
+        "business_group": null,
+        "status_id": null
     }
 ]
