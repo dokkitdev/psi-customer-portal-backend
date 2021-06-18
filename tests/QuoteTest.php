@@ -228,7 +228,10 @@ class QuoteTest extends TestCase
     {
         $this->mockApproveQuote();
 
-        $response = $this->actingAs($this->user)->json('put', '/quotes/2/approve');
+        $response = $this->actingAs($this->user)->json('put', '/quotes/2/approve', [
+            'order_no' => '100',
+            'note' => 'Some note...'
+        ]);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
@@ -240,7 +243,10 @@ class QuoteTest extends TestCase
     {
         $this->mockApproveQuote();
 
-        $response = $this->actingAs($this->admin)->json('put', '/quotes/6/approve');
+        $response = $this->actingAs($this->admin)->json('put', '/quotes/6/approve', [
+            'order_no' => '100',
+            'note' => 'Some note...'
+        ]);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
