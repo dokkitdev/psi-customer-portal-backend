@@ -119,6 +119,9 @@ class SimproService
         $data['stage'] = [Job::ARCHIVED_STAGE];
         $archivedJobs = $this->jobService->search($data);
 
+        $data['stage'] = [Job::INVOICED_STAGE];
+        $invoicedJobs = $this->jobService->search($data);
+
         $data = Arr::except($data, 'stage');
         $data['statuses'] = [Quote::STATUS_PENDING];
         $pendingQuotes = $this->quoteService->search($data);
@@ -132,6 +135,7 @@ class SimproService
             'progress_jobs_total' => $progressJobs['total'],
             'complete_jobs_total' => $completeJobs['total'],
             'archived_jobs_total' => $archivedJobs['total'],
+            'invoiced_jobs_total' => $invoicedJobs['total'],
             'pending_quotes_total' => $pendingQuotes['total'],
             'unpaid_invoices_total' => $unpaidInvoices['total'],
         ];
