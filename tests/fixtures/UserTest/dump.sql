@@ -48,7 +48,8 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (7, 106, 3, 1, null, 'Archived', null, null),
   (8, 107, 4, 3, '2016-10-20', 'Complete', null, null),
   (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1),
-  (10, 109, 4, 2, '2016-10-20', 'Progress', null, 1);
+  (10, 109, 4, 2, '2016-10-20', 'Progress', null, 1),
+  (11, 110, 1, 3, '2016-10-20', 'Invoiced', 'Fire Alarm - Standard 8 Hours', 1);
 
 INSERT INTO quotes(id, description, job_id, simpro_customer_id, simpro_site_id, quote_id, note, note_id, attachment_id, stage, status, cost_center_name, value, date_issued, date_expiry) VALUES
   (1, 'Description...', 1, 3, 1, 52648, 'Note...', 17256, '1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g', 'Approved', 'Pending', 'Cost center', 25.50, '2021-04-05', '2021-05-05'),

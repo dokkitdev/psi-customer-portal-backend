@@ -3,6 +3,7 @@
     "progress_jobs_total": 3,
     "complete_jobs_total": 2,
     "archived_jobs_total": 3,
-    "pending_quotes_total": 4,
+    "invoiced_jobs_total": 1,
+    "pending_quotes_total": 1,
     "unpaid_invoices_total": 6
 }

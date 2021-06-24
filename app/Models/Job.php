@@ -14,6 +14,7 @@ class Job extends Model
     const PROGRESS_STAGE = 'Progress';
     const COMPLETE_STAGE = 'Complete';
     const ARCHIVED_STAGE = 'Archived';
+    const INVOICED_STAGE = 'Invoiced';
 
     const OPEN_STAGES = [
         self::PENDING_STAGE,
