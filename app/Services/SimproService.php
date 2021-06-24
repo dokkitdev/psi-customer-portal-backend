@@ -124,9 +124,10 @@ class SimproService
 
         $data = Arr::except($data, 'stage');
         $data['statuses'] = [Quote::STATUS_PENDING];
+        $data['stages'] = [Quote::STAGE_SENT, Quote::STAGE_COMPLETE];
         $pendingQuotes = $this->quoteService->search($data);
 
-        $data = Arr::except($data, 'statuses');
+        $data = Arr::except($data, ['statuses', 'stages']);
         $data['is_paid'] = false;
         $unpaidInvoices = $this->invoiceService->search($data);
 

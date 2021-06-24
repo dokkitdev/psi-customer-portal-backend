@@ -19,6 +19,7 @@ class Quote extends Model
     ];
 
     const STAGE_SENT = 'Approved';
+    const STAGE_COMPLETE = 'Complete';
 
     const STATUS_NEW = 'New';
     const STATUS_PENDING = 'Pending';
