@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Jobs\SendMailJob;
-use App\Mails\EmailConfirmationMail;
 use App\Mails\ForgotPasswordMail;
 use App\Mails\InvitationMail;
 use App\Models\Role;
@@ -91,13 +90,6 @@ class UserService extends BaseService
             $data['password'] = Hash::make($data['password']);
         }
 
-        if (!empty($data['email'])) {
-            $data['new_email'] = $data['email'];
-            $data = Arr::except($data, 'email');
-            $data['set_password_hash'] = $this->generateHash();
-            $data['set_password_hash_created_at'] = Carbon::now();
-        }
-
         $user = DB::transaction(function () use ($where, $data) {
             $user = $this->repository
                 ->force()
@@ -109,11 +101,6 @@ class UserService extends BaseService
 
             return $user;
         });
-
-        if (Arr::has($data, 'new_email')) {
-            $mail = new EmailConfirmationMail($data['new_email'], ['hash' => $data['set_password_hash']]);
-            dispatch(new SendMailJob($mail));
-        }
 
         return $user;
     }

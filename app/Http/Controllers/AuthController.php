@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\CheckRestoreTokenRequest;
-use App\Http\Requests\Auth\ConfirmEmailRequest;
 use App\Http\Requests\Auth\ForgotPasswordRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RefreshTokenRequest;
@@ -60,13 +59,6 @@ class AuthController extends Controller
             $request->input('token'),
             $request->input('password')
         );
-
-        return response('', Response::HTTP_NO_CONTENT);
-    }
-
-    public function confirmEmail(ConfirmEmailRequest $request, UserService $service)
-    {
-        $service->confirmEmail($request->input('token'));
 
         return response('', Response::HTTP_NO_CONTENT);
     }

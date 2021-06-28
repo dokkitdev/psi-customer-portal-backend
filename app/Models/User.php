@@ -28,7 +28,6 @@ class User extends Authenticatable implements JWTSubject
         'quote_permission_level',
         'is_quote_requests',
         'is_job_requests',
-        'new_email',
         'last_login'
     ];
 
