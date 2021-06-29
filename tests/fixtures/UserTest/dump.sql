@@ -2,9 +2,9 @@ INSERT INTO roles(id, name, created_at, updated_at) VALUES
   (1, 'administrator', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 'user', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
-INSERT INTO users(id, name, email, new_email, password, role_id, created_at, updated_at) VALUES
-  (1, 'Mr Admin', 'admin@example.com', 'new_admin@example.com', '$2y$10$X4receiTrF24bXrEbAiChOZ8TMNPqoXuhuThgynvBdWIHZeu5HzsS', 1, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (2, 'Another User', 'user@example.com', 'new_user@example.com', '$2y$10$ywtTizICfzWDTU2Cp3s.8.HIvJpGUsvi66Y.x6ByBib8O.D2fxbSK', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
+INSERT INTO users(id, name, email, password, role_id, created_at, updated_at) VALUES
+  (1, 'Mr Admin', 'admin@example.com', '$2y$10$X4receiTrF24bXrEbAiChOZ8TMNPqoXuhuThgynvBdWIHZeu5HzsS', 1, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (2, 'Another User', 'user@example.com', '$2y$10$ywtTizICfzWDTU2Cp3s.8.HIvJpGUsvi66Y.x6ByBib8O.D2fxbSK', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
 INSERT INTO settings(name, is_public, value, created_at, updated_at) VALUES
   ('admin_email', true, '{"email": "admin@test.com"}', '2016-10-20 11:05:00', '2016-10-20 11:06:00');
@@ -48,7 +48,8 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (7, 106, 3, 1, null, 'Archived', null, null),
   (8, 107, 4, 3, '2016-10-20', 'Complete', null, null),
   (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1),
-  (10, 109, 4, 2, '2016-10-20', 'Progress', null, 1);
+  (10, 109, 4, 2, '2016-10-20', 'Progress', null, 1),
+  (11, 110, 1, 3, '2016-10-20', 'Invoiced', 'Fire Alarm - Standard 8 Hours', 1);
 
 INSERT INTO quotes(id, description, job_id, simpro_customer_id, simpro_site_id, quote_id, note, note_id, attachment_id, stage, status, cost_center_name, value, date_issued, date_expiry) VALUES
   (1, 'Description...', 1, 3, 1, 52648, 'Note...', 17256, '1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g', 'Approved', 'Pending', 'Cost center', 25.50, '2021-04-05', '2021-05-05'),

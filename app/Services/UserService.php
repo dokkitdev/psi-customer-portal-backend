@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Jobs\SendMailJob;
-use App\Mails\EmailConfirmationMail;
 use App\Mails\ForgotPasswordMail;
 use App\Mails\InvitationMail;
 use App\Models\Role;
@@ -31,7 +30,10 @@ class UserService extends BaseService
         return $this->repository
             ->searchQuery($filters)
             ->filterBy('role_id')
+            ->filterBy('groups.simpro_customer_id')
             ->filterByQuery(['name', 'email'])
+            ->filterByQueryWithValue('name', 'name_query')
+            ->filterByQueryWithValue('email', 'email_query')
             ->with()
             ->getSearchResults();
     }
@@ -81,18 +83,11 @@ class UserService extends BaseService
         $authUser = $this->getAuthUser();
 
         if (!$authUser || ($authUser['role_id'] !== Role::ADMIN)) {
-            $data = Arr::only($data, ['password', 'email', 'name']);
+            $data = Arr::only($data, ['password', 'email', 'name', 'last_login']);
         }
 
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
-        }
-
-        if (!empty($data['email'])) {
-            $data['new_email'] = $data['email'];
-            $data = Arr::except($data, 'email');
-            $data['set_password_hash'] = $this->generateHash();
-            $data['set_password_hash_created_at'] = Carbon::now();
         }
 
         $user = DB::transaction(function () use ($where, $data) {
@@ -106,11 +101,6 @@ class UserService extends BaseService
 
             return $user;
         });
-
-        if (Arr::has($data, 'new_email')) {
-            $mail = new EmailConfirmationMail($data['new_email'], ['hash' => $data['set_password_hash']]);
-            dispatch(new SendMailJob($mail));
-        }
 
         return $user;
     }

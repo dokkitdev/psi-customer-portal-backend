@@ -7,6 +7,7 @@ use App\Models\Asset;
 use App\Models\Role;
 use App\Repositories\AssetRepository;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * @property AssetRepository $repository
@@ -85,13 +86,17 @@ class AssetService extends BaseService
     {
         $assetFromSimpro = $this->simproClient->getAsset($companyId, $assetId);
 
+        if (Str::startsWith(Arr::get($assetFromSimpro, 'AssetType.Name'), 'MAINTENANCE CHARGE')) {
+            return true;
+        }
+
         $siteId = $assetFromSimpro['Site']['ID'];
 
         $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $siteId, null);
 
-        $serviceLevels = $this->simproClient->getAssetServiceLevels($companyId, $siteId, $assetId);
+        $recentServiceLevel = $this->findMostRecentServiceLevel($this->simproClient->getAssetServiceLevels($companyId, $siteId, $assetId));
 
-        $asset = $this->createOrUpdate($assetFromSimpro, $simproSite['id'], Arr::get($serviceLevels, '0.ServiceDate'));
+        $asset = $this->createOrUpdate($assetFromSimpro, $simproSite['id'], $recentServiceLevel);
 
         $this->assetCustomFieldService->syncByAsset($assetFromSimpro, $asset['id']);
 
@@ -102,8 +107,10 @@ class AssetService extends BaseService
         return $asset;
     }
 
-    protected function createOrUpdate($asset, $simproSiteId, $serviceDate)
+    protected function createOrUpdate($asset, $simproSiteId, $serviceLevel)
     {
+        $locationCustomField = $this->findCustomFieldByName(Arr::get($asset, 'CustomFields'), 'Location');
+
         return $this->repository->updateOrCreate([
             'asset_id' => $asset['ID'],
         ], [
@@ -112,10 +119,11 @@ class AssetService extends BaseService
             'type' => $asset['ParentID'] ? Asset::TYPE_CHILD : Asset::TYPE_PARENT,
             'parent_id' => $asset['ParentID'],
             'last_test_date' => Arr::get($asset, 'LastTest.Date'),
-            'next_service_date' => $serviceDate,
+            'next_service_date' => Arr::get($serviceLevel, 'ServiceDate'),
             'last_test_result' => Arr::get($asset, 'LastTest.Result'),
-            'service_level_name' => Arr::get($asset, 'LastTest.ServiceLevel.Name'),
-            'archived' => $asset['Archived']
+            'service_level_name' => Arr::get($serviceLevel, 'ServiceLevel.Name'),
+            'archived' => $asset['Archived'],
+            'location' => Arr::get($locationCustomField, 'Value')
         ]);
     }
 
@@ -124,5 +132,17 @@ class AssetService extends BaseService
         preg_match('/(\d+)/', $webhook['data']['description'], $matches);
 
         return $matches[0];
+    }
+
+    protected function findMostRecentServiceLevel($serviceLevels)
+    {
+        return collect($serviceLevels)->sortByDesc('ServiceDate')->first();
+    }
+
+    protected function findCustomFieldByName($customFields, $name)
+    {
+        return collect($customFields)->first(function ($customField) use ($name) {
+            return Arr::get($customField, 'CustomField.Name') === $name;
+        });
     }
 }

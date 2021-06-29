@@ -112,18 +112,33 @@ class QuoteService extends BaseService
         return $quote;
     }
 
-    public function approve($where)
+    public function approve($where, $data)
     {
         $quote = $this->repository->first($where);
 
-        $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
+        $quoteData = [
             'Stage' => Quote::STAGE_SENT,
             'Status' => 34,
+        ];
+
+        if (Arr::has($data, 'order_no')) {
+            $quoteData['OrderNo'] = $data['order_no'];
+        }
+
+        $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], $quoteData);
+
+        $note = $this->simproClient->postQuoteNote($this->companyId, $quote['quote_id'], [
+            'Subject' => 'Quote Approved',
+            'Note' => Arr::get($data, 'note'),
+            'FollowUpDate' => null,
+            'AssignTo' => config('defaults.default_employee'),
         ]);
 
         return $this->repository->update($where, [
             'stage' => Quote::STAGE_SENT,
             'status' => Quote::STATUS_ACCEPTED,
+            'note_id' => $note['ID'],
+            'note' => $note['Note'],
         ]);
     }
 
@@ -161,7 +176,7 @@ class QuoteService extends BaseService
         ]);
 
         $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
-            'Status' => 101
+            'Status' => 135
         ]);
 
         return $this->repository->update($where, [
@@ -283,6 +298,7 @@ class QuoteService extends BaseService
             'note' => Arr::get($note, 'Note'),
             'attachment_id' => Arr::get($attachment, 'ID'),
             'attachment_name' => Arr::get($attachment, 'Filename'),
+            'status_id' => Arr::get($quoteFromSimpro, 'Status.ID')
         ]);
     }
 

@@ -14,7 +14,8 @@
             "service_level_name": "Monthly",
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 2,
@@ -29,7 +30,8 @@
             "service_level_name": "Monthly",
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 3,
@@ -44,7 +46,8 @@
             "service_level_name": "Six Monthly",
             "archived": true,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 4,
@@ -59,7 +62,8 @@
             "service_level_name": null,
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 5,
@@ -74,7 +78,8 @@
             "service_level_name": null,
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 6,
@@ -89,7 +94,8 @@
             "service_level_name": null,
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 7,
@@ -104,7 +110,8 @@
             "service_level_name": null,
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 8,
@@ -119,7 +126,8 @@
             "service_level_name": null,
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 9,
@@ -134,7 +142,8 @@
             "service_level_name": null,
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         },
         {
             "id": 10,
@@ -149,7 +158,8 @@
             "service_level_name": null,
             "archived": false,
             "created_at": null,
-            "updated_at": null
+            "updated_at": null,
+            "location": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/assets?page=1",

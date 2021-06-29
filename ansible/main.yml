@@ -5,7 +5,7 @@ ansible_pkg_mgr: apt
 python: true
 
 # if need will install enable web-server
-nginx: true
+nginx: false
 
 # if need will install php dependencies
 php: true
@@ -23,7 +23,7 @@ cronjob: false
 worker: true
 
 # enable ssl
-ssl: true
+ssl: false
 
 # config for worker in supervisor
 supervisor_programs:

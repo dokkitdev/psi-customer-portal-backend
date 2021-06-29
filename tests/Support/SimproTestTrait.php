@@ -21,7 +21,8 @@ trait SimproTestTrait
     protected function mockApproveQuote()
     {
         $this->mockHttpRequestService([
-            $this->patchQuoteRequest()
+            $this->patchQuoteRequest(),
+            $this->postQuoteNoteRequest()
         ]);
     }
 

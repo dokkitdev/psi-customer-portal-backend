@@ -37,7 +37,7 @@ class QuoteController extends Controller
 
     public function approve(ApproveQuoteRequest $request, QuoteService $service, $id)
     {
-        $service->approve($id);
+        $service->approve($id, $request->onlyValidated());
 
         return response('', Response::HTTP_NO_CONTENT);
     }

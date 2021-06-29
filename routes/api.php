@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/groups', ['uses' => GroupController::class . '@create']);
     Route::put('/groups/{id}', ['uses' => GroupController::class . '@update']);
+    Route::put('/groups/{id}/change-sites-visibility', ['uses' => GroupController::class . '@changeSitesVisibility']);
     Route::delete('/groups/{id}', ['uses' => GroupController::class . '@delete']);
     Route::get('/groups/{id}', ['uses' => GroupController::class . '@get']);
     Route::get('/groups', ['uses' => GroupController::class . '@search']);
@@ -120,7 +121,6 @@ Route::group(['middleware' => 'guest'], function () {
         ->middleware(['jwt.refresh']);
     Route::post('/auth/forgot-password', ['uses' => AuthController::class . '@forgotPassword']);
     Route::post('/auth/restore-password', ['uses' => AuthController::class . '@restorePassword']);
-    Route::post('/auth/confirm-email', ['uses' => AuthController::class . '@confirmEmail']);
     Route::post('/auth/token/check', ['uses' => AuthController::class . '@checkRestoreToken']);
 
     Route::get('/status', ['uses' => StatusController::class . '@status']);

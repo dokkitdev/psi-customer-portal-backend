@@ -228,7 +228,10 @@ class QuoteTest extends TestCase
     {
         $this->mockApproveQuote();
 
-        $response = $this->actingAs($this->user)->json('put', '/quotes/2/approve');
+        $response = $this->actingAs($this->user)->json('put', '/quotes/2/approve', [
+            'order_no' => '100',
+            'note' => 'Some note...'
+        ]);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
@@ -240,7 +243,10 @@ class QuoteTest extends TestCase
     {
         $this->mockApproveQuote();
 
-        $response = $this->actingAs($this->admin)->json('put', '/quotes/6/approve');
+        $response = $this->actingAs($this->admin)->json('put', '/quotes/6/approve', [
+            'order_no' => '100',
+            'note' => 'Some note...'
+        ]);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
@@ -360,6 +366,18 @@ class QuoteTest extends TestCase
         $this->assertEqualsFixture('re-request_quote_by_admin_fixture.json', $quote);
     }
 
+    public function testReRequestQuoteExpiredDate()
+    {
+        $this->mockReRequestQuote();
+
+        $response = $this->actingAs($this->user)->json('put', '/quotes/4/re-request');
+
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $quote = Quote::orderBy('id')->where('id', 4)->get()->toArray();
+        $this->assertEqualsFixture('re-request_quote_expired_date_fixture.json', $quote);
+    }
+
     public function testReRequestQuoteNoPermission()
     {
         $response = $this->actingAs($this->userOnlyView)->json('put', '/quotes/7/re-request');
@@ -377,6 +395,13 @@ class QuoteTest extends TestCase
     public function testReRequestQuoteIncorrectStatus()
     {
         $response = $this->actingAs($this->user)->json('put', '/quotes/1/re-request');
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
+    }
+
+    public function testReRequestQuoteWrongStatusId()
+    {
+        $response = $this->actingAs($this->user)->json('put', '/quotes/10/re-request');
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }

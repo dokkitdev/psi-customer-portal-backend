@@ -19,7 +19,10 @@ class ApproveQuoteRequest extends Request
 
     public function rules()
     {
-        return [];
+        return [
+            'order_no' => 'string',
+            'note' => 'string'
+        ];
     }
 
     public function validateResolved()
