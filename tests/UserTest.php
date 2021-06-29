@@ -2,7 +2,6 @@
 
 namespace App\Tests;
 
-use App\Mails\EmailConfirmationMail;
 use App\Mails\InvitationMail;
 use App\Models\User;
 use App\Tests\Support\AuthTestTrait;
@@ -87,8 +86,6 @@ class UserTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $data['new_email'] = $data['email'];
-        $data['email'] = 'user@example.com';
         $this->assertDatabaseHas('users', Arr::except($data, 'group_ids'));
 
         $this->assertDatabaseMissing('group_user', ['user_id' => 2, 'group_id' => 1]);
@@ -103,9 +100,6 @@ class UserTest extends TestCase
         $response = $this->actingAs($this->user)->json('put', '/users/2', $data);
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
-
-        $data['new_email'] = $data['email'];
-        $data['email'] = 'user@example.com';
 
         $this->assertDatabaseMissing('users', Arr::except($data, 'group_ids'));
 
@@ -175,18 +169,6 @@ class UserTest extends TestCase
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
         $this->assertEqualsFixture('update_profile_fixture.json', User::query()->find($this->admin->id)->toArray());
-
-        $this->assertDatabaseHas('users', [
-            'id' => $this->admin->id,
-            'set_password_hash' => 'some_token'
-        ]);
-
-        $this->assertMailEquals(EmailConfirmationMail::class, [
-            [
-                'emails' => $data['email'],
-                'fixture' => 'email_confirmation_email.html'
-            ]
-        ]);
     }
 
     public function testUpdateProfileWithPassword()

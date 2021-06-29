@@ -13,7 +13,6 @@
             "quote_permission_level": "No Access",
             "is_quote_requests": false,
             "is_job_requests": false,
-            "new_email": "new_user@example.com",
             "last_login": null
         }
     ],

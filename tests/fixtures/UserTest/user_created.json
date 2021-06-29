@@ -10,6 +10,5 @@
     "quote_permission_level": "View",
     "is_quote_requests": true,
     "is_job_requests": true,
-    "new_email": null,
     "last_login": null
 }
