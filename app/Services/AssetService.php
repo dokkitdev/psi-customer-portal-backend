@@ -53,6 +53,7 @@ class AssetService extends BaseService
             ->filterBy('archived')
             ->filterByList('service_level_name', 'service_level_names')
             ->filterByQuery(['name'])
+            ->filterByQueryWithValue('location', 'location_query')
             ->filterBy('last_test_date')
             ->filterFrom('last_test_date', false, 'last_test_date_from')
             ->filterTo('last_test_date', false, 'last_test_date_to')
