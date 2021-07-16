@@ -138,7 +138,8 @@ class AssetTest extends TestCase
                     'next_service_date' => '2016-10-20',
                     'last_test_result_query' => 'Test result',
                     'service_level_names' => ['Monthly'],
-                    'asset_id' => 1
+                    'asset_id' => 1,
+                    'location_query' => 'Plant Room'
                 ],
                 'result' => 'search_assets_complex.json'
             ],
