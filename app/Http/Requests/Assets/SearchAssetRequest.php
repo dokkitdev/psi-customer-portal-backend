@@ -9,6 +9,7 @@ class SearchAssetRequest extends Request
     public function rules()
     {
         return [
+            'location_query' => 'string',
             'asset_id' => 'integer',
             'simpro_customer_id' => 'integer',
             'simpro_site_id' => 'integer',

@@ -6,7 +6,6 @@ use App\Http\Requests\Request;
 use App\Models\Quote;
 use App\Models\User;
 use App\Services\QuoteService;
-use Carbon\Carbon;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -34,7 +33,7 @@ class DeclineQuoteRequest extends Request
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'Quote']));
         }
 
-        if (($quote['stage'] !== Quote::STAGE_SENT) || !in_array($quote['status'], [Quote::STATUS_NEW, Quote::STATUS_PENDING]) || Carbon::createFromFormat('Y-m-d', $quote['date_expiry'])->lessThan(now())) {
+        if (($quote['stage'] !== Quote::STAGE_SENT) || !in_array($quote['status'], [Quote::STATUS_NEW, Quote::STATUS_PENDING])) {
             throw new BadRequestHttpException(__('validation.exceptions.already_processed', ['entity' => 'Quote']));
         }
     }

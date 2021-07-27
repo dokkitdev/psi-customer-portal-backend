@@ -7,7 +7,7 @@ return [
     'quote_permissions' => ['View', 'Edit', 'No Access'],
     'site_custom_field_ids' => [22, 32, 25, 16, 76],
     'default_employee' => 660,
-    'quote_status' => 34,
+    'quote_status' => 135,
     'job_status' => 100,
     'wrong_quotes_re_request_statuses' => [34, 35, 101, 135],
 
