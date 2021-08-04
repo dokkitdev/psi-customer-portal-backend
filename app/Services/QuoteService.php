@@ -80,7 +80,7 @@ class QuoteService extends BaseService
 
         $defaultTag = $this->settingService->get('default_tag');
 
-        $type = ($data['type'] === Quote::TYPE_PPM_QUOTE) ? 'Service' : 'Project';
+        $type = ((int) $data['type'] === Quote::TYPE_PPM_QUOTE) ? 'Service' : 'Project';
 
         $quoteStatus = config('defaults.quote_status');
 
