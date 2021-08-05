@@ -243,8 +243,10 @@ class QuoteService extends BaseService
 
     protected function getJobId($companyId, $quoteFromSimpro)
     {
-        if (Arr::get($quoteFromSimpro, 'JobNo')) {
-            $job = $this->jobService->getOrCreateBySimpro($companyId, $quoteFromSimpro['JobNo']);
+        $customField = $this->findCustomFieldById($quoteFromSimpro['CustomFields'], config('defaults.quote_job_custom_field_id'));
+
+        if (Arr::get($customField, 'Value')) {
+            $job = $this->jobService->getOrCreateBySimpro($companyId, $customField['Value']);
 
             return $job['id'];
         }
@@ -325,5 +327,12 @@ class QuoteService extends BaseService
 
             return $contains ? Str::contains($lowerFilename, $needles) : Str::startsWith($lowerFilename, $needles);
         });
+    }
+
+    protected function findCustomFieldById($customFields, $customFieldId)
+    {
+        return collect($customFields)->first(function ($value) use ($customFieldId) {
+            return Arr::get($value, 'CustomField.ID') === $customFieldId;
+        }, []);
     }
 }
