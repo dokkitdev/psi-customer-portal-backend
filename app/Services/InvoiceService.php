@@ -71,23 +71,25 @@ class InvoiceService extends BaseService
             foreach ($invoicesFromSimproPage as $invoiceFromSimpro) {
                 $invoiceFromSimproId = $invoiceFromSimpro['ID'];
                 $customerInvoice = $this->simproClient->getCustomerInvoice($companyId, $invoiceFromSimproId);
-                $attachment = $this->findMostRecentAttachment($jobId, $invoiceFromSimproId);
-                $data = [
-                    'job_id' => $jobId,
-                    'invoice_id' => $invoiceFromSimproId,
-                    'date_issued' => $invoiceFromSimpro['DateIssued'],
-                    'status' => $invoiceFromSimpro['Stage'],
-                    'total' => Arr::get($invoiceFromSimpro, 'Total.ExTax'),
-                    'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
-                    'is_paid' => $customerInvoice['IsPaid'],
-                    'job_attachment_id' => Arr::get($attachment, 'id')
-                ];
-                $invoice = $invoices->firstWhere('invoice_id', $invoiceFromSimproId);
-                if ($invoice) {
-                    $this->repository->update($invoice['id'], $data);
-                    $invoices = $invoices->where('id', '!=', $invoice['id']);
-                } else {
-                    $this->repository->create($data);
+                if (!$this->isCreditInvoice($customerInvoice)) {
+                    $attachment = $this->findMostRecentAttachment($jobId, $invoiceFromSimproId);
+                    $data = [
+                        'job_id' => $jobId,
+                        'invoice_id' => $invoiceFromSimproId,
+                        'date_issued' => $invoiceFromSimpro['DateIssued'],
+                        'status' => $invoiceFromSimpro['Stage'],
+                        'total' => Arr::get($invoiceFromSimpro, 'Total.ExTax'),
+                        'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
+                        'is_paid' => $customerInvoice['IsPaid'],
+                        'job_attachment_id' => Arr::get($attachment, 'id')
+                    ];
+                    $invoice = $invoices->firstWhere('invoice_id', $invoiceFromSimproId);
+                    if ($invoice) {
+                        $this->repository->update($invoice['id'], $data);
+                        $invoices = $invoices->where('id', '!=', $invoice['id']);
+                    } else {
+                        $this->repository->create($data);
+                    }
                 }
             }
         }
@@ -101,6 +103,10 @@ class InvoiceService extends BaseService
     public function updateOrCreateBySimpro($companyId, $invoiceFromSimproId)
     {
         $customerInvoice = $this->simproClient->getCustomerInvoice($companyId, $invoiceFromSimproId);
+
+        if ($this->isCreditInvoice($customerInvoice)) {
+            return false;
+        }
 
         $job = app(JobService::class)->getOrCreateBySimpro($companyId, Arr::get($customerInvoice, 'Jobs.0.ID'));
 
@@ -130,5 +136,10 @@ class InvoiceService extends BaseService
 
             return Str::contains($lowerFilename, $needles);
         });
+    }
+
+    protected function isCreditInvoice($customerInvoice)
+    {
+        return (Arr::get($customerInvoice, 'Total.ExTax') <= 0) || $customerInvoice['IsCredit'];
     }
 }
