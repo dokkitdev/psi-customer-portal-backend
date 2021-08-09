@@ -245,8 +245,10 @@ class QuoteService extends BaseService
     {
         $customField = $this->findCustomFieldById($quoteFromSimpro['CustomFields'], config('defaults.quote_job_custom_field_id'));
 
-        if (Arr::get($customField, 'Value')) {
-            $job = $this->jobService->getOrCreateBySimpro($companyId, $customField['Value']);
+        $value = (int) Arr::get($customField, 'Value');
+
+        if ($value > 0) {
+            $job = $this->jobService->getOrCreateBySimpro($companyId, $value);
 
             return $job['id'];
         }
