@@ -7,6 +7,7 @@ use App\Models\Quote;
 use App\Models\Role;
 use App\Repositories\QuoteRepository;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -248,9 +249,13 @@ class QuoteService extends BaseService
         $value = (int) Arr::get($customField, 'Value');
 
         if ($value > 0) {
-            $job = $this->jobService->getOrCreateBySimpro($companyId, $value);
+            try {
+                $job = $this->jobService->getOrCreateBySimpro($companyId, $value);
 
-            return $job['id'];
+                return $job['id'];
+            } catch (Exception $e) {
+                report($e);
+            }
         }
 
         return null;
