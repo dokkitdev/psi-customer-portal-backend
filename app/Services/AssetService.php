@@ -68,7 +68,7 @@ class AssetService extends BaseService
 
     public function updateOrCreateBySimpro($webhook)
     {
-        $companyId = $webhook['data']['reference']['companyID'];
+        $companyId = 0;
         $assetId = $this->getAssetId($webhook);
 
         return $this->createOrUpdateAsset($companyId, $assetId);

@@ -7,6 +7,7 @@ use App\Models\Quote;
 use App\Models\Role;
 use App\Repositories\QuoteRepository;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -80,7 +81,7 @@ class QuoteService extends BaseService
 
         $defaultTag = $this->settingService->get('default_tag');
 
-        $type = ($data['type'] === Quote::TYPE_PPM_QUOTE) ? 'Service' : 'Project';
+        $type = ((int) $data['type'] === Quote::TYPE_PPM_QUOTE) ? 'Service' : 'Project';
 
         $quoteStatus = config('defaults.quote_status');
 
@@ -176,7 +177,7 @@ class QuoteService extends BaseService
         ]);
 
         $this->simproClient->patchQuote($this->companyId, $quote['quote_id'], [
-            'Status' => 135
+            'Status' => 101
         ]);
 
         return $this->repository->update($where, [
@@ -243,10 +244,18 @@ class QuoteService extends BaseService
 
     protected function getJobId($companyId, $quoteFromSimpro)
     {
-        if (Arr::get($quoteFromSimpro, 'JobNo')) {
-            $job = $this->jobService->getOrCreateBySimpro($companyId, $quoteFromSimpro['JobNo']);
+        $customField = $this->findCustomFieldById($quoteFromSimpro['CustomFields'], config('defaults.quote_job_custom_field_id'));
 
-            return $job['id'];
+        $value = (int) Arr::get($customField, 'Value');
+
+        if ($value > 0) {
+            try {
+                $job = $this->jobService->getOrCreateBySimpro($companyId, $value);
+
+                return $job['id'];
+            } catch (Exception $e) {
+                report($e);
+            }
         }
 
         return null;
@@ -325,5 +334,12 @@ class QuoteService extends BaseService
 
             return $contains ? Str::contains($lowerFilename, $needles) : Str::startsWith($lowerFilename, $needles);
         });
+    }
+
+    protected function findCustomFieldById($customFields, $customFieldId)
+    {
+        return collect($customFields)->first(function ($value) use ($customFieldId) {
+            return Arr::get($value, 'CustomField.ID') === $customFieldId;
+        }, []);
     }
 }
