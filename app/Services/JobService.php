@@ -168,7 +168,7 @@ class JobService extends BaseService
             'stage' => Arr::get($jobFromSimpro, 'Stage'),
             'job_status' => Arr::get($jobFromSimpro, 'Status.Name'),
             'requested' => Arr::get($customField, 'Value'),
-            'name' => Arr::get($jobFromSimpro, 'Name'),
+            'name' => $this->getName($jobFromSimpro),
         ]);
     }
 
@@ -218,5 +218,27 @@ class JobService extends BaseService
         }
 
         return $priority;
+    }
+
+    protected function getName($jobFromSimpro)
+    {
+        if (Arr::get($jobFromSimpro, 'Name')) {
+            return $jobFromSimpro['Name'];
+        }
+
+        $jobNameTags = config('defaults.job_name_tags');
+
+        foreach ($jobNameTags as $tagId) {
+            if ($tag = $this->findTagById($jobFromSimpro['Tags'], $tagId)) {
+                return $tag['Name'];
+            }
+        }
+
+        return null;
+    }
+
+    protected function findTagById($tags, $id)
+    {
+        return collect($tags)->firstWhere('ID', $id);
     }
 }
