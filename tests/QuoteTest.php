@@ -268,7 +268,7 @@ class QuoteTest extends TestCase
         $response->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
-    public function testApproveQuoteIncorrectStage()
+    public function testApproveQuoteIncorrectStatus()
     {
         $response = $this->actingAs($this->user)->json('put', '/quotes/1/approve');
 
@@ -342,7 +342,7 @@ class QuoteTest extends TestCase
     {
         $this->mockReRequestQuote();
 
-        $response = $this->actingAs($this->user)->json('put', '/quotes/2/re-request', [
+        $response = $this->actingAs($this->user)->json('put', '/quotes/8/re-request', [
             'reason' => 'Some reason...'
         ]);
 
@@ -368,14 +368,11 @@ class QuoteTest extends TestCase
 
     public function testReRequestQuoteExpiredDate()
     {
-        $this->mockReRequestQuote();
+        $response = $this->actingAs($this->user)->json('put', '/quotes/9/re-request', [
+            'reason' => 'Some reason...'
+        ]);
 
-        $response = $this->actingAs($this->user)->json('put', '/quotes/4/re-request');
-
-        $response->assertStatus(Response::HTTP_NO_CONTENT);
-
-        $quote = Quote::orderBy('id')->where('id', 4)->get()->toArray();
-        $this->assertEqualsFixture('re-request_quote_expired_date_fixture.json', $quote);
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
     public function testReRequestQuoteNoPermission()
@@ -395,13 +392,6 @@ class QuoteTest extends TestCase
     public function testReRequestQuoteIncorrectStatus()
     {
         $response = $this->actingAs($this->user)->json('put', '/quotes/1/re-request');
-
-        $response->assertStatus(Response::HTTP_BAD_REQUEST);
-    }
-
-    public function testReRequestQuoteWrongStatusId()
-    {
-        $response = $this->actingAs($this->user)->json('put', '/quotes/10/re-request');
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }

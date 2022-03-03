@@ -124,7 +124,7 @@ class SimproService
 
         $data = Arr::except($data, 'stage');
         $data['statuses'] = [Quote::STATUS_PENDING];
-        $data['stages'] = [Quote::STAGE_SENT, Quote::STAGE_COMPLETE];
+        $data['stages'] = [Quote::STAGE_SENT];
         $pendingQuotes = $this->quoteService->search($data);
 
         $data = Arr::except($data, ['statuses', 'stages']);
