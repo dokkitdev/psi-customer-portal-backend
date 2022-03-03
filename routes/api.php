@@ -10,6 +10,7 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\QuoteDeclineReasonController;
 use App\Http\Controllers\QuoteRerequestReasonController;
+use App\Http\Controllers\QuoteStatusCodeController;
 use App\Http\Controllers\SimproCustomerController;
 use App\Http\Controllers\SimproSiteController;
 use App\Http\Controllers\SimproWebhookController;
@@ -113,6 +114,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/assets', ['uses' => AssetController::class . '@search']);
 
     Route::get('/asset-attachments/{id}/download', ['uses' => AssetController::class . '@download']);
+
+    Route::put('/quote-status-codes/{id}', ['uses' => QuoteStatusCodeController::class . '@update']);
+    Route::get('/quote-status-codes/{id}', ['uses' => QuoteStatusCodeController::class . '@get']);
+    Route::get('/quote-status-codes', ['uses' => QuoteStatusCodeController::class . '@search']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

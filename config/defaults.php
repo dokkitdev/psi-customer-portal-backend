@@ -9,7 +9,6 @@ return [
     'default_employee' => 660,
     'quote_status' => 135,
     'job_status' => 100,
-    'wrong_quotes_re_request_statuses' => [34, 35, 101, 135],
     'quote_job_custom_field_id' => 4,
     'job_name_tags' => [8, 127, 132],
 

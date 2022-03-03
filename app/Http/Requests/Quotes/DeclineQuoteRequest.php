@@ -33,7 +33,7 @@ class DeclineQuoteRequest extends Request
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'Quote']));
         }
 
-        if (($quote['stage'] !== Quote::STAGE_SENT) || !in_array($quote['status'], [Quote::STATUS_NEW, Quote::STATUS_PENDING])) {
+        if ($quote['status'] !== Quote::STATUS_PENDING) {
             throw new BadRequestHttpException(__('validation.exceptions.already_processed', ['entity' => 'Quote']));
         }
     }

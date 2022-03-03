@@ -24,6 +24,7 @@ class QuoteService extends BaseService
     protected SimproSiteService $simproSiteService;
     protected JobService $jobService;
     protected SimproCustomerService $simproCustomerService;
+    protected QuoteStatusCodeService $quoteStatusCodeService;
 
     public function __construct()
     {
@@ -37,6 +38,7 @@ class QuoteService extends BaseService
         $this->simproSiteService = app(SimproSiteService::class);
         $this->jobService = app(JobService::class);
         $this->simproCustomerService = app(SimproCustomerService::class);
+        $this->quoteStatusCodeService = app(QuoteStatusCodeService::class);
     }
 
     public function search($filters)
@@ -287,6 +289,9 @@ class QuoteService extends BaseService
             ->addDays($quoteFromSimpro['ValidityDays'])
             ->format('Y-m-d');
 
+        $mappedQuoteStatus = $this->getMappedQuoteStatus(Arr::get($quoteFromSimpro, 'Status.ID'));
+        $mappedQuoteStage = $this->getMappedQuoteStage($mappedQuoteStatus);
+
         return $this->repository->updateOrCreate([
             'quote_id' => $quoteFromSimpro['ID'],
             'simpro_site_id' => $simproSiteId,
@@ -296,8 +301,8 @@ class QuoteService extends BaseService
             'quote_id' => $quoteFromSimpro['ID'],
             'name' => $quoteFromSimpro['Name'],
             'date_issued' => $quoteFromSimpro['DateIssued'],
-            'status' => $quoteFromSimpro['CustomerStage'],
-            'stage' => $quoteFromSimpro['Stage'],
+            'status' => $mappedQuoteStatus,
+            'stage' => $mappedQuoteStage,
             'description' => $quoteFromSimpro['Description'],
             'cost_center_name' => Arr::get($quoteFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name'),
             'business_group' => $this->jobService->matchBusinessGroup(Arr::get($quoteFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name')),
@@ -325,6 +330,22 @@ class QuoteService extends BaseService
         preg_match('/(\d+)/', $webhook['data']['description'], $matches);
 
         return $matches[0];
+    }
+
+    protected function getMappedQuoteStatus($simproStatusCodeId)
+    {
+        $quoteStatusCode = $this->quoteStatusCodeService->first(['simpro_code_id' => $simproStatusCodeId]);
+
+        return Arr::get($quoteStatusCode, 'status');
+    }
+
+    protected function getMappedQuoteStage($statue)
+    {
+        if ($statue === Quote::STATUS_NEW) {
+            return Quote::STAGE_IN_PROGRESS;
+        }
+
+        return Quote::STAGE_SENT;
     }
 
     protected function findMostRecentFile($attachments, $needles, $contains = false)

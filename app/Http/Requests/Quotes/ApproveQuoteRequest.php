@@ -35,7 +35,7 @@ class ApproveQuoteRequest extends Request
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'Quote']));
         }
 
-        if (($quote['stage'] !== Quote::STAGE_SENT) || Carbon::createFromFormat('Y-m-d', $quote['date_expiry'])->lessThan(now())) {
+        if (!(($quote['status'] === Quote::STATUS_PENDING) && Carbon::createFromFormat('Y-m-d', $quote['date_expiry'])->greaterThan(now()))) {
             throw new BadRequestHttpException(__('validation.exceptions.already_processed', ['entity' => 'Quote']));
         }
     }
