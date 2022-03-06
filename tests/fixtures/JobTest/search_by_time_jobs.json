@@ -17,7 +17,8 @@
             "created_at": null,
             "updated_at": null,
             "recent_schedule_id": 1,
-            "name": null
+            "name": null,
+            "converted_from_quote_id": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/jobs?page=1",

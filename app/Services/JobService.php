@@ -129,6 +129,8 @@ class JobService extends BaseService
 
         $this->invoiceService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
 
+        $job = $this->setConvertedFromQuoteId($jobFromSimpro, $job);
+
         return $job;
     }
 
@@ -218,6 +220,17 @@ class JobService extends BaseService
         }
 
         return $priority;
+    }
+
+    protected function setConvertedFromQuoteId($jobFromSimpro, $job)
+    {
+        if (Arr::get($jobFromSimpro, 'ConvertedFrom.Type') === 'Quote') {
+            $quote = app(QuoteService::class)->getOrCreateBySimpro($this->companyId, Arr::get($jobFromSimpro, 'ConvertedFrom.ID'));
+
+            return $this->repository->update($job['id'], ['converted_from_quote_id' => $quote['id']]);
+        }
+
+        return $job;
     }
 
     protected function getName($jobFromSimpro)
