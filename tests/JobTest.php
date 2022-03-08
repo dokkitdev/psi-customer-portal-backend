@@ -2,7 +2,6 @@
 
 namespace App\Tests;
 
-use App\Models\Asset;
 use App\Models\GroupSimproSite;
 use App\Models\Invoice;
 use App\Models\Job;

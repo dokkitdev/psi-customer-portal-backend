@@ -76,3 +76,6 @@ INSERT INTO assets(id, asset_id, simpro_site_id, type, parent_id, name, last_tes
 
 INSERT INTO asset_test_records(id, asset_id, job_id, name, test_date, notes, result) VALUES
   (1, 1, 10, 'name', '2016-10-20', 'Some notes...', 'Result...');
+
+INSERT INTO quotes(id, name, description, job_id, simpro_customer_id, simpro_site_id, quote_id, note, note_id, attachment_id, stage, status, cost_center_name, value, date_issued, date_expiry, business_group, status_id) VALUES
+  (1, 'Name', 'Description...', 1, 3, 1, 52648, 'Note...', 17256, '1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g', null, null, 'Cost center', 25.50, '2021-04-05', '2021-05-05', 'Maintenance', null);

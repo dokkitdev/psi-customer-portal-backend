@@ -100,7 +100,8 @@
                     "created_at": null,
                     "updated_at": null,
                     "recent_schedule_id": 1,
-                    "name": null
+                    "name": null,
+                    "converted_from_quote_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -139,7 +140,8 @@
                     "created_at": null,
                     "updated_at": null,
                     "recent_schedule_id": null,
-                    "name": null
+                    "name": null,
+                    "converted_from_quote_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -238,7 +240,8 @@
                     "created_at": null,
                     "updated_at": null,
                     "recent_schedule_id": null,
-                    "name": null
+                    "name": null,
+                    "converted_from_quote_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -337,7 +340,8 @@
                     "created_at": null,
                     "updated_at": null,
                     "recent_schedule_id": null,
-                    "name": null
+                    "name": null,
+                    "converted_from_quote_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -930,7 +934,8 @@
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
                     "recent_schedule_id": null,
-                    "name": ""
+                    "name": null,
+                    "converted_from_quote_id": null
                 },
                 "asset_test_record_readings": []
             },
@@ -960,7 +965,8 @@
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
                     "recent_schedule_id": null,
-                    "name": ""
+                    "name": null,
+                    "converted_from_quote_id": null
                 },
                 "asset_test_record_readings": [
                     {
@@ -1119,7 +1125,8 @@
                     "created_at": "2018-11-11T11:11:11.000000Z",
                     "updated_at": "2018-11-11T11:11:11.000000Z",
                     "recent_schedule_id": null,
-                    "name": ""
+                    "name": null,
+                    "converted_from_quote_id": null
                 },
                 "asset_test_record_readings": [
                     {

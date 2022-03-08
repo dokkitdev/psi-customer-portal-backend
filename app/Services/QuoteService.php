@@ -211,6 +211,31 @@ class QuoteService extends BaseService
         return $quote;
     }
 
+    public function getOrCreateBySimpro($companyId, $quoteIdFromSimpro)
+    {
+        $quote = $this->repository->findBy('quote_id', $quoteIdFromSimpro);
+
+        if ($quote) {
+            return $quote;
+        }
+
+        $quoteFromSimpro = $this->simproClient->getQuote($companyId, $quoteIdFromSimpro);
+
+        $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, $quoteFromSimpro['Customer']);
+
+        $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $quoteFromSimpro['Site']['ID'], $simproCustomer['id']);
+
+        $jobId = $this->getJobId($companyId, $quoteFromSimpro);
+
+        $quote = $this->repository->first(['quote_id' => $quoteFromSimpro['ID'], 'simpro_site_id' => $simproSite['id']]);
+
+        list($note, $attachment) = $this->getNoteAndAttachment($companyId, $quoteIdFromSimpro, Arr::get($quote, 'note_id'));
+
+        $quote = $this->createOrUpdate($quoteFromSimpro, $simproSite['id'], $simproCustomer['id'], $jobId, $note, $attachment);
+
+        return $quote;
+    }
+
     public function download($id)
     {
         $quote = $this->repository->find($id);

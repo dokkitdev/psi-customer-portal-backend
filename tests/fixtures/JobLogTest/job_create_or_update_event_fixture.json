@@ -15,7 +15,8 @@
         "created_at": null,
         "updated_at": null,
         "recent_schedule_id": 1,
-        "name": null
+        "name": null,
+        "converted_from_quote_id": null
     },
     {
         "id": 2,
@@ -33,6 +34,7 @@
         "created_at": null,
         "updated_at": "2018-11-11T11:11:11.000000Z",
         "recent_schedule_id": 2,
-        "name": "Reactive - Fire"
+        "name": "Reactive - Fire",
+        "converted_from_quote_id": null
     }
 ]
