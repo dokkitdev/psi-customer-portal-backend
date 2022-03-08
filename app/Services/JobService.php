@@ -129,9 +129,7 @@ class JobService extends BaseService
 
         $this->invoiceService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
 
-        $job = $this->setConvertedFromQuoteId($jobFromSimpro, $job);
-
-        return $job;
+        return $this->setConvertedFromQuoteId($jobFromSimpro, $job);
     }
 
     public function getOrCreateBySimpro($companyId, $jobIdFromSimpro)
