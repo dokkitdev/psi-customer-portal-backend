@@ -95,4 +95,9 @@ class Job extends Model
     {
         return $this->hasMany(Quote::class);
     }
+
+    public function converted_from_quote()
+    {
+        return $this->hasMany(Quote::class);
+    }
 }
