@@ -98,6 +98,6 @@ class Job extends Model
 
     public function converted_from_quote()
     {
-        return $this->hasMany(Quote::class);
+        return $this->belongsTo(Quote::class, 'converted_from_quote_id', 'id');
     }
 }
