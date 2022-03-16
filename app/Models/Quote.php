@@ -18,7 +18,7 @@ class Quote extends Model
         self::TYPE_REMEDIAL_INSTALLATION_QUOTE
     ];
 
-    const STAGE_IN_PROGRESS = 'InProgress';
+    const STAGE_IN_PROGRESS = 'In Progress';
     const STAGE_SENT = 'Sent';
 
     const STATUS_NEW = 'New';
@@ -76,5 +76,10 @@ class Quote extends Model
     public function simpro_site()
     {
         return $this->belongsTo(SimproSite::class);
+    }
+
+    public function quote_status_code()
+    {
+        return $this->belongsTo(QuoteStatusCode::class, 'status_id', 'simpro_code_id');
     }
 }

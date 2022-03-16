@@ -22,7 +22,7 @@
             "updated_at": null,
             "name": "Name",
             "business_group": "Maintenance",
-            "status_id": null
+            "status_id": 135
         },
         {
             "id": 2,
@@ -45,7 +45,7 @@
             "updated_at": null,
             "name": null,
             "business_group": "Maintenance",
-            "status_id": null
+            "status_id": 33
         },
         {
             "id": 3,
@@ -68,7 +68,7 @@
             "updated_at": null,
             "name": null,
             "business_group": "Maintenance",
-            "status_id": null
+            "status_id": 33
         },
         {
             "id": 4,
@@ -137,7 +137,7 @@
             "updated_at": null,
             "name": null,
             "business_group": null,
-            "status_id": null
+            "status_id": 33
         },
         {
             "id": 7,
@@ -160,7 +160,7 @@
             "updated_at": null,
             "name": null,
             "business_group": null,
-            "status_id": null
+            "status_id": 32
         },
         {
             "id": 8,
@@ -183,7 +183,7 @@
             "updated_at": null,
             "name": null,
             "business_group": null,
-            "status_id": null
+            "status_id": 33
         },
         {
             "id": 9,

@@ -7,7 +7,8 @@
             "name": "Quote : Approved to be Sent",
             "status": null,
             "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "updated_at": "2016-10-20T10:05:00.000000Z",
+            "stage": null
         },
         {
             "id": 2,
@@ -15,7 +16,8 @@
             "name": "Quote : Awaiting Approval",
             "status": null,
             "created_at": "2016-10-20T10:05:00.000000Z",
-            "updated_at": "2016-10-20T10:05:00.000000Z"
+            "updated_at": "2016-10-20T10:05:00.000000Z",
+            "stage": null
         }
     ],
     "first_page_url": "http:\/\/localhost\/quote-status-codes?page=1",

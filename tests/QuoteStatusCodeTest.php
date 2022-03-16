@@ -9,7 +9,7 @@ class QuoteStatusCodeTest extends TestCase
 {
     protected $admin;
     protected $user;
-    protected $data = ['status' => 'Accepted'];
+    protected $data = ['status' => 'New'];
 
     public function setUp(): void
     {
@@ -26,6 +26,7 @@ class QuoteStatusCodeTest extends TestCase
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
         $this->data['id'] = 1;
+        $this->data['stage'] = 'In Progress';
 
         $this->assertDatabaseHas('quote_status_codes', $this->data);
     }

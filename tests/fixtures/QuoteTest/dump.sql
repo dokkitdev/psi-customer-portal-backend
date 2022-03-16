@@ -12,11 +12,6 @@ INSERT INTO settings(name, value) VALUES
   ('default_tag', '{"ID": 55, "Name": "Alex Grant-Browning"}'),
   ('quote_date_created', '{"ID": 12, "Name": "Quote Added"}');
 
-INSERT INTO quote_status_codes(id, simpro_code_id, name, status, created_at, updated_at) VALUES
-  (1, 33, 'Quote : Approved to be Sent', null, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (2, 32, 'Quote : Awaiting Approval', null, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
-  (3, 5, 'Quote : Awaiting Information', 'New', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
-
 INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at) VALUES
   (1, 1773, '18 Hyde Park Gardens Freehold Ltd', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 6, 'Old name', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
@@ -75,14 +70,18 @@ INSERT INTO jobs(id, job_id, simpro_site_id, simpro_customer_id, requested, stag
   (9, 108, 4, 2, '2016-10-20', 'Progress', null, 1);
 
 INSERT INTO quotes(id, name, description, job_id, simpro_customer_id, simpro_site_id, quote_id, note, note_id, attachment_id, stage, status, cost_center_name, value, date_issued, date_expiry, business_group, status_id) VALUES
-  (1, 'Name', 'Description...', 1, 3, 1, 52648, 'Note...', 17256, '1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g', null, null, 'Cost center', 25.50, '2021-04-05', '2021-05-05', 'Maintenance', null),
-  (2, null, null, 2, 3, 1, 52820, null, null, null, 'Approved', 'Pending', null, null, null, '2021-05-05', 'Maintenance', null),
-  (3, null, null, 3, 3, 1, 3, null, null, null, 'Approved', 'Pending', null, null, null, '2021-05-05', 'Maintenance', null),
+  (1, 'Name', 'Description...', 1, 3, 1, 52648, 'Note...', 17256, '1n9nS2sI3NaTnu0kSDa_XpqOGMMm_VuQ_awG0Mn4E0g', null, null, 'Cost center', 25.50, '2021-04-05', '2021-05-05', 'Maintenance', 135),
+  (2, null, null, 2, 3, 1, 52820, null, null, null, 'Approved', 'Pending', null, null, null, '2021-05-05', 'Maintenance', 33),
+  (3, null, null, 3, 3, 1, 3, null, null, null, 'Approved', 'Pending', null, null, null, '2021-05-05', 'Maintenance', 33),
   (4, null, null, 4, 3, 1, 4, null, null, null, 'Approved', 'Pending', null, null, null, '2018-11-10', 'Maintenance', null),
   (5, null, null, 5, 3, 1, 5, null, null, null, 'Approved', null, null, null, null, '2021-05-05', null, null),
-  (6, null, null, 6, 1, 2, 6, null, null, null, 'Approved', 'Pending', null, null, null, '2021-05-05', null, null),
-  (7, null, null, 7, 1, 3, 7, null, null, null, 'Approved', 'Declined', null, null, null, '2021-05-05', null, null),
-  (8, null, null, 8, 3, 4, 8, null, null, null, 'Approved', 'Pending', null, null, null, '2018-05-05', null, null),
+  (6, null, null, 6, 1, 2, 6, null, null, null, 'Approved', 'Pending', null, null, null, '2021-05-05', null, 33),
+  (7, null, null, 7, 1, 3, 7, null, null, null, 'Approved', 'Declined', null, null, null, '2021-05-05', null, 32),
+  (8, null, null, 8, 3, 4, 8, null, null, null, 'Approved', 'Pending', null, null, null, '2018-05-05', null, 33),
   (9, null, null, 9, 2, 4, 9, null, null, null, 'Approved', null, null, null, null, '2021-05-05', null, null),
   (10, null, null, 9, 2, 4, 10, null, null, null, 'Approved', 'Declined', null, null, null, '2021-05-05', null, 135);
 
+INSERT INTO quote_status_codes(id, simpro_code_id, name, status, stage, created_at, updated_at) VALUES
+  (1, 33, 'Quote : Approved to be Sent', 'Pending', 'Sent', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (2, 32, 'Quote : Awaiting Approval', 'Declined', 'Sent', '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
+  (3, 135, 'Quote : Awaiting Information', 'New', 'In Progress', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
