@@ -12,7 +12,8 @@ class QuoteStatusCode extends Model
     protected $fillable = [
         'simpro_code_id',
         'name',
-        'status'
+        'status',
+        'stage'
     ];
 
     protected $hidden = ['pivot'];

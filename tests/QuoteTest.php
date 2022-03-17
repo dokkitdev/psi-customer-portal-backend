@@ -165,7 +165,7 @@ class QuoteTest extends TestCase
             ],
             [
                 'filter' => [
-                    'order_by' => 'job_id',
+                    'order_by' => 'quote_status_code.stage',
                     'desc' => true,
                     'date_issued' => '2021-04-05',
                     'date_expiry' => '2021-05-05',
@@ -174,7 +174,8 @@ class QuoteTest extends TestCase
                     'name_query' => 'Name',
                     'simpro_job_id' => 100,
                     'quote_id' => 52648,
-                    'business_groups' => ['Maintenance']
+                    'business_groups' => ['Maintenance'],
+                    'with' => ['quote_status_code']
                 ],
                 'result' => 'search_quotes_complex.json'
             ],

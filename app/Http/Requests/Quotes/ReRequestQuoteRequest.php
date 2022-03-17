@@ -7,6 +7,7 @@ use App\Models\Quote;
 use App\Models\User;
 use App\Services\QuoteService;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -28,13 +29,15 @@ class ReRequestQuoteRequest extends Request
     {
         parent::validateResolved();
 
-        $quote = app(QuoteService::class)->find($this->route('id'));
+        $quote = app(QuoteService::class)->withRelations(['quote_status_code'])->find($this->route('id'));
 
         if (!$quote) {
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'Quote']));
         }
 
-        if (!(($quote['status'] === Quote::STATUS_DECLINED) || (($quote['status'] === Quote::STATUS_PENDING) && Carbon::createFromFormat('Y-m-d', $quote['date_expiry'])->lessThan(now())))) {
+        $quoteStatus = Arr::get($quote, 'quote_status_code.status');
+
+        if (!(($quoteStatus === Quote::STATUS_DECLINED) || (($quoteStatus === Quote::STATUS_PENDING) && Carbon::createFromFormat('Y-m-d', $quote['date_expiry'])->lessThan(now())))) {
             throw new BadRequestHttpException(__('validation.exceptions.already_processed', ['entity' => 'Quote']));
         }
     }
