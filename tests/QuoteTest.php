@@ -175,7 +175,9 @@ class QuoteTest extends TestCase
                     'simpro_job_id' => 100,
                     'quote_id' => 52648,
                     'business_groups' => ['Maintenance'],
-                    'with' => ['quote_status_code']
+                    'with' => ['quote_status_code'],
+                    'statuses' => ['New'],
+                    'stages' => ['In Progress']
                 ],
                 'result' => 'search_quotes_complex.json'
             ],
