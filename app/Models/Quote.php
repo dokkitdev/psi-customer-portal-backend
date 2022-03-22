@@ -18,13 +18,20 @@ class Quote extends Model
         self::TYPE_REMEDIAL_INSTALLATION_QUOTE
     ];
 
-    const STAGE_SENT = 'Approved';
-    const STAGE_COMPLETE = 'Complete';
+    const STAGE_IN_PROGRESS = 'In Progress';
+    const STAGE_SENT = 'Sent';
 
     const STATUS_NEW = 'New';
     const STATUS_PENDING = 'Pending';
     const STATUS_DECLINED = 'Declined';
     const STATUS_ACCEPTED = 'Accepted';
+
+    const STATUSES = [
+        self::STATUS_NEW,
+        self::STATUS_PENDING,
+        self::STATUS_DECLINED,
+        self::STATUS_ACCEPTED
+    ];
 
     const PERMITTED_CUSTOMERS_RELATION_PATH = 'simpro_customer.groups.users';
     const PERMITTED_SITES_RELATION_PATH = 'simpro_site.group_simpro_sites';
@@ -69,5 +76,10 @@ class Quote extends Model
     public function simpro_site()
     {
         return $this->belongsTo(SimproSite::class);
+    }
+
+    public function quote_status_code()
+    {
+        return $this->belongsTo(QuoteStatusCode::class, 'status_id', 'simpro_code_id');
     }
 }

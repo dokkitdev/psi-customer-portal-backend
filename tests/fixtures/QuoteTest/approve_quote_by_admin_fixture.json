@@ -7,7 +7,7 @@
         "quote_id": 6,
         "date_issued": null,
         "status": "Accepted",
-        "stage": "Approved",
+        "stage": "Sent",
         "description": null,
         "cost_center_name": null,
         "value": null,
@@ -20,6 +20,6 @@
         "updated_at": "2018-11-11T11:11:11.000000Z",
         "name": null,
         "business_group": null,
-        "status_id": null
+        "status_id": 33
     }
 ]

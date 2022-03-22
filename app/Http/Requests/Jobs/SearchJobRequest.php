@@ -39,7 +39,7 @@ class SearchJobRequest extends Request
             'order_by' => 'string',
             'desc' => 'boolean',
             'with' => 'array',
-            'with.*' => 'string|in:simpro_site,simpro_customer,recent_schedule,schedules,job_catalogs,job_attachments,job_work_orders,invoices,quotes'
+            'with.*' => 'string|in:simpro_site,simpro_customer,recent_schedule,schedules,job_catalogs,job_attachments,job_work_orders,invoices,quotes,converted_from_quote'
         ];
     }
 }

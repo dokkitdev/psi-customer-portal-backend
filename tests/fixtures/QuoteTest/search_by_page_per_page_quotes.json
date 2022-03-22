@@ -22,7 +22,7 @@
             "updated_at": null,
             "name": "Name",
             "business_group": "Maintenance",
-            "status_id": null
+            "status_id": 135
         },
         {
             "id": 2,
@@ -31,7 +31,7 @@
             "simpro_site_id": 1,
             "quote_id": 52820,
             "date_issued": null,
-            "status": "Declined",
+            "status": "Pending",
             "stage": "Approved",
             "description": null,
             "cost_center_name": null,
@@ -45,7 +45,7 @@
             "updated_at": null,
             "name": null,
             "business_group": "Maintenance",
-            "status_id": null
+            "status_id": 33
         }
     ],
     "first_page_url": "http:\/\/localhost\/quotes?page=1",

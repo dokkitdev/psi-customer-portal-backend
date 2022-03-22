@@ -20,7 +20,7 @@
         "updated_at": null,
         "name": "Name",
         "business_group": "Maintenance",
-        "status_id": null
+        "status_id": 135
     },
     {
         "id": 2,
@@ -29,7 +29,7 @@
         "simpro_site_id": 1,
         "quote_id": 52820,
         "date_issued": null,
-        "status": "Declined",
+        "status": "Pending",
         "stage": "Approved",
         "description": null,
         "cost_center_name": null,
@@ -43,7 +43,7 @@
         "updated_at": null,
         "name": null,
         "business_group": "Maintenance",
-        "status_id": null
+        "status_id": 33
     },
     {
         "id": 3,
@@ -66,7 +66,7 @@
         "updated_at": null,
         "name": null,
         "business_group": "Maintenance",
-        "status_id": null
+        "status_id": 33
     },
     {
         "id": 4,
@@ -75,7 +75,7 @@
         "simpro_site_id": 1,
         "quote_id": 4,
         "date_issued": null,
-        "status": null,
+        "status": "Pending",
         "stage": "Approved",
         "description": null,
         "cost_center_name": null,
@@ -121,7 +121,7 @@
         "simpro_site_id": 2,
         "quote_id": 6,
         "date_issued": null,
-        "status": "New",
+        "status": "Pending",
         "stage": "Approved",
         "description": null,
         "cost_center_name": null,
@@ -135,7 +135,7 @@
         "updated_at": null,
         "name": null,
         "business_group": null,
-        "status_id": null
+        "status_id": 33
     },
     {
         "id": 7,
@@ -158,7 +158,7 @@
         "updated_at": null,
         "name": null,
         "business_group": null,
-        "status_id": null
+        "status_id": 32
     },
     {
         "id": 8,
@@ -167,12 +167,12 @@
         "simpro_site_id": 4,
         "quote_id": 8,
         "date_issued": null,
-        "status": null,
+        "status": "Pending",
         "stage": "Approved",
         "description": null,
         "cost_center_name": null,
         "value": null,
-        "date_expiry": "2021-05-05",
+        "date_expiry": "2018-05-05",
         "note_id": null,
         "note": null,
         "attachment_id": null,
@@ -181,7 +181,7 @@
         "updated_at": null,
         "name": null,
         "business_group": null,
-        "status_id": null
+        "status_id": 33
     },
     {
         "id": 9,

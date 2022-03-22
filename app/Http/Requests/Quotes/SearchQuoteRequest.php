@@ -49,7 +49,7 @@ class SearchQuoteRequest extends Request
             'order_by' => 'string',
             'desc' => 'boolean',
             'with' => 'array',
-            'with.*' => 'string|in:job,simpro_site,simpro_customer',
+            'with.*' => 'string|in:job,simpro_site,simpro_customer,quote_status_code',
         ];
     }
 }

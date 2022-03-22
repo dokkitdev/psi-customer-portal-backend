@@ -45,7 +45,8 @@ class Job extends Model
         'job_status',
         'requested',
         'recent_schedule_id',
-        'name'
+        'name',
+        'converted_from_quote_id'
     ];
 
     protected $hidden = ['pivot'];
@@ -93,5 +94,10 @@ class Job extends Model
     public function quotes()
     {
         return $this->hasMany(Quote::class);
+    }
+
+    public function converted_from_quote()
+    {
+        return $this->belongsTo(Quote::class, 'converted_from_quote_id', 'id');
     }
 }

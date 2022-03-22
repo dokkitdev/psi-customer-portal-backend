@@ -129,7 +129,7 @@ class JobService extends BaseService
 
         $this->invoiceService->syncBySimpro($companyId, $jobIdFromSimpro, $job['id']);
 
-        return $job;
+        return $this->setConvertedFromQuoteId($jobFromSimpro, $job);
     }
 
     public function getOrCreateBySimpro($companyId, $jobIdFromSimpro)
@@ -168,7 +168,7 @@ class JobService extends BaseService
             'stage' => Arr::get($jobFromSimpro, 'Stage'),
             'job_status' => Arr::get($jobFromSimpro, 'Status.Name'),
             'requested' => Arr::get($customField, 'Value'),
-            'name' => Arr::get($jobFromSimpro, 'Name'),
+            'name' => $this->getName($jobFromSimpro),
         ]);
     }
 
@@ -218,5 +218,38 @@ class JobService extends BaseService
         }
 
         return $priority;
+    }
+
+    protected function setConvertedFromQuoteId($jobFromSimpro, $job)
+    {
+        if (Arr::get($jobFromSimpro, 'ConvertedFrom.Type') === 'Quote') {
+            $quote = app(QuoteService::class)->getOrCreateBySimpro($this->companyId, Arr::get($jobFromSimpro, 'ConvertedFrom.ID'));
+
+            return $this->repository->update($job['id'], ['converted_from_quote_id' => $quote['id']]);
+        }
+
+        return $job;
+    }
+
+    protected function getName($jobFromSimpro)
+    {
+        if (Arr::get($jobFromSimpro, 'Name')) {
+            return $jobFromSimpro['Name'];
+        }
+
+        $jobNameTags = config('defaults.job_name_tags');
+
+        foreach ($jobNameTags as $tagId) {
+            if ($tag = $this->findTagById($jobFromSimpro['Tags'], $tagId)) {
+                return $tag['Name'];
+            }
+        }
+
+        return null;
+    }
+
+    protected function findTagById($tags, $id)
+    {
+        return collect($tags)->firstWhere('ID', $id);
     }
 }

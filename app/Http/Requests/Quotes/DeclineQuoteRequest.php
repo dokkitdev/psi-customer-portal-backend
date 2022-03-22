@@ -6,6 +6,7 @@ use App\Http\Requests\Request;
 use App\Models\Quote;
 use App\Models\User;
 use App\Services\QuoteService;
+use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -27,13 +28,15 @@ class DeclineQuoteRequest extends Request
     {
         parent::validateResolved();
 
-        $quote = app(QuoteService::class)->find($this->route('id'));
+        $quote = app(QuoteService::class)->withRelations(['quote_status_code'])->find($this->route('id'));
 
         if (!$quote) {
             throw new NotFoundHttpException(__('validation.exceptions.not_found', ['entity' => 'Quote']));
         }
 
-        if (($quote['stage'] !== Quote::STAGE_SENT) || !in_array($quote['status'], [Quote::STATUS_NEW, Quote::STATUS_PENDING])) {
+        $quoteStatus = Arr::get($quote, 'quote_status_code.status');
+
+        if ($quoteStatus !== Quote::STATUS_PENDING) {
             throw new BadRequestHttpException(__('validation.exceptions.already_processed', ['entity' => 'Quote']));
         }
     }

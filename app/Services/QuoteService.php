@@ -54,8 +54,8 @@ class QuoteService extends BaseService
             ->filterByIntQuery('job.job_id', 'simpro_job_id')
             ->filterBy('simpro_customer_id')
             ->filterBy('simpro_site_id')
-            ->filterByList('stage', 'stages')
-            ->filterByList('status', 'statuses')
+            ->filterByList('quote_status_code.stage', 'stages')
+            ->filterByList('quote_status_code.status', 'statuses')
             ->filterByList('cost_center_name', 'cost_center_names')
             ->filterByList('business_group', 'business_groups')
             ->filterBy('value')
@@ -209,6 +209,31 @@ class QuoteService extends BaseService
         return $quote;
     }
 
+    public function getOrCreateBySimpro($companyId, $quoteIdFromSimpro)
+    {
+        $quote = $this->repository->findBy('quote_id', $quoteIdFromSimpro);
+
+        if ($quote) {
+            return $quote;
+        }
+
+        $quoteFromSimpro = $this->simproClient->getQuote($companyId, $quoteIdFromSimpro);
+
+        $simproCustomer = $this->simproCustomerService->getOrCreateBySimpro($companyId, $quoteFromSimpro['Customer']);
+
+        $simproSite = $this->simproSiteService->getOrCreateBySimpro($companyId, $quoteFromSimpro['Site']['ID'], $simproCustomer['id']);
+
+        $jobId = $this->getJobId($companyId, $quoteFromSimpro);
+
+        $quote = $this->repository->first(['quote_id' => $quoteFromSimpro['ID'], 'simpro_site_id' => $simproSite['id']]);
+
+        list($note, $attachment) = $this->getNoteAndAttachment($companyId, $quoteIdFromSimpro, Arr::get($quote, 'note_id'));
+
+        $quote = $this->createOrUpdate($quoteFromSimpro, $simproSite['id'], $simproCustomer['id'], $jobId, $note, $attachment);
+
+        return $quote;
+    }
+
     public function download($id)
     {
         $quote = $this->repository->find($id);
@@ -296,7 +321,7 @@ class QuoteService extends BaseService
             'quote_id' => $quoteFromSimpro['ID'],
             'name' => $quoteFromSimpro['Name'],
             'date_issued' => $quoteFromSimpro['DateIssued'],
-            'status' => $quoteFromSimpro['CustomerStage'],
+            'status' => Arr::get($quoteFromSimpro, 'Status.Name'),
             'stage' => $quoteFromSimpro['Stage'],
             'description' => $quoteFromSimpro['Description'],
             'cost_center_name' => Arr::get($quoteFromSimpro, 'Sections.0.CostCenters.0.CostCenter.Name'),
