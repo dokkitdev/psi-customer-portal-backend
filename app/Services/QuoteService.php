@@ -314,8 +314,8 @@ class QuoteService extends BaseService
 
         return $this->repository->updateOrCreate([
             'quote_id' => $quoteFromSimpro['ID'],
-            'simpro_site_id' => $simproSiteId,
         ], [
+            'simpro_site_id' => $simproSiteId,
             'simpro_customer_id' => $simproCustomerId,
             'job_id' => $jobId,
             'quote_id' => $quoteFromSimpro['ID'],
