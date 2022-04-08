@@ -263,7 +263,7 @@ class QuoteService extends BaseService
         $attachment = $this->findMostRecentFile($attachments, [$attachmentName]);
 
         if (!$attachment) {
-            $attachmentName = "{$quoteId}xxxxxx";
+            $attachmentName = (string) $quoteId;
 
             $attachment = $this->findMostRecentFile($attachments, [$attachmentName]);
         }
