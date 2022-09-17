@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\TimeoutCommand;
 use App\Services\SiteLogService;
-use Illuminate\Console\Command;
 
-class HandleSitesLog extends Command
+class HandleSitesLog extends TimeoutCommand
 {
     protected $signature = 'sites-log:handle';
 

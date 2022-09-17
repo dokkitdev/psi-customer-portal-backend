@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\TimeoutCommand;
 use App\Services\InvoiceLogService;
-use Illuminate\Console\Command;
 
-class HandleInvoicesLog extends Command
+class HandleInvoicesLog extends TimeoutCommand
 {
     protected $signature = 'invoices-log:handle';
 
