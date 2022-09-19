@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\TimeoutCommand;
 use App\Services\AssetLogService;
-use Illuminate\Console\Command;
 
-class HandleAssetsLog extends Command
+class HandleAssetsLog extends TimeoutCommand
 {
     protected $signature = 'assets-log:handle';
 

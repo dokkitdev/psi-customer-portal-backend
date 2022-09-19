@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands\Simpro;
 
+use App\Console\Commands\TimeoutCommand;
 use App\Services\QuoteLogService;
-use Illuminate\Console\Command;
 
-class HandleQuotesLog extends Command
+class HandleQuotesLog extends TimeoutCommand
 {
     protected $signature = 'quotes-log:handle';
 
