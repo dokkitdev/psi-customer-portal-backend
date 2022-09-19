@@ -5,10 +5,9 @@ namespace App\Console\Commands;
 use App\Models\JobLog;
 use App\Services\JobLogService;
 use App\Services\JobService;
-use Illuminate\Console\Command;
 use Exception;
 
-class HandleJobsLog extends Command
+class HandleJobsLog extends TimeoutCommand
 {
     protected $signature = 'jobs-log:handle';
 

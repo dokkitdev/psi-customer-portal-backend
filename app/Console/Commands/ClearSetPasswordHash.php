@@ -3,9 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Services\UserService;
-use Illuminate\Console\Command;
 
-class ClearSetPasswordHash extends Command
+class ClearSetPasswordHash extends TimeoutCommand
 {
     protected $signature = 'clear:set-password-hash';
 

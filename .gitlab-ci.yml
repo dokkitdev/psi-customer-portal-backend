@@ -99,7 +99,7 @@ stop:
     - production
     - tags
         
-deploy_development:
+.deploy_development:
   extends: .deploy_ansible
   environment:
     name: "development"

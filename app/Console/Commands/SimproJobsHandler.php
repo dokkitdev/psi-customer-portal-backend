@@ -4,10 +4,9 @@ namespace App\Console\Commands;
 
 use App\Models\SimproJob;
 use App\Services\SimproJobService;
-use Illuminate\Console\Command;
 use Exception;
 
-class SimproJobsHandler extends Command
+class SimproJobsHandler extends TimeoutCommand
 {
     protected $signature = 'simpro:handle-jobs';
 
