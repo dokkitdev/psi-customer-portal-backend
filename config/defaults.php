@@ -3,7 +3,7 @@
 return [
     'items_per_page' => 10,
     'permitted_media_types' => ['jpg', 'jpeg', 'bmp', 'png', 'pdf'],
-    'max_media_size' => 30720,
+    'max_media_size' => 102400,
     'invoice_permissions' => ['View', 'No Access'],
     'quote_permissions' => ['View', 'Edit', 'No Access'],
     'site_custom_field_ids' => [22, 32, 25, 16, 76],
