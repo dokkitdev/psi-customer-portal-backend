@@ -58,6 +58,7 @@ php_default_version_debian: "{{ php_version }}"
 php_versions_debian: "{{ php_version }}"
 php_enable_webserver: false
 php_install_recommends: false
+php_post_max_size: "100M"
 php_packages:
   - git
   - php{{ php_version }}-fpm
