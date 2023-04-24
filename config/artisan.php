@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'timeout_seconds' => env('ARTISAN_TIMEOUT_SECONDS', 3600),
+    'timeout_seconds' => (int) env('ARTISAN_TIMEOUT_SECONDS', 3600),
 ];
