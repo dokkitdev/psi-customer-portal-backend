@@ -23,7 +23,7 @@ abstract class TimeoutCommand extends Command
 
         if ($timeout > 0) {
             pcntl_signal(SIGALRM, function () {
-                $this->kill(self::TIMEOUT_EXIT_CODE);
+                posix_kill(getmypid(), SIGKILL);
             });
 
             pcntl_alarm($timeout);

@@ -252,15 +252,19 @@ class SimproApiClient
         $requestData = ($method === 'delete') ? $headers : $data;
         $method = "send{$method}";
 
-        $response = $this->httpRequestService->$method($url, $requestData, $headers);
+        $response = $this->httpRequestService
+            ->set('timeout', config('artisan.timeout_seconds'))
+            ->$method($url, $requestData, $headers);
 
         return $this->httpRequestService->parseJsonResponse($response);
     }
 
     protected function downloadAttachment($url, $attachmentId)
     {
-        $this->httpRequestService->set('sink', Storage::path($attachmentId));
-        $response = $this->httpRequestService->sendGet($url, null, $this->getHeaders());
+        $response = $this->httpRequestService
+            ->set('timeout', config('artisan.timeout_seconds'))
+            ->set('sink', Storage::path($attachmentId))
+            ->sendGet($url, null, $this->getHeaders());
 
         return $this->httpRequestService->parseJsonResponse($response);
     }
