@@ -74,16 +74,18 @@
     {
         "id": 5,
         "data": {
-            "ID": "job.created",
+            "ID": "any.webhook",
             "name": "Job",
             "build": "pfsgroup.simprosuite.com",
             "action": "created",
             "description": "Job #2406 has been created.",
-            "date_triggered": "2019-12-18T12:35:47+00:00",
             "reference": {
+                "ID": 1234,
                 "jobID": 2406,
-                "companyID": 0
-            }
+                "companyID": 0,
+                "attachmentID": "any_value"
+            },
+            "date_triggered": "2019-12-18T12:35:47+00:00"
         },
         "handle_status": "new",
         "handle_result": null,
