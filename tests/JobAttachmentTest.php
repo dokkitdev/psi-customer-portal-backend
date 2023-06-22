@@ -11,6 +11,11 @@ class JobAttachmentTest extends TestCase
 {
     use MockHttpRequestServiceTrait;
 
+    protected array $requiredOriginStates = [
+        'job_attachments',
+        'simpro_jobs',
+    ];
+
     protected $user;
 
     public function setUp(): void
@@ -62,5 +67,34 @@ class JobAttachmentTest extends TestCase
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
 
         $this->assertEmpty(Storage::files());
+    }
+
+    public function getTestHandleWebhookData(): array
+    {
+        return [
+            ['handle_webhook__job_attachment_created_or_updated__no_local_job'],
+            ['handle_webhook__job_attachment_created_or_updated__attachment_not_public'],
+            ['handle_webhook__job_attachment_created_or_updated__attachment_created'],
+            ['handle_webhook__job_attachment_created_or_updated__attachment_updated'],
+            ['handle_webhook__job_attachment_deleted__no_local_job'],
+            ['handle_webhook__job_attachment_deleted__no_local_attachment'],
+            ['handle_webhook__job_attachment_deleted__attachment_deleted'],
+        ];
+    }
+
+    /**
+     * @dataProvider getTestHandleWebhookData
+     * @providedTestCase
+     */
+    public function testHandleWebhook(): void
+    {
+        if (file_exists($this->getFixturePath('requests_chain.json'))) {
+            $this->mockHttpRequestService('requests_chain.json');
+        }
+
+        $this->artisan('simpro:handle-jobs')->assertExitCode(0);
+
+        $this->assertChangesEqualsFixture('job_attachments');
+        $this->assertChangesEqualsFixture('simpro_jobs');
     }
 }

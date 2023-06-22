@@ -1,0 +1,14 @@
+{
+    "updated": [],
+    "created": [],
+    "deleted": [
+        {
+            "id": 10,
+            "data": "{\n    \"ID\": \"job.attachment.deleted\",\n    \"description\": \"Attachment #existed_attachment_simpro_id has been deleted.\",\n    \"reference\": {\n        \"ID\": 1010,\n        \"attachmentID\": \"existed_attachment_simpro_id\",\n        \"companyID\": 0\n    }\n}",
+            "handle_status": "new",
+            "handle_result": null,
+            "created_at": null,
+            "updated_at": null
+        }
+    ]
+}
