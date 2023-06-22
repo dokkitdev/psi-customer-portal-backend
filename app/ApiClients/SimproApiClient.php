@@ -49,11 +49,15 @@ class SimproApiClient
         ]);
     }
 
-    public function downloadJobAttachment($companyId, $jobId, $attachmentId)
+    public function downloadJobAttachment($companyId, $jobId, $attachmentId): void
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}/view/");
 
-        return $this->downloadAttachment($url, $attachmentId);
+        $response = $this->httpRequestService
+            ->set('timeout', config('artisan.timeout_seconds'))
+            ->sendGet($url, null, $this->getHeaders());
+
+        Storage::put($attachmentId, $response->getBody());
     }
 
     public function postJobAttachment($companyId, $jobId, $data)
@@ -255,16 +259,6 @@ class SimproApiClient
         $response = $this->httpRequestService
             ->set('timeout', config('artisan.timeout_seconds'))
             ->$method($url, $requestData, $headers);
-
-        return $this->httpRequestService->parseJsonResponse($response);
-    }
-
-    protected function downloadAttachment($url, $attachmentId)
-    {
-        $response = $this->httpRequestService
-            ->set('timeout', config('artisan.timeout_seconds'))
-            ->set('sink', Storage::path($attachmentId))
-            ->sendGet($url, null, $this->getHeaders());
 
         return $this->httpRequestService->parseJsonResponse($response);
     }

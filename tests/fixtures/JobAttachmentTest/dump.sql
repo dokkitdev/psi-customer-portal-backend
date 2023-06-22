@@ -6,9 +6,6 @@ INSERT INTO users(id, name, email, password, remember_token, set_password_hash, 
   (1, 'Gerhard Feest', 'fidel.kutch@example.com', '$2y$10$X4receiTrF24bXrEbAiChOZ8TMNPqoXuhuThgynvBdWIHZeu5HzsS', null, null, 1, '2016-10-20 11:05:00', '2016-10-20 11:05:00'),
   (2, 'Alien West', 'alien.west@example.com', 'old_password', null, 'restore_token', 2, '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
-INSERT INTO settings(name, value) VALUES
-  ('default_tag', '{"ID": 55, "Name": "Alex Grant-Browning"}');
-
 INSERT INTO simpro_customers(id, customer_id, name, type, created_at, updated_at) VALUES
   (1, 5, '18 Hyde Park Gardens Freehold Ltd', 'companies', '2016-10-20 11:05:00', '2016-10-20 11:05:00');
 
