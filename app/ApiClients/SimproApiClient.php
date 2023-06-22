@@ -49,6 +49,15 @@ class SimproApiClient
         ]);
     }
 
+    public function getJobAttachment(int $companyId, int $simproJobId, string $simproAttachmentId): array
+    {
+        $url = $this->getUrl("companies/{$companyId}/jobs/{$simproJobId}/attachments/files/{$simproAttachmentId}");
+
+        return $this->makeRequest('get', $url, [
+            'columns' => 'ID,Filename,Public,DateAdded',
+        ]);
+    }
+
     public function downloadJobAttachment($companyId, $jobId, $attachmentId): void
     {
         $url = $this->getUrl("companies/{$companyId}/jobs/{$jobId}/attachments/files/{$attachmentId}/view/");
