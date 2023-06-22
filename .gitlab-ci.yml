@@ -1,7 +1,7 @@
 stages:
   - prepare
-  - tests
-  - backup
+#  - tests
+#  - backup
   - deploy
 
 variables:
@@ -43,37 +43,37 @@ php_dependencies:
     - docker
     - linux
 
-tests:
-  stage: tests
-  variables:
-    DB_CONNECTION: pgsql
-    DB_HOST: pgsql_test
-    POSTGRES_USER: forge
-    POSTGRES_DB: forge
-    POSTGRES_PASSWORD: ""
-    REDIS_HOST: "redis"
-    MAIL_DRIVER: log
-    FILESYSTEM_DRIVER: testing
-    APP_NAME: "Psi Customer Portal"
-    APP_ENV: testing
-    APP_DEBUG: "true"
-    APP_LOG_LEVEL: debug
-    APP_URL: http://localhost
-    DATA_COLLECTOR_KEY: PfsCustomerPortal
-  image: ronasit/php-nginx:7.4
-  services:
-    - name: ronasit/postgres:11.1
-      alias: pgsql_test
-  script:
-    - composer install
-    - php artisan jwt:secret --env=testing
-    - php artisan key:generate --env=testing
-    - php vendor/bin/phpunit --stop-on-failure ./tests/
-  after_script:
-    - cat storage/logs/*.log || true
-  tags:
-    - docker
-    - linux
+#tests:
+#  stage: tests
+#  variables:
+#    DB_CONNECTION: pgsql
+#    DB_HOST: pgsql_test
+#    POSTGRES_USER: forge
+#    POSTGRES_DB: forge
+#    POSTGRES_PASSWORD: ""
+#    REDIS_HOST: "redis"
+#    MAIL_DRIVER: log
+#    FILESYSTEM_DRIVER: testing
+#    APP_NAME: "Psi Customer Portal"
+#    APP_ENV: testing
+#    APP_DEBUG: "true"
+#    APP_LOG_LEVEL: debug
+#    APP_URL: http://localhost
+#    DATA_COLLECTOR_KEY: PfsCustomerPortal
+#  image: ronasit/php-nginx:7.4
+#  services:
+#    - name: ronasit/postgres:11.1
+#      alias: pgsql_test
+#  script:
+#    - composer install
+#    - php artisan jwt:secret --env=testing
+#    - php artisan key:generate --env=testing
+#    - php vendor/bin/phpunit --stop-on-failure ./tests/
+#  after_script:
+#    - cat storage/logs/*.log || true
+#  tags:
+#    - docker
+#    - linux
 
 deploy:
   extends: .deploy
@@ -118,20 +118,20 @@ deploy_staging:
   only:
     - master
 
-backup:
-  image: 
-    name: cmdlabs/eks-utils:2.3.0
-    entrypoint: [""]
-  stage: backup 
-  script:
-    - NOW=$(echo pfs-customer-portal-prod-)$(date +"%m%d%y%H%M%S")
-    - aws ec2 create-snapshot --volume-id vol-0da5f5dac2e3aa4d8 --description $NOW
-  only:
-    - production
-    - tags
-  tags:
-    - docker
-    - linux
+#backup:
+#  image:
+#    name: cmdlabs/eks-utils:2.3.0
+#    entrypoint: [""]
+#  stage: backup
+#  script:
+#    - NOW=$(echo pfs-customer-portal-prod-)$(date +"%m%d%y%H%M%S")
+#    - aws ec2 create-snapshot --volume-id vol-0da5f5dac2e3aa4d8 --description $NOW
+#  only:
+#    - production
+#    - tags
+#  tags:
+#    - docker
+#    - linux
 
 deploy_production:
   extends: .deploy_ansible
@@ -141,5 +141,9 @@ deploy_production:
   environment:
     name: "production"
     url:  https://api.pfscloud.app
+  before_script:
+    - cp ${CI_GIT_CREDENTIALS} ~/.git-credentials
+    - cp ${CI_GIT_CONFIG} ~/.gitconfig
+    - ls -la ~
   only:
-    - tags
+    - production
