@@ -119,10 +119,10 @@ deploy_staging:
     - master
 
 backup:
-  image: 
+  image:
     name: cmdlabs/eks-utils:2.3.0
     entrypoint: [""]
-  stage: backup 
+  stage: backup
   script:
     - NOW=$(echo pfs-customer-portal-prod-)$(date +"%m%d%y%H%M%S")
     - aws ec2 create-snapshot --volume-id vol-0da5f5dac2e3aa4d8 --description $NOW
@@ -141,5 +141,8 @@ deploy_production:
   environment:
     name: "production"
     url:  https://api.pfscloud.app
+  before_script:
+    - cp ${CI_GIT_CREDENTIALS} ~/.git-credentials
+    - cp ${CI_GIT_CONFIG} ~/.gitconfig
   only:
-    - tags
+    - production
