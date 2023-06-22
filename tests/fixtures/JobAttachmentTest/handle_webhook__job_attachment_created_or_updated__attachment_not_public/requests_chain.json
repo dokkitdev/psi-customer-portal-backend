@@ -1,0 +1,26 @@
+[
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1010/attachments/files/new_attachment_simpro_id",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": "new_attachment_simpro_id",
+                "Filename": "new_attachment_file_name.pdf",
+                "Public": false,
+                "DateAdded": "2018-10-10 10:10:10+03"
+            },
+            "headers": {"any": "headers"}
+        }
+    }
+]

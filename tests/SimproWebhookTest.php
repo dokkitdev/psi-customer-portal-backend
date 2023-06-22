@@ -61,14 +61,16 @@ class SimproWebhookTest extends TestCase
         $this->mockRequestVerification(true);
 
         $response = $this->json('post', '/simpro-webhook', [
-            'ID' => 'job.created',
+            'ID' => 'any.webhook',
             'build' => 'pfsgroup.simprosuite.com',
             'description' => 'Job #2406 has been created.',
             'name' => 'Job',
             'action' => 'created',
             'reference' => [
                 'companyID' => 0,
-                'jobID' => 2406
+                'jobID' => 2406,
+                'ID' => 1234,
+                'attachmentID' => 'any_value',
             ],
             'date_triggered' => '2019-12-18T12:35:47+00:00'
         ], [

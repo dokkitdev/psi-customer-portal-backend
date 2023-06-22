@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\ApiClients\SimproApiClient;
+use App\Models\SimproJob;
 use App\Repositories\JobAttachmentRepository;
 use RonasIT\Support\Services\EntityService;
 
@@ -55,6 +56,44 @@ class JobAttachmentService extends EntityService
         if ($jobAttachments->isNotEmpty()) {
             $ids = $jobAttachments->pluck('id')->toArray();
             $this->repository->deleteByList($ids);
+        }
+    }
+
+    public function createOrUpdateBySimpro(SimproJob $webhook): void
+    {
+        $companyId = $webhook['data']['reference']['companyID'];
+        $simproJobId = $webhook['data']['reference']['ID'];
+        $simproAttachmentId = $webhook['data']['reference']['attachmentID'];
+
+        $localJob = app(JobService::class)->findBy('job_id', $simproJobId);
+
+        if (!empty($localJob)) {
+            $simproAttachment = $this->simproClient->getJobAttachment($companyId, $simproJobId, $simproAttachmentId);
+
+            if ($simproAttachment['Public']) {
+                $this->repository->updateOrCreate([
+                    'job_id' => $localJob['id'],
+                    'attachment_id' => $simproAttachmentId
+                ], [
+                    'name' => $simproAttachment['Filename'],
+                    'date_added' => empty($simproAttachment['DateAdded']) ? null : $simproAttachment['DateAdded'],
+                ]);
+            }
+        }
+    }
+
+    public function deleteBySimpro(SimproJob $webhook): void
+    {
+        $simproJobId = $webhook['data']['reference']['ID'];
+        $simproAttachmentId = $webhook['data']['reference']['attachmentID'];
+
+        $localJob = app(JobService::class)->findBy('job_id', $simproJobId);
+
+        if (!empty($localJob)) {
+            $this->delete([
+                'job_id' => $localJob['id'],
+                'attachment_id' => $simproAttachmentId
+            ]);
         }
     }
 

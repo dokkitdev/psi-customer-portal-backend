@@ -23,6 +23,8 @@ class ProcessSimproWebhookRequest extends Request
             'reference.sectionID' => 'integer',
             'reference.costCenterID' => 'integer',
             'reference.siteID' => 'integer',
+            'reference.ID' => 'integer',
+            'reference.attachmentID' => 'string',
             'date_triggered' => 'string'
         ];
     }
