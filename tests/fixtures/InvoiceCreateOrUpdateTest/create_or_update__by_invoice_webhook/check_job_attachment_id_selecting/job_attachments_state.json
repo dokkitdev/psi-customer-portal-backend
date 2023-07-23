@@ -1,0 +1,60 @@
+{
+    "updated": [],
+    "created": [
+        {
+            "id": 6002,
+            "job_id": 4102,
+            "attachment_id": "attachment_5674",
+            "name": "any name",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11",
+            "date_added": "2018-10-10 10:10:10"
+        },
+        {
+            "id": 6003,
+            "job_id": 4102,
+            "attachment_id": "attachment_5675",
+            "name": "innnnvoice_no_1234_any_str",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11",
+            "date_added": "2018-10-10 10:10:10"
+        },
+        {
+            "id": 6004,
+            "job_id": 4102,
+            "attachment_id": "attachment_5676",
+            "name": "invoice_no_1234_any_str",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11",
+            "date_added": "2018-10-10 10:10:12"
+        },
+        {
+            "id": 6005,
+            "job_id": 4102,
+            "attachment_id": "attachment_5677",
+            "name": "invoice_no_1234_any_str",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11",
+            "date_added": "2018-10-10 10:10:13"
+        },
+        {
+            "id": 6006,
+            "job_id": 4102,
+            "attachment_id": "attachment_5678",
+            "name": "invoice_no_1234_any_str",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11",
+            "date_added": "2018-10-10 10:10:11"
+        },
+        {
+            "id": 6007,
+            "job_id": 4102,
+            "attachment_id": "attachment_5679",
+            "name": "any name",
+            "created_at": "2018-11-11 11:11:11",
+            "updated_at": "2018-11-11 11:11:11",
+            "date_added": "2018-10-10 10:10:10"
+        }
+    ],
+    "deleted": []
+}

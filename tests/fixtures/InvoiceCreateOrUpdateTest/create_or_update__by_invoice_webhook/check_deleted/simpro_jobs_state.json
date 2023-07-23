@@ -1,0 +1,14 @@
+{
+    "updated": [],
+    "created": [],
+    "deleted": [
+        {
+            "id": 1102,
+            "data": "\n        {\n            \"ID\": \"invoice.deleted\",\n            \"reference\": {\n                \"companyID\": 0,\n                \"invoiceID\": 1234\n            }\n        }\n        ",
+            "handle_status": "new",
+            "handle_result": null,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        }
+    ]
+}

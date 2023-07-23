@@ -23,8 +23,19 @@ class InvoiceCreateOrUpdateTest extends TestCase
             ['create_or_update__by_job_webhook/check_job_attachment_id_selecting__no_job_attachments'],
             ['create_or_update__by_job_webhook/check_job_attachment_id_selecting__no_suitable_job_attachments'],
             ['create_or_update__by_job_webhook/check_job_attachment_id_selecting__found_job_attachment'],
+
+            ['create_or_update__by_invoice_webhook/check_webhook_types'],
+            ['create_or_update__by_invoice_webhook/check_deleted'],
+            ['create_or_update__by_invoice_webhook/check_credit_invoices_skipped'],
+            ['create_or_update__by_invoice_webhook/no_jobs_skipped'],
+            ['create_or_update__by_invoice_webhook/check_updated'],
+            ['create_or_update__by_invoice_webhook/check_created'],
+            ['create_or_update__by_invoice_webhook/multiple_jobs'],
+            ['create_or_update__by_invoice_webhook/check_job_attachment_id_selecting'],
         ];
     }
+
+    protected bool $forceExportMode = true;
 
     /**
      * @dataProvider getTestCreateOrUpdateByJobWebhookData

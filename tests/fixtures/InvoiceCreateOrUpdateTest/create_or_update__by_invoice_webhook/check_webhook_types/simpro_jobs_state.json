@@ -1,0 +1,30 @@
+{
+    "updated": [],
+    "created": [],
+    "deleted": [
+        {
+            "id": 1102,
+            "data": "\n        {\n            \"ID\": \"invoice.created\",\n            \"reference\": {\n                \"companyID\": 0,\n                \"invoiceID\": 1234\n            }\n        }\n        ",
+            "handle_status": "new",
+            "handle_result": null,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        },
+        {
+            "id": 1103,
+            "data": "\n        {\n            \"ID\": \"invoice.updated\",\n            \"reference\": {\n                \"companyID\": 0,\n                \"invoiceID\": 1235\n            }\n        }\n        ",
+            "handle_status": "new",
+            "handle_result": null,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        },
+        {
+            "id": 1104,
+            "data": "\n        {\n            \"ID\": \"invoice.status\",\n            \"reference\": {\n                \"companyID\": 0,\n                \"invoiceID\": 1236\n            }\n        }\n        ",
+            "handle_status": "new",
+            "handle_result": null,
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10"
+        }
+    ]
+}
