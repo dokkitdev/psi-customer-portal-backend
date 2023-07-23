@@ -180,6 +180,7 @@ trait SimproTestTrait
     {
         $this->mockHttpRequestService([
             $this->getCustomerInvoice(),
+            $this->getJobAttachments('get_job_attachments_response_success.json'),
         ]);
     }
 
