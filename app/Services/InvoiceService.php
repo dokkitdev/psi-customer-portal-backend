@@ -69,28 +69,9 @@ class InvoiceService extends BaseService
 
         foreach ($invoicesFromSimproPages as $invoicesFromSimproPage) {
             foreach ($invoicesFromSimproPage as $invoiceFromSimpro) {
-                $invoiceFromSimproId = $invoiceFromSimpro['ID'];
-                $customerInvoice = $this->simproClient->getCustomerInvoice($companyId, $invoiceFromSimproId);
-                if (!$this->isCreditInvoice($customerInvoice)) {
-                    $attachment = $this->findMostRecentAttachment($jobId, $invoiceFromSimproId);
-                    $data = [
-                        'job_id' => $jobId,
-                        'invoice_id' => $invoiceFromSimproId,
-                        'date_issued' => $invoiceFromSimpro['DateIssued'],
-                        'status' => $invoiceFromSimpro['Stage'],
-                        'total' => Arr::get($invoiceFromSimpro, 'Total.ExTax'),
-                        'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
-                        'is_paid' => $customerInvoice['IsPaid'],
-                        'job_attachment_id' => Arr::get($attachment, 'id')
-                    ];
-                    $invoice = $invoices->firstWhere('invoice_id', $invoiceFromSimproId);
-                    if ($invoice) {
-                        $this->repository->update($invoice['id'], $data);
-                        $invoices = $invoices->where('id', '!=', $invoice['id']);
-                    } else {
-                        $this->repository->create($data);
-                    }
-                }
+                $newInvoices = $this->updateOrCreateBySimpro($companyId, $invoiceFromSimpro['ID'], [$jobId]);
+
+                $invoices = $invoices->whereNotIn('id', Arr::pluck($newInvoices, 'id'));
             }
         }
 
@@ -100,29 +81,45 @@ class InvoiceService extends BaseService
         }
     }
 
-    public function updateOrCreateBySimpro($companyId, $invoiceFromSimproId)
+    public function updateOrCreateBySimpro($companyId, $invoiceFromSimproId, $jobIds = [])
     {
         $customerInvoice = $this->simproClient->getCustomerInvoice($companyId, $invoiceFromSimproId);
 
         if ($this->isCreditInvoice($customerInvoice)) {
-            return false;
+            return [];
         }
 
-        $job = app(JobService::class)->getOrCreateBySimpro($companyId, Arr::get($customerInvoice, 'Jobs.0.ID'));
+        if (empty($jobIds)) {
+            $jobService = app(JobService::class);
 
-        $attachment = $this->findMostRecentAttachment($job['id'], $invoiceFromSimproId);
+            foreach ($customerInvoice['Jobs'] as $simproJob) {
+                $job = $jobService->getOrCreateBySimpro($companyId, $simproJob['ID']);
 
-        return $this->repository->updateOrCreate([
-            'job_id' => $job['id'],
-            'invoice_id' => $invoiceFromSimproId,
-        ], [
-            'date_issued' => $customerInvoice['DateIssued'],
-            'status' => $customerInvoice['Stage'],
-            'total' => Arr::get($customerInvoice, 'Total.ExTax'),
-            'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
-            'is_paid' => $customerInvoice['IsPaid'],
-            'job_attachment_id' => Arr::get($attachment, 'id')
-        ]);
+                $this->jobAttachmentService->syncBySimpro($companyId, $job['job_id'], $job['id']);
+
+                $jobIds[] = $job['id'];
+            }
+        }
+
+        $invoices = [];
+
+        foreach ($jobIds as $jobId) {
+            $attachment = $this->findMostRecentAttachment($jobId, $invoiceFromSimproId);
+
+            $invoices[] = $this->repository->updateOrCreate([
+                'job_id' => $jobId,
+                'invoice_id' => $invoiceFromSimproId,
+            ], [
+                'date_issued' => $customerInvoice['DateIssued'],
+                'status' => $customerInvoice['Stage'],
+                'total' => Arr::get($customerInvoice, 'Total.ExTax'),
+                'date_paid' => !empty(trim($customerInvoice['DatePaid'])) ? $customerInvoice['DatePaid'] : null,
+                'is_paid' => $customerInvoice['IsPaid'],
+                'job_attachment_id' => Arr::get($attachment, 'id')
+            ]);
+        }
+
+        return $invoices;
     }
 
     protected function findMostRecentAttachment($jobId, $invoiceFromSimproId)

@@ -21,6 +21,10 @@ abstract class TestCase extends BaseTestCase
     protected array $requiredOriginStates = [];
     protected array $testCaseOriginStates = [];
 
+    protected bool $forceClearDb = false;
+
+    protected bool $wrapIntoTransaction = true;
+
     /**
      * Creates the application.
      *
@@ -98,9 +102,15 @@ abstract class TestCase extends BaseTestCase
         }
 
         if (isset($testCaseName)) {
-            $this->testCaseName = $testCaseName;
+            $explodedTestCaseName = explode('/', $testCaseName);
+            $dir = '';
 
-            $this->loadTestDump();
+            foreach ($explodedTestCaseName as $dirName) {
+                $dir .= '/' . $dirName;
+                $this->loadTestDump($dir, false);
+            }
+
+            $this->testCaseName = $testCaseName;
         }
 
         $this->loadOriginStates();
@@ -120,23 +130,26 @@ abstract class TestCase extends BaseTestCase
         return $this->testCaseOriginStates[$this->testCaseName][$table];
     }
 
-    protected function loadTestDump(): void
+    protected function loadTestDump(?string $dir = null, bool $clearDb = true): void
     {
-        $clearDb = is_null($this->testCaseName);
-
-        $dump = $this->getFixture('dump.sql', false);
+        $dump = $this->getFixture("{$dir}/dump.sql", false);
 
         if (empty($dump)) {
+            $this->forceClearDb = $clearDb;
+
             return;
         }
 
         $dump = preg_replace('/--.*/', '', $dump);
 
-        if ($clearDb) {
+        if ($clearDb || $this->forceClearDb) {
             $databaseTables = $this->getTables();
-            $scheme = config('database.default');
 
-            $this->clearDatabase($scheme, $databaseTables, array_merge($this->postgisTables, $this->truncateExceptTables));
+            $this->clearDatabase(
+                config('database.default'),
+                $databaseTables,
+                array_merge($this->postgisTables, $this->truncateExceptTables)
+            );
         }
 
         DB::unprepared($dump);
@@ -198,5 +211,12 @@ abstract class TestCase extends BaseTestCase
         }
 
         $this->assertEquals($this->getJsonFixture($fixture), $data);
+    }
+
+    protected function beginDatabaseTransaction()
+    {
+        if ($this->wrapIntoTransaction) {
+            parent::beginDatabaseTransaction();
+        }
     }
 }

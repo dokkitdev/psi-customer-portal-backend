@@ -10,7 +10,7 @@ class SimproWebhookController extends Controller
 {
     public function process(ProcessSimproWebhookRequest $request, SimproWebhookService $service)
     {
-        $service->process($request->onlyValidated());
+        $service->process($request->all());
 
         return response('', Response::HTTP_NO_CONTENT);
     }

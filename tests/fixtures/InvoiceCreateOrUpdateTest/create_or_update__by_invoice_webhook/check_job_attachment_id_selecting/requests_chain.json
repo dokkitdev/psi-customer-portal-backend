@@ -1,0 +1,105 @@
+[
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/customerInvoices/1234",
+            "data": null,
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 1234,
+                "DateIssued": "2018-10-11",
+                "Stage": "Pending",
+                "Jobs": [
+                    {"ID": 2345}
+                ],
+                "Total": {"ExTax": 234},
+                "IsCredit": false,
+                "DatePaid": null,
+                "IsPaid": false
+            },
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/2345/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": "attachment_5674",
+                    "Filename": "any name",
+                    "DateAdded": "2018-10-10 10:10:10"
+                },
+                {
+                    "ID": "attachment_5675",
+                    "Filename": "innnnvoice_no_1234_any_str",
+                    "DateAdded": "2018-10-10 10:10:10"
+                },
+                {
+                    "ID": "attachment_5676",
+                    "Filename": "invoice_no_1234_any_str",
+                    "DateAdded": "2018-10-10 10:10:12"
+                },
+                {
+                    "ID": "attachment_5677",
+                    "Filename": "invoice_no_1234_any_str",
+                    "DateAdded": "2018-10-10 10:10:13"
+                },
+                {
+                    "ID": "attachment_5678",
+                    "Filename": "invoice_no_1234_any_str",
+                    "DateAdded": "2018-10-10 10:10:11"
+                },
+                {
+                    "ID": "attachment_5679",
+                    "Filename": "any name",
+                    "DateAdded": "2018-10-10 10:10:10"
+                }
+            ],
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/2345/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {"any": "headers"}
+        }
+    }
+]

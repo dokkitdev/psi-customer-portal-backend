@@ -1,0 +1,29 @@
+[
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/customerInvoices/1234",
+            "data": null,
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 1234,
+                "DateIssued": "2018-10-11",
+                "Stage": "Pending",
+                "Jobs": [
+                ],
+                "Total": {"ExTax": 234},
+                "IsCredit": false,
+                "DatePaid": null,
+                "IsPaid": false
+            },
+            "headers": {"any": "headers"}
+        }
+    }
+]
