@@ -90,10 +90,7 @@
             "data": [
                 {
                     "__test_description__": "not credit invoice | not exists in DB -> should be created",
-                    "ID": 4561,
-                    "DateIssued": "2018-10-11",
-                    "Stage": "Pending",
-                    "Total": {"ExTax": 1}
+                    "ID": 4561
                 },
                 {
                     "__test_description__": "credit invoice | exists in DB -> should be deleted",
@@ -105,10 +102,7 @@
                 },
                 {
                     "__test_description__": "not credit invoice | exists in DB -> should be updated",
-                    "ID": 4565,
-                    "DateIssued": "2018-10-15",
-                    "Stage": "Approved",
-                    "Total": {"ExTax": 5}
+                    "ID": 4565
                 },
                 {
                     "__test_description__": "check if credit invoice | ex tax === 0, IsCredit == true -> true, skip",
@@ -124,10 +118,7 @@
                 },
                 {
                     "__test_description__": "check if credit invoice | ex tax > 0, IsCredit === false -> false, should be created",
-                    "ID": 4569,
-                    "DateIssued": "2018-10-19",
-                    "Stage": "Pending",
-                    "Total": {"ExTax": 9}
+                    "ID": 4569
                 }
             ],
             "headers": {"any": "headers"}
@@ -148,8 +139,10 @@
             "status_code": 200,
             "data": {
                 "ID": 4561,
-                "IsCredit": false,
+                "DateIssued": "2018-10-11",
+                "Stage": "Pending",
                 "Total": {"ExTax": 1},
+                "IsCredit": false,
                 "DatePaid": " ",
                 "IsPaid": false
             },
@@ -213,8 +206,10 @@
             "status_code": 200,
             "data": {
                 "ID": 4565,
+                "DateIssued": "2018-10-15",
+                "Stage": "Approved",
+                "Total": {"ExTax": 5},
                 "IsCredit": false,
-                "Total": {"ExTax": 1},
                 "DatePaid": "2018-11-11",
                 "IsPaid": true
             },
@@ -299,8 +294,10 @@
             "status_code": 200,
             "data": {
                 "ID": 4569,
+                "DateIssued": "2018-10-19",
+                "Stage": "Pending",
+                "Total": {"ExTax": 9},
                 "IsCredit": false,
-                "Total": {"ExTax": 1},
                 "DatePaid": null,
                 "IsPaid": false
             },

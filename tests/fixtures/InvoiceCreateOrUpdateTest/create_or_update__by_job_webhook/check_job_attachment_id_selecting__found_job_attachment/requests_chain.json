@@ -143,10 +143,7 @@
             "data": [
                 {
                     "__test_description__": "no attachments",
-                    "ID": 4561,
-                    "DateIssued": "2018-10-11",
-                    "Stage": "Pending",
-                    "Total": {"ExTax": 1}
+                    "ID": 4561
                 }
             ],
             "headers": {"any": "headers"}
@@ -167,8 +164,10 @@
             "status_code": 200,
             "data": {
                 "ID": 4561,
-                "IsCredit": false,
+                "DateIssued": "2018-10-11",
+                "Stage": "Pending",
                 "Total": {"ExTax": 1},
+                "IsCredit": false,
                 "DatePaid": null,
                 "IsPaid": false
             },
