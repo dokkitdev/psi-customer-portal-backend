@@ -19,6 +19,7 @@ class SimproJobService extends EntityService
     protected QuoteService $quoteService;
     protected AssetService $assetService;
     protected JobAttachmentService $jobAttachmentService;
+    protected InvoiceService $invoiceService;
 
     public function __construct()
     {
@@ -31,6 +32,7 @@ class SimproJobService extends EntityService
         $this->quoteService = app(QuoteService::class);
         $this->assetService = app(AssetService::class);
         $this->jobAttachmentService = app(JobAttachmentService::class);
+        $this->invoiceService = app(InvoiceService::class);
     }
 
     public function handleJob($webhook): void
@@ -93,6 +95,19 @@ class SimproJobService extends EntityService
                 break;
             case 'job.attachment.deleted':
                 $this->jobAttachmentService->deleteBySimpro($webhook);
+                break;
+            case 'invoice.created':
+            case 'invoice.status':
+            case 'invoice.updated':
+                $companyId = $webhook['data']['reference']['companyID'];
+                $invoiceId = $webhook['data']['reference']['invoiceID'];
+
+                $this->invoiceService->updateOrCreateBySimpro($companyId, $invoiceId);
+                break;
+            case 'invoice.deleted':
+                $this->invoiceService->delete([
+                    'invoice_id' => $webhook['data']['reference']['invoiceID'],
+                ]);
                 break;
             default:
                 //DO NOTHING

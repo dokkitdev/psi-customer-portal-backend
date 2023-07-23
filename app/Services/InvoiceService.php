@@ -95,6 +95,8 @@ class InvoiceService extends BaseService
             foreach ($customerInvoice['Jobs'] as $simproJob) {
                 $job = $jobService->getOrCreateBySimpro($companyId, $simproJob['ID']);
 
+                $this->jobAttachmentService->syncBySimpro($companyId, $job['job_id'], $job['id']);
+
                 $jobIds[] = $job['id'];
             }
         }
