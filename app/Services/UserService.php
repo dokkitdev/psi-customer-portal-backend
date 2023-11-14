@@ -107,15 +107,17 @@ class UserService extends BaseService
 
     public function forgotPassword($email)
     {
+        $user = $this->getByEmailInsensitively($email);
+
         $hash = $this->generateHash();
 
         $this->repository
             ->force()
             ->update([
-                'email' => $email
+                'id' => $user['id'],
             ], [
                 'set_password_hash' => $hash,
-                'set_password_hash_created_at' => Carbon::now()
+                'set_password_hash_created_at' => Carbon::now(),
             ]);
 
         $mail = new ForgotPasswordMail($email, ['hash' => $hash]);
