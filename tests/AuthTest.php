@@ -12,6 +12,10 @@ class AuthTest extends TestCase
 {
     use AuthTestTrait;
 
+    protected array $requiredOriginStates = [
+        'users',
+    ];
+
     protected $admin;
     protected $users;
 
@@ -91,11 +95,7 @@ class AuthTest extends TestCase
 
         $response->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseMissing('users', [
-            'email' => 'fidel.kutch@example.com',
-            'set_password_hash' => null,
-            'set_password_hash_created_at' => null
-        ]);
+        $this->assertChangesEqualsFixture('users', 'forgot_password__users_state.json');
 
         $this->assertMailEquals(ForgotPasswordMail::class, [
             [
