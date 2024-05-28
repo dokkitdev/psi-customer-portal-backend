@@ -45,7 +45,7 @@ class QuoteTest extends TestCase
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
         $simproJob = SimproJob::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
+        $this->assertEqualsFixture('simpro_jobs_create_or_update_event_fixture.json', $simproJob);
 
         $quotes = Quote::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('quote_create_or_update_event_fixture.json', $quotes);
@@ -67,7 +67,7 @@ class QuoteTest extends TestCase
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
         $simproJob = SimproJob::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
+        $this->assertEqualsFixture('simpro_jobs_delete_event_fixture.json', $simproJob);
 
         $quotes = Quote::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('quote_delete_event_fixture.json', $quotes);

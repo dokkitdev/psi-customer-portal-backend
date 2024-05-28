@@ -25,7 +25,9 @@ class SimproJobsHandler extends TimeoutCommand
                 try {
                     $this->simproJobService->handleJob($job);
 
-                    $this->simproJobService->delete($job->id);
+                    $this->simproJobService->update($job['id'], [
+                        'handle_status' => SimproJob::HANDLE_STATUS_SUCCESS,
+                    ]);
                 } catch (Exception $e) {
                     if ((app()->environment() === 'testing') && ($e instanceof ExpectationFailedException)) {
                         throw $e;
