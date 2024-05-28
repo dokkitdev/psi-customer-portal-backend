@@ -10,6 +10,7 @@ class SimproJob extends Model
     use ModelTrait;
 
     const HANDLE_STATUS_NEW = 'new';
+    const HANDLE_STATUS_SUCCESS = 'success';
     const HANDLE_STATUS_ERROR = 'error';
 
     protected $fillable = [
