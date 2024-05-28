@@ -36,7 +36,7 @@ class SimproSiteTest extends TestCase
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
         $simproJob = SimproJob::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJob);
+        $this->assertEqualsFixture('simpro_jobs_create_or_update_event_fixture.json', $simproJob);
 
         $simproSite = SimproSite::orderBy('id')->get()->toArray();
         $this->assertEqualsFixture('simpro_site_create_or_update_event_fixture.json', $simproSite);
@@ -58,7 +58,7 @@ class SimproSiteTest extends TestCase
         $this->artisan('simpro:handle-jobs')->assertExitCode(0);
 
         $simproJobs = SimproJob::orderBy('id')->get()->toArray();
-        $this->assertEqualsFixture('simpro_jobs_fixture.json', $simproJobs);
+        $this->assertEqualsFixture('simpro_jobs_site_deleted_fixture.json', $simproJobs);
 
         $this->assertDatabaseMissing('simpro_sites', ['id' => 5]);
 

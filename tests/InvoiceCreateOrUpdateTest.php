@@ -35,8 +35,6 @@ class InvoiceCreateOrUpdateTest extends TestCase
         ];
     }
 
-    protected bool $forceExportMode = true;
-
     /**
      * @dataProvider getTestCreateOrUpdateByJobWebhookData
      * @providedTestCase
