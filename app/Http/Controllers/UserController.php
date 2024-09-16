@@ -51,7 +51,7 @@ class UserController extends Controller
 
     public function dashboard(GetDashboardRequest $request, SimproService $service)
     {
-        $result = $service->getDashboardCounters();
+        $result = $service->getDashboardCounters($request->user());
 
         return response()->json($result);
     }
