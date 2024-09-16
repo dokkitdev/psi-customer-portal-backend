@@ -5,6 +5,8 @@ namespace App\Services;
 use App\ApiClients\SimproApiClient;
 use App\Models\Job;
 use App\Models\Quote;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Arr;
 
 class SimproService
@@ -100,45 +102,26 @@ class SimproService
         return $serviceLevels;
     }
 
-    public function getDashboardCounters()
+    public function getDashboardCounters(User $user)
     {
-        $data = [
-            'per_page' => 0,
-            'all' => 1,
-        ];
+        $onlyPermittedForUserId = ($user->role_id === Role::USER)
+            ? $user->id
+            : null;
 
-        $data['stage'] = [Job::PENDING_STAGE];
-        $pendingJobs = $this->jobService->search($data);
+        $jobsCount = $this->jobService->countGroupedByStage($onlyPermittedForUserId);
 
-        $data['stage'] = [Job::PROGRESS_STAGE];
-        $progressJobs = $this->jobService->search($data);
+        $pendingQuotesCount = $this->quoteService->countByStatusAndStage($onlyPermittedForUserId, Quote::STATUS_PENDING, Quote::STAGE_SENT);
 
-        $data['stage'] = [Job::COMPLETE_STAGE];
-        $completeJobs = $this->jobService->search($data);
-
-        $data['stage'] = [Job::ARCHIVED_STAGE];
-        $archivedJobs = $this->jobService->search($data);
-
-        $data['stage'] = [Job::INVOICED_STAGE];
-        $invoicedJobs = $this->jobService->search($data);
-
-        $data = Arr::except($data, 'stage');
-        $data['statuses'] = [Quote::STATUS_PENDING];
-        $data['stages'] = [Quote::STAGE_SENT];
-        $pendingQuotes = $this->quoteService->search($data);
-
-        $data = Arr::except($data, ['statuses', 'stages']);
-        $data['is_paid'] = false;
-        $unpaidInvoices = $this->invoiceService->search($data);
+        $notPaidInvoicesCount = $this->invoiceService->countNotPaid($onlyPermittedForUserId);
 
         return [
-            'pending_jobs_total' => $pendingJobs['total'],
-            'progress_jobs_total' => $progressJobs['total'],
-            'complete_jobs_total' => $completeJobs['total'],
-            'archived_jobs_total' => $archivedJobs['total'],
-            'invoiced_jobs_total' => $invoicedJobs['total'],
-            'pending_quotes_total' => $pendingQuotes['total'],
-            'unpaid_invoices_total' => $unpaidInvoices['total'],
+            'pending_jobs_total' => Arr::get($jobsCount, Job::PENDING_STAGE, 0),
+            'progress_jobs_total' => Arr::get($jobsCount, Job::PROGRESS_STAGE, 0),
+            'complete_jobs_total' => Arr::get($jobsCount, Job::COMPLETE_STAGE, 0),
+            'archived_jobs_total' => Arr::get($jobsCount, Job::ARCHIVED_STAGE, 0),
+            'invoiced_jobs_total' => Arr::get($jobsCount, Job::INVOICED_STAGE, 0),
+            'pending_quotes_total' => $pendingQuotesCount,
+            'unpaid_invoices_total' => $notPaidInvoicesCount,
         ];
     }
 }

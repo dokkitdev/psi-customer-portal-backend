@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Invoice;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 
 /**
@@ -13,6 +14,17 @@ class InvoiceRepository extends BaseRepository
     public function __construct()
     {
         $this->setModel(Invoice::class);
+    }
+
+    public function countNotPaid(?int $onlyPermittedForUserId): int
+    {
+        return $this
+            ->getQuery()
+            ->when(isset($onlyPermittedForUserId), function (Builder $query) use ($onlyPermittedForUserId) {
+                $query->onlyPermitted($onlyPermittedForUserId);
+            })
+            ->where('is_paid', false)
+            ->count();
     }
 
     public function filterByUserGroups()

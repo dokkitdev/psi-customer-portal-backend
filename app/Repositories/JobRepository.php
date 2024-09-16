@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Job;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,22 @@ class JobRepository extends BaseRepository
     public function __construct()
     {
         $this->setModel(Job::class);
+    }
+
+    public function countGroupedByStage(?int $onlyPermittedForUserId): array
+    {
+        return $this
+            ->getQuery()
+            ->when(isset($onlyPermittedForUserId), function (Builder $query) use ($onlyPermittedForUserId) {
+                $query->onlyPermitted($onlyPermittedForUserId);
+            })
+            ->select(DB::raw('stage'), DB::raw('COUNT(*) as count'))
+            ->groupBy('stage')
+            ->get()
+            ->mapWithKeys(function ($row) {
+                return [$row['stage'] => $row['count']];
+            })
+            ->toArray();
     }
 
     public function filterByUserGroups()
