@@ -258,14 +258,14 @@ class QuoteService extends BaseService
 
         $attachments = $this->simproClient->getQuoteAttachments($companyId, $quoteId);
 
-        $attachmentName = "quote_no_{$quoteId}";
-
-        $attachment = $this->findMostRecentFile($attachments, [$attachmentName]);
+        $attachment = $this->findMostRecentFile($attachments, ["quote_no_{$quoteId}"]);
 
         if (!$attachment) {
-            $attachmentName = (string) $quoteId;
+            $attachment = $this->findMostRecentFile($attachments, [(string) $quoteId]);
 
-            $attachment = $this->findMostRecentFile($attachments, [$attachmentName]);
+            if (!$attachment) {
+                $attachment = $this->findMostRecentFile($attachments, ["quote no {$quoteId}"], true);
+            }
         }
 
         return [$note, $attachment];
