@@ -99,9 +99,9 @@ class AuthTest extends TestCase
 
         $this->assertMailEquals(ForgotPasswordMail::class, [
             [
-                'emails' => 'fidel.kutch@example.com',
+                'emails' => ['fidel.kutch@example.com', 'Dbraunton@pfsltd.co.uk'],
                 'fixture' => 'forgot_password_email.html'
-            ]
+            ],
         ]);
     }
 
