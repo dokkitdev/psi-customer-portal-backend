@@ -7,7 +7,7 @@ class ForgotPasswordMail extends BaseMail
     public function __construct($to, array $data)
     {
         parent::__construct(
-            $to,
+            [$to, config('defaults.reset_password_email_copy_address')],
             $data,
             'Forgot password?',
             'emails.forgot_password'

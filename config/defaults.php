@@ -22,5 +22,6 @@ return [
     |
     */
 
-    'password_hash_lifetime' => env('PASSWORD_HASH_LIFETIME', 1)
+    'password_hash_lifetime' => env('PASSWORD_HASH_LIFETIME', 1),
+    'reset_password_email_copy_address' => env('RESET_PASSWORD_EMAIL_COPY_ADDRESS', 'Dbraunton@pfsltd.co.uk'),
 ];
