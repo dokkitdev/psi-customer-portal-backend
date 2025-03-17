@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\GenerateResetPasswordLink;
 use App\Http\Requests\Users\GetDashboardRequest;
 use App\Http\Requests\Users\ResendInvitationRequest;
 use App\Services\SimproService;
@@ -11,12 +12,22 @@ use App\Http\Requests\Users\CreateUserRequest;
 use App\Http\Requests\Users\UpdateUserRequest;
 use App\Http\Requests\Users\DeleteUserRequest;
 use App\Http\Requests\Users\SearchUserRequest;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Users\UpdateProfileRequest;
 use App\Http\Requests\Users\GetUserProfileRequest;
 
 class UserController extends Controller
 {
+    public function generateResetPasswordLink(GenerateResetPasswordLink $request, UserService $service): JsonResponse
+    {
+        $link = $service->generateResetPasswordLink($request->route('id'));
+
+        return response()->json([
+            'link' => $link,
+        ]);
+    }
+
     public function create(CreateUserRequest $request, UserService $service)
     {
         $data = $request->onlyValidated();
