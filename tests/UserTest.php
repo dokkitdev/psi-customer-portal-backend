@@ -16,6 +16,10 @@ class UserTest extends TestCase
     protected $admin;
     protected $user;
 
+    protected array $requiredOriginStates = [
+        'users',
+    ];
+
     public function setUp(): void
     {
         parent::setUp();
@@ -400,5 +404,70 @@ class UserTest extends TestCase
         $response = $this->json('post', '/users/1/resend-invitation');
 
         $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+    }
+
+    public function getDataForTestGenerateResetPasswordLink(): array
+    {
+        return [
+            [
+                'acting_as_user_id' => 1,
+                'target_user_id' => 2,
+                'status_code' => Response::HTTP_OK,
+                'response_fixture' => 'generate_reset_password_link__success__response',
+                'users_state_fixture' => 'generate_reset_password_link__success__users_state',
+            ],
+            [
+                'acting_as_user_id' => 2,
+                'target_user_id' => 2,
+                'status_code' => Response::HTTP_FORBIDDEN,
+                'response_fixture' => 'generate_reset_password_link__no_permissions__response',
+                'users_state_fixture' => null,
+            ],
+            [
+                'acting_as_user_id' => 1,
+                'target_user_id' => 9999,
+                'status_code' => Response::HTTP_NOT_FOUND,
+                'response_fixture' => 'generate_reset_password_link__not_found__response',
+                'users_state_fixture' => null,
+            ],
+            [
+                'acting_as_user_id' => null,
+                'target_user_id' => 2,
+                'status_code' => Response::HTTP_UNAUTHORIZED,
+                'response_fixture' => 'generate_reset_password_link__no_auth__response',
+                'users_state_fixture' => null,
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider getDataForTestGenerateResetPasswordLink
+     */
+    public function testGenerateResetPasswordLink(
+        ?int $actingAsUserId,
+        int $targetUserId,
+        int $statusCode,
+        string $responseFixture,
+        ?string $usersStateFixture
+    ): void {
+        if ($statusCode === Response::HTTP_OK) {
+            $this->mockUniqueTokenGeneration('qwe-random-token-rty');
+        }
+
+        if (isset($actingAsUserId)) {
+            $this->actingAs(User::find($actingAsUserId));
+        }
+
+        $response = $this->json('get', "/users/{$targetUserId}/reset-password-link");
+
+        $response->assertStatus($statusCode);
+
+        $this->assertEqualsFixture($responseFixture, $response->json());
+
+        if (isset($usersStateFixture)) {
+            $this->assertChangesEqualsFixture('users', $usersStateFixture);
+        } else {
+            $this->assertNoChanges('users');
+        }
     }
 }

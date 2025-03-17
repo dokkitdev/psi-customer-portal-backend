@@ -105,20 +105,20 @@ class UserService extends BaseService
         return $user;
     }
 
+    public function generateResetPasswordLink(int $userId): string
+    {
+        $hash = $this->generateSetPasswordHash($userId);
+
+        $frontendUrl = config('app.frontend_url');
+
+        return "{$frontendUrl}/reset-password/{$hash}";
+    }
+
     public function forgotPassword($email)
     {
         $user = $this->getByEmailInsensitively($email);
 
-        $hash = $this->generateHash();
-
-        $this->repository
-            ->force()
-            ->update([
-                'id' => $user['id'],
-            ], [
-                'set_password_hash' => $hash,
-                'set_password_hash_created_at' => Carbon::now(),
-            ]);
+        $hash = $this->generateSetPasswordHash($user['id']);
 
         $mail = new ForgotPasswordMail($email, ['hash' => $hash]);
         dispatch(new SendMailJob($mail));
@@ -147,6 +147,22 @@ class UserService extends BaseService
                 'new_email' => null,
                 'set_password_hash' => null
             ]);
+    }
+
+    protected function generateSetPasswordHash(int $userId): string
+    {
+        $hash = $this->generateHash();
+
+        $this->repository
+            ->force()
+            ->update([
+                'id' => $userId,
+            ], [
+                'set_password_hash' => $hash,
+                'set_password_hash_created_at' => Carbon::now(),
+            ]);
+
+        return $hash;
     }
 
     protected function sendInvitationEmail($email, $hash)
