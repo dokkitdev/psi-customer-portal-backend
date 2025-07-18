@@ -99,7 +99,15 @@ class SiteContactService extends BaseService
 
         $siteContacts = $this->repository->get(['simpro_site_id' => $simproSiteId]);
 
+        $processedContactIds = [];
+
         foreach ($contacts as $contact) {
+            if (in_array($contact['ID'], $processedContactIds)) {
+                continue;
+            }
+
+            $processedContactIds[] = $contact['ID'];
+
             $data = [
                 'simpro_site_id' => $simproSiteId,
                 'contact_id' => $contact['ID'],
