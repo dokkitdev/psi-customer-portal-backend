@@ -23,7 +23,7 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
     {
         $quoteStates  = $this->simproClient->getListAllProjectStatusCodes(0, [
             'page' => $page,
-            'limit' => 250,
+            'pageSize' => 250,
         ]);
 
         foreach ($quoteStates as $status){
