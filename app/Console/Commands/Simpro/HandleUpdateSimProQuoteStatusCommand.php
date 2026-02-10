@@ -16,9 +16,24 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
     {
         $this->simproClient = app(SimproApiClient::class);
 
-        $quoteStates  = $this->simproClient->getListAllProjectStatusCodes(0);
+        $this->fetchPage();
+    }
+
+    public function fetchPage($page = 1)
+    {
+        $quoteStates  = $this->simproClient->getListAllProjectStatusCodes(0, [
+            'page' => $page,
+            'limit' => 250,
+        ]);
+
         foreach ($quoteStates as $status){
             dump($status);
         }
+
+        if(count($quoteStates) < 250){
+            return;
+        }
+
+        $this->fetchPage(++$page);
     }
 }

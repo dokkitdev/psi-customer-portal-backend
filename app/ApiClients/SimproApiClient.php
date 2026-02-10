@@ -237,11 +237,11 @@ class SimproApiClient
         return $this->makeRequest('get', $url);
     }
 
-    public function getListAllProjectStatusCodes($companyId)
+    public function getListAllProjectStatusCodes($companyId, $data = [])
     {
         $url = $this->getUrl("companies/{$companyId}/setup/statusCodes/projects/");
 
-        return $this->makeRequest('get', $url);
+        return $this->makeRequest('get', $url, $data);
     }
 
     public function getAsGenerator($url, $additionalFilters = [], $callback = null, $pageSize = 250, $headers = [])
