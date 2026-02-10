@@ -43,7 +43,15 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
         if (isset($status['Name']) && strpos($status['Name'], 'Quote') === 0) {
             $statusExist = QuoteStatusCode::where('simpro_code_id', $status['ID'])->first();
             if(!$statusExist){
+                $stage = str_contains($status['Name'], 'Declined') ? 'Declined' : (
+                    str_contains($status['Name'], 'Awaiting') ? 'Pending' : (
+                        str_contains($status['Name'], 'URGENT') ? 'URGENT' : (
+                            str_contains($status['Name'], 'Void') ? 'Void' : 'Pending'
+                        )
+                    )
+                );
                 dump($status['Name']);
+                dump($stage);
 //                 QuoteStatusCode::create([
 //                    'simpro_code_id' => $status['ID'],
 //                    'name' => $status['Name']]
