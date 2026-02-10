@@ -58,7 +58,6 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
                  ]);
             }else{
                 $statusExist->update(['name' => $status['Name']]);
-                dump($statusExist);
             }
         }
     }
