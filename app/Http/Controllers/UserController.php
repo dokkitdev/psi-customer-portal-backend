@@ -1,0 +1,100 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\Users\GenerateResetPasswordLink;
+use App\Http\Requests\Users\GetDashboardRequest;
+use App\Http\Requests\Users\ResendInvitationRequest;
+use App\Services\SimproService;
+use App\Services\UserService;
+use App\Http\Requests\Users\GetUserRequest;
+use App\Http\Requests\Users\CreateUserRequest;
+use App\Http\Requests\Users\UpdateUserRequest;
+use App\Http\Requests\Users\DeleteUserRequest;
+use App\Http\Requests\Users\SearchUserRequest;
+use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use App\Http\Requests\Users\UpdateProfileRequest;
+use App\Http\Requests\Users\GetUserProfileRequest;
+
+class UserController extends Controller
+{
+    public function generateResetPasswordLink(GenerateResetPasswordLink $request, UserService $service): JsonResponse
+    {
+        $link = $service->generateResetPasswordLink($request->route('id'));
+
+        return response()->json([
+            'link' => $link,
+        ]);
+    }
+
+    public function create(CreateUserRequest $request, UserService $service)
+    {
+        $data = $request->onlyValidated();
+
+        $result = $service->create($data);
+
+        return response()->json($result);
+    }
+
+    public function get(GetUserRequest $request, UserService $service, $id)
+    {
+        $result = $service
+            ->withRelations($request->onlyValidated('with', []))
+            ->find($id);
+
+        return response()->json($result);
+    }
+
+    public function resendInvitation(ResendInvitationRequest $request, UserService $service, $id)
+    {
+        $service->resendInvitation($id);
+
+        return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function update(UpdateUserRequest $request, UserService $service, $id)
+    {
+        $service->update($id, $request->onlyValidated());
+
+        return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function dashboard(GetDashboardRequest $request, SimproService $service)
+    {
+        $result = $service->getDashboardCounters($request->user());
+
+        return response()->json($result);
+    }
+
+    public function profile(GetUserProfileRequest $request, UserService $service)
+    {
+        $result = $service
+            ->withRelations($request->onlyValidated('with', []))
+            ->find($request->user()->id);
+
+        return response()->json($result);
+    }
+
+    public function updateProfile(UpdateProfileRequest $request, UserService $service)
+    {
+        $service->update($request->user()->id, $request->onlyValidated());
+
+        return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function delete(DeleteUserRequest $request, UserService $service, $id)
+    {
+        $service->delete($id);
+
+        return response('', Response::HTTP_NO_CONTENT);
+    }
+
+    public function search(SearchUserRequest $request, UserService $service)
+    {
+        $result = $service->search($request->onlyValidated());
+
+        return response()->json($result);
+    }
+}
+

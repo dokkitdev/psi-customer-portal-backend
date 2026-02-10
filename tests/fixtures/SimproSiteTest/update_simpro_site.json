@@ -1,0 +1,19 @@
+{
+  "name": "Updated Name",
+  "address": "Updated Address",
+  "postal_code": "Updated Postcode",
+  "city": "Updated City",
+  "country": "Updated Country",
+  "county": "Updated County",
+  "primary_site_contact_id": 1,
+  "site_custom_fields": [
+    {
+      "id": 1,
+      "value": "Updated 22 value"
+    },
+    {
+      "id": 3,
+      "value": "Updated 32 value"
+    }
+  ]
+}

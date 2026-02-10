@@ -1,0 +1,183 @@
+[
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1234",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 1234,
+                "Name": "Job Name",
+                "Customer": {
+                    "ID": 2345
+                },
+                "Site": {
+                    "ID": 3456
+                }
+            },
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Reference": "1234%",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1234/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "ID": "attachment_5674",
+                    "Filename": "any name",
+                    "DateAdded": "2018-10-10 10:10:10"
+                },
+                {
+                    "ID": "attachment_5675",
+                    "Filename": "innnnvoice_no_4561_any_str",
+                    "DateAdded": "2018-10-10 10:10:10"
+                },
+                {
+                    "ID": "attachment_5679",
+                    "Filename": "any name",
+                    "DateAdded": "2018-10-10 10:10:10"
+                }
+            ],
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1234/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1234/invoices/",
+            "data": {
+                "columns": "ID,DateIssued,Stage,Total",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [
+                {
+                    "__test_description__": "no attachments",
+                    "ID": 4561
+                }
+            ],
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/customerInvoices/4561",
+            "data": null,
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 4561,
+                "DateIssued": "2018-10-11",
+                "Stage": "Pending",
+                "Total": {"ExTax": 1},
+                "IsCredit": false,
+                "DatePaid": null,
+                "IsPaid": false
+            },
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1234/invoices/",
+            "data": {
+                "columns": "ID,DateIssued,Stage,Total",
+                "page": 2,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {"any": "headers"}
+        }
+    }
+]

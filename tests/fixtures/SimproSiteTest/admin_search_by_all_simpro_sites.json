@@ -1,0 +1,80 @@
+{
+    "current_page": 1,
+    "data": [
+        {
+            "id": 1,
+            "site_id": 3900,
+            "name": "Name 1",
+            "created_at": null,
+            "updated_at": null,
+            "address": "Charter Place",
+            "postal_code": "UB8 1JG",
+            "simpro_customer_id": 1,
+            "city": null,
+            "country": null,
+            "county": null
+        },
+        {
+            "id": 2,
+            "site_id": 2,
+            "name": "Name 2",
+            "created_at": null,
+            "updated_at": null,
+            "address": null,
+            "postal_code": null,
+            "simpro_customer_id": 1,
+            "city": null,
+            "country": null,
+            "county": null
+        },
+        {
+            "id": 3,
+            "site_id": 3,
+            "name": "Name 3",
+            "created_at": null,
+            "updated_at": null,
+            "address": null,
+            "postal_code": null,
+            "simpro_customer_id": 1,
+            "city": null,
+            "country": null,
+            "county": null
+        },
+        {
+            "id": 4,
+            "site_id": 3901,
+            "name": "Name 4",
+            "created_at": null,
+            "updated_at": null,
+            "address": null,
+            "postal_code": null,
+            "simpro_customer_id": 2,
+            "city": null,
+            "country": null,
+            "county": null
+        },
+        {
+            "id": 5,
+            "site_id": 1700,
+            "name": "Name 1700",
+            "created_at": null,
+            "updated_at": null,
+            "address": null,
+            "postal_code": null,
+            "simpro_customer_id": 3,
+            "city": null,
+            "country": null,
+            "county": null
+        }
+    ],
+    "first_page_url": "http:\/\/localhost\/simpro-sites?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http:\/\/localhost\/simpro-sites?page=1",
+    "next_page_url": null,
+    "path": "simpro-sites",
+    "per_page": 5,
+    "prev_page_url": null,
+    "to": 5,
+    "total": 5
+}

@@ -1,0 +1,15 @@
+{
+    "updated": [],
+    "created": [],
+    "deleted": [
+        {
+            "id": 12,
+            "job_id": 11,
+            "attachment_id": "existed_attachment_simpro_id",
+            "name": "12.pdf",
+            "created_at": "2018-10-10 10:10:10",
+            "updated_at": "2018-10-10 10:10:10",
+            "date_added": null
+        }
+    ]
+}

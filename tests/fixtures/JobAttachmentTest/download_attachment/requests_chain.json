@@ -1,0 +1,19 @@
+[
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/209000/attachments/files/8EgYd8urKKzzqcdDTKsKcpW9xWHxtwsKSoCscR3R7g4/view/",
+            "data": null,
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": "actual_downloaded_content",
+            "headers": []
+        }
+    }
+]

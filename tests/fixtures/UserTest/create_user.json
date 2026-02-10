@@ -1,0 +1,10 @@
+{
+    "name": "Another User",
+    "email": "createuser@example.com",
+    "invoice_permission_level": "View",
+    "quote_permission_level": "View",
+    "is_quote_requests": true,
+    "is_job_requests": true,
+    "is_send_email": true,
+    "group_ids": [1, 2]
+}

@@ -1,0 +1,19 @@
+{
+    "id": 9,
+    "job_id": 108,
+    "simpro_customer_id": 2,
+    "simpro_site_id": 4,
+    "description": null,
+    "priority": null,
+    "cost_center_name": null,
+    "business_group": null,
+    "date_created": null,
+    "stage": "Progress",
+    "job_status": null,
+    "requested": "2016-10-20",
+    "created_at": null,
+    "updated_at": null,
+    "recent_schedule_id": 1,
+    "name": null,
+    "converted_from_quote_id": null
+}

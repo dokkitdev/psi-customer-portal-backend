@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Mails\ForgotPasswordMail;
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
+
+class Tmp extends Command
+{
+    protected $signature = 'tmp';
+
+    public function handle()
+    {
+        dump(config('mail'));
+
+        $mail = new ForgotPasswordMail('imerzlyakov@ronasit.com', ['hash' => '13245']);
+
+        Mail::send($mail);
+    }
+}
+

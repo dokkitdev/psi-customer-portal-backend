@@ -1,0 +1,94 @@
+[
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1234",
+            "data": {
+                "display": "all"
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": {
+                "ID": 1234,
+                "Name": "Job Name",
+                "Customer": {
+                    "ID": 2345
+                },
+                "Site": {
+                    "ID": 3456
+                }
+            },
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/schedules/",
+            "data": {
+                "Reference": "1234%",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1234/attachments/files/",
+            "data": {
+                "columns": "ID,Filename,Public,DateAdded",
+                "Public": "true",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {"any": "headers"}
+        }
+    },
+    {
+        "request": {
+            "type": "Get",
+            "url": "https://fake.simpro.com/api/v1.0/companies/0/jobs/1234/invoices/",
+            "data": {
+                "columns": "ID,DateIssued,Stage,Total",
+                "page": 1,
+                "pageSize": 250
+            },
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer fake_simpro_token"
+            }
+        },
+        "response": {
+            "status_code": 200,
+            "data": [],
+            "headers": {"any": "headers"}
+        }
+    }
+]

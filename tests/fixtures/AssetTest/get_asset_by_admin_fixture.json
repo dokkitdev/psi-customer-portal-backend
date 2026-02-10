@@ -1,0 +1,16 @@
+{
+    "id": 9,
+    "asset_id": 9,
+    "simpro_site_id": 4,
+    "type": "Parent",
+    "parent_id": null,
+    "last_test_date": null,
+    "next_service_date": null,
+    "name": null,
+    "last_test_result": null,
+    "service_level_name": null,
+    "archived": false,
+    "created_at": null,
+    "updated_at": null,
+    "location": null
+}
