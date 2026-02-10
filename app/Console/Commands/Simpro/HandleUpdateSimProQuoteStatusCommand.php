@@ -50,12 +50,12 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
                         )
                     )
                 );
-                dump($status['Name']);
-                dump($stage);
-//                 QuoteStatusCode::create([
-//                    'simpro_code_id' => $status['ID'],
-//                    'name' => $status['Name']]
-//                );
+                 QuoteStatusCode::create([
+                    'simpro_code_id' => $status['ID'],
+                    'name' => $status['Name'],
+                    'stage' => 'Sent',
+                    'status' => $stage
+                 ]);
             }else{
                 $statusExist->update(['name' => $status['Name']]);
                 dump($statusExist);
