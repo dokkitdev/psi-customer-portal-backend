@@ -45,8 +45,8 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
             if(!$statusExist){
                 $stage = str_contains($status['Name'], 'Declined') ? 'Declined' : (
                     str_contains($status['Name'], 'Awaiting') ? 'Pending' : (
-                        str_contains($status['Name'], 'URGENT') ? 'URGENT' : (
-                            str_contains($status['Name'], 'Void') ? 'Void' : 'Pending'
+                        str_contains($status['Name'], 'URGENT') ? 'Pending' : (
+                            str_contains($status['Name'], 'Void') ? 'Pending' : 'Pending'
                         )
                     )
                 );
