@@ -239,7 +239,7 @@ class SimproApiClient
 
     public function getListAllProjectStatusCodes($companyId)
     {
-        $url = $this->getUrl("companies/{$companyId}/setup/statusCodes/projects");
+        $url = $this->getUrl("companies/{$companyId}/setup/statusCodes/projects/");
 
         return $this->makeRequest('get', $url);
     }
