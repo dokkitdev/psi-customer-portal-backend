@@ -4,6 +4,7 @@ namespace App\Console\Commands\Simpro;
 
 use App\ApiClients\SimproApiClient;
 use App\Console\Commands\TimeoutCommand;
+use App\Models\QuoteStatusCode;
 
 class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
 {
@@ -27,7 +28,7 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
         ]);
 
         foreach ($quoteStates as $status){
-            dump($status);
+            $this->addOrUpdateQuoteStatus($status);
         }
 
         if(count($quoteStates) < 250){
@@ -35,5 +36,12 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
         }
 
         $this->fetchPage(++$page);
+    }
+
+    public function addOrUpdateQuoteStatus($status)
+    {
+        if(str_contains($status['Name'], 'Quote')){
+            dump($status);
+        }
     }
 }
