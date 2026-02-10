@@ -40,7 +40,7 @@ class HandleUpdateSimProQuoteStatusCommand extends TimeoutCommand
 
     public function addOrUpdateQuoteStatus($status)
     {
-        if(str_contains($status['Name'], 'Quote')){
+        if (isset($status['Name']) && strpos($status['Name'], 'Quote') === 0) {
             dump($status);
         }
     }
